@@ -203,12 +203,15 @@ public class AceQLManager extends javax.swing.JFrame {
         ButtonResizer buttonResizer2 = new ButtonResizer(jPanelProperties1);
         buttonResizer2.setWidthToMax();
 
-        ButtonResizer buttonResizer3 = new ButtonResizer(jPanelServerStartStop);
+        ButtonResizer buttonResizer3 = new ButtonResizer(jPanelButtonStartStop);
         buttonResizer3.setWidthToMax();
 
-        ButtonResizer buttonResizer4 = new ButtonResizer(jPaneServiceInstal);
-        buttonResizer4.setWidthToMax();
+        //ButtonResizer buttonResizer4 = new ButtonResizer(jPanelButtonsStartService);
+        //buttonResizer4.setWidthToMax();
 
+        ButtonResizer buttonResizer5 = new ButtonResizer(jPaneServiceInstal);
+        buttonResizer5.setWidthToMax();
+        
         /*
         jButtonWindowsServiceLogs.setSize(jButtonInstallService.getSize());
         jButtonWindowsServiceLogs.setPreferredSize(jButtonInstallService.getPreferredSize());
@@ -218,10 +221,12 @@ public class AceQLManager extends javax.swing.JFrame {
         SwingUtil.resizeJComponentsForNimbusAndMacOsX(rootPane);
 
         this.addComponentListener(new ComponentAdapter() {
+            @Override
             public void componentMoved(ComponentEvent e) {
                 saveSettings();
             }
 
+            @Override
             public void componentResized(ComponentEvent e) {
                 saveSettings();
             }
@@ -257,14 +262,14 @@ public class AceQLManager extends javax.swing.JFrame {
        
         this.keyListenerAdder();
 
-        // Load and activate previous windows settings
-        WindowSettingMgr.load(this);
         this.setTitle(jLabelLogo.getText());
 
         // Button Apply is not enabled
         jButtonApply.setEnabled(false);
         
-        //pack();
+        // Load and activate previous windows settings
+        WindowSettingMgr.load(this);        
+        pack();
     }
 
     private void setJdbcDrivers() {
@@ -807,6 +812,7 @@ public class AceQLManager extends javax.swing.JFrame {
     }
 
     private void closeOnExit() {
+        saveSettings();
         updateServiceStatusThreadStop();
         this.setVisible(false);
         this.dispose();
@@ -1072,11 +1078,11 @@ public class AceQLManager extends javax.swing.JFrame {
         jPanelEndField5 = new javax.swing.JPanel();
         jPanelSepBlanc8spaces6 = new javax.swing.JPanel();
         jPaneServiceInstal = new javax.swing.JPanel();
+        jPanel3 = new javax.swing.JPanel();
         jLabelWindowsService1 = new javax.swing.JLabel();
         jButtonInstallService = new javax.swing.JButton();
         jButtonUninstallService = new javax.swing.JButton();
         jPanelSepBlanc8spaces2 = new javax.swing.JPanel();
-        jPanelServerStartStop = new javax.swing.JPanel();
         jPanelTitledSeparator5 = new javax.swing.JPanel();
         jPaneBlanklLeft2 = new javax.swing.JPanel();
         jXTitledSeparator20pixels1 = new org.jdesktop.swingx.JXTitledSeparator();
@@ -1094,7 +1100,8 @@ public class AceQLManager extends javax.swing.JFrame {
         jLabelStandardMode = new javax.swing.JLabel();
         jLabelStandardStatus = new javax.swing.JLabel();
         jLabeStandardStatusValue = new javax.swing.JLabel();
-        jPanelRadioStandard2 = new javax.swing.JPanel();
+        jPanelButtonStartStop = new javax.swing.JPanel();
+        jPanelButtonsStartStandard = new javax.swing.JPanel();
         jPanelLeft31 = new javax.swing.JPanel();
         jButtonStart = new javax.swing.JButton();
         jButtonStop = new javax.swing.JButton();
@@ -1106,7 +1113,7 @@ public class AceQLManager extends javax.swing.JFrame {
         jLabelWindowsServiceMode = new javax.swing.JLabel();
         jLabelServiceStatus = new javax.swing.JLabel();
         jLabelServiceStatusValue = new javax.swing.JLabel();
-        jPanelRadioService2 = new javax.swing.JPanel();
+        jPanelButtonsStartService = new javax.swing.JPanel();
         jPanelLeft33 = new javax.swing.JPanel();
         jButtonStartService = new javax.swing.JButton();
         jButtonStopService = new javax.swing.JButton();
@@ -1630,6 +1637,10 @@ public class AceQLManager extends javax.swing.JFrame {
         jPaneServiceInstal.setPreferredSize(new java.awt.Dimension(191, 32));
         jPaneServiceInstal.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
 
+        jPanel3.setPreferredSize(new java.awt.Dimension(0, 0));
+        jPanel3.setLayout(new javax.swing.BoxLayout(jPanel3, javax.swing.BoxLayout.LINE_AXIS));
+        jPaneServiceInstal.add(jPanel3);
+
         jLabelWindowsService1.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         jLabelWindowsService1.setText("Windows Service:");
         jLabelWindowsService1.setMaximumSize(new java.awt.Dimension(129, 16));
@@ -1662,8 +1673,6 @@ public class AceQLManager extends javax.swing.JFrame {
         jPanelSepBlanc8spaces2.setMinimumSize(new java.awt.Dimension(10, 14));
         jPanelSepBlanc8spaces2.setPreferredSize(new java.awt.Dimension(1000, 14));
         jPanelMain.add(jPanelSepBlanc8spaces2);
-
-        jPanelServerStartStop.setLayout(new javax.swing.BoxLayout(jPanelServerStartStop, javax.swing.BoxLayout.Y_AXIS));
 
         jPanelTitledSeparator5.setMinimumSize(new java.awt.Dimension(184, 24));
         jPanelTitledSeparator5.setPreferredSize(new java.awt.Dimension(518, 24));
@@ -1727,13 +1736,13 @@ public class AceQLManager extends javax.swing.JFrame {
 
         jPanelTitledSeparator5.add(jPanelBlankRight2);
 
-        jPanelServerStartStop.add(jPanelTitledSeparator5);
+        jPanelMain.add(jPanelTitledSeparator5);
 
         jPanelSepBlanc8spaces5.setMaximumSize(new java.awt.Dimension(32767, 12));
         jPanelSepBlanc8spaces5.setMinimumSize(new java.awt.Dimension(10, 12));
         jPanelSepBlanc8spaces5.setName(""); // NOI18N
         jPanelSepBlanc8spaces5.setPreferredSize(new java.awt.Dimension(1000, 12));
-        jPanelServerStartStop.add(jPanelSepBlanc8spaces5);
+        jPanelMain.add(jPanelSepBlanc8spaces5);
 
         jPanelURL.setMaximumSize(new java.awt.Dimension(2147483647, 32));
         jPanelURL.setMinimumSize(new java.awt.Dimension(91, 32));
@@ -1798,7 +1807,7 @@ public class AceQLManager extends javax.swing.JFrame {
         });
         jPanelURL.add(jButtonURL);
 
-        jPanelServerStartStop.add(jPanelURL);
+        jPanelMain.add(jPanelURL);
 
         jPanelRadioStandard.setMaximumSize(new java.awt.Dimension(2147483647, 32));
         jPanelRadioStandard.setMinimumSize(new java.awt.Dimension(91, 32));
@@ -1828,12 +1837,14 @@ public class AceQLManager extends javax.swing.JFrame {
         jPanelRadioStandard.add(jLabelStandardStatus);
         jPanelRadioStandard.add(jLabeStandardStatusValue);
 
-        jPanelServerStartStop.add(jPanelRadioStandard);
+        jPanelMain.add(jPanelRadioStandard);
 
-        jPanelRadioStandard2.setMaximumSize(new java.awt.Dimension(2147483647, 32));
-        jPanelRadioStandard2.setMinimumSize(new java.awt.Dimension(91, 32));
-        jPanelRadioStandard2.setPreferredSize(new java.awt.Dimension(191, 32));
-        jPanelRadioStandard2.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
+        jPanelButtonStartStop.setLayout(new javax.swing.BoxLayout(jPanelButtonStartStop, javax.swing.BoxLayout.Y_AXIS));
+
+        jPanelButtonsStartStandard.setMaximumSize(new java.awt.Dimension(2147483647, 32));
+        jPanelButtonsStartStandard.setMinimumSize(new java.awt.Dimension(91, 32));
+        jPanelButtonsStartStandard.setPreferredSize(new java.awt.Dimension(191, 32));
+        jPanelButtonsStartStandard.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
 
         jPanelLeft31.setMaximumSize(new java.awt.Dimension(25, 10));
         jPanelLeft31.setMinimumSize(new java.awt.Dimension(25, 10));
@@ -1850,7 +1861,7 @@ public class AceQLManager extends javax.swing.JFrame {
             .addGap(0, 10, Short.MAX_VALUE)
         );
 
-        jPanelRadioStandard2.add(jPanelLeft31);
+        jPanelButtonsStartStandard.add(jPanelLeft31);
 
         jButtonStart.setText("Start Server");
         jButtonStart.setToolTipText("");
@@ -1859,7 +1870,7 @@ public class AceQLManager extends javax.swing.JFrame {
                 jButtonStartActionPerformed(evt);
             }
         });
-        jPanelRadioStandard2.add(jButtonStart);
+        jPanelButtonsStartStandard.add(jButtonStart);
 
         jButtonStop.setText("Stop Server");
         jButtonStop.setToolTipText("");
@@ -1868,11 +1879,11 @@ public class AceQLManager extends javax.swing.JFrame {
                 jButtonStopActionPerformed(evt);
             }
         });
-        jPanelRadioStandard2.add(jButtonStop);
+        jPanelButtonsStartStandard.add(jButtonStop);
 
         jPaneSepInstallAndStart1.setMaximumSize(new java.awt.Dimension(10, 10));
         jPaneSepInstallAndStart1.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
-        jPanelRadioStandard2.add(jPaneSepInstallAndStart1);
+        jPanelButtonsStartStandard.add(jPaneSepInstallAndStart1);
 
         jButtonDisplayConsole.setText("Show Console");
         jButtonDisplayConsole.setToolTipText("");
@@ -1881,14 +1892,14 @@ public class AceQLManager extends javax.swing.JFrame {
                 jButtonDisplayConsoleActionPerformed(evt);
             }
         });
-        jPanelRadioStandard2.add(jButtonDisplayConsole);
+        jPanelButtonsStartStandard.add(jButtonDisplayConsole);
 
-        jPanelServerStartStop.add(jPanelRadioStandard2);
+        jPanelButtonStartStop.add(jPanelButtonsStartStandard);
 
         jPanelSepBlanc8spaces4.setMaximumSize(new java.awt.Dimension(32767, 14));
         jPanelSepBlanc8spaces4.setMinimumSize(new java.awt.Dimension(10, 14));
         jPanelSepBlanc8spaces4.setPreferredSize(new java.awt.Dimension(1000, 14));
-        jPanelServerStartStop.add(jPanelSepBlanc8spaces4);
+        jPanelButtonStartStop.add(jPanelSepBlanc8spaces4);
 
         jPanelRadioService.setMaximumSize(new java.awt.Dimension(2147483647, 32));
         jPanelRadioService.setMinimumSize(new java.awt.Dimension(91, 32));
@@ -1917,12 +1928,12 @@ public class AceQLManager extends javax.swing.JFrame {
         jPanelRadioService.add(jLabelServiceStatus);
         jPanelRadioService.add(jLabelServiceStatusValue);
 
-        jPanelServerStartStop.add(jPanelRadioService);
+        jPanelButtonStartStop.add(jPanelRadioService);
 
-        jPanelRadioService2.setMaximumSize(new java.awt.Dimension(2147483647, 32));
-        jPanelRadioService2.setMinimumSize(new java.awt.Dimension(91, 32));
-        jPanelRadioService2.setPreferredSize(new java.awt.Dimension(191, 32));
-        jPanelRadioService2.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
+        jPanelButtonsStartService.setMaximumSize(new java.awt.Dimension(2147483647, 32));
+        jPanelButtonsStartService.setMinimumSize(new java.awt.Dimension(91, 32));
+        jPanelButtonsStartService.setPreferredSize(new java.awt.Dimension(191, 32));
+        jPanelButtonsStartService.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
 
         jPanelLeft33.setMaximumSize(new java.awt.Dimension(25, 10));
         jPanelLeft33.setMinimumSize(new java.awt.Dimension(25, 10));
@@ -1938,7 +1949,7 @@ public class AceQLManager extends javax.swing.JFrame {
             .addGap(0, 10, Short.MAX_VALUE)
         );
 
-        jPanelRadioService2.add(jPanelLeft33);
+        jPanelButtonsStartService.add(jPanelLeft33);
 
         jButtonStartService.setText("Start Service");
         jButtonStartService.setToolTipText("");
@@ -1947,7 +1958,7 @@ public class AceQLManager extends javax.swing.JFrame {
                 jButtonStartServiceActionPerformed(evt);
             }
         });
-        jPanelRadioService2.add(jButtonStartService);
+        jPanelButtonsStartService.add(jButtonStartService);
 
         jButtonStopService.setText("Stop Service");
         jButtonStopService.setToolTipText("");
@@ -1956,11 +1967,11 @@ public class AceQLManager extends javax.swing.JFrame {
                 jButtonStopServiceActionPerformed(evt);
             }
         });
-        jPanelRadioService2.add(jButtonStopService);
+        jPanelButtonsStartService.add(jButtonStopService);
 
         jPaneSep2.setMaximumSize(new java.awt.Dimension(10, 10));
         jPaneSep2.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
-        jPanelRadioService2.add(jPaneSep2);
+        jPanelButtonsStartService.add(jPaneSep2);
 
         jButtonDisplayLogs.setText("Show Logs");
         jButtonDisplayLogs.setToolTipText("");
@@ -1969,11 +1980,11 @@ public class AceQLManager extends javax.swing.JFrame {
                 jButtonDisplayLogsActionPerformed(evt);
             }
         });
-        jPanelRadioService2.add(jButtonDisplayLogs);
+        jPanelButtonsStartService.add(jButtonDisplayLogs);
 
-        jPanelServerStartStop.add(jPanelRadioService2);
+        jPanelButtonStartStop.add(jPanelButtonsStartService);
 
-        jPanelMain.add(jPanelServerStartStop);
+        jPanelMain.add(jPanelButtonStartStop);
 
         jPanelSepBlanc8spaces8.setMaximumSize(new java.awt.Dimension(32767, 14));
         jPanelSepBlanc8spaces8.setMinimumSize(new java.awt.Dimension(10, 14));
@@ -2462,11 +2473,15 @@ public class AceQLManager extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel23;
     private javax.swing.JPanel jPanel28;
     private javax.swing.JPanel jPanel29;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanelBlankRight1;
     private javax.swing.JPanel jPanelBlankRight2;
     private javax.swing.JPanel jPanelBottom;
+    private javax.swing.JPanel jPanelButtonStartStop;
     private javax.swing.JPanel jPanelButtons;
     private javax.swing.JPanel jPanelButtonsLeft;
+    private javax.swing.JPanel jPanelButtonsStartService;
+    private javax.swing.JPanel jPanelButtonsStartStandard;
     private javax.swing.JPanel jPanelEndField4;
     private javax.swing.JPanel jPanelEndField5;
     private javax.swing.JPanel jPanelEndField6;
@@ -2492,9 +2507,7 @@ public class AceQLManager extends javax.swing.JFrame {
     private javax.swing.JPanel jPanelMain;
     private javax.swing.JPanel jPanelProperties1;
     private javax.swing.JPanel jPanelRadioService;
-    private javax.swing.JPanel jPanelRadioService2;
     private javax.swing.JPanel jPanelRadioStandard;
-    private javax.swing.JPanel jPanelRadioStandard2;
     private javax.swing.JPanel jPanelSep3x6;
     private javax.swing.JPanel jPanelSep3x7;
     private javax.swing.JPanel jPanelSepBlanc8spaces;
@@ -2508,7 +2521,6 @@ public class AceQLManager extends javax.swing.JFrame {
     private javax.swing.JPanel jPanelSepBlank11;
     private javax.swing.JPanel jPanelSepLine2New;
     private javax.swing.JPanel jPanelSepLine2New2;
-    private javax.swing.JPanel jPanelServerStartStop;
     private javax.swing.JPanel jPanelTitledSeparator5;
     private javax.swing.JPanel jPanelTitledSeparator6;
     private javax.swing.JPanel jPanelURL;
