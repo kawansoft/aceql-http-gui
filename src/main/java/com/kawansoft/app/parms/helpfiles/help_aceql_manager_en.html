@@ -1,0 +1,119 @@
+<font face="Arial" size=6> 
+<center>AceQL HTTP Windows Manager</center></font>
+<font face="Arial" size=4>
+<br>
+
+The AceQL HTTP Windows Manager allows to configure and run the AceQL HTTP Server that will be accessed by remote clients.
+<br><br>
+Everything can be managed directly from this interface and a default prefilled configuration file is provided for immediate startup.
+<br>
+<br>
+
+<h2><font face="Arial">Configuration</h2><font face="Arial" size=4>
+
+<b><font color=blue>Properties File</font></b> 
+<br><br>
+
+Most AceQL HTTP Server configuration is carried out by defining properties in the aceql-server.properties file, except the hostname and port.
+<br>
+<br>
+Click "Edit" to access the default file that comes with installation. The file is self-documented.
+<br>Click "Browse" to choose/use a different file.
+<br><br>
+The minimum properties to define for starting an AceQL HTTP Server instance are:
+<ul>
+<li>The databases property with must contain at least a dabatase name.</li>
+<li>The 4 JDBC properties driverClassName.database, url.database, username.database and password.database.</li>
+</ul>
+Refer to the <a href="https://www.aceql.com/rest/soft/1.0/aceql-http1.0-user-guide-server.pdf">AceQL Server Guide</a> for detailed  info.
+
+<br><br><br>
+
+<b><font color=blue>Host & Port</font></b> 
+<br><br>
+The two fields allow to defines the hostname and port of the HTTP URL to be accessed by the client side.
+<br>
+Do not prefix the hostname with http:// or https://, it will be done automatically by AceQL.
+<br>
+<br>
+Valid values for hostname are: <br>
+localhost, www.acme.com, prefix.acme.org, etc.
+
+<br><br><br>
+
+<b><font color=blue>Installed JDBC Drivers</font></b> 
+<br><br>
+The text area displays all installed JDBC Drivers that will be automatically added to the CLASSPATH.
+<br>
+Default installation includes a recent PostgreSQL JDBC Driver.
+<br>
+<br>
+To add your JDBC Driver(s), click "Open Location" and drop your JDBC jar(s) in the opened folder.
+
+<br><br><br>
+
+<b><font color=blue>Windows Service</font></b> 
+<br><br>
+Click "Install Service" if you wish to run AceQL HTTP Server as a Windows Service.
+<br>N.B.: All operations on Windows Service require to be logged as Administrator.
+
+<br><br><br>
+
+<h2><font face="Arial">Server Start & Stop</h2><font face="Arial" size=4>
+
+Server may be started within the current JVM, or as a Windows Service.
+<br>
+<br>
+If you wish to run the AceQL HTTP Server as a Windows Service, it is highly recommended to test your configuration by starting once the server in Standard Mode.
+
+<br><br><br>
+
+<b><font color=blue>Standard Mode</font></b> 
+<br><br>
+The AceQL Server is started in the same current JVM and a Console is opened to check the success of the start.
+<br><br>
+If everything is OK, last line will display:
+<br>
+<code><pre>[ACEQL HTTP START] SQL Web Server OK. Running on port 9090.</code></pre>
+
+<font face="Arial" size=4>or 
+<br>
+
+<code><pre>[ACEQL HTTP START] SQL Web Server OK. Running on port 9090 & port 9443.</code></pre> 
+<font face="Arial" size=4>for SSL configuration.
+
+<br><br>
+If configuration errors occur, they are displayed as Exceptions in red.
+
+<br><br><br>
+
+<b><font color=blue>Windows Service</font></b> 
+<br><br>
+You may start and stop the Windows Service from this windows.
+<br>
+Note that the default start type is "Auto". 
+<br>This and the other properties of the Windows Service may be changed using Windows Management Console.
+<br>
+<br>
+After the Windows Service is started, it is recommended to check the running success by accessing the Windows Service logs:
+<ul>
+<li>Click on "Show Logs".</li>
+<li>The 3 following files contain all necessary info to check if AceQL is successfully running and to fix configuration errors:
+    <ul>
+        <li>aceqlhttpservice-stderr.yyyy-mm-dd.log</li>
+        <li>aceqlhttpservice-stdout.yyyy-mm-dd.log</li>
+        <li>commons-daemon.yyyy-mm-dd.log </li>
+    </ul>
+</ul>
+<br>
+If the start is successful, the aceqlhttpservice-stdout.yyyy-mm-dd.log last line will display: 
+<code><pre>[ACEQL HTTP START] SQL Web Server OK. Running on port 9090.</code></pre>
+
+<font face="Arial" size=4>or 
+<br>
+
+<code><pre>[ACEQL HTTP START] SQL Web Server OK. Running on port 9090 & port 9443.</code></pre> 
+<font face="Arial" size=4>for SSL configuration.
+
+<br>
+<br>

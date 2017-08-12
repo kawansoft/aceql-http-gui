@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.aceql</groupId>
+    <artifactId>aceql-http-gui</artifactId>
+    <version>1.0-beta-1</version>
+    <packaging>jar</packaging>
+    <dependencies>
+        <dependency>
+            <groupId>com.aceql</groupId>
+            <artifactId>aceql-http</artifactId>
+            <version>1.0-beta-3</version>
+        </dependency>
+        <dependency>
+            <groupId>org.swinglabs.swingx</groupId>
+            <artifactId>swingx-all</artifactId>
+            <version>1.6.5-1</version>
+        </dependency>
+    </dependencies>
+  
+  <build>
+   <resources>
+    <resource>
+     <directory>src/main/java</directory>
+    </resource>
+   </resources>
+   
+   <!--
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-dependency-plugin</artifactId>
+        <version>3.0.1</version>
+        <executions>
+          <execution>
+            <id>copy</id>
+            <phase>package</phase>
+            <goals>
+              <goal>copy</goal>
+            </goals>
+            <configuration>
+              <artifactItems>
+                <artifactItem>
+                  <groupId>org.swinglabs.swingx</groupId>
+                  <artifactId>swingx-all</artifactId>
+                  <version>1.6.5-1</version>
+                  <type>jar</type>
+                  <overWrite>true</overWrite>
+                  <outputDirectory>I:\_dev_awake\aceql-http-main\aceql-http-gui\target\lib</outputDirectory>
+                  <destFileName>swingx-all-1.6.5-1.jar</destFileName>
+                </artifactItem>
+                
+                <artifactItem>
+                  <groupId>com.aceql</groupId>
+                  <artifactId>aceql-http</artifactId>
+                  <version>1.0-beta-3</version>
+                  <type>jar</type>
+                  <overWrite>true</overWrite>
+                  <outputDirectory>I:\_dev_awake\aceql-http-main\aceql-http-gui\target\lib</outputDirectory>
+                  <destFileName>aceql-http-1.0-beta-3.jar</destFileName>
+                </artifactItem>
+                
+              </artifactItems>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>   
+ -->
+   
+       <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-dependency-plugin</artifactId>
+        <version>3.0.1</version>
+        <executions>
+          <execution>
+            <id>copy-dependencies</id>
+            <phase>package</phase>
+            <goals>
+              <goal>copy-dependencies</goal>
+            </goals>
+            <!--
+            <configuration>
+               <artifactItems>
+                <artifactItem>
+                  <groupId>com.aceql</groupId>
+                  <artifactId>aceql-http</artifactId>
+                  <version>1.0-beta-3</version>
+                  <type>jar</type>
+                  <overWrite>true</overWrite>
+                  <outputDirectory>I:\_dev_awake\aceql-http-main\aceql-http-gui\target\lib</outputDirectory>
+                  <destFileName>aceql-http-1.0-beta-3.jar</destFileName>
+                </artifactItem>
+              </artifactItems>
+            </configuration>
+            -->
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+    
+  </build>
+  
+    <properties>
+        <project.build.sourceEncoding>ISO-8859-1</project.build.sourceEncoding>
+        <maven.compiler.source>1.7</maven.compiler.source>
+        <maven.compiler.target>1.7</maven.compiler.target>
+    </properties>
+    <name>aceql-http-gui</name>
+</project>

@@ -1,0 +1,8 @@
+java.lang.IllegalArgumentException: Invalid StartParams number. Should be 3 is: 1
+	at com.kawansoft.aceql.gui.service.AceQLServiceControler.start(AceQLServiceControler.java:30)
+La zone de données passée à un appel système est insuffisante.
+Failed to start servicejava.lang.IllegalArgumentException: Invalid StartParams number. Should be 3 is: 1
+	at com.kawansoft.aceql.gui.service.AceQLServiceControler.start(AceQLServiceControler.java:30)
+La zone de données passée à un appel système est insuffisante.
+Failed to start servicejava.lang.IllegalArgumentException: Invalid StartParams number. Should be 3 is: 1
+	at com.kawansoft.aceql.gui.service.AceQLServiceControler.start(AceQLServiceControler.java:30)

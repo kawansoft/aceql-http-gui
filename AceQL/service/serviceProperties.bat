@@ -1,0 +1,2 @@
+start AceQLHTTPServicew.exe
+exit
