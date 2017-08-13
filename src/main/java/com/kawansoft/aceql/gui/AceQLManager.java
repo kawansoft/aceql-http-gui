@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package com.kawansoft.aceql.gui;
 
 import com.kawansoft.aceql.gui.service.ServiceInstaller;
@@ -496,7 +492,7 @@ public class AceQLManager extends javax.swing.JFrame {
                 jButtonStop.setEnabled(false);
                 jLabeStandardStatusValue.setText("Stopped");
                 jLabeStandardStatusValue
-                        .setIcon(ImageParmsUtil.createImageIcon(ParmsUtil.IMAGES_BULLET_BALL_GREY_PNG));
+                        .setIcon(ImageParmsUtil.createImageIcon(ParmsUtil.IMAGES_BULLET_BALL_RED_PNG));
 
             } else if (STANDARD_STATUS == STANDARD_STARTING) {
                 jButtonStart.setEnabled(false);
