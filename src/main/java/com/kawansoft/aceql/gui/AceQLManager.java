@@ -128,7 +128,6 @@ public class AceQLManager extends javax.swing.JFrame {
         initializeIt();
     }
 
-
     /**
      * This is the method to include in *our* constructor(s)
      */
@@ -137,7 +136,7 @@ public class AceQLManager extends javax.swing.JFrame {
         Dimension dim = new Dimension(630, 630);
         this.setPreferredSize(dim);
         this.setSize(dim);
-
+        
         try {
             this.setIconImage(ImageParmsUtil.getAppIcon());
         } catch (RuntimeException e1) {
@@ -197,27 +196,6 @@ public class AceQLManager extends javax.swing.JFrame {
         // No What's new for now
         jMenuWhatsNew.setVisible(false);
 
-        ButtonResizer buttonResizer = new ButtonResizer(jPanelButtons);
-        buttonResizer.setWidthToMax();
-
-        ButtonResizer buttonResizer2 = new ButtonResizer(jPanelProperties1);
-        buttonResizer2.setWidthToMax();
-
-        ButtonResizer buttonResizer3 = new ButtonResizer(jPanelButtonStartStop);
-        buttonResizer3.setWidthToMax();
-
-        //ButtonResizer buttonResizer4 = new ButtonResizer(jPanelButtonsStartService);
-        //buttonResizer4.setWidthToMax();
-
-        ButtonResizer buttonResizer5 = new ButtonResizer(jPaneServiceInstal);
-        buttonResizer5.setWidthToMax();
-        
-        /*
-        jButtonWindowsServiceLogs.setSize(jButtonInstallService.getSize());
-        jButtonWindowsServiceLogs.setPreferredSize(jButtonInstallService.getPreferredSize());
-        jButtonWindowsServiceLogs.setMaximumSize(jButtonInstallService.getMaximumSize());
-        jButtonWindowsServiceLogs.setMinimumSize(jButtonInstallService.getMinimumSize());
-         */
         SwingUtil.resizeJComponentsForNimbusAndMacOsX(rootPane);
 
         this.addComponentListener(new ComponentAdapter() {
@@ -235,41 +213,58 @@ public class AceQLManager extends javax.swing.JFrame {
         // Our window listener for all events
         // If window is closed ==> call close()
         this.addWindowListener(new WindowAdapter() {
+            @Override
             public void windowClosing(WindowEvent e) {
                 closeOnExit();
             }
         });
 
-       DocumentListener documentListener = new DocumentListener() {
-          @Override
-          public void changedUpdate(DocumentEvent e) {
-            jButtonApply.setEnabled(true);
-          }
-          @Override
-          public void removeUpdate(DocumentEvent e) {
-            jButtonApply.setEnabled(true);
-          }
-          public void insertUpdate(DocumentEvent e) {
-            jButtonApply.setEnabled(true);
-          }
+        DocumentListener documentListener = new DocumentListener() {
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                jButtonApply.setEnabled(true);
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                jButtonApply.setEnabled(true);
+            }
+
+            public void insertUpdate(DocumentEvent e) {
+                jButtonApply.setEnabled(true);
+            }
         };
-        
+
         // Listen for changes in the text
         jTextFieldPropertiesFile.getDocument().addDocumentListener(documentListener);
         jTextFieldHost.getDocument().addDocumentListener(documentListener);
         jTextFieldPort.getDocument().addDocumentListener(documentListener);
         jTextArea.getDocument().addDocumentListener(documentListener);
-       
+
         this.keyListenerAdder();
 
         this.setTitle(jLabelLogo.getText());
 
         // Button Apply is not enabled
         jButtonApply.setEnabled(false);
-        
+
+        ButtonResizer buttonResizer = new ButtonResizer(jPanelButtons);
+        buttonResizer.setWidthToMax();
+
+        ButtonResizer buttonResizer2 = new ButtonResizer(jPanelProperties);
+        buttonResizer2.setWidthToMax();
+
+        ButtonResizer buttonResizer3 = new ButtonResizer(jPanelButtonStartStop);
+        buttonResizer3.setWidthToMax();
+
+        ButtonResizer buttonResizer5 = new ButtonResizer(jPaneServiceInstal);
+        buttonResizer5.setWidthToMax();
+
         // Load and activate previous windows settings
-        WindowSettingMgr.load(this);        
+        WindowSettingMgr.load(this);
+        
         pack();
+        //update(getGraphics());
     }
 
     private void setJdbcDrivers() {
@@ -317,7 +312,7 @@ public class AceQLManager extends javax.swing.JFrame {
 
         if (propertiesFile == null || propertiesFile.isEmpty()) {
             File fileIn = new File(getInstallBaseDir() + File.separator + "conf" + File.separator + "aceql-server.properties");
-            
+
             if (!fileIn.exists()) {
                 JOptionPane
                         .showMessageDialog(
@@ -326,15 +321,15 @@ public class AceQLManager extends javax.swing.JFrame {
                                 Parms.APP_NAME, JOptionPane.ERROR_MESSAGE);
                 return;
             }
-                    
+
             // Copy the file to ParmsUtil.fileOut()/conf because it won't be possible to edit directly it in c:\Program (Windows Security)
             File confDir = new File(ParmsUtil.getBaseDir() + File.separator + "conf");
-            if (! confDir.exists()) {
+            if (!confDir.exists()) {
                 confDir.mkdirs();
             }
-            File fileOut = new File(confDir.toString() + File.separator  + "aceql-server.properties");
-            
-            if (! fileOut.exists()) {
+            File fileOut = new File(confDir.toString() + File.separator + "aceql-server.properties");
+
+            if (!fileOut.exists()) {
                 try {
                     FileUtils.copyFile(fileIn, fileOut);
                     jTextFieldPropertiesFile.setText(fileOut.toString());
@@ -343,8 +338,11 @@ public class AceQLManager extends javax.swing.JFrame {
                     jTextFieldPropertiesFile.setText(null);
                     Logger.getLogger(AceQLManager.class.getName()).log(Level.SEVERE, null, ex);
                 }
+            } else {
+                jTextFieldPropertiesFile.setText(fileOut.toString());
+                userPreferencesManager.setPreference("PROPERTIES_FILE", fileOut.toString());
             }
-            
+
         } else {
             jTextFieldPropertiesFile.setText(propertiesFile);
         }
@@ -910,7 +908,7 @@ public class AceQLManager extends javax.swing.JFrame {
         }
 
         jButtonApply.setEnabled(false);
-        
+
     }
 
     public static File[] getJdbcDrivers() {
@@ -953,17 +951,17 @@ public class AceQLManager extends javax.swing.JFrame {
     }
 
     private void actionOk() {
-        
+
         if (jButtonApply.isEnabled()) {
             boolean verifyOk = verifyConfigValues();
 
             if (!verifyOk) {
                 return;
             }
-            
+
             actionApply();
         }
-        
+
         closeOnExit();
     }
 
@@ -1046,7 +1044,7 @@ public class AceQLManager extends javax.swing.JFrame {
         jXTitledSeparator6 = new org.jdesktop.swingx.JXTitledSeparator();
         jPanelBlankRight1 = new javax.swing.JPanel();
         jPanelSepBlanc8spaces3 = new javax.swing.JPanel();
-        jPanelProperties1 = new javax.swing.JPanel();
+        jPanelProperties = new javax.swing.JPanel();
         jPanelLeft16 = new javax.swing.JPanel();
         jLabelPropertiesFile = new javax.swing.JLabel();
         jPanelLeft13 = new javax.swing.JPanel();
@@ -1149,9 +1147,9 @@ public class AceQLManager extends javax.swing.JFrame {
 
         jPanelMain.setLayout(new javax.swing.BoxLayout(jPanelMain, javax.swing.BoxLayout.Y_AXIS));
 
-        jPanelLogo.setMaximumSize(new java.awt.Dimension(32767, 58));
-        jPanelLogo.setMinimumSize(new java.awt.Dimension(137, 58));
-        jPanelLogo.setPreferredSize(new java.awt.Dimension(431, 58));
+        jPanelLogo.setMaximumSize(new java.awt.Dimension(32767, 70));
+        jPanelLogo.setMinimumSize(new java.awt.Dimension(137, 70));
+        jPanelLogo.setPreferredSize(new java.awt.Dimension(431, 70));
         jPanelLogo.setLayout(new javax.swing.BoxLayout(jPanelLogo, javax.swing.BoxLayout.LINE_AXIS));
 
         jPanelSepBlank11.setMaximumSize(new java.awt.Dimension(10, 10));
@@ -1290,10 +1288,10 @@ public class AceQLManager extends javax.swing.JFrame {
         jPanelSepBlanc8spaces3.setPreferredSize(new java.awt.Dimension(1000, 12));
         jPanelMain.add(jPanelSepBlanc8spaces3);
 
-        jPanelProperties1.setMaximumSize(new java.awt.Dimension(2147483647, 32));
-        jPanelProperties1.setMinimumSize(new java.awt.Dimension(91, 32));
-        jPanelProperties1.setPreferredSize(new java.awt.Dimension(191, 32));
-        jPanelProperties1.setLayout(new javax.swing.BoxLayout(jPanelProperties1, javax.swing.BoxLayout.LINE_AXIS));
+        jPanelProperties.setMaximumSize(new java.awt.Dimension(2147483647, 32));
+        jPanelProperties.setMinimumSize(new java.awt.Dimension(91, 32));
+        jPanelProperties.setPreferredSize(new java.awt.Dimension(191, 32));
+        jPanelProperties.setLayout(new javax.swing.BoxLayout(jPanelProperties, javax.swing.BoxLayout.LINE_AXIS));
 
         jPanelLeft16.setMaximumSize(new java.awt.Dimension(10, 10));
 
@@ -1308,7 +1306,7 @@ public class AceQLManager extends javax.swing.JFrame {
             .addGap(0, 10, Short.MAX_VALUE)
         );
 
-        jPanelProperties1.add(jPanelLeft16);
+        jPanelProperties.add(jPanelLeft16);
 
         jLabelPropertiesFile.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         jLabelPropertiesFile.setText("Properties File:");
@@ -1316,7 +1314,7 @@ public class AceQLManager extends javax.swing.JFrame {
         jLabelPropertiesFile.setMinimumSize(new java.awt.Dimension(129, 16));
         jLabelPropertiesFile.setName(""); // NOI18N
         jLabelPropertiesFile.setPreferredSize(new java.awt.Dimension(129, 16));
-        jPanelProperties1.add(jLabelPropertiesFile);
+        jPanelProperties.add(jLabelPropertiesFile);
 
         jPanelLeft13.setMaximumSize(new java.awt.Dimension(5, 5));
         jPanelLeft13.setMinimumSize(new java.awt.Dimension(5, 5));
@@ -1332,7 +1330,7 @@ public class AceQLManager extends javax.swing.JFrame {
             .addGap(0, 5, Short.MAX_VALUE)
         );
 
-        jPanelProperties1.add(jPanelLeft13);
+        jPanelProperties.add(jPanelLeft13);
 
         jTextFieldPropertiesFile.setMaximumSize(new java.awt.Dimension(2147483647, 22));
         jTextFieldPropertiesFile.addActionListener(new java.awt.event.ActionListener() {
@@ -1340,7 +1338,7 @@ public class AceQLManager extends javax.swing.JFrame {
                 jTextFieldPropertiesFileActionPerformed(evt);
             }
         });
-        jPanelProperties1.add(jTextFieldPropertiesFile);
+        jPanelProperties.add(jTextFieldPropertiesFile);
 
         jPanelLeft14.setMaximumSize(new java.awt.Dimension(5, 5));
         jPanelLeft14.setMinimumSize(new java.awt.Dimension(5, 5));
@@ -1356,7 +1354,7 @@ public class AceQLManager extends javax.swing.JFrame {
             .addGap(0, 5, Short.MAX_VALUE)
         );
 
-        jPanelProperties1.add(jPanelLeft14);
+        jPanelProperties.add(jPanelLeft14);
 
         jButtonBrowse.setText("Browse");
         jButtonBrowse.setToolTipText("");
@@ -1365,7 +1363,7 @@ public class AceQLManager extends javax.swing.JFrame {
                 jButtonBrowseActionPerformed(evt);
             }
         });
-        jPanelProperties1.add(jButtonBrowse);
+        jPanelProperties.add(jButtonBrowse);
 
         jPanelLeft15.setMaximumSize(new java.awt.Dimension(5, 5));
         jPanelLeft15.setMinimumSize(new java.awt.Dimension(5, 5));
@@ -1381,7 +1379,7 @@ public class AceQLManager extends javax.swing.JFrame {
             .addGap(0, 5, Short.MAX_VALUE)
         );
 
-        jPanelProperties1.add(jPanelLeft15);
+        jPanelProperties.add(jPanelLeft15);
 
         jButtonEdit.setText("Edit");
         jButtonEdit.setToolTipText("");
@@ -1390,7 +1388,7 @@ public class AceQLManager extends javax.swing.JFrame {
                 jButtonEditActionPerformed(evt);
             }
         });
-        jPanelProperties1.add(jButtonEdit);
+        jPanelProperties.add(jButtonEdit);
 
         jPanelEndField4.setMaximumSize(new java.awt.Dimension(50, 10));
         jPanelEndField4.setMinimumSize(new java.awt.Dimension(50, 10));
@@ -1406,9 +1404,9 @@ public class AceQLManager extends javax.swing.JFrame {
             .addGap(0, 10, Short.MAX_VALUE)
         );
 
-        jPanelProperties1.add(jPanelEndField4);
+        jPanelProperties.add(jPanelEndField4);
 
-        jPanelMain.add(jPanelProperties1);
+        jPanelMain.add(jPanelProperties);
 
         jPanelHost.setMaximumSize(new java.awt.Dimension(2147483647, 32));
         jPanelHost.setMinimumSize(new java.awt.Dimension(91, 32));
@@ -1863,7 +1861,7 @@ public class AceQLManager extends javax.swing.JFrame {
 
         jPanelButtonsStartStandard.add(jPanelLeft31);
 
-        jButtonStart.setText("Start Server");
+        jButtonStart.setText("Start");
         jButtonStart.setToolTipText("");
         jButtonStart.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1872,7 +1870,7 @@ public class AceQLManager extends javax.swing.JFrame {
         });
         jPanelButtonsStartStandard.add(jButtonStart);
 
-        jButtonStop.setText("Stop Server");
+        jButtonStop.setText("Stop");
         jButtonStop.setToolTipText("");
         jButtonStop.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1951,7 +1949,7 @@ public class AceQLManager extends javax.swing.JFrame {
 
         jPanelButtonsStartService.add(jPanelLeft33);
 
-        jButtonStartService.setText("Start Service");
+        jButtonStartService.setText("Start");
         jButtonStartService.setToolTipText("");
         jButtonStartService.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1960,7 +1958,7 @@ public class AceQLManager extends javax.swing.JFrame {
         });
         jPanelButtonsStartService.add(jButtonStartService);
 
-        jButtonStopService.setText("Stop Service");
+        jButtonStopService.setText("Stop");
         jButtonStopService.setToolTipText("");
         jButtonStopService.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1993,6 +1991,7 @@ public class AceQLManager extends javax.swing.JFrame {
 
         jPanelSepLine2New.setMaximumSize(new java.awt.Dimension(32787, 10));
         jPanelSepLine2New.setMinimumSize(new java.awt.Dimension(0, 10));
+        jPanelSepLine2New.setPreferredSize(new java.awt.Dimension(20, 10));
         jPanelSepLine2New.setLayout(new javax.swing.BoxLayout(jPanelSepLine2New, javax.swing.BoxLayout.LINE_AXIS));
 
         jPanel28.setMaximumSize(new java.awt.Dimension(10, 5));
@@ -2298,7 +2297,7 @@ public class AceQLManager extends javax.swing.JFrame {
         if (aceQLConsole == null) {
             aceQLConsole = new AceQLConsole(this);
         } else {
-            aceQLConsole.setState ( Frame.NORMAL );
+            aceQLConsole.setState(Frame.NORMAL);
             aceQLConsole.setVisible(true);
         }
     }//GEN-LAST:event_jButtonDisplayConsoleActionPerformed
@@ -2505,7 +2504,7 @@ public class AceQLManager extends javax.swing.JFrame {
     private javax.swing.JPanel jPanelLeft33;
     private javax.swing.JPanel jPanelLogo;
     private javax.swing.JPanel jPanelMain;
-    private javax.swing.JPanel jPanelProperties1;
+    private javax.swing.JPanel jPanelProperties;
     private javax.swing.JPanel jPanelRadioService;
     private javax.swing.JPanel jPanelRadioStandard;
     private javax.swing.JPanel jPanelSep3x6;

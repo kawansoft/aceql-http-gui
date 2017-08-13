@@ -200,8 +200,14 @@ public class AppTray {
             userPreferencesManager.setPreference("DISPLAY_TRAY_MESSAGE_DONE", true);
         }
         
-        aceQLManager = new AceQLManager();
-        aceQLManager.setVisible(true);
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                aceQLManager = new AceQLManager();
+                aceQLManager.setVisible(true);
+            }
+        });
+        
 
     }
 

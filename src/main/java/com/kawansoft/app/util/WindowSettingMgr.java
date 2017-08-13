@@ -18,7 +18,7 @@ import java.util.prefs.Preferences;
 public class WindowSettingMgr
 {
     /** The DEBUG flag */
-    public static boolean DEBUG = true;
+    public static boolean DEBUG = false;
     
     /** Not visible constructor */
     protected WindowSettingMgr()
