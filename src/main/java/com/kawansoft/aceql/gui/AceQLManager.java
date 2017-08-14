@@ -137,7 +137,7 @@ public class AceQLManager extends javax.swing.JFrame {
      */
     public void initializeIt() {
 
-        Dimension dim = new Dimension(637, 637);
+        Dimension dim = new Dimension(639, 639);
         this.setPreferredSize(dim);
         this.setSize(dim);
         
