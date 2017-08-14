@@ -10,7 +10,7 @@ import com.kawansoft.app.parms.util.ParmsUtil;
 public class Parms {
     
     // BEGIN COMMON TO ALL APPS
-    public static final String APP_NAME = "AceQL HTTP Windows Manager";
+    public static String APP_NAME = "AceQL HTTP" + " " + org.kawanfw.sql.version.Version.PRODUCT.TYPE;
 
     // Tray and default App Icon 
     public static final String TRAY_ICON = "images/aceql_rocket_24.png";

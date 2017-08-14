@@ -27,7 +27,7 @@ package com.kawansoft.app.version;
  * Contains the package Version info
  */
 
-public class VersionValues {
+public class GuiVersionValues {
     public static final String VERSION = "v1.0-beta-1";
     public static final String DATE = "14-aug-2017"; 
 }

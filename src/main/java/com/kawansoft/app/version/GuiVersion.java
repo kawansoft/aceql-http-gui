@@ -27,10 +27,10 @@ package com.kawansoft.app.version;
 import com.kawansoft.app.parms.Parms;
 
 /**
- * Displays the SafeJdbc product Version
+ * Displays the SafeJdbc product GuiVersion
  */
 
-public class Version {
+public class GuiVersion {
 
     public static final String getVersion() {
 	return "" + new PRODUCT();
@@ -53,12 +53,12 @@ public class Version {
 
     public static final class PRODUCT {
 
-	public static final String NAME = Parms.APP_NAME;
-	public static final String VERSION = VersionValues.VERSION;
+	public static final String NAME = "GUI Manager";
+	public static final String VERSION = GuiVersionValues.VERSION;
 	public static final String DESCRIPTION = "Remote SQL access over HTTP";
 	public static final String TYPE_OPEN_SOURCE = "Open Source";
 	public static final String TYPE_PROFESSIONAL = "Professional";
-	public static final String DATE = VersionValues.DATE;
+	public static final String DATE = GuiVersionValues.DATE;
 
 	public static String TYPE = (isOpenSourceVersion()) ? TYPE_OPEN_SOURCE : TYPE_PROFESSIONAL;
 	
@@ -118,6 +118,6 @@ public class Version {
     public static void main(String[] args) {
 	System.out.println(getFullVersion());
 
-	System.out.println(Version.PRODUCT.NAME);
+	System.out.println(GuiVersion.PRODUCT.NAME);
     }
 }

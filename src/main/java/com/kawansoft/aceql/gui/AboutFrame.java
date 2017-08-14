@@ -29,7 +29,7 @@ import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 
 import org.apache.commons.lang3.SystemUtils;
-import com.kawansoft.app.version.Version;
+import com.kawansoft.app.version.GuiVersion;
 
 /** 
  *
@@ -81,8 +81,9 @@ public class AboutFrame extends javax.swing.JFrame {
         
         jPanelCenter.setBorder(javax.swing.BorderFactory.createTitledBorder(MessagesManager.get("about")));
         
-        this.jLabelVersion.setText(Version.getVersion());
-        this.jLabelCopyright .setText("<html>" + Version.VENDOR.COPYRIGHT + "</html>");
+        this.jLabelVersion.setText(org.kawanfw.sql.version.Version.getServerVersion());
+        this.jLabelVersionGui.setText(GuiVersion.getVersion());
+        this.jLabelCopyright .setText("<html>" + GuiVersion.VENDOR.COPYRIGHT + "</html>");
 
         jLabelLogo.setIcon(ImageParmsUtil.getSmallLogo());
         jButtonUrl.setText(Parms.ABOUT_WEB_SITE);
@@ -219,6 +220,8 @@ public class AboutFrame extends javax.swing.JFrame {
         jPanelTop = new javax.swing.JPanel();
         jPanelName = new javax.swing.JPanel();
         jLabelVersion = new javax.swing.JLabel();
+        jPanelNameGui = new javax.swing.JPanel();
+        jLabelVersionGui = new javax.swing.JLabel();
         jPanelCopyRight = new javax.swing.JPanel();
         jLabelCopyright = new javax.swing.JLabel();
         jPanelUrl = new javax.swing.JPanel();
@@ -283,6 +286,15 @@ public class AboutFrame extends javax.swing.JFrame {
         jPanelName.add(jLabelVersion);
 
         jPanelCenter.add(jPanelName);
+
+        jPanelNameGui.setMaximumSize(new java.awt.Dimension(32767, 24));
+        jPanelNameGui.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT));
+
+        jLabelVersionGui.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabelVersionGui.setText("TheApp v1.00 - 12/02/16");
+        jPanelNameGui.add(jLabelVersionGui);
+
+        jPanelCenter.add(jPanelNameGui);
 
         jPanelCopyRight.setMaximumSize(new java.awt.Dimension(32767, 24));
         jPanelCopyRight.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT));
@@ -586,6 +598,7 @@ private void jButtonDeveloppedByActionPerformed(java.awt.event.ActionEvent evt) 
     private javax.swing.JLabel jLabelLogo;
     private javax.swing.JLabel jLabelSupport;
     private javax.swing.JLabel jLabelVersion;
+    private javax.swing.JLabel jLabelVersionGui;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanelBorderLeft;
     private javax.swing.JPanel jPanelBorderLeft1;
@@ -602,6 +615,7 @@ private void jButtonDeveloppedByActionPerformed(java.awt.event.ActionEvent evt) 
     private javax.swing.JPanel jPanelLogos;
     private javax.swing.JPanel jPanelMain;
     private javax.swing.JPanel jPanelName;
+    private javax.swing.JPanel jPanelNameGui;
     private javax.swing.JPanel jPanelSep5;
     private javax.swing.JPanel jPanelTop;
     private javax.swing.JPanel jPanelTop1;

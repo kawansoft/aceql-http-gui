@@ -1,10 +1,3 @@
-//UploaderTray.java
-//Copyright (c) SafeLogic, 2000 - 2005
-//Last Updates:
-//25/02/08 20:00 - NDP : Creation
-//26/02/08 16:55 - NDP : Add APP_NAME
-//28/02/08 10:45 - Comments
-//06/06/12 14:45 NDP - AppTray: use new native AWT SystemTray (no more jdic)
 package com.kawansoft.aceql.gui;
 
 /*
@@ -46,7 +39,7 @@ import org.apache.commons.lang3.SystemUtils;
 
 import com.kawansoft.app.parms.Parms;
 import com.kawansoft.app.parms.util.ImageParmsUtil;
-import com.kawansoft.app.version.VersionValues;
+import com.kawansoft.app.version.GuiVersionValues;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -176,7 +169,7 @@ public class AppTray {
                
         ImageIcon i = new ImageIcon(ImageParmsUtil.getTrayIcon());
 
-        trayIcon = new TrayIcon(i.getImage(), Parms.APP_NAME + " " + VersionValues.VERSION, menu);
+        trayIcon = new TrayIcon(i.getImage(), Parms.APP_NAME);
         trayIcon.setImageAutoSize(true);
 
         trayIcon.addActionListener(new ActionListener() {
@@ -220,7 +213,7 @@ public class AppTray {
     public static void main(String[] args) {
 
         try {
-                            
+                                     
             setLookAndFeel();
             
             if (SystemTray.isSupported()) {

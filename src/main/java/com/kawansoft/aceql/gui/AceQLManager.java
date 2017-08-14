@@ -141,6 +141,8 @@ public class AceQLManager extends javax.swing.JFrame {
         this.setPreferredSize(dim);
         this.setSize(dim);
         
+        this.jLabelLogo.setText(Parms.APP_NAME);
+        
         try {
             this.setIconImage(ImageParmsUtil.getAppIcon());
         } catch (RuntimeException e1) {
@@ -1231,7 +1233,7 @@ public class AceQLManager extends javax.swing.JFrame {
 
         jLabelLogo.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jLabelLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/kawansoft/app/parms/images/logos/logo-AceQL_48.png"))); // NOI18N
-        jLabelLogo.setText("AceQL HTTP Windows Manager");
+        jLabelLogo.setText("AceQL HTTP");
         jLabelLogo.setToolTipText("");
         jPanelLogo.add(jLabelLogo);
 
