@@ -20,7 +20,7 @@ public class Parms {
     public static final String LOGO_BIG = "images/logos/logo-AceQL.png";
     public static final String LOGO_SMALL = "images/logos/logo-AceQL_48.png";
         
-    public static final String DOT_APP_DIR = ".aceql-http-windows-manager";
+    public static final String DOT_APP_DIR = ".aceql-http";
 
     public static final String INSTALLER_DIR = "https://www.aceql.com/download";
     

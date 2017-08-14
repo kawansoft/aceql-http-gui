@@ -1460,7 +1460,7 @@
                 </Container>
                 <Component class="javax.swing.JButton" name="jButtonDisplayLogs">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Show Logs"/>
+                    <Property name="text" type="java.lang.String" value="Service Logs"/>
                     <Property name="toolTipText" type="java.lang.String" value=""/>
                   </Properties>
                   <Events>

@@ -2032,7 +2032,7 @@ public class AceQLManager extends javax.swing.JFrame {
         jPaneSep2.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
         jPanelButtonsStartService.add(jPaneSep2);
 
-        jButtonDisplayLogs.setText("Show Logs");
+        jButtonDisplayLogs.setText("Service Logs");
         jButtonDisplayLogs.setToolTipText("");
         jButtonDisplayLogs.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
