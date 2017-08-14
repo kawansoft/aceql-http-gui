@@ -137,7 +137,7 @@ public class ServiceUtil {
             return;
         }
         
-        JOptionPane.showMessageDialog(null, "directory: " + directory);
+        //JOptionPane.showMessageDialog(null, "directory: " + directory);
         
 	ProcessBuilder pb = new ProcessBuilder("cmd.exe", "/C", 
                 "startService.bat");
