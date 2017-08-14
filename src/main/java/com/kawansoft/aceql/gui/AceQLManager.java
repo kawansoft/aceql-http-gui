@@ -245,9 +245,7 @@ public class AceQLManager extends javax.swing.JFrame {
         jTextFieldPropertiesFile.getDocument().addDocumentListener(documentListener);
         jTextFieldHost.getDocument().addDocumentListener(documentListener);
         jTextFieldPort.getDocument().addDocumentListener(documentListener);
-        
-        //jList.getDocument().addDocumentListener(documentListener);
-        defaultListModel.addListDataListener(new MyListDataListener());
+        //defaultListModel.addListDataListener(new MyListDataListener());
 
         jList = new JList(defaultListModel);
 
@@ -282,6 +280,7 @@ public class AceQLManager extends javax.swing.JFrame {
         //update(getGraphics());
     }
 
+    /*
     class MyListDataListener implements ListDataListener {
 
         @Override
@@ -299,7 +298,8 @@ public class AceQLManager extends javax.swing.JFrame {
             jButtonApply.setEnabled(true);
         }
     }
-        
+    */
+    
     private void setJdbcDrivers() {
         File[] files = getJdbcDrivers();
 
@@ -324,14 +324,6 @@ public class AceQLManager extends javax.swing.JFrame {
 
             if (!different) {
                 return;
-            }
-        }
-
-        String text = "";
-        for (int i = 0; i < files.length; i++) {
-            text += files[i].getName();
-            if (i < files.length - 1) {
-                text += CR_LF;
             }
         }
 
@@ -955,6 +947,7 @@ public class AceQLManager extends javax.swing.JFrame {
 
         File[] files = getJdbcDrivers();
 
+        /*
         if (files != null) {
             String classpath = System.getProperty("java.class.path");
 
@@ -969,7 +962,8 @@ public class AceQLManager extends javax.swing.JFrame {
                 }
             }
         }
-
+        */
+        
         jButtonApply.setEnabled(false);
 
     }
