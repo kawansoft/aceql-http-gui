@@ -48,14 +48,20 @@ import java.net.URL;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.DefaultListModel;
 import javax.swing.JDialog;
 import javax.swing.JFileChooser;
+import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.KeyStroke;
+import javax.swing.ListModel;
+import javax.swing.ListSelectionModel;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
+import javax.swing.event.ListDataEvent;
+import javax.swing.event.ListDataListener;
 import javax.swing.text.AbstractDocument;
 import javax.swing.text.AttributeSet;
 import javax.swing.text.BadLocationException;
@@ -116,6 +122,8 @@ public class AceQLManager extends javax.swing.JFrame {
     private SystemPropDisplayer systemPropDisplayer = null;
     private File[] previousFiles;
 
+    private DefaultListModel defaultListModel = new DefaultListModel();
+    
     /**
      * Creates new form Preferences
      */
@@ -129,7 +137,7 @@ public class AceQLManager extends javax.swing.JFrame {
      */
     public void initializeIt() {
 
-        Dimension dim = new Dimension(630, 630);
+        Dimension dim = new Dimension(637, 637);
         this.setPreferredSize(dim);
         this.setSize(dim);
         
@@ -235,8 +243,17 @@ public class AceQLManager extends javax.swing.JFrame {
         jTextFieldPropertiesFile.getDocument().addDocumentListener(documentListener);
         jTextFieldHost.getDocument().addDocumentListener(documentListener);
         jTextFieldPort.getDocument().addDocumentListener(documentListener);
-        jTextArea.getDocument().addDocumentListener(documentListener);
+        
+        //jList.getDocument().addDocumentListener(documentListener);
+        defaultListModel.addListDataListener(new MyListDataListener());
 
+        jList = new JList(defaultListModel);
+
+        jList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        jList.setLayoutOrientation(JList.HORIZONTAL_WRAP);
+        jList.setVisibleRowCount(-1);
+        jScrollPane.setViewportView(jList);
+                
         this.keyListenerAdder();
 
         this.setTitle(jLabelLogo.getText());
@@ -263,6 +280,24 @@ public class AceQLManager extends javax.swing.JFrame {
         //update(getGraphics());
     }
 
+    class MyListDataListener implements ListDataListener {
+
+        @Override
+        public void contentsChanged(ListDataEvent e) {
+            jButtonApply.setEnabled(true);
+        }
+
+        @Override
+        public void intervalAdded(ListDataEvent e) {
+            jButtonApply.setEnabled(true);
+        }
+
+        @Override
+        public void intervalRemoved(ListDataEvent e) {
+            jButtonApply.setEnabled(true);
+        }
+    }
+        
     private void setJdbcDrivers() {
         File[] files = getJdbcDrivers();
 
@@ -270,8 +305,9 @@ public class AceQLManager extends javax.swing.JFrame {
             return;
         }
 
+
         if (files == null) {
-            jTextArea.setText(null);
+            defaultListModel.removeAllElements();
             previousFiles = null;
             return;
         }
@@ -297,8 +333,11 @@ public class AceQLManager extends javax.swing.JFrame {
             }
         }
 
+        defaultListModel.removeAllElements();
+        for (int i = 0; i < files.length; i++) {
+            defaultListModel.addElement(files[i].getName());
+        }
         previousFiles = files;
-        jTextArea.setText(text);
 
     }
 
@@ -412,7 +451,11 @@ public class AceQLManager extends javax.swing.JFrame {
 
     }
 
-    private void stopStandard() {
+        /**
+     * Start as a thread updateServiceStatusLabel
+     */
+    private void stopStandardThreadStart() {
+        
         int port = 0;
 
         try {
@@ -423,12 +466,33 @@ public class AceQLManager extends javax.swing.JFrame {
                     JOptionPane.ERROR_MESSAGE);
             return;
         }
+        
+        final int finalPort = port;
+        
+        Thread thread = new Thread() {
+            @Override
+            public void run() {
+                stopStandard(finalPort);
+            }
+        };
 
+        thread.start();
+    }
+    
+    private void stopStandard(int port) {
         WebServerApi webServerApi = new WebServerApi();
         try {
 
+            STANDARD_STATUS = STANDARD_STOPPING;
             webServerApi.stopServer(port);
 
+            try {
+                // Give One second to be sure release bound port
+                Thread.sleep(1000);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(AceQLManager.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
             STANDARD_STATUS = STANDARD_STOPPED;
 
             System.out.println();
@@ -437,6 +501,7 @@ public class AceQLManager extends javax.swing.JFrame {
             System.out.println();
         } catch (IOException e) {
 
+            STANDARD_STATUS = STANDARD_RUNNING;
             if (e instanceof ConnectException) {
                 System.err.println(e.getMessage());
             } else {
@@ -1065,8 +1130,8 @@ public class AceQLManager extends javax.swing.JFrame {
         jPanelLeft12 = new javax.swing.JPanel();
         jLabelName = new javax.swing.JLabel();
         jPanelLeft10 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea = new javax.swing.JTextArea();
+        jScrollPane = new javax.swing.JScrollPane();
+        jList = new javax.swing.JList<>();
         jPanelLeft11 = new javax.swing.JPanel();
         jButtonOpenLocation = new javax.swing.JButton();
         jPanelEndField5 = new javax.swing.JPanel();
@@ -1174,6 +1239,7 @@ public class AceQLManager extends javax.swing.JFrame {
 
         jPanelSepLine2New2.setMaximumSize(new java.awt.Dimension(32787, 10));
         jPanelSepLine2New2.setMinimumSize(new java.awt.Dimension(0, 10));
+        jPanelSepLine2New2.setPreferredSize(new java.awt.Dimension(20, 10));
         jPanelSepLine2New2.setLayout(new javax.swing.BoxLayout(jPanelSepLine2New2, javax.swing.BoxLayout.LINE_AXIS));
 
         jPanel22.setMaximumSize(new java.awt.Dimension(10, 10));
@@ -1526,6 +1592,9 @@ public class AceQLManager extends javax.swing.JFrame {
         jPanelSepBlanc8spaces.setPreferredSize(new java.awt.Dimension(1000, 8));
         jPanelMain.add(jPanelSepBlanc8spaces);
 
+        jPaneJdbc.setMaximumSize(new java.awt.Dimension(33079, 40));
+        jPaneJdbc.setMinimumSize(new java.awt.Dimension(329, 40));
+        jPaneJdbc.setPreferredSize(new java.awt.Dimension(353, 40));
         jPaneJdbc.setLayout(new javax.swing.BoxLayout(jPaneJdbc, javax.swing.BoxLayout.LINE_AXIS));
 
         jPanelLeft12.setMaximumSize(new java.awt.Dimension(10, 10));
@@ -1563,19 +1632,13 @@ public class AceQLManager extends javax.swing.JFrame {
 
         jPaneJdbc.add(jPanelLeft10);
 
-        jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-        jScrollPane1.setMaximumSize(new java.awt.Dimension(32767, 35));
-        jScrollPane1.setMinimumSize(new java.awt.Dimension(27, 35));
-        jScrollPane1.setPreferredSize(new java.awt.Dimension(226, 35));
+        jScrollPane.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        jScrollPane.setName(""); // NOI18N
 
-        jTextArea.setEditable(false);
-        jTextArea.setColumns(20);
-        jTextArea.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
-        jTextArea.setRows(3);
-        jTextArea.setText("driver_1\ndriver_2\ndriver_3\ndriver_4");
-        jScrollPane1.setViewportView(jTextArea);
+        jList.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jScrollPane.setViewportView(jList);
 
-        jPaneJdbc.add(jScrollPane1);
+        jPaneJdbc.add(jScrollPane);
 
         jPanelLeft11.setMaximumSize(new java.awt.Dimension(5, 5));
         jPanelLeft11.setMinimumSize(new java.awt.Dimension(5, 5));
@@ -1857,7 +1920,7 @@ public class AceQLManager extends javax.swing.JFrame {
 
         jPanelButtonsStartStandard.add(jPanelLeft31);
 
-        jButtonStart.setText("Start");
+        jButtonStart.setText("Start Server");
         jButtonStart.setToolTipText("");
         jButtonStart.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1866,7 +1929,7 @@ public class AceQLManager extends javax.swing.JFrame {
         });
         jPanelButtonsStartStandard.add(jButtonStart);
 
-        jButtonStop.setText("Stop");
+        jButtonStop.setText("Stop Server");
         jButtonStop.setToolTipText("");
         jButtonStop.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1945,7 +2008,7 @@ public class AceQLManager extends javax.swing.JFrame {
 
         jPanelButtonsStartService.add(jPanelLeft33);
 
-        jButtonStartService.setText("Start");
+        jButtonStartService.setText("Start Service");
         jButtonStartService.setToolTipText("");
         jButtonStartService.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1954,7 +2017,7 @@ public class AceQLManager extends javax.swing.JFrame {
         });
         jPanelButtonsStartService.add(jButtonStartService);
 
-        jButtonStopService.setText("Stop");
+        jButtonStopService.setText("Stop Service");
         jButtonStopService.setToolTipText("");
         jButtonStopService.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -2286,7 +2349,7 @@ public class AceQLManager extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonStartActionPerformed
 
     private void jButtonStopActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonStopActionPerformed
-        stopStandard();
+        stopStandardThreadStart();
     }//GEN-LAST:event_jButtonStopActionPerformed
 
     private void jButtonDisplayConsoleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDisplayConsoleActionPerformed
@@ -2447,6 +2510,7 @@ public class AceQLManager extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelURL;
     private javax.swing.JLabel jLabelWindowsService1;
     private javax.swing.JLabel jLabelWindowsServiceMode;
+    private javax.swing.JList<String> jList;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenu jMenuFile;
     private javax.swing.JMenu jMenuHelp;
@@ -2519,11 +2583,10 @@ public class AceQLManager extends javax.swing.JFrame {
     private javax.swing.JPanel jPanelTitledSeparator5;
     private javax.swing.JPanel jPanelTitledSeparator6;
     private javax.swing.JPanel jPanelURL;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JPopupMenu.Separator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
-    private javax.swing.JTextArea jTextArea;
     private javax.swing.JTextField jTextFieldHost;
     private javax.swing.JTextField jTextFieldPort;
     private javax.swing.JTextField jTextFieldPropertiesFile;

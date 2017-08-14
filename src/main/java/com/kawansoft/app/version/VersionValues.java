@@ -29,7 +29,7 @@ package com.kawansoft.app.version;
 
 public class VersionValues {
     public static final String VERSION = "v1.0-beta-1";
-    public static final String DATE = "12-aug-2017"; 
+    public static final String DATE = "14-aug-2017"; 
 }
 
 // End

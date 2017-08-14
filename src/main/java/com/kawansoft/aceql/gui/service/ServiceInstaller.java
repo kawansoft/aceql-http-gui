@@ -10,6 +10,7 @@ import java.io.InputStreamReader;
 
 import org.apache.commons.lang3.SystemUtils;
 import static com.kawansoft.aceql.gui.AceQLManager.getInstallBaseDir;
+import javax.swing.JOptionPane;
 
 
 /**
@@ -21,6 +22,8 @@ import static com.kawansoft.aceql.gui.AceQLManager.getInstallBaseDir;
 
 public class ServiceInstaller {
     
+    public static final String CR_LF = System.getProperty("line.separator");
+        
     /**
      * Protected
      */
@@ -47,21 +50,22 @@ public class ServiceInstaller {
         
         /*
         @echo off
+        set USER_DIR=%1
         start /min AceQLHTTPService.exe //IS//AceQLHTTPService  ^
-         --DisplayName="AceQL HTTP" ^
-         --Description="AceQL HTTP Server - https://www.aceql.com" ^
+         --DisplayName="AceQL HTTP Server" ^
          --Install="%CD%"\AceQLHTTPService.exe ^
+         --Description="AceQL HTTP Server - https://www.aceql.com" ^
          --Jvm=auto ^
-         --JvmOptions=-Xrs;-Xms128m;-Xmx256m;-Duser.dir=%1 ^
-         --Classpath=%2 ^
+         --JvmOptions=-Xrs;-Xms128m;-Xmx256m;-Duser.dir="%USER_DIR%" ^
+         --Classpath="%USER_DIR%\aceql-http-gui-1.0-beta-1.jar";"%USER_DIR%\dependency/*";"%USER_DIR%\AceQL\lib-jdbc/*";"%CLASSPATH%" ^
          --StartMode=jvm ^
          --StartClass=com.kawansoft.aceql.gui.service.AceQLServiceControler ^
-         ++StartParams=%3 ^
+         ++StartParams=%2 ^
          --StartMethod=start ^
          --StopMode=jvm ^
          --StopClass=com.kawansoft.aceql.gui.service.AceQLServiceControler ^
          --StopMethod=stop ^
-         --LogPath=%4 ^
+         --LogPath=%3 ^
          --StdOutput=auto ^
          --StdError=auto ^
          --Startup=auto ^
@@ -71,12 +75,13 @@ public class ServiceInstaller {
         
         // Used to force set user.home of SYSTEM to our user.home
         String parm1 = SystemUtils.USER_DIR;
-        String parm2 = classpath; 
-        String parm3 = propertiesFile + "#" + host + "#" + port;
-        String parm4 = ParmsUtil.getWindowsServiceLogDir();
+        String parm2 = propertiesFile + "#" + host + "#" + port;
+        String parm3 = ParmsUtil.getWindowsServiceLogDir();
                 
+        //JOptionPane.showMessageDialog(null, parm1 + CR_LF + parm2 + CR_LF + parm3 + CR_LF + "directory: " + directory);
+        
 	ProcessBuilder pb = new ProcessBuilder("cmd.exe", "/C", 
-                "installService.bat", parm1, parm2, parm3, parm4);
+                "installService.bat", parm1, parm2, parm3);
         pb.directory(new File(directory));
 	Process p = pb.start();
         

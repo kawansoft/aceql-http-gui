@@ -8,6 +8,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Date;
+import javax.swing.JOptionPane;
 
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.SystemUtils;
@@ -135,6 +136,8 @@ public class ServiceUtil {
         if ( !SystemUtils.IS_OS_WINDOWS) {
             return;
         }
+        
+        JOptionPane.showMessageDialog(null, "directory: " + directory);
         
 	ProcessBuilder pb = new ProcessBuilder("cmd.exe", "/C", 
                 "startService.bat");

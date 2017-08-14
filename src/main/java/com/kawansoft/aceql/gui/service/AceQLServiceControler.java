@@ -2,9 +2,7 @@
 package com.kawansoft.aceql.gui.service;
 
 import com.kawansoft.aceql.gui.task.AceQLTask;
-import com.kawansoft.app.parms.Parms;
 import com.kawansoft.app.util.ClientLogger;
-import javax.swing.JOptionPane;
 
 
 /**
