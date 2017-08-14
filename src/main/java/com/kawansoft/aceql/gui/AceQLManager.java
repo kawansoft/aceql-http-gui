@@ -332,7 +332,19 @@ public class AceQLManager extends javax.swing.JFrame {
             defaultListModel.addElement(files[i].getName());
         }
         previousFiles = files;
+        
+        String classpath = System.getProperty("java.class.path");
 
+        for (int i = 0; i < files.length; i++) {
+            if (!classpath.contains(files[i].toString())) {
+                try {
+                    ClassPathHacker.addFile(files[i]);
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                    Logger.getLogger(AceQLManager.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
     }
 
     public void setConfigurationValues() {
