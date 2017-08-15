@@ -23,6 +23,7 @@
  * intact.
  */
 package com.kawansoft.app.version;
+
 /**
  * Contains the package Version info
  */
