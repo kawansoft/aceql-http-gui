@@ -32,6 +32,7 @@ import com.kawansoft.app.util.JFileChooserMemory;
 import com.kawansoft.app.util.SystemPropDisplayer;
 import com.kawansoft.app.util.WindowSettingMgr;
 import com.kawansoft.app.util.classpath.ClassPathHacker;
+import com.kawansoft.app.util.registry.RegistryReader;
 import com.swing.util.SwingUtil;
 import java.awt.Desktop;
 import java.awt.FileDialog;
@@ -797,6 +798,20 @@ public class AceQLManager extends javax.swing.JFrame {
                     "Unable to display Windows Service log directory: " + CR_LF + ex.getMessage(),
                     Parms.APP_NAME,
                     JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    private boolean existsOpenKeyForProperties() throws Exception {
+        String subKey = "Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\FileExts\\.properties\\UserChoice";
+        
+        RegistryReader registryReader = new RegistryReader();
+        String useValue = registryReader.getCurrentUserKeyValue(subKey, "ProgId");
+        
+        if (useValue != null) {
+            return true;
+        }
+        else {
+            return false;
         }
     }
 
@@ -2342,9 +2357,31 @@ public class AceQLManager extends javax.swing.JFrame {
                         JOptionPane.ERROR_MESSAGE);
                 return;
             }
+            
+            
+            if (SystemUtils.IS_OS_WINDOWS) {
 
-            java.awt.Desktop dekstop = java.awt.Desktop.getDesktop();
-            dekstop.edit(file);
+                // If an Open association is done in registry, try it
+                try {
+                    if (existsOpenKeyForProperties()) {
+                        java.awt.Desktop dekstop = java.awt.Desktop.getDesktop();
+                        dekstop.open(file);
+                    } else {
+                        ProcessBuilder pb = new ProcessBuilder("Notepad.exe", file.toString());
+                        pb.start();
+                    }
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    ProcessBuilder pb = new ProcessBuilder("Notepad.exe", file.toString());
+                    pb.start();
+                }
+
+            } else {
+                java.awt.Desktop dekstop = java.awt.Desktop.getDesktop();
+                dekstop.edit(file);
+            }
+            
         } catch (Exception ex) {
             ex.printStackTrace();
             JOptionPane.showMessageDialog(this,
