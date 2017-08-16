@@ -54,8 +54,10 @@ public class AppTray {
     /**
      * The debug flag
      */
-    protected static boolean DEBUG = false;
+    public static boolean DEBUG = false;
 
+    public static final String CR_LF = System.getProperty("line.separator");
+        
     /**
      * The System Tray
      */
@@ -213,7 +215,25 @@ public class AppTray {
     public static void main(String[] args) {
 
         try {
-                                     
+                              
+            DEBUG = false;
+
+            if (DEBUG) {
+                String classpath = System.getProperty("java.class.path");
+
+                if (classpath != null) {
+                    String[] paths = classpath.split(";");
+                    classpath = "";
+
+                    for (String path : paths) {
+                        classpath += path + CR_LF;
+                    }
+
+                    JOptionPane.showMessageDialog(null, "classpath: " + classpath);
+                }
+
+            }
+        
             setLookAndFeel();
             
             if (SystemTray.isSupported()) {

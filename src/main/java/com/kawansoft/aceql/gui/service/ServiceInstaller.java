@@ -22,6 +22,8 @@ import javax.swing.JOptionPane;
 
 public class ServiceInstaller {
     
+    public static boolean DEBUG = false;
+    
     public static final String CR_LF = System.getProperty("line.separator");
         
     /**
@@ -50,22 +52,21 @@ public class ServiceInstaller {
         
         /*
         @echo off
-        set USER_DIR=%1
         start /min AceQLHTTPService.exe //IS//AceQLHTTPService  ^
          --DisplayName="AceQL HTTP Server" ^
          --Install="%CD%"\AceQLHTTPService.exe ^
          --Description="AceQL HTTP Server - https://www.aceql.com" ^
          --Jvm=auto ^
-         --JvmOptions=-Xrs;-Xms128m;-Xmx256m;-Duser.dir="%USER_DIR%" ^
-         --Classpath="%USER_DIR%\aceql-http-gui-1.0-beta-1.jar";"%USER_DIR%\dependency/*";"%USER_DIR%\AceQL\lib-jdbc/*";"%CLASSPATH%" ^
+         --JvmOptions=-Xrs;-Xms128m;-Xmx256m;-Duser.dir="%CD%"\..\..\ ^
+         --Classpath="%CD%\..\..\aceql-http-gui-1.0-beta-1.jar";"%CD%\..\..\dependency/*";"%CD%\..\..\AceQL\lib-jdbc/*";"%CLASSPATH%" ^
          --StartMode=jvm ^
          --StartClass=com.kawansoft.aceql.gui.service.AceQLServiceControler ^
-         ++StartParams=%2 ^
+         ++StartParams=%1 ^
          --StartMethod=start ^
          --StopMode=jvm ^
          --StopClass=com.kawansoft.aceql.gui.service.AceQLServiceControler ^
          --StopMethod=stop ^
-         --LogPath=%3 ^
+         --LogPath=%2 ^
          --StdOutput=auto ^
          --StdError=auto ^
          --Startup=auto ^
@@ -73,15 +74,19 @@ public class ServiceInstaller {
          exit
         */
         
-        // Used to force set user.home of SYSTEM to our user.home
-        String parm1 = SystemUtils.USER_DIR;
-        String parm2 = propertiesFile + "#" + host + "#" + port;
-        String parm3 = ParmsUtil.getWindowsServiceLogDir();
-                
-        //JOptionPane.showMessageDialog(null, parm1 + CR_LF + parm2 + CR_LF + parm3 + CR_LF + "directory: " + directory);
+        // Replace # in properties file by !. reverse will be done when getting parameter back in AceQLTask
+        propertiesFile = propertiesFile.replace("#", "!");
         
+        // Used to force set user.home of SYSTEM to our user.home
+        String parm1 = propertiesFile + "#" + host + "#" + port;
+        String parm2 = ParmsUtil.getWindowsServiceLogDir();
+                        
+        if (DEBUG) {
+            JOptionPane.showMessageDialog(null, parm1 + CR_LF + parm2 + CR_LF + "directory: " + directory);
+        }
+
 	ProcessBuilder pb = new ProcessBuilder("cmd.exe", "/C", 
-                "installService.bat", parm1, parm2, parm3);
+                "installService.bat", parm1, parm2);
         pb.directory(new File(directory));
 	Process p = pb.start();
         
