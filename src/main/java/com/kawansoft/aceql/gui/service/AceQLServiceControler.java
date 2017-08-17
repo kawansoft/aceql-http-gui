@@ -2,7 +2,14 @@
 package com.kawansoft.aceql.gui.service;
 
 import com.kawansoft.aceql.gui.task.AceQLTask;
+import com.kawansoft.aceql.gui.util.ConfigurationUtil;
 import com.kawansoft.app.util.ClientLogger;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.Properties;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 /**
@@ -26,23 +33,29 @@ public class AceQLServiceControler {
         System.out.println(ClientLogger.formatLogMsg(AceQLServiceControler.class, "CLASSPATH: " + System.getProperty("java.class.path")));
         System.out.println("");
         
-        if (arg.length != 3) {
-            throw new IllegalArgumentException("Invalid Start Params number. Should be 3 is: " + arg.length);
+        String aceqlProperties = null;
+        String host = null;
+        int port = 0;
+
+        File configurationProperties = ConfigurationUtil.getConfirurationProperties();
+        
+        if (! configurationProperties.exists()) {
+            throw new IllegalArgumentException(new FileNotFoundException("The configuration file that stores properties file name, host and port does not exist: " + configurationProperties));
         }
         
-        String propertiesFile = arg[0];
-        String host = arg[1];
-        String portStr = arg[2];
-        
-        int port = -1;
-        
+        ConfigurationUtil configurationUtil = new ConfigurationUtil();
         try {
-            port = Integer.parseInt(portStr);
-        } catch (Exception e) {
-            throw new IllegalArgumentException("Invalid port not numeric: " + portStr);
+            configurationUtil.load();
+        } catch (IOException ex) {
+            throw new IllegalArgumentException(ex);
         }
+        
+       aceqlProperties = configurationUtil.getAceqlProperties();
+       host = configurationUtil.getHost();
+       port = configurationUtil.getPort();
+      
         // Ok, launch task
-        AceQLTask aceQLTask = new AceQLTask(AceQLTask.STANDARD_MODE, propertiesFile, host, port);
+        AceQLTask aceQLTask = new AceQLTask(AceQLTask.SERVICE_MODE, aceqlProperties, host, port);
         aceQLTask.start();
     }
 

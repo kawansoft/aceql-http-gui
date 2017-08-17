@@ -1,3 +1,4 @@
+
 package com.kawansoft.aceql.gui;
 
 /*
@@ -22,7 +23,6 @@ package com.kawansoft.aceql.gui;
 import static com.kawansoft.aceql.gui.AceQLManager.setLookAndFeel;
 import com.kawansoft.aceql.gui.util.UserPreferencesManager;
 import com.kawansoft.app.parms.MessagesManager;
-import static com.kawansoft.app.parms.Parms.APP_NAME;
 
 import java.awt.AWTException;
 import java.awt.Frame;
@@ -39,7 +39,6 @@ import org.apache.commons.lang3.SystemUtils;
 
 import com.kawansoft.app.parms.Parms;
 import com.kawansoft.app.parms.util.ImageParmsUtil;
-import com.kawansoft.app.version.GuiVersionValues;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -54,10 +53,8 @@ public class AppTray {
     /**
      * The debug flag
      */
-    public static boolean DEBUG = false;
+    protected static boolean DEBUG = false;
 
-    public static final String CR_LF = System.getProperty("line.separator");
-        
     /**
      * The System Tray
      */
@@ -171,7 +168,7 @@ public class AppTray {
                
         ImageIcon i = new ImageIcon(ImageParmsUtil.getTrayIcon());
 
-        trayIcon = new TrayIcon(i.getImage(), Parms.APP_NAME);
+        trayIcon = new TrayIcon(i.getImage(), Parms.APP_NAME, menu);
         trayIcon.setImageAutoSize(true);
 
         trayIcon.addActionListener(new ActionListener() {
@@ -186,7 +183,7 @@ public class AppTray {
             tray.add(trayIcon);
         } catch (AWTException ex) {
             ex.printStackTrace();
-            JOptionPane.showMessageDialog(aceQLManager, "Impossible to start " + APP_NAME + " : " + ex.toString());
+            JOptionPane.showMessageDialog(aceQLManager, "Impossible to start " + Parms.APP_NAME + " : " + ex.toString());
         }
 
         UserPreferencesManager userPreferencesManager = new UserPreferencesManager();
@@ -215,25 +212,7 @@ public class AppTray {
     public static void main(String[] args) {
 
         try {
-                              
-            DEBUG = false;
-
-            if (DEBUG) {
-                String classpath = System.getProperty("java.class.path");
-
-                if (classpath != null) {
-                    String[] paths = classpath.split(";");
-                    classpath = "";
-
-                    for (String path : paths) {
-                        classpath += path + CR_LF;
-                    }
-
-                    JOptionPane.showMessageDialog(null, "classpath: " + classpath);
-                }
-
-            }
-        
+                            
             setLookAndFeel();
             
             if (SystemTray.isSupported()) {

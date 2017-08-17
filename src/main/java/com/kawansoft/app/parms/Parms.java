@@ -13,9 +13,9 @@ public class Parms {
     public static String APP_NAME = "AceQL HTTP" + " " + org.kawanfw.sql.version.Version.PRODUCT.TYPE;
 
     // Tray and default App Icon 
-    public static final String TRAY_ICON = "images/aceql_rocket_24.png";
+    public static final String TRAY_ICON = "images/data_up_20.png";
 
-    public static final String ICON = "images/aceql_rocket_24.png";
+    public static final String ICON = "images/data_up_24.png";
     
     public static final String LOGO_BIG = "images/logos/logo-AceQL.png";
     public static final String LOGO_SMALL = "images/logos/logo-AceQL_48.png";

@@ -2,12 +2,8 @@
 package com.kawansoft.aceql.gui.task;
 
 import com.kawansoft.aceql.gui.AceQLManager;
-import static com.kawansoft.aceql.gui.AceQLManager.DEFAULT_HOST;
-import static com.kawansoft.aceql.gui.AceQLManager.DEFAULT_PORT;
-import com.kawansoft.aceql.gui.util.UserPreferencesManager;
 import com.kawansoft.app.util.ClientLogger;
 import java.io.File;
-import java.io.FileNotFoundException;
 import org.kawanfw.sql.api.server.web.WebServerApi;
 
 /**

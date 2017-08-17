@@ -1,11 +1,11 @@
-
 package com.kawansoft.aceql.gui;
 
 import com.kawansoft.aceql.gui.service.ServiceInstaller;
 import com.kawansoft.aceql.gui.service.ServiceUtil;
 import com.kawansoft.aceql.gui.task.AceQLTask;
+import com.kawansoft.aceql.gui.util.ConfigurationUtil;
+import static com.kawansoft.aceql.gui.util.ConfigurationUtil.getConfirurationProperties;
 import com.kawansoft.aceql.gui.util.PropertiesFileFilter;
-import com.kawansoft.aceql.gui.util.UserPreferencesManager;
 import com.kawansoft.app.parms.MessagesManager;
 import com.kawansoft.app.parms.Parms;
 
@@ -40,12 +40,15 @@ import java.awt.Frame;
 import java.awt.HeadlessException;
 import java.awt.Toolkit;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.FilenameFilter;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.net.ConnectException;
 import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URL;
+import java.util.Date;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -55,14 +58,11 @@ import javax.swing.JFileChooser;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.KeyStroke;
-import javax.swing.ListModel;
 import javax.swing.ListSelectionModel;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
-import javax.swing.event.ListDataEvent;
-import javax.swing.event.ListDataListener;
 import javax.swing.text.AbstractDocument;
 import javax.swing.text.AttributeSet;
 import javax.swing.text.BadLocationException;
@@ -80,7 +80,7 @@ import org.kawanfw.sql.tomcat.TomcatStarterUtil;
 public class AceQLManager extends javax.swing.JFrame {
 
     public static final String CR_LF = System.getProperty("line.separator");
-
+    
     /**
      * Says if we continue to udate Windows Service Status
      */
@@ -90,9 +90,6 @@ public class AceQLManager extends javax.swing.JFrame {
     public static final int STANDARD_STARTING = 2;
     public static final int STANDARD_STOPPING = 3;
     public static final int STANDARD_RUNNING = 4;
-
-    public static final String DEFAULT_HOST = "localhost";
-    public static final int DEFAULT_PORT = 9090;
 
     /**
      * Standard Status
@@ -110,8 +107,6 @@ public class AceQLManager extends javax.swing.JFrame {
 
     private Window parent = null;
 
-    private UserPreferencesManager userPreferencesManager = new UserPreferencesManager();
-
     private AceQLConsole aceQLConsole = null;
 
     /**
@@ -124,7 +119,7 @@ public class AceQLManager extends javax.swing.JFrame {
     private File[] previousFiles;
 
     private DefaultListModel defaultListModel = new DefaultListModel();
-    
+
     /**
      * Creates new form Preferences
      */
@@ -141,9 +136,9 @@ public class AceQLManager extends javax.swing.JFrame {
         Dimension dim = new Dimension(639, 639);
         this.setPreferredSize(dim);
         this.setSize(dim);
-        
+
         this.jLabelLogo.setText(Parms.APP_NAME);
-        
+
         try {
             this.setIconImage(ImageParmsUtil.getAppIcon());
         } catch (RuntimeException e1) {
@@ -168,7 +163,7 @@ public class AceQLManager extends javax.swing.JFrame {
         };
         t.start();
 
-        setConfigurationValues();
+        loadConfiguration();
 
         updateStandardStatusThreadStart();
 
@@ -184,7 +179,10 @@ public class AceQLManager extends javax.swing.JFrame {
             jButtonStartService.setEnabled(false);
             jButtonStopService.setEnabled(false);
             jButtonDisplayLogs.setEnabled(false);
+            jButtonManagementConsole.setEnabled(false);
         }
+
+        jButtonManagementConsole.setVisible(false);
 
         ((AbstractDocument) this.jTextFieldPort.getDocument()).setDocumentFilter(new AceQLManager.MyDocumentFilter());
 
@@ -254,7 +252,7 @@ public class AceQLManager extends javax.swing.JFrame {
         jList.setLayoutOrientation(JList.HORIZONTAL_WRAP);
         jList.setVisibleRowCount(-1);
         jScrollPane.setViewportView(jList);
-                
+
         this.keyListenerAdder();
 
         this.setTitle(jLabelLogo.getText());
@@ -276,7 +274,7 @@ public class AceQLManager extends javax.swing.JFrame {
 
         // Load and activate previous windows settings
         WindowSettingMgr.load(this);
-        
+
         pack();
         //update(getGraphics());
     }
@@ -299,15 +297,13 @@ public class AceQLManager extends javax.swing.JFrame {
             jButtonApply.setEnabled(true);
         }
     }
-    */
-    
+     */
     private void setJdbcDrivers() {
         File[] files = getJdbcDrivers();
 
         if (previousFiles == null && files == null) {
             return;
         }
-
 
         if (files == null) {
             defaultListModel.removeAllElements();
@@ -333,7 +329,7 @@ public class AceQLManager extends javax.swing.JFrame {
             defaultListModel.addElement(files[i].getName());
         }
         previousFiles = files;
-        
+
         String classpath = System.getProperty("java.class.path");
 
         for (int i = 0; i < files.length; i++) {
@@ -348,66 +344,83 @@ public class AceQLManager extends javax.swing.JFrame {
         }
     }
 
-    public void setConfigurationValues() {
+    public void loadConfiguration() {
 
-        String propertiesFile = userPreferencesManager.getPreference("PROPERTIES_FILE");
+        File configurationProperties = ConfigurationUtil.getConfirurationProperties();
 
-        if (propertiesFile == null || propertiesFile.isEmpty()) {
+        String aceqlProperties = null;
+        String host = null;
+        int port = 0;
+
+        if (configurationProperties.exists()) {
+            ConfigurationUtil configurationUtil = new ConfigurationUtil();
+            try {
+                configurationUtil.load();
+            } catch (Exception ex) {
+                JOptionPane
+                        .showMessageDialog(
+                                this,
+                                "Unable to read properties file " + configurationProperties + ": " + ex.toString(),
+                                Parms.APP_NAME, JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            aceqlProperties = configurationUtil.getAceqlProperties();
+            host = configurationUtil.getHost();
+            port = configurationUtil.getPort();
+        }
+
+        if (host == null) {
+            host = ConfigurationUtil.DEFAULT_HOST;
+        }
+
+        if (port == 0) {
+            port = ConfigurationUtil.DEFAULT_PORT;
+        }
+
+        jTextFieldHost.setText(host);
+        jTextFieldPort.setText("" + port);
+
+        setAceQLServerURL(host, port);
+
+        if (aceqlProperties == null || aceqlProperties.isEmpty()) {
             File fileIn = new File(getInstallBaseDir() + File.separator + "conf" + File.separator + "aceql-server.properties");
 
             if (!fileIn.exists()) {
                 JOptionPane
                         .showMessageDialog(
                                 this,
-                                "Missing base configuration file. Please reinstall AceQL HTTP Manager.",
+                                "Missing base configuration file. Please reinstall AceQL HTTP.",
                                 Parms.APP_NAME, JOptionPane.ERROR_MESSAGE);
                 return;
             }
 
             // Copy the file to ParmsUtil.fileOut()/conf because it won't be possible to edit directly it in c:\Program (Windows Security)
             File confDir = new File(ParmsUtil.getBaseDir() + File.separator + "conf");
-            if (!confDir.exists()) {
-                confDir.mkdirs();
-            }
             File fileOut = new File(confDir.toString() + File.separator + "aceql-server.properties");
 
             if (!fileOut.exists()) {
                 try {
                     FileUtils.copyFile(fileIn, fileOut);
                     jTextFieldPropertiesFile.setText(fileOut.toString());
-                    userPreferencesManager.setPreference("PROPERTIES_FILE", fileOut.toString());
                 } catch (IOException ex) {
                     jTextFieldPropertiesFile.setText(null);
                     Logger.getLogger(AceQLManager.class.getName()).log(Level.SEVERE, null, ex);
                 }
             } else {
                 jTextFieldPropertiesFile.setText(fileOut.toString());
-                userPreferencesManager.setPreference("PROPERTIES_FILE", fileOut.toString());
             }
 
         } else {
-            jTextFieldPropertiesFile.setText(propertiesFile);
+            jTextFieldPropertiesFile.setText(aceqlProperties);
         }
-
-        String host = userPreferencesManager.getPreference("HOST");
-        if (host == null) {
-            host = DEFAULT_HOST;
+        
+        // Store th properties if they did not exists
+        if ( ! ConfigurationUtil.getConfirurationProperties().exists()) {
+            storeConfiguration();
         }
-
-        jTextFieldHost.setText(host);
-
-        int port = userPreferencesManager.getIntegerPreference("PORT");
-
-        if (port == 0) {
-            port = DEFAULT_PORT;
-        }
-        jTextFieldPort.setText("" + port);
-
-        String url = userPreferencesManager.getPreference("URL");
-        jButtonURL.setText(url);
-
-        setAceQLServerURL(host, port);
     }
+
 
     private void startStandard() {
 
@@ -458,11 +471,11 @@ public class AceQLManager extends javax.swing.JFrame {
 
     }
 
-        /**
+    /**
      * Start as a thread updateServiceStatusLabel
      */
     private void stopStandardThreadStart() {
-        
+
         int port = 0;
 
         try {
@@ -473,9 +486,9 @@ public class AceQLManager extends javax.swing.JFrame {
                     JOptionPane.ERROR_MESSAGE);
             return;
         }
-        
+
         final int finalPort = port;
-        
+
         Thread thread = new Thread() {
             @Override
             public void run() {
@@ -485,7 +498,7 @@ public class AceQLManager extends javax.swing.JFrame {
 
         thread.start();
     }
-    
+
     private void stopStandard(int port) {
         WebServerApi webServerApi = new WebServerApi();
         try {
@@ -499,7 +512,7 @@ public class AceQLManager extends javax.swing.JFrame {
             } catch (InterruptedException ex) {
                 Logger.getLogger(AceQLManager.class.getName()).log(Level.SEVERE, null, ex);
             }
-            
+
             STANDARD_STATUS = STANDARD_STOPPED;
 
             System.out.println();
@@ -706,37 +719,28 @@ public class AceQLManager extends javax.swing.JFrame {
     }
 
     private void installService() {
-        File[] files = getJdbcDrivers();
-        String directory = getInstallBaseDir() + File.separator + "service";
-        String classpath = System.getProperty("java.class.path");
 
-        for (File file : files) {
-            classpath += ";" + file.toString();
-        }
-
-        String propertiesFile = jTextFieldPropertiesFile.getText();
-        String host = jTextFieldHost.getText();
-
-        int port = -1;
-
+        String serviceDirectory = getInstallBaseDir() + File.separator + "service";
+        String logDirectory = ParmsUtil.getWindowsServiceLogDir();
+        
         try {
-            port = Integer.parseInt(jTextFieldPort.getText());
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this,
-                    "Port is not numeric: "
-                    + jTextFieldPort.getText(), Parms.APP_NAME,
-                    JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-
-        try {
-            ServiceInstaller.install(directory, classpath, propertiesFile, host, port);
+            ServiceInstaller.install(serviceDirectory, logDirectory);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(thisOne,
                     "Unable to install Windows Service: "
                     + e.getMessage());
             e.printStackTrace();
         }
+        
+        try {
+            ServiceInstaller.updateServiceDescription(serviceDirectory);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(thisOne,
+                    "Unable to update Windows Service Description: "
+                    + e.getMessage());
+            e.printStackTrace();
+        }
+        
     }
 
     private void uninstallService() {
@@ -803,17 +807,46 @@ public class AceQLManager extends javax.swing.JFrame {
 
     private boolean existsOpenKeyForProperties() throws Exception {
         String subKey = "Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\FileExts\\.properties\\UserChoice";
-        
+
         RegistryReader registryReader = new RegistryReader();
         String useValue = registryReader.getCurrentUserKeyValue(subKey, "ProgId");
-        
+
         if (useValue != null) {
             return true;
-        }
-        else {
+        } else {
             return false;
         }
     }
+
+    private void WindowsServiceManagementConsole() {
+
+        try {
+            if (!SystemUtils.IS_OS_WINDOWS) {
+                return;
+            }
+
+            ProcessBuilder pb = new ProcessBuilder("cmd.exe", "/C",
+                    "startMmc.bat");
+
+            String directory = getInstallBaseDir() + File.separator + "service";
+
+            //JOptionPane.showMessageDialog(null, "serviceDirectory: " + serviceDirectory);
+            pb.directory(new File(directory));
+            Process p = pb.start();
+
+            try {
+                p.waitFor();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this,
+                    "Unable to display Microsoft Management Console: " + CR_LF + ex.getMessage(),
+                    Parms.APP_NAME,
+                    JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
 
     // See http://stackoverflow.com/questions/14058505/jtextfield-accept-only-alphabet-and-white-space/14060047#14060047
     class MyDocumentFilter extends DocumentFilter {
@@ -956,43 +989,33 @@ public class AceQLManager extends javax.swing.JFrame {
 
     private void actionApply() {
 
+        //this.getRootPane().setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        //this.getRootPane().setCursor(Cursor.getDefaultCursor());  
         boolean verifyOk = verifyConfigValues();
 
         if (!verifyOk) {
             return;
         }
 
-        int port = Integer.parseInt(jTextFieldPort.getText());
+        setAceQLServerURL(jTextFieldHost.getText(), Integer.parseInt(jTextFieldPort.getText()));
 
-        //this.getRootPane().setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-        //this.getRootPane().setCursor(Cursor.getDefaultCursor());         
-        userPreferencesManager.setPreference("PROPERTIES_FILE", jTextFieldPropertiesFile.getText());
-        userPreferencesManager.setPreference("HOST", jTextFieldHost.getText());
-        userPreferencesManager.setPreference("PORT", port);
-
-        setAceQLServerURL(jTextFieldHost.getText(), port);
-
-        File[] files = getJdbcDrivers();
-
-        /*
-        if (files != null) {
-            String classpath = System.getProperty("java.class.path");
-
-            for (int i = 0; i < files.length; i++) {
-                if (!classpath.contains(files[i].toString())) {
-                    try {
-                        ClassPathHacker.addFile(files[i]);
-                    } catch (IOException ex) {
-                        ex.printStackTrace();
-                        Logger.getLogger(AceQLManager.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                }
-            }
-        }
-        */
-        
+        storeConfiguration();
         jButtonApply.setEnabled(false);
 
+    }
+
+    public void storeConfiguration() throws HeadlessException {
+        try {
+            int port = Integer.parseInt(jTextFieldPort.getText());
+
+            ConfigurationUtil configurationUtil = new ConfigurationUtil();
+            configurationUtil.store(jTextFieldPropertiesFile.getText(), jTextFieldHost.getText(), port);
+
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(this,
+                    "Enable to store configuration on configuration file: " + ConfigurationUtil.getConfirurationProperties() + ". Reason: " + ex, Parms.APP_NAME,
+                    JOptionPane.ERROR_MESSAGE);
+        };
     }
 
     public static File[] getJdbcDrivers() {
@@ -1031,7 +1054,7 @@ public class AceQLManager extends javax.swing.JFrame {
     }
 
     public static String getInstallBaseDir() {
-        return SystemUtils.USER_DIR + File.separator + "AceQL";
+        return SystemUtils.USER_DIR;
     }
 
     private void actionOk() {
@@ -1201,6 +1224,7 @@ public class AceQLManager extends javax.swing.JFrame {
         jButtonStopService = new javax.swing.JButton();
         jPaneSep2 = new javax.swing.JPanel();
         jButtonDisplayLogs = new javax.swing.JButton();
+        jButtonManagementConsole = new javax.swing.JButton();
         jPanelSepBlanc8spaces8 = new javax.swing.JPanel();
         jPanelSepLine2New = new javax.swing.JPanel();
         jPanel28 = new javax.swing.JPanel();
@@ -2062,6 +2086,14 @@ public class AceQLManager extends javax.swing.JFrame {
         });
         jPanelButtonsStartService.add(jButtonDisplayLogs);
 
+        jButtonManagementConsole.setText("Management Console");
+        jButtonManagementConsole.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonManagementConsoleActionPerformed(evt);
+            }
+        });
+        jPanelButtonsStartService.add(jButtonManagementConsole);
+
         jPanelButtonStartStop.add(jPanelButtonsStartService);
 
         jPanelMain.add(jPanelButtonStartStop);
@@ -2357,8 +2389,7 @@ public class AceQLManager extends javax.swing.JFrame {
                         JOptionPane.ERROR_MESSAGE);
                 return;
             }
-            
-            
+
             if (SystemUtils.IS_OS_WINDOWS) {
 
                 // If an Open association is done in registry, try it
@@ -2381,7 +2412,7 @@ public class AceQLManager extends javax.swing.JFrame {
                 java.awt.Desktop dekstop = java.awt.Desktop.getDesktop();
                 dekstop.edit(file);
             }
-            
+
         } catch (Exception ex) {
             ex.printStackTrace();
             JOptionPane.showMessageDialog(this,
@@ -2479,6 +2510,10 @@ public class AceQLManager extends javax.swing.JFrame {
         displayLogs();
     }//GEN-LAST:event_jButtonDisplayLogsActionPerformed
 
+    private void jButtonManagementConsoleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonManagementConsoleActionPerformed
+        WindowsServiceManagementConsole();
+    }//GEN-LAST:event_jButtonManagementConsoleActionPerformed
+
     public static void setLookAndFeel() throws IOException, ClassNotFoundException, InstantiationException, IllegalAccessException, UnsupportedLookAndFeelException {
         JFrame.setDefaultLookAndFeelDecorated(true);
         JDialog.setDefaultLookAndFeelDecorated(true);
@@ -2533,6 +2568,7 @@ public class AceQLManager extends javax.swing.JFrame {
     private javax.swing.JButton jButtonEdit;
     private javax.swing.JButton jButtonHelp;
     private javax.swing.JButton jButtonInstallService;
+    private javax.swing.JButton jButtonManagementConsole;
     private javax.swing.JButton jButtonOk;
     private javax.swing.JButton jButtonOpenLocation;
     private javax.swing.JButton jButtonResetWindows;

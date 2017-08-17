@@ -37,14 +37,11 @@ public class ServiceInstaller {
     /**
      * Installs the AceQLHTTPService.exe service in specified directory.
      * Call is done via  via a bat wrapper because of Windows Authorization.
-     * @param directory	the directory into which install the service
-     * @param classpath the value of classpath
-     * @param propertiesFile
-     * @param host
-     * @param port
+     * @param serviceDirectory	the directory into which install the service
+     * @param logDirectory the value of logDirectory
      * @throws IOException
      */
-    public static void install(String directory, String classpath, String propertiesFile, String host, int port) throws IOException {
+    public static void install(String serviceDirectory, String logDirectory) throws IOException {
 	
         if (!SystemUtils.IS_OS_WINDOWS) {
             return;
@@ -61,12 +58,11 @@ public class ServiceInstaller {
          --Classpath="%CD%\..\..\aceql-http-gui-1.0-beta-1.jar";"%CD%\..\..\dependency/*";"%CD%\..\..\AceQL\lib-jdbc/*";"%CLASSPATH%" ^
          --StartMode=jvm ^
          --StartClass=com.kawansoft.aceql.gui.service.AceQLServiceControler ^
-         ++StartParams=%1 ^
          --StartMethod=start ^
          --StopMode=jvm ^
          --StopClass=com.kawansoft.aceql.gui.service.AceQLServiceControler ^
          --StopMethod=stop ^
-         --LogPath=%2 ^
+         --LogPath=%1 ^
          --StdOutput=auto ^
          --StdError=auto ^
          --Startup=auto ^
@@ -74,20 +70,9 @@ public class ServiceInstaller {
          exit
         */
         
-        // Replace # in properties file by !. reverse will be done when getting parameter back in AceQLTask
-        propertiesFile = propertiesFile.replace("#", "!");
-        
-        // Used to force set user.home of SYSTEM to our user.home
-        String parm1 = propertiesFile + "#" + host + "#" + port;
-        String parm2 = ParmsUtil.getWindowsServiceLogDir();
-                        
-        if (DEBUG) {
-            JOptionPane.showMessageDialog(null, parm1 + CR_LF + parm2 + CR_LF + "directory: " + directory);
-        }
-
 	ProcessBuilder pb = new ProcessBuilder("cmd.exe", "/C", 
-                "installService.bat", parm1, parm2);
-        pb.directory(new File(directory));
+                "installService.bat", logDirectory);
+        pb.directory(new File(serviceDirectory));
 	Process p = pb.start();
         
         //printProcessDisplay(p);
@@ -99,6 +84,28 @@ public class ServiceInstaller {
 	}
         
     }
+    
+    public static void updateServiceDescription(String serviceDirectory) throws IOException {
+
+        if (!SystemUtils.IS_OS_WINDOWS) {
+            return;
+        }
+ 
+        ProcessBuilder pb = new ProcessBuilder("cmd.exe", "/C", 
+                "updateServiceDescription.bat");
+        pb.directory(new File(serviceDirectory));
+	Process p = pb.start();
+        
+        //printProcessDisplay(p);
+        
+        try {
+	    p.waitFor();
+	} catch (InterruptedException e) {
+	    e.printStackTrace();
+	}
+        
+    }
+        
 
     /**
      * Installs the AceQLHTTPService.exe service in specified directory.
