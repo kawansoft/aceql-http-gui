@@ -4,7 +4,6 @@ import com.kawansoft.aceql.gui.service.ServiceInstaller;
 import com.kawansoft.aceql.gui.service.ServiceUtil;
 import com.kawansoft.aceql.gui.task.AceQLTask;
 import com.kawansoft.aceql.gui.util.ConfigurationUtil;
-import static com.kawansoft.aceql.gui.util.ConfigurationUtil.getConfirurationProperties;
 import com.kawansoft.aceql.gui.util.PropertiesFileFilter;
 import com.kawansoft.app.parms.MessagesManager;
 import com.kawansoft.app.parms.Parms;
@@ -40,15 +39,12 @@ import java.awt.Frame;
 import java.awt.HeadlessException;
 import java.awt.Toolkit;
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.FilenameFilter;
 import java.io.IOException;
-import java.io.OutputStream;
 import java.net.ConnectException;
 import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URL;
-import java.util.Date;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -59,6 +55,7 @@ import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.KeyStroke;
 import javax.swing.ListSelectionModel;
+import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.event.DocumentEvent;
@@ -119,6 +116,7 @@ public class AceQLManager extends javax.swing.JFrame {
     private File[] previousFiles;
 
     private DefaultListModel defaultListModel = new DefaultListModel();
+    private AceQLManagerInstall aceQLManagerInstall = null;
 
     /**
      * Creates new form Preferences
@@ -133,7 +131,7 @@ public class AceQLManager extends javax.swing.JFrame {
      */
     public void initializeIt() {
 
-        Dimension dim = new Dimension(639, 639);
+        Dimension dim = new Dimension(605, 605);
         this.setPreferredSize(dim);
         this.setSize(dim);
 
@@ -147,7 +145,15 @@ public class AceQLManager extends javax.swing.JFrame {
 
         // Add a Clipboard Manager
         clipboard = new ClipboardManager(jPanelMain);
-
+        
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                installService();
+            }
+        });
+        
+        
         Thread t = new Thread() {
             @Override
             public void run() {
@@ -167,22 +173,22 @@ public class AceQLManager extends javax.swing.JFrame {
 
         updateStandardStatusThreadStart();
 
+        
         if (SystemUtils.IS_OS_WINDOWS) {
             updateServiceStatusThreadStart();
+            jMenuItemServiceInstall.setVisible(false); // Futur usage if any problem
         } else {
             jLabelServiceStatusValue.setText("Not installed");
             jLabelServiceStatusValue
                     .setIcon(ImageParmsUtil.createImageIcon(ParmsUtil.IMAGES_BULLET_BALL_GREY_PNG));
 
-            jButtonInstallService.setEnabled(false);
-            jButtonUninstallService.setEnabled(false);
             jButtonStartService.setEnabled(false);
             jButtonStopService.setEnabled(false);
             jButtonDisplayLogs.setEnabled(false);
-            jButtonManagementConsole.setEnabled(false);
+            jButtonServicesConsole.setEnabled(false);
+            
+            jMenuItemServiceInstall.setVisible(false);
         }
-
-        jButtonManagementConsole.setVisible(false);
 
         ((AbstractDocument) this.jTextFieldPort.getDocument()).setDocumentFilter(new AceQLManager.MyDocumentFilter());
 
@@ -269,9 +275,6 @@ public class AceQLManager extends javax.swing.JFrame {
         ButtonResizer buttonResizer3 = new ButtonResizer(jPanelButtonStartStop);
         buttonResizer3.setWidthToMax();
 
-        ButtonResizer buttonResizer5 = new ButtonResizer(jPaneServiceInstal);
-        buttonResizer5.setWidthToMax();
-
         // Load and activate previous windows settings
         WindowSettingMgr.load(this);
 
@@ -279,6 +282,7 @@ public class AceQLManager extends javax.swing.JFrame {
         //update(getGraphics());
     }
 
+    
     /*
     class MyListDataListener implements ListDataListener {
 
@@ -298,6 +302,7 @@ public class AceQLManager extends javax.swing.JFrame {
         }
     }
      */
+    
     private void setJdbcDrivers() {
         File[] files = getJdbcDrivers();
 
@@ -653,12 +658,13 @@ public class AceQLManager extends javax.swing.JFrame {
             String startModeLabel = ServiceUtil
                     .getServiceStartModeLabel(ServiceUtil.ACEQL_HTTP_SERVICE);
 
-            String startModeText = "";
+            String startModeText = null;
             if (!startModeLabel.isEmpty()) {
-                startModeText = "    - Start mode: " + startModeLabel;
+                startModeText = " - Start mode: " + startModeLabel;
             }
 
             if (serviceStatus == ServiceUtil.NOT_INSTALLED) {
+                jLabelServiceStartModeValue.setText(startModeText);
                 jLabelServiceStatusValue.setText("Not Installed");
 
                 jLabelServiceStatusValue
@@ -666,50 +672,41 @@ public class AceQLManager extends javax.swing.JFrame {
 
                 jButtonStartService.setEnabled(false);
                 jButtonStopService.setEnabled(false);
-                jButtonInstallService.setEnabled(true);
-
-                jButtonUninstallService.setEnabled(false);
 
             } else if (serviceStatus == ServiceUtil.STOPPED) {
-                jLabelServiceStatusValue.setText("Stopped" + startModeText);
+                jLabelServiceStartModeValue.setText(startModeText);
+                jLabelServiceStatusValue.setText("Stopped");
 
                 jLabelServiceStatusValue
                         .setIcon(ImageParmsUtil.createImageIcon(ParmsUtil.IMAGES_BULLET_BALL_RED_PNG));
 
-                jButtonInstallService.setEnabled(false);
-                jButtonUninstallService.setEnabled(true);
                 jButtonStartService.setEnabled(true);
                 jButtonStopService.setEnabled(false);
             } else if (serviceStatus == ServiceUtil.STARTING) {
-                jLabelServiceStatusValue.setText("Starting..."
-                        + startModeText);
+                jLabelServiceStartModeValue.setText(startModeText);
+                jLabelServiceStatusValue.setText("Starting...");
 
                 jLabelServiceStatusValue
                         .setIcon(ImageParmsUtil.createImageIcon(ParmsUtil.IMAGES_BULLET_BALL_YELLOW_PNG));
 
-                jButtonInstallService.setEnabled(false);
-                jButtonUninstallService.setEnabled(true);
                 jButtonStartService.setEnabled(false);
                 jButtonStopService.setEnabled(false);
             } else if (serviceStatus == ServiceUtil.STOPPING) {
-                jLabelServiceStatusValue.setText("Stopping..."
-                        + startModeText);
+                jLabelServiceStartModeValue.setText(startModeText);
+                jLabelServiceStatusValue.setText("Stopping...");
 
                 jLabelServiceStatusValue
                         .setIcon(ImageParmsUtil.createImageIcon(ParmsUtil.IMAGES_BULLET_BALL_YELLOW_PNG));
 
-                jButtonInstallService.setEnabled(false);
-                jButtonUninstallService.setEnabled(true);
                 jButtonStartService.setEnabled(false);
                 jButtonStopService.setEnabled(false);
             } else if (serviceStatus == ServiceUtil.RUNNING) {
-                jLabelServiceStatusValue.setText("Started" + startModeText);
+                jLabelServiceStartModeValue.setText(startModeText);
+                jLabelServiceStatusValue.setText("Started");
 
                 jLabelServiceStatusValue
                         .setIcon(ImageParmsUtil.createImageIcon(ParmsUtil.IMAGES_BULLET_BALL_GREEN_PNG));
 
-                jButtonInstallService.setEnabled(false);
-                jButtonUninstallService.setEnabled(true);
                 jButtonStartService.setEnabled(false);
                 jButtonStopService.setEnabled(true);
             }
@@ -720,40 +717,45 @@ public class AceQLManager extends javax.swing.JFrame {
 
     private void installService() {
 
-        String serviceDirectory = getInstallBaseDir() + File.separator + "service";
-        String logDirectory = ParmsUtil.getWindowsServiceLogDir();
-        
-        try {
-            ServiceInstaller.install(serviceDirectory, logDirectory);
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(thisOne,
-                    "Unable to install Windows Service: "
-                    + e.getMessage());
-            e.printStackTrace();
+        if (!SystemUtils.IS_OS_WINDOWS) {
+            return;
         }
         
-        try {
-            ServiceInstaller.updateServiceDescription(serviceDirectory);
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(thisOne,
-                    "Unable to update Windows Service Description: "
-                    + e.getMessage());
-            e.printStackTrace();
-        }
+        boolean serviceInstalled = false;
         
-    }
+        try {
+            serviceInstalled = ServiceUtil.isInstalled();
+        } catch (IOException ioe) {
+            JOptionPane.showMessageDialog(this,
+                    "Unable to get if service is installed: "
+                    + ioe.getMessage(), Parms.APP_NAME,
+                    JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+                
+        if (!serviceInstalled) {
+            String serviceDirectory = getInstallBaseDir() + File.separator + "service";
+            String logDirectory = ParmsUtil.getWindowsServiceLogDir();
 
-    private void uninstallService() {
-        String directory = getInstallBaseDir() + File.separator + "service";
+            try {
+                ServiceInstaller.install(serviceDirectory, logDirectory);
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(thisOne,
+                        "Unable to install Windows Service: "
+                        + e.getMessage());
+                e.printStackTrace();
+            }
 
-        try {
-            ServiceInstaller.uninstall(directory);
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(thisOne,
-                    "Unable to uninstall Windows Service: "
-                    + e.getMessage());
-            e.printStackTrace();
+            try {
+                ServiceInstaller.updateServiceDescription(serviceDirectory);
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(thisOne,
+                        "Unable to update Windows Service Description: "
+                        + e.getMessage());
+                e.printStackTrace();
+            }
         }
+
     }
 
     private void startService() {
@@ -818,7 +820,7 @@ public class AceQLManager extends javax.swing.JFrame {
         }
     }
 
-    private void WindowsServiceManagementConsole() {
+    private void windowsServiceManagementConsole() {
 
         try {
             if (!SystemUtils.IS_OS_WINDOWS) {
@@ -845,6 +847,15 @@ public class AceQLManager extends javax.swing.JFrame {
                     Parms.APP_NAME,
                     JOptionPane.ERROR_MESSAGE);
         }
+    }
+
+    private void serviceInstall() {
+        if (aceQLManagerInstall != null) {
+            aceQLManagerInstall.dispose();
+        }
+
+        aceQLManagerInstall = new AceQLManagerInstall(this);
+        aceQLManagerInstall.setVisible(true);
     }
 
 
@@ -889,6 +900,7 @@ public class AceQLManager extends javax.swing.JFrame {
             Component comp = components.get(i);
 
             comp.addKeyListener(new KeyAdapter() {
+                @Override
                 public void keyReleased(KeyEvent e) {
                     this_keyReleased(e);
                 }
@@ -1054,7 +1066,7 @@ public class AceQLManager extends javax.swing.JFrame {
     }
 
     public static String getInstallBaseDir() {
-        return SystemUtils.USER_DIR;
+        return SystemUtils.USER_DIR + File.separator + "AceQL";
     }
 
     private void actionOk() {
@@ -1181,12 +1193,6 @@ public class AceQLManager extends javax.swing.JFrame {
         jPanelLeft11 = new javax.swing.JPanel();
         jButtonOpenLocation = new javax.swing.JButton();
         jPanelEndField5 = new javax.swing.JPanel();
-        jPanelSepBlanc8spaces6 = new javax.swing.JPanel();
-        jPaneServiceInstal = new javax.swing.JPanel();
-        jPanel3 = new javax.swing.JPanel();
-        jLabelWindowsService1 = new javax.swing.JLabel();
-        jButtonInstallService = new javax.swing.JButton();
-        jButtonUninstallService = new javax.swing.JButton();
         jPanelSepBlanc8spaces2 = new javax.swing.JPanel();
         jPanelTitledSeparator5 = new javax.swing.JPanel();
         jPaneBlanklLeft2 = new javax.swing.JPanel();
@@ -1216,6 +1222,7 @@ public class AceQLManager extends javax.swing.JFrame {
         jPanelRadioService = new javax.swing.JPanel();
         jPanelLeft25 = new javax.swing.JPanel();
         jLabelWindowsServiceMode = new javax.swing.JLabel();
+        jLabelServiceStartModeValue = new javax.swing.JLabel();
         jLabelServiceStatus = new javax.swing.JLabel();
         jLabelServiceStatusValue = new javax.swing.JLabel();
         jPanelButtonsStartService = new javax.swing.JPanel();
@@ -1224,7 +1231,7 @@ public class AceQLManager extends javax.swing.JFrame {
         jButtonStopService = new javax.swing.JButton();
         jPaneSep2 = new javax.swing.JPanel();
         jButtonDisplayLogs = new javax.swing.JButton();
-        jButtonManagementConsole = new javax.swing.JButton();
+        jButtonServicesConsole = new javax.swing.JButton();
         jPanelSepBlanc8spaces8 = new javax.swing.JPanel();
         jPanelSepLine2New = new javax.swing.JPanel();
         jPanel28 = new javax.swing.JPanel();
@@ -1241,6 +1248,7 @@ public class AceQLManager extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenuFile = new javax.swing.JMenu();
+        jMenuItemServiceInstall = new javax.swing.JMenuItem();
         jMenuItemClose = new javax.swing.JMenuItem();
         jMenuItemExit = new javax.swing.JMenuItem();
         jMenuHelp = new javax.swing.JMenu();
@@ -1731,48 +1739,6 @@ public class AceQLManager extends javax.swing.JFrame {
 
         jPanelMain.add(jPaneJdbc);
 
-        jPanelSepBlanc8spaces6.setMaximumSize(new java.awt.Dimension(32767, 8));
-        jPanelSepBlanc8spaces6.setMinimumSize(new java.awt.Dimension(10, 8));
-        jPanelSepBlanc8spaces6.setPreferredSize(new java.awt.Dimension(1000, 8));
-        jPanelMain.add(jPanelSepBlanc8spaces6);
-
-        jPaneServiceInstal.setMaximumSize(new java.awt.Dimension(2147483647, 32));
-        jPaneServiceInstal.setMinimumSize(new java.awt.Dimension(91, 32));
-        jPaneServiceInstal.setPreferredSize(new java.awt.Dimension(191, 32));
-        jPaneServiceInstal.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
-
-        jPanel3.setPreferredSize(new java.awt.Dimension(0, 0));
-        jPanel3.setLayout(new javax.swing.BoxLayout(jPanel3, javax.swing.BoxLayout.LINE_AXIS));
-        jPaneServiceInstal.add(jPanel3);
-
-        jLabelWindowsService1.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        jLabelWindowsService1.setText("Windows Service:");
-        jLabelWindowsService1.setMaximumSize(new java.awt.Dimension(129, 16));
-        jLabelWindowsService1.setMinimumSize(new java.awt.Dimension(129, 16));
-        jLabelWindowsService1.setName(""); // NOI18N
-        jLabelWindowsService1.setPreferredSize(new java.awt.Dimension(129, 16));
-        jPaneServiceInstal.add(jLabelWindowsService1);
-
-        jButtonInstallService.setText("Install Service ");
-        jButtonInstallService.setToolTipText("");
-        jButtonInstallService.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonInstallServiceActionPerformed(evt);
-            }
-        });
-        jPaneServiceInstal.add(jButtonInstallService);
-
-        jButtonUninstallService.setText("Uninstall Service");
-        jButtonUninstallService.setToolTipText("");
-        jButtonUninstallService.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonUninstallServiceActionPerformed(evt);
-            }
-        });
-        jPaneServiceInstal.add(jButtonUninstallService);
-
-        jPanelMain.add(jPaneServiceInstal);
-
         jPanelSepBlanc8spaces2.setMaximumSize(new java.awt.Dimension(32767, 14));
         jPanelSepBlanc8spaces2.setMinimumSize(new java.awt.Dimension(10, 14));
         jPanelSepBlanc8spaces2.setPreferredSize(new java.awt.Dimension(1000, 14));
@@ -1950,15 +1916,15 @@ public class AceQLManager extends javax.swing.JFrame {
         jPanelButtonsStartStandard.setPreferredSize(new java.awt.Dimension(191, 32));
         jPanelButtonsStartStandard.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
 
-        jPanelLeft31.setMaximumSize(new java.awt.Dimension(25, 10));
-        jPanelLeft31.setMinimumSize(new java.awt.Dimension(25, 10));
-        jPanelLeft31.setPreferredSize(new java.awt.Dimension(25, 10));
+        jPanelLeft31.setMaximumSize(new java.awt.Dimension(15, 10));
+        jPanelLeft31.setMinimumSize(new java.awt.Dimension(15, 10));
+        jPanelLeft31.setPreferredSize(new java.awt.Dimension(15, 10));
 
         javax.swing.GroupLayout jPanelLeft31Layout = new javax.swing.GroupLayout(jPanelLeft31);
         jPanelLeft31.setLayout(jPanelLeft31Layout);
         jPanelLeft31Layout.setHorizontalGroup(
             jPanelLeft31Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 25, Short.MAX_VALUE)
+            .addGap(0, 15, Short.MAX_VALUE)
         );
         jPanelLeft31Layout.setVerticalGroup(
             jPanelLeft31Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2005,7 +1971,7 @@ public class AceQLManager extends javax.swing.JFrame {
         jPanelSepBlanc8spaces4.setPreferredSize(new java.awt.Dimension(1000, 14));
         jPanelButtonStartStop.add(jPanelSepBlanc8spaces4);
 
-        jPanelRadioService.setMaximumSize(new java.awt.Dimension(2147483647, 32));
+        jPanelRadioService.setMaximumSize(new java.awt.Dimension(32767, 32));
         jPanelRadioService.setMinimumSize(new java.awt.Dimension(91, 32));
         jPanelRadioService.setPreferredSize(new java.awt.Dimension(191, 32));
         jPanelRadioService.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
@@ -2025,8 +1991,9 @@ public class AceQLManager extends javax.swing.JFrame {
 
         jPanelRadioService.add(jPanelLeft25);
 
-        jLabelWindowsServiceMode.setText("Windows Service Mode");
+        jLabelWindowsServiceMode.setText("Service Mode - \"AceQL HTTP Server\" Service");
         jPanelRadioService.add(jLabelWindowsServiceMode);
+        jPanelRadioService.add(jLabelServiceStartModeValue);
 
         jLabelServiceStatus.setText(" - Status:");
         jPanelRadioService.add(jLabelServiceStatus);
@@ -2039,14 +2006,15 @@ public class AceQLManager extends javax.swing.JFrame {
         jPanelButtonsStartService.setPreferredSize(new java.awt.Dimension(191, 32));
         jPanelButtonsStartService.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
 
-        jPanelLeft33.setMaximumSize(new java.awt.Dimension(25, 10));
-        jPanelLeft33.setMinimumSize(new java.awt.Dimension(25, 10));
+        jPanelLeft33.setMaximumSize(new java.awt.Dimension(15, 10));
+        jPanelLeft33.setMinimumSize(new java.awt.Dimension(15, 10));
+        jPanelLeft33.setPreferredSize(new java.awt.Dimension(15, 10));
 
         javax.swing.GroupLayout jPanelLeft33Layout = new javax.swing.GroupLayout(jPanelLeft33);
         jPanelLeft33.setLayout(jPanelLeft33Layout);
         jPanelLeft33Layout.setHorizontalGroup(
             jPanelLeft33Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 25, Short.MAX_VALUE)
+            .addGap(0, 15, Short.MAX_VALUE)
         );
         jPanelLeft33Layout.setVerticalGroup(
             jPanelLeft33Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2086,13 +2054,13 @@ public class AceQLManager extends javax.swing.JFrame {
         });
         jPanelButtonsStartService.add(jButtonDisplayLogs);
 
-        jButtonManagementConsole.setText("Management Console");
-        jButtonManagementConsole.addActionListener(new java.awt.event.ActionListener() {
+        jButtonServicesConsole.setText("Services Console");
+        jButtonServicesConsole.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonManagementConsoleActionPerformed(evt);
+                jButtonServicesConsoleActionPerformed(evt);
             }
         });
-        jPanelButtonsStartService.add(jButtonManagementConsole);
+        jPanelButtonsStartService.add(jButtonServicesConsole);
 
         jPanelButtonStartStop.add(jPanelButtonsStartService);
 
@@ -2229,6 +2197,14 @@ public class AceQLManager extends javax.swing.JFrame {
         getContentPane().add(jPanelMain);
 
         jMenuFile.setText("File");
+
+        jMenuItemServiceInstall.setText("Service Installation");
+        jMenuItemServiceInstall.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemServiceInstallActionPerformed(evt);
+            }
+        });
+        jMenuFile.add(jMenuItemServiceInstall);
 
         jMenuItemClose.setText("Close");
         jMenuItemClose.addActionListener(new java.awt.event.ActionListener() {
@@ -2490,14 +2466,6 @@ public class AceQLManager extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jMenuWhatsNewActionPerformed
 
-    private void jButtonInstallServiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonInstallServiceActionPerformed
-        installService();
-    }//GEN-LAST:event_jButtonInstallServiceActionPerformed
-
-    private void jButtonUninstallServiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonUninstallServiceActionPerformed
-        uninstallService();
-    }//GEN-LAST:event_jButtonUninstallServiceActionPerformed
-
     private void jButtonStartServiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonStartServiceActionPerformed
         startService();
     }//GEN-LAST:event_jButtonStartServiceActionPerformed
@@ -2510,9 +2478,13 @@ public class AceQLManager extends javax.swing.JFrame {
         displayLogs();
     }//GEN-LAST:event_jButtonDisplayLogsActionPerformed
 
-    private void jButtonManagementConsoleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonManagementConsoleActionPerformed
-        WindowsServiceManagementConsole();
-    }//GEN-LAST:event_jButtonManagementConsoleActionPerformed
+    private void jButtonServicesConsoleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonServicesConsoleActionPerformed
+        windowsServiceManagementConsole();
+    }//GEN-LAST:event_jButtonServicesConsoleActionPerformed
+
+    private void jMenuItemServiceInstallActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemServiceInstallActionPerformed
+         serviceInstall();
+    }//GEN-LAST:event_jMenuItemServiceInstallActionPerformed
 
     public static void setLookAndFeel() throws IOException, ClassNotFoundException, InstantiationException, IllegalAccessException, UnsupportedLookAndFeelException {
         JFrame.setDefaultLookAndFeelDecorated(true);
@@ -2567,29 +2539,27 @@ public class AceQLManager extends javax.swing.JFrame {
     private javax.swing.JButton jButtonDisplayLogs;
     private javax.swing.JButton jButtonEdit;
     private javax.swing.JButton jButtonHelp;
-    private javax.swing.JButton jButtonInstallService;
-    private javax.swing.JButton jButtonManagementConsole;
     private javax.swing.JButton jButtonOk;
     private javax.swing.JButton jButtonOpenLocation;
     private javax.swing.JButton jButtonResetWindows;
+    private javax.swing.JButton jButtonServicesConsole;
     private javax.swing.JButton jButtonStart;
     private javax.swing.JButton jButtonStartService;
     private javax.swing.JButton jButtonStop;
     private javax.swing.JButton jButtonStopService;
     private javax.swing.JButton jButtonURL;
-    private javax.swing.JButton jButtonUninstallService;
     private javax.swing.JLabel jLabeStandardStatusValue;
     private javax.swing.JLabel jLabelHost;
     private javax.swing.JLabel jLabelHost1;
     private javax.swing.JLabel jLabelLogo;
     private javax.swing.JLabel jLabelName;
     private javax.swing.JLabel jLabelPropertiesFile;
+    private javax.swing.JLabel jLabelServiceStartModeValue;
     private javax.swing.JLabel jLabelServiceStatus;
     private javax.swing.JLabel jLabelServiceStatusValue;
     private javax.swing.JLabel jLabelStandardMode;
     private javax.swing.JLabel jLabelStandardStatus;
     private javax.swing.JLabel jLabelURL;
-    private javax.swing.JLabel jLabelWindowsService1;
     private javax.swing.JLabel jLabelWindowsServiceMode;
     private javax.swing.JList<String> jList;
     private javax.swing.JMenuBar jMenuBar1;
@@ -2599,6 +2569,7 @@ public class AceQLManager extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItemClose;
     private javax.swing.JMenuItem jMenuItemExit;
     private javax.swing.JMenuItem jMenuItemHelp;
+    private javax.swing.JMenuItem jMenuItemServiceInstall;
     private javax.swing.JMenuItem jMenuItemSystemInfo;
     private javax.swing.JMenuItem jMenuWhatsNew;
     private javax.swing.JPanel jPaneBlanklLeft1;
@@ -2606,14 +2577,12 @@ public class AceQLManager extends javax.swing.JFrame {
     private javax.swing.JPanel jPaneJdbc;
     private javax.swing.JPanel jPaneSep2;
     private javax.swing.JPanel jPaneSepInstallAndStart1;
-    private javax.swing.JPanel jPaneServiceInstal;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel22;
     private javax.swing.JPanel jPanel23;
     private javax.swing.JPanel jPanel28;
     private javax.swing.JPanel jPanel29;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanelBlankRight1;
     private javax.swing.JPanel jPanelBlankRight2;
     private javax.swing.JPanel jPanelBottom;
@@ -2656,7 +2625,6 @@ public class AceQLManager extends javax.swing.JFrame {
     private javax.swing.JPanel jPanelSepBlanc8spaces3;
     private javax.swing.JPanel jPanelSepBlanc8spaces4;
     private javax.swing.JPanel jPanelSepBlanc8spaces5;
-    private javax.swing.JPanel jPanelSepBlanc8spaces6;
     private javax.swing.JPanel jPanelSepBlanc8spaces8;
     private javax.swing.JPanel jPanelSepBlank11;
     private javax.swing.JPanel jPanelSepLine2New;

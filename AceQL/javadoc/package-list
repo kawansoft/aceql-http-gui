@@ -1,0 +1,7 @@
+org.kawanfw.sql
+org.kawanfw.sql.api.server
+org.kawanfw.sql.api.server.blob
+org.kawanfw.sql.api.server.connectionstore
+org.kawanfw.sql.api.server.session
+org.kawanfw.sql.api.server.util
+org.kawanfw.sql.api.server.web
