@@ -1,4 +1,3 @@
-
 package com.kawansoft.aceql.gui.service;
 
 import static com.kawansoft.aceql.gui.AceQLManager.getJdbcDrivers;
@@ -11,43 +10,43 @@ import java.io.InputStreamReader;
 import org.apache.commons.lang3.SystemUtils;
 import javax.swing.JOptionPane;
 
-
-
 /**
- * Utility class to install or uninstall the AceQLHTTPService service
- * 
+ * Utility class to installService or uninstallService the AceQLHTTPService
+ * service
+ *
  * @author Nicolas de Pomereu
  *
  */
-
 public class ServiceInstaller {
-    
+
     public static boolean DEBUG = false;
-    
+
     public static final String CR_LF = System.getProperty("line.separator");
-        
+
+    public static final String SERVICE_DIRECTORY = SystemUtils.USER_DIR + File.separator + "AceQL" + File.separator + "service";
+    private static String USER_DIR_WITH_QUOTES = "\"" + SystemUtils.USER_DIR + "\"";
+    private static String USER_HOME_SYSTEM = ParmsUtil.getBaseDir();
+
+
     /**
      * Protected
      */
     protected ServiceInstaller() {
-	
+
     }
 
-   
     /**
-     * Installs the AceQLHTTPService.exe service in specified directory.
-     * Call is done via  via a bat wrapper because of Windows Authorization.
-     * @param serviceDirectory	the directory into which install the service
-     * @param userDirectory the value of user.dir to set
-     * @param homeDirectory the value of user.home to set
+     * Installs the AceQLHTTPService.exe service in specified directory. Call is
+     * done via via a bat wrapper because of Windows Authorization.
+     *
      * @throws IOException
      */
-    public static void install(String serviceDirectory, String userDirectory, String homeDirectory) throws IOException {
-	
+    public static void installService() throws IOException {
+
         if (!SystemUtils.IS_OS_WINDOWS) {
             return;
         }
-        
+
         /*
         @echo off
         start /min AceQLHTTPService.exe //IS//AceQLHTTPService  ^
@@ -67,78 +66,112 @@ public class ServiceInstaller {
          --StdOutput=auto ^
          --StdError=auto ^
          --Startup=auto ^
-         --ServiceUser=System ^ 
+         --ServiceUser=System ^
          exit
-        */
-        
-	ProcessBuilder pb = new ProcessBuilder("cmd.exe", "/C", 
-                "installService.bat", userDirectory, homeDirectory);
-        pb.directory(new File(serviceDirectory));
-	Process p = pb.start();
-        
+         */
+        ProcessBuilder pb = new ProcessBuilder("cmd.exe", "/C",
+                "installService.bat", USER_DIR_WITH_QUOTES, USER_HOME_SYSTEM);
+        pb.directory(new File(SERVICE_DIRECTORY));
+        Process p = pb.start();
+
         //printProcessDisplay(p);
-        
         try {
-	    p.waitFor();
-	} catch (InterruptedException e) {
-	    e.printStackTrace();
-	}
-        
+            p.waitFor();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
     }
-    
-    public static void updateService(String serviceDirectory) throws IOException {
+
+    public static void updateServiceClasspath() throws IOException {
 
         if (!SystemUtils.IS_OS_WINDOWS) {
             return;
         }
- 
-        ProcessBuilder pb = new ProcessBuilder("cmd.exe", "/C", 
-                "updateService.bat");
-        pb.directory(new File(serviceDirectory));
-	Process p = pb.start();
-        
-        //printProcessDisplay(p);
-        
-        try {
-	    p.waitFor();
-	} catch (InterruptedException e) {
-	    e.printStackTrace();
-	}
-        
-    }
-        
 
-    /**
-     * Installs the AceQLHTTPService.exe service in specified directory.
-     * Call is done via  via a bat wrapper because of Windows Authorization.
-     * @param directory	the directory into which install the service
-     * @throws IOException
-     */
-    public static void uninstall(String directory) throws IOException {
-	
-        if ( !SystemUtils.IS_OS_WINDOWS) {
+        ProcessBuilder pb = new ProcessBuilder("cmd.exe", "/C",
+                "updateServiceClasspath.bat", USER_DIR_WITH_QUOTES);
+        pb.directory(new File(SERVICE_DIRECTORY));
+        Process p = pb.start();
+
+        //printProcessDisplay(p);
+        try {
+            p.waitFor();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public static void updateServiceUserHomeSystem() throws IOException {
+        if (!SystemUtils.IS_OS_WINDOWS) {
             return;
         }
-        
-	ProcessBuilder pb = new ProcessBuilder("cmd.exe", "/C",
-                "uninstallService.bat");
-        pb.directory(new File(directory));
-	Process p= pb.start();
-	
+
+        ProcessBuilder pb = new ProcessBuilder("cmd.exe", "/C",
+                "updateServiceUserHomeSystem.bat", USER_DIR_WITH_QUOTES, USER_HOME_SYSTEM);
+        pb.directory(new File(SERVICE_DIRECTORY));
+        Process p = pb.start();
+
+        //printProcessDisplay(p);
         try {
-	    p.waitFor();
-	} catch (InterruptedException e) {
-	    e.printStackTrace();
-	}
+            p.waitFor();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
     
+    public static void updateServiceUserHomeNormal() throws IOException {
+        if (!SystemUtils.IS_OS_WINDOWS) {
+            return;
+        }
+
+        ProcessBuilder pb = new ProcessBuilder("cmd.exe", "/C",
+                "updateServiceUserHomeNormal.bat", USER_DIR_WITH_QUOTES);
+        pb.directory(new File(SERVICE_DIRECTORY));
+        Process p = pb.start();
+
+        //printProcessDisplay(p);
+        try {
+            p.waitFor();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    /**
+     * Installs the AceQLHTTPService.exe service in specified directory. Call is
+     * done via via a bat wrapper because of Windows Authorization.
+     *
+     * @throws IOException
+     */
+    public static void uninstallService() throws IOException {
+
+        if (!SystemUtils.IS_OS_WINDOWS) {
+            return;
+        }
+
+        ProcessBuilder pb = new ProcessBuilder("cmd.exe", "/C",
+                "uninstallService.bat");
+        pb.directory(new File(SERVICE_DIRECTORY));
+        Process p = pb.start();
+
+        try {
+            p.waitFor();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
     /**
      * Prints on System.out the result of the process
+     *
      * @param p	the process to display the result for
      */
     @SuppressWarnings("unused")
     private static void printProcessDisplay(Process p) {
-	BufferedReader br = new BufferedReader(new InputStreamReader(p.getInputStream()));
+        BufferedReader br = new BufferedReader(new InputStreamReader(p.getInputStream()));
         String ligne = "";
         try {
             while ((ligne = br.readLine()) != null) {
@@ -149,18 +182,5 @@ public class ServiceInstaller {
         }
     }
 
- 
-    
-    /**
-     * Return the directory into which is installed the service
-     *
-     * @return
-     */
-    public static String getServiceDirectory() {
-
-       String directory = SystemUtils.USER_DIR + File.separator + "AceQL" + File.separator + "service";
-       return directory;
-    }
-    
 
 }

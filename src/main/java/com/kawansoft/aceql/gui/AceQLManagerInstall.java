@@ -282,15 +282,9 @@ public class AceQLManagerInstall extends javax.swing.JFrame {
     }
 
     private void installService() {
-
-        String serviceDirectory = ParmsUtil.getInstallAceQLDir() + File.separator + "service";
-        String logDirectory = ParmsUtil.getBaseDir();
-
-        //Add quotes for .bat
-        String userDir = "\"" + SystemUtils.USER_DIR + "\"";
             
         try {
-            ServiceInstaller.install(serviceDirectory, userDir, logDirectory);
+            ServiceInstaller.installService();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this,
                     "Unable to install Windows Service: "
@@ -300,7 +294,7 @@ public class AceQLManagerInstall extends javax.swing.JFrame {
         }
 
         try {
-            ServiceInstaller.updateService(serviceDirectory);
+            ServiceInstaller.updateServiceClasspath();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this,
                     "Unable to update Windows Service: "
@@ -311,10 +305,9 @@ public class AceQLManagerInstall extends javax.swing.JFrame {
     }
 
     private void uninstallService() {
-        String directory = ParmsUtil.getInstallAceQLDir() + File.separator + "service";
 
         try {
-            ServiceInstaller.uninstall(directory);
+            ServiceInstaller.uninstallService();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this,
                     "Unable to uninstall Windows Service: "

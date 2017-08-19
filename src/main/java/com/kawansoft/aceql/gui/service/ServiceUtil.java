@@ -34,6 +34,7 @@ public class ServiceUtil {
     public static final int DEMAND_START = 3;
     public static final int DISABLED = 4;
 
+
     /**
      * Protected
      */
@@ -135,11 +136,10 @@ public class ServiceUtil {
      * Starts the SimplifyUploaderServic service via a bat wrapper because of
      * Windows Authorization.
      *
-     * @param directory
      * @parm directory	the directory into serviceProperties.bat ins install
      * @throws IOException
      */
-    public static void startService(String directory) throws IOException {
+    public static void startService() throws IOException {
 
         if (!SystemUtils.IS_OS_WINDOWS) {
             return;
@@ -149,7 +149,7 @@ public class ServiceUtil {
         ProcessBuilder pb = new ProcessBuilder("cmd.exe", "/C",
                 "startService.bat");
 
-        pb.directory(new File(directory));
+        pb.directory(new File(ServiceInstaller.SERVICE_DIRECTORY));
         Process p = pb.start();
 
         try {
@@ -181,11 +181,10 @@ public class ServiceUtil {
      * Stops the SimplifyUploaderServic service via a bat wrapper because of
      * Windows Authorization.
      *
-     * @param directory
      * @parm directory	the directory into serviceProperties.bat ins install
      * @throws IOException
      */
-    public static void stopService(String directory) throws IOException {
+    public static void stopService() throws IOException {
 
         if (!SystemUtils.IS_OS_WINDOWS) {
             return;
@@ -194,7 +193,7 @@ public class ServiceUtil {
         ProcessBuilder pb = new ProcessBuilder("cmd.exe", "/C",
                 "stopService.bat");
 
-        pb.directory(new File(directory));
+        pb.directory(new File(ServiceInstaller.SERVICE_DIRECTORY));
         Process p = pb.start();
 
         try {
@@ -222,6 +221,51 @@ public class ServiceUtil {
 //        }
     }
 
+
+     /**
+     * Returns the start mode status of the passed service
+     *
+     * @param serviceName	the sercie name
+     * @return	the start mode of the service
+     * @throws IOException
+     */
+    public static boolean isLocalSystem(String serviceName) throws IOException {
+
+        if (!SystemUtils.IS_OS_WINDOWS) {
+            return false;
+        }
+
+        BufferedReader reader = null;
+
+        try {
+            Process p = Runtime.getRuntime().exec("sc qc " + serviceName);
+
+            reader = new BufferedReader(new InputStreamReader(
+                    p.getInputStream()));
+
+            String line = reader.readLine();
+            while (line != null) {
+
+                if (line.trim().startsWith("SERVICE_START_NAME")) {
+
+                    if (line.contains("LocalSystem")) {
+                        return true;
+                    }
+                    else {
+                        return false;
+                    }
+                }
+                
+                line = reader.readLine();
+            }
+
+            return false;
+
+        } finally {
+            IOUtils.closeQuietly(reader);
+        }
+    }
+        
     /**
      * Returns the status of the passed service
      *
@@ -287,6 +331,7 @@ public class ServiceUtil {
         }
     }
 
+   
     /**
      * Returns the start mode status of the passed service
      *

@@ -726,15 +726,9 @@ public class AceQLManager extends javax.swing.JFrame {
             return;
         }
                 
-        if (!serviceInstalled) {
-            String serviceDirectory = ParmsUtil.getInstallAceQLDir() + File.separator + "service";
-            String baseDir = ParmsUtil.getBaseDir();
-
-            //Add quotes for .bat
-            String userDir = "\"" + SystemUtils.USER_DIR + "\"";
-                
+        if (!serviceInstalled) {                
             try {
-                ServiceInstaller.install(serviceDirectory, userDir, baseDir);
+                ServiceInstaller.installService();
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(thisOne,
                         "Unable to install Windows Service: "
@@ -743,13 +737,14 @@ public class AceQLManager extends javax.swing.JFrame {
             }
 
             try {
-                ServiceInstaller.updateService(serviceDirectory);
+                ServiceInstaller.updateServiceClasspath();
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(thisOne,
-                        "Unable to update Windows Service Description: "
+                        "Unable to update Windows Service CLASSPATH: "
                         + e.getMessage());
                 e.printStackTrace();
             }
+               
         }
 
     }
@@ -764,10 +759,8 @@ public class AceQLManager extends javax.swing.JFrame {
             return;
         }
 
-        String directory = ParmsUtil.getInstallAceQLDir() + File.separator + "service";
-
         try {
-            ServiceInstaller.updateService(directory);
+            ServiceInstaller.updateServiceClasspath();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this,
                     "Unable to update Windows Service: "
@@ -776,9 +769,43 @@ public class AceQLManager extends javax.swing.JFrame {
             return;
         }
 
-                
+        
+        boolean isLocalSystem = true;
+        
         try {
-            ServiceUtil.startService(directory);
+            isLocalSystem = ServiceUtil.isLocalSystem(ServiceUtil.ACEQL_HTTP_SERVICE);
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(this,
+                    "Unable to say if service is with LocalSystem: "
+                    + e.getMessage());
+            e.printStackTrace();
+            return;
+        }
+        
+        if (isLocalSystem) {
+            try {
+                ServiceInstaller.updateServiceUserHomeSystem();
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(thisOne,
+                        "Unable to update Windows Service: "
+                        + e.getMessage());
+                e.printStackTrace();
+            }
+        }
+        else {
+              try {
+                ServiceInstaller.updateServiceUserHomeNormal();
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(thisOne,
+                        "Unable to update Windows Service: "
+                        + e.getMessage());
+                e.printStackTrace();
+            }          
+            
+        }
+           
+        try {
+            ServiceUtil.startService();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(thisOne,
                     "Unable to start Windows Service: "
@@ -789,10 +816,9 @@ public class AceQLManager extends javax.swing.JFrame {
     }
 
     private void stopService() {
-        String directory = ParmsUtil.getInstallAceQLDir() + File.separator + "service";
 
         try {
-            ServiceUtil.stopService(directory);
+            ServiceUtil.stopService();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(thisOne,
                     "Unable to stop Windows Service: "
@@ -837,10 +863,8 @@ public class AceQLManager extends javax.swing.JFrame {
             ProcessBuilder pb = new ProcessBuilder("cmd.exe", "/C",
                     "startMmc.bat");
 
-            String directory = ParmsUtil.getInstallAceQLDir() + File.separator + "service";
-
             //JOptionPane.showMessageDialog(null, "serviceDirectory: " + serviceDirectory);
-            pb.directory(new File(directory));
+            pb.directory(new File(ServiceInstaller.SERVICE_DIRECTORY));
             Process p = pb.start();
 
             try {
