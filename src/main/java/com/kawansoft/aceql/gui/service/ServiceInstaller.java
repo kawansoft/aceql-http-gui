@@ -9,8 +9,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 import org.apache.commons.lang3.SystemUtils;
-import static com.kawansoft.aceql.gui.AceQLManager.getInstallBaseDir;
 import javax.swing.JOptionPane;
+
 
 
 /**
@@ -38,10 +38,11 @@ public class ServiceInstaller {
      * Installs the AceQLHTTPService.exe service in specified directory.
      * Call is done via  via a bat wrapper because of Windows Authorization.
      * @param serviceDirectory	the directory into which install the service
-     * @param logDirectory the value of logDirectory
+     * @param userDirectory the value of user.dir to set
+     * @param homeDirectory the value of user.home to set
      * @throws IOException
      */
-    public static void install(String serviceDirectory, String logDirectory) throws IOException {
+    public static void install(String serviceDirectory, String userDirectory, String homeDirectory) throws IOException {
 	
         if (!SystemUtils.IS_OS_WINDOWS) {
             return;
@@ -52,17 +53,17 @@ public class ServiceInstaller {
         start /min AceQLHTTPService.exe //IS//AceQLHTTPService  ^
          --DisplayName="AceQL HTTP Server" ^
          --Install="%CD%"\AceQLHTTPService.exe ^
-         --Description="AceQL HTTP Server - https://www.aceql.com" ^
+         --Description="AceQL HTTP Server - SQL Over HTTP - https://www.aceql.com" ^
          --Jvm=auto ^
-         --JvmOptions=-Xrs;-Xms128m;-Xmx256m;-Duser.dir="%CD%"\..\..\ ^
-         --Classpath="%CD%\..\..\aceql-http-gui-1.0-beta-1.jar";"%CD%\..\..\dependency/*";"%CD%\..\..\AceQL\lib-jdbc/*";"%CLASSPATH%" ^
+         --JvmOptions=-Xrs;-Xms128m;-Xmx256m;-Duser.dir=%1;-Duser.home=%2 ^
+         --Classpath=%1\AceQL\lib-server/*;%1\AceQL\lib-jdbc/*;%CLASSPATH% ^
          --StartMode=jvm ^
          --StartClass=com.kawansoft.aceql.gui.service.AceQLServiceControler ^
          --StartMethod=start ^
          --StopMode=jvm ^
          --StopClass=com.kawansoft.aceql.gui.service.AceQLServiceControler ^
          --StopMethod=stop ^
-         --LogPath=%1 ^
+         --LogPath=%2\windows-service-logs ^
          --StdOutput=auto ^
          --StdError=auto ^
          --Startup=auto ^
@@ -71,7 +72,7 @@ public class ServiceInstaller {
         */
         
 	ProcessBuilder pb = new ProcessBuilder("cmd.exe", "/C", 
-                "installService.bat", logDirectory);
+                "installService.bat", userDirectory, homeDirectory);
         pb.directory(new File(serviceDirectory));
 	Process p = pb.start();
         
@@ -85,14 +86,14 @@ public class ServiceInstaller {
         
     }
     
-    public static void updateServiceDescription(String serviceDirectory) throws IOException {
+    public static void updateService(String serviceDirectory) throws IOException {
 
         if (!SystemUtils.IS_OS_WINDOWS) {
             return;
         }
  
         ProcessBuilder pb = new ProcessBuilder("cmd.exe", "/C", 
-                "updateServiceDescription.bat");
+                "updateService.bat");
         pb.directory(new File(serviceDirectory));
 	Process p = pb.start();
         

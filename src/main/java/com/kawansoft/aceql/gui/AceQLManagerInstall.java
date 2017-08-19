@@ -1,19 +1,15 @@
 package com.kawansoft.aceql.gui;
 
-import static com.kawansoft.aceql.gui.AceQLManager.getInstallBaseDir;
 import com.kawansoft.aceql.gui.service.ServiceInstaller;
 import com.kawansoft.aceql.gui.service.ServiceUtil;
-import com.kawansoft.app.parms.Parms;
 import com.kawansoft.app.parms.util.ImageParmsUtil;
 import com.kawansoft.app.parms.util.ParmsUtil;
 import com.kawansoft.app.util.ButtonResizer;
-import com.kawansoft.app.util.ClipboardManager;
 import com.kawansoft.app.util.Help;
 import com.kawansoft.app.util.WindowSettingMgr;
 import com.swing.util.SwingUtil;
 import java.awt.Component;
 import java.awt.Dimension;
-import java.awt.Toolkit;
 import java.awt.Window;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
@@ -27,14 +23,9 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
-import javax.swing.JList;
 import javax.swing.JOptionPane;
-import javax.swing.KeyStroke;
-import javax.swing.ListSelectionModel;
-import javax.swing.event.DocumentEvent;
-import javax.swing.event.DocumentListener;
-import javax.swing.text.AbstractDocument;
 import org.apache.commons.lang3.SystemUtils;
+
 
 /**
  *
@@ -232,12 +223,12 @@ public class AceQLManagerInstall extends javax.swing.JFrame {
 
             serviceStatus = ServiceUtil
                     .getServiceStatus(ServiceUtil.ACEQL_HTTP_SERVICE);
-            String startModeLabel = ServiceUtil
-                    .getServiceStartModeLabel(ServiceUtil.ACEQL_HTTP_SERVICE);
+            String startupTypeLabel = ServiceUtil
+                    .getServiceStartupTypeLabel(ServiceUtil.ACEQL_HTTP_SERVICE);
 
-            String startModeText = "";
-            if (!startModeLabel.isEmpty()) {
-                startModeText = "    - Start mode: " + startModeLabel;
+            String startupTypeText = "";
+            if (!startupTypeLabel.isEmpty()) {
+                startupTypeText = "    - Startup type: " + startupTypeLabel;
             }
 
             if (serviceStatus == ServiceUtil.NOT_INSTALLED) {
@@ -251,7 +242,7 @@ public class AceQLManagerInstall extends javax.swing.JFrame {
                 jButtonUninstallService.setEnabled(false);
 
             } else if (serviceStatus == ServiceUtil.STOPPED) {
-                jLabelServiceStatusValue.setText("Stopped" + startModeText);
+                jLabelServiceStatusValue.setText("Stopped" + startupTypeText);
 
                 jLabelServiceStatusValue
                         .setIcon(ImageParmsUtil.createImageIcon(ParmsUtil.IMAGES_BULLET_BALL_RED_PNG));
@@ -260,7 +251,7 @@ public class AceQLManagerInstall extends javax.swing.JFrame {
                 jButtonUninstallService.setEnabled(true);
             } else if (serviceStatus == ServiceUtil.STARTING) {
                 jLabelServiceStatusValue.setText("Starting..."
-                        + startModeText);
+                        + startupTypeText);
 
                 jLabelServiceStatusValue
                         .setIcon(ImageParmsUtil.createImageIcon(ParmsUtil.IMAGES_BULLET_BALL_YELLOW_PNG));
@@ -269,7 +260,7 @@ public class AceQLManagerInstall extends javax.swing.JFrame {
                 jButtonUninstallService.setEnabled(true);
             } else if (serviceStatus == ServiceUtil.STOPPING) {
                 jLabelServiceStatusValue.setText("Stopping..."
-                        + startModeText);
+                        + startupTypeText);
 
                 jLabelServiceStatusValue
                         .setIcon(ImageParmsUtil.createImageIcon(ParmsUtil.IMAGES_BULLET_BALL_YELLOW_PNG));
@@ -277,7 +268,7 @@ public class AceQLManagerInstall extends javax.swing.JFrame {
                 jButtonInstallService.setEnabled(false);
                 jButtonUninstallService.setEnabled(true);
             } else if (serviceStatus == ServiceUtil.RUNNING) {
-                jLabelServiceStatusValue.setText("Started" + startModeText);
+                jLabelServiceStatusValue.setText("Started" + startupTypeText);
 
                 jLabelServiceStatusValue
                         .setIcon(ImageParmsUtil.createImageIcon(ParmsUtil.IMAGES_BULLET_BALL_GREEN_PNG));
@@ -292,23 +283,27 @@ public class AceQLManagerInstall extends javax.swing.JFrame {
 
     private void installService() {
 
-        String serviceDirectory = getInstallBaseDir() + File.separator + "service";
-        String logDirectory = ParmsUtil.getWindowsServiceLogDir();
+        String serviceDirectory = ParmsUtil.getInstallAceQLDir() + File.separator + "service";
+        String logDirectory = ParmsUtil.getBaseDir();
 
+        //Add quotes for .bat
+        String userDir = "\"" + SystemUtils.USER_DIR + "\"";
+            
         try {
-            ServiceInstaller.install(serviceDirectory, logDirectory);
+            ServiceInstaller.install(serviceDirectory, userDir, logDirectory);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this,
                     "Unable to install Windows Service: "
                     + e.getMessage());
             e.printStackTrace();
+            return;
         }
 
         try {
-            ServiceInstaller.updateServiceDescription(serviceDirectory);
+            ServiceInstaller.updateService(serviceDirectory);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this,
-                    "Unable to update Windows Service Description: "
+                    "Unable to update Windows Service: "
                     + e.getMessage());
             e.printStackTrace();
         }
@@ -316,7 +311,7 @@ public class AceQLManagerInstall extends javax.swing.JFrame {
     }
 
     private void uninstallService() {
-        String directory = getInstallBaseDir() + File.separator + "service";
+        String directory = ParmsUtil.getInstallAceQLDir() + File.separator + "service";
 
         try {
             ServiceInstaller.uninstall(directory);

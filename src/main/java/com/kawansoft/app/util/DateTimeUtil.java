@@ -35,5 +35,16 @@ public class DateTimeUtil {
         return formatter.format(now);
     }
     
+    /**
+     * Returns now in 2015-19-07 17:46:54 format 
+     * @return  now in 2015-19-07 17:46:54 format
+     */
+    public static String getNowFormatedYearFirst()  {
+        SimpleDateFormat formatter;
+        formatter = new SimpleDateFormat("YYYY-MM-dd HH:mm:ss");
+        Date now = new Date();
+        return formatter.format(now);
+    }
+    
 
 }

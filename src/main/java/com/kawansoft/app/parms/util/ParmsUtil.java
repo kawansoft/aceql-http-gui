@@ -49,18 +49,10 @@ public class ParmsUtil {
 	return template;
     }
         
-    /**
-     * Returns c:\DOT_APP_DIR\logs-windows-service or /usr/local/DOT_APP_DIR/windows-service-logs
-     * @return c:\DOT_APP_DIR\logs-windows-service or /usr/local/DOT_APP_DIR/windows-service-logs
-     */
-    public static String getWindowsServiceLogDir() {
-        File logDir = new File(getBaseDir() + File.separator + "windows-service-logs");
-        if (!logDir.exists()) {
-            logDir.mkdirs();
-        }
-        return logDir.toString();
+    public static String getInstallAceQLDir() {
+        return SystemUtils.USER_DIR + File.separator + "AceQL";
     }
-
+    
     /**
      * Returns the base dir
      * @return c:\.DOT_APP_DIR or /usr/local/APP_NAME

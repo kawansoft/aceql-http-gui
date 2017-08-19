@@ -78,6 +78,8 @@ public class AceQLManager extends javax.swing.JFrame {
 
     public static final String CR_LF = System.getProperty("line.separator");
     
+    public static final int SLEEP_SCAN = 330;
+        
     /**
      * Says if we continue to udate Windows Service Status
      */
@@ -131,7 +133,7 @@ public class AceQLManager extends javax.swing.JFrame {
      */
     public void initializeIt() {
 
-        Dimension dim = new Dimension(605, 605);
+        Dimension dim = new Dimension(633, 633);
         this.setPreferredSize(dim);
         this.setSize(dim);
 
@@ -195,11 +197,11 @@ public class AceQLManager extends javax.swing.JFrame {
         jTextFieldPropertiesFile.requestFocusInWindow();
 
         if (SystemUtils.IS_OS_MAC_OSX) {
-            jMenuItemExit.setVisible(false); // Quit is already in default left menu
+            jMenuItemQuit.setVisible(false); // Quit is already in default left menu
             jMenuItemClose.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_W,
                     Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
         } else {
-            jMenuItemExit.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Q,
+            jMenuItemQuit.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Q,
                     Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
             jMenuItemClose.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F4, java.awt.event.InputEvent.ALT_MASK));
         }
@@ -389,7 +391,7 @@ public class AceQLManager extends javax.swing.JFrame {
         setAceQLServerURL(host, port);
 
         if (aceqlProperties == null || aceqlProperties.isEmpty()) {
-            File fileIn = new File(getInstallBaseDir() + File.separator + "conf" + File.separator + "aceql-server.properties");
+            File fileIn = new File(ParmsUtil.getInstallAceQLDir() + File.separator + "conf" + File.separator + "aceql-server.properties");
 
             if (!fileIn.exists()) {
                 JOptionPane
@@ -443,16 +445,6 @@ public class AceQLManager extends javax.swing.JFrame {
                 return;
             }
 
-            /*
-            if (ServiceUtil.isInstalled()) {
-                JOptionPane
-                        .showMessageDialog(
-                                this,
-                                "Please uninstall Windows Service in order to run in Standard Mode.",
-                                Parms.APP_NAME, JOptionPane.ERROR_MESSAGE);
-                return;
-            }
-             */
         } catch (IOException ioe) {
             JOptionPane.showMessageDialog(this,
                     "Unable to display Windows Service Status: "
@@ -470,7 +462,7 @@ public class AceQLManager extends javax.swing.JFrame {
         int port = Integer.parseInt(jTextFieldPort.getText());
 
         aceQLConsole = new AceQLConsole(this);
-
+                
         AceQLTask aceQLTask = new AceQLTask(AceQLTask.STANDARD_MODE, jTextFieldPropertiesFile.getText(), jTextFieldHost.getText(), port);
         aceQLTask.start();
 
@@ -571,7 +563,7 @@ public class AceQLManager extends javax.swing.JFrame {
     private void updateStandardStatusLabel() throws IOException {
         while (true) {
             try {
-                Thread.sleep(10);
+                Thread.sleep(SLEEP_SCAN);
             } catch (InterruptedException ex) {
                 Logger.getLogger(AceQLManager.class.getName()).log(
                         Level.SEVERE, null, ex);
@@ -647,7 +639,7 @@ public class AceQLManager extends javax.swing.JFrame {
         while (UPDATE_SERVICE_STATUS_RUNING) {
 
             try {
-                Thread.sleep(10);
+                Thread.sleep(SLEEP_SCAN);
             } catch (InterruptedException ex) {
                 Logger.getLogger(AceQLManager.class.getName()).log(
                         Level.SEVERE, null, ex);
@@ -656,11 +648,11 @@ public class AceQLManager extends javax.swing.JFrame {
             serviceStatus = ServiceUtil
                     .getServiceStatus(ServiceUtil.ACEQL_HTTP_SERVICE);
             String startModeLabel = ServiceUtil
-                    .getServiceStartModeLabel(ServiceUtil.ACEQL_HTTP_SERVICE);
+                    .getServiceStartupTypeLabel(ServiceUtil.ACEQL_HTTP_SERVICE);
 
             String startModeText = null;
             if (!startModeLabel.isEmpty()) {
-                startModeText = " - Start mode: " + startModeLabel;
+                startModeText = " - Startup type: " + startModeLabel;
             }
 
             if (serviceStatus == ServiceUtil.NOT_INSTALLED) {
@@ -715,6 +707,7 @@ public class AceQLManager extends javax.swing.JFrame {
 
     }
 
+
     private void installService() {
 
         if (!SystemUtils.IS_OS_WINDOWS) {
@@ -734,11 +727,14 @@ public class AceQLManager extends javax.swing.JFrame {
         }
                 
         if (!serviceInstalled) {
-            String serviceDirectory = getInstallBaseDir() + File.separator + "service";
-            String logDirectory = ParmsUtil.getWindowsServiceLogDir();
+            String serviceDirectory = ParmsUtil.getInstallAceQLDir() + File.separator + "service";
+            String baseDir = ParmsUtil.getBaseDir();
 
+            //Add quotes for .bat
+            String userDir = "\"" + SystemUtils.USER_DIR + "\"";
+                
             try {
-                ServiceInstaller.install(serviceDirectory, logDirectory);
+                ServiceInstaller.install(serviceDirectory, userDir, baseDir);
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(thisOne,
                         "Unable to install Windows Service: "
@@ -747,7 +743,7 @@ public class AceQLManager extends javax.swing.JFrame {
             }
 
             try {
-                ServiceInstaller.updateServiceDescription(serviceDirectory);
+                ServiceInstaller.updateService(serviceDirectory);
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(thisOne,
                         "Unable to update Windows Service Description: "
@@ -768,8 +764,19 @@ public class AceQLManager extends javax.swing.JFrame {
             return;
         }
 
-        String directory = getInstallBaseDir() + File.separator + "service";
+        String directory = ParmsUtil.getInstallAceQLDir() + File.separator + "service";
 
+        try {
+            ServiceInstaller.updateService(directory);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this,
+                    "Unable to update Windows Service: "
+                    + e.getMessage());
+            e.printStackTrace();
+            return;
+        }
+
+                
         try {
             ServiceUtil.startService(directory);
         } catch (Exception e) {
@@ -782,7 +789,7 @@ public class AceQLManager extends javax.swing.JFrame {
     }
 
     private void stopService() {
-        String directory = getInstallBaseDir() + File.separator + "service";
+        String directory = ParmsUtil.getInstallAceQLDir() + File.separator + "service";
 
         try {
             ServiceUtil.stopService(directory);
@@ -797,7 +804,7 @@ public class AceQLManager extends javax.swing.JFrame {
     private void displayLogs() {
 
         try {
-            File file = new File(ParmsUtil.getWindowsServiceLogDir());
+            File file = new File(ParmsUtil.getBaseDir() + File.separator + "windows-service-logs");
             Desktop.getDesktop().open(file);
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this,
@@ -826,11 +833,11 @@ public class AceQLManager extends javax.swing.JFrame {
             if (!SystemUtils.IS_OS_WINDOWS) {
                 return;
             }
-
+            
             ProcessBuilder pb = new ProcessBuilder("cmd.exe", "/C",
                     "startMmc.bat");
 
-            String directory = getInstallBaseDir() + File.separator + "service";
+            String directory = ParmsUtil.getInstallAceQLDir() + File.separator + "service";
 
             //JOptionPane.showMessageDialog(null, "serviceDirectory: " + serviceDirectory);
             pb.directory(new File(directory));
@@ -1031,7 +1038,7 @@ public class AceQLManager extends javax.swing.JFrame {
     }
 
     public static File[] getJdbcDrivers() {
-        File libJdbcDir = new File(getInstallBaseDir() + File.separator + "lib-jdbc");
+        File libJdbcDir = new File(ParmsUtil.getInstallAceQLDir() + File.separator + "lib-jdbc");
         FilenameFilter filenameFilter = new FilenameFilter() {
             @Override
             public boolean accept(File dir, String name) {
@@ -1065,9 +1072,7 @@ public class AceQLManager extends javax.swing.JFrame {
         this.jButtonURL.setText("http://" + host + ":" + port + "/" + aceqlServer);
     }
 
-    public static String getInstallBaseDir() {
-        return SystemUtils.USER_DIR + File.separator + "AceQL";
-    }
+
 
     private void actionOk() {
 
@@ -1250,7 +1255,7 @@ public class AceQLManager extends javax.swing.JFrame {
         jMenuFile = new javax.swing.JMenu();
         jMenuItemServiceInstall = new javax.swing.JMenuItem();
         jMenuItemClose = new javax.swing.JMenuItem();
-        jMenuItemExit = new javax.swing.JMenuItem();
+        jMenuItemQuit = new javax.swing.JMenuItem();
         jMenuHelp = new javax.swing.JMenu();
         jMenuItemHelp = new javax.swing.JMenuItem();
         jSeparator3 = new javax.swing.JPopupMenu.Separator();
@@ -2066,9 +2071,9 @@ public class AceQLManager extends javax.swing.JFrame {
 
         jPanelMain.add(jPanelButtonStartStop);
 
-        jPanelSepBlanc8spaces8.setMaximumSize(new java.awt.Dimension(32767, 14));
-        jPanelSepBlanc8spaces8.setMinimumSize(new java.awt.Dimension(10, 14));
-        jPanelSepBlanc8spaces8.setPreferredSize(new java.awt.Dimension(1000, 14));
+        jPanelSepBlanc8spaces8.setMaximumSize(new java.awt.Dimension(32767, 42));
+        jPanelSepBlanc8spaces8.setMinimumSize(new java.awt.Dimension(10, 42));
+        jPanelSepBlanc8spaces8.setPreferredSize(new java.awt.Dimension(1000, 42));
         jPanelMain.add(jPanelSepBlanc8spaces8);
 
         jPanelSepLine2New.setMaximumSize(new java.awt.Dimension(32787, 10));
@@ -2214,13 +2219,13 @@ public class AceQLManager extends javax.swing.JFrame {
         });
         jMenuFile.add(jMenuItemClose);
 
-        jMenuItemExit.setText("Exit");
-        jMenuItemExit.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItemQuit.setText("Quit");
+        jMenuItemQuit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItemExitActionPerformed(evt);
+                jMenuItemQuitActionPerformed(evt);
             }
         });
-        jMenuFile.add(jMenuItemExit);
+        jMenuFile.add(jMenuItemQuit);
 
         jMenuBar1.add(jMenuFile);
 
@@ -2299,7 +2304,7 @@ public class AceQLManager extends javax.swing.JFrame {
 
     private void jButtonOpenLocationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOpenLocationActionPerformed
         try {
-            File libJdbcDir = new File(getInstallBaseDir() + File.separator + "lib-jdbc");
+            File libJdbcDir = new File(ParmsUtil.getInstallAceQLDir() + File.separator + "lib-jdbc");
             Desktop.getDesktop().open(libJdbcDir);
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this,
@@ -2429,9 +2434,9 @@ public class AceQLManager extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_jMenuItemCloseActionPerformed
 
-    private void jMenuItemExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemExitActionPerformed
+    private void jMenuItemQuitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemQuitActionPerformed
         System.exit(0);
-    }//GEN-LAST:event_jMenuItemExitActionPerformed
+    }//GEN-LAST:event_jMenuItemQuitActionPerformed
 
     private void jMenuItemHelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemHelpActionPerformed
         help();
@@ -2567,8 +2572,8 @@ public class AceQLManager extends javax.swing.JFrame {
     private javax.swing.JMenu jMenuHelp;
     private javax.swing.JMenuItem jMenuItemAbout;
     private javax.swing.JMenuItem jMenuItemClose;
-    private javax.swing.JMenuItem jMenuItemExit;
     private javax.swing.JMenuItem jMenuItemHelp;
+    private javax.swing.JMenuItem jMenuItemQuit;
     private javax.swing.JMenuItem jMenuItemServiceInstall;
     private javax.swing.JMenuItem jMenuItemSystemInfo;
     private javax.swing.JMenuItem jMenuWhatsNew;

@@ -94,10 +94,10 @@ public class ClientLogger {
         String logMessage = null;
         
         if (clazz == null) {
-           logMessage = DateTimeUtil.getNowFormatedDayFirst() + " " + s;
+           logMessage = DateTimeUtil.getNowFormatedYearFirst() + " " + s;
         }
         else {
-           logMessage = DateTimeUtil.getNowFormatedDayFirst() + " " + clazz.getSimpleName() + " " + s;
+           logMessage = DateTimeUtil.getNowFormatedYearFirst() + " " + clazz.getSimpleName() + " " + s;
         }
 
 	return logMessage;

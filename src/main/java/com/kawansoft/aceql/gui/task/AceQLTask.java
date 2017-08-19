@@ -2,8 +2,12 @@
 package com.kawansoft.aceql.gui.task;
 
 import com.kawansoft.aceql.gui.AceQLManager;
+import static com.kawansoft.aceql.gui.AceQLManager.CR_LF;
 import com.kawansoft.app.util.ClientLogger;
+import com.kawansoft.app.util.classpath.ClasspatUtil;
 import java.io.File;
+import java.util.List;
+import org.apache.commons.lang3.SystemUtils;
 import org.kawanfw.sql.api.server.web.WebServerApi;
 
 /**
@@ -62,7 +66,27 @@ public class AceQLTask extends Thread implements Runnable {
 
         try {
             setStandardStartingStatus();
-                                   
+            
+            if (mode == SERVICE_MODE) {
+                System.out.println(ClientLogger.formatLogMsg(null, "OS Name / Version: " + System.getProperty("os.name") + " / " +  System.getProperty("os.version")));
+                System.out.println(ClientLogger.formatLogMsg(null, "OS Architecture  : " + System.getProperty("os.arch")));
+                System.out.println(ClientLogger.formatLogMsg(null, "Java Vendor      : " + System.getProperty("java.vendor")));
+                System.out.println(ClientLogger.formatLogMsg(null, "Java Home        : " + System.getProperty("java.home")));
+                System.out.println(ClientLogger.formatLogMsg(null, "Java Version     : " + System.getProperty("java.runtime.version")));
+                System.out.println(ClientLogger.formatLogMsg(null, "user.name        : " + System.getProperty("user.name")));
+                System.out.println(ClientLogger.formatLogMsg(null, "user.home        : " + SystemUtils.getUserHome()));
+                System.out.println(ClientLogger.formatLogMsg(null, "user.dir         : " + SystemUtils.getUserDir()));
+            }
+            
+            List<String> classpathList = ClasspatUtil.getOrderedClasspath();
+
+            String classpathCrLf = "";
+            for (String classpathElement : classpathList) {
+                classpathCrLf += classpathElement + System.getProperty("path.separator") + CR_LF;
+            }
+
+            System.out.println(ClientLogger.formatLogMsg(null, "CLASSPATH        : " + CR_LF + classpathCrLf));
+                        
             // Start Server
 	    WebServerApi webServerApi = new WebServerApi();
             setStandardStartedStatus();

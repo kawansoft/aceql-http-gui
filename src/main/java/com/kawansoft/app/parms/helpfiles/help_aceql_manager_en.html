@@ -82,13 +82,13 @@ If configuration errors occur, they are displayed as Exceptions in red.
 
 <b><font color=blue>Service Mode</font></b> 
 <br><br>
-You may start and stop the Windows Service from this windows.
+You may start and stop the Windows service from this windows.
 <br>
 Note that the default start type is "Auto". 
-<br>This and the other properties of the Windows Service may be changed using Microsoft Management Console, just click on "Services Console".
+<br>This and the other properties of the Windows service may be changed using Microsoft Management Console, just click on "Services Console".
 <br>
 <br>
-After the Windows Service is started, it is recommended to check the running success by accessing the Windows Service logs:
+After the Windows service is started, it is recommended to check the running success by accessing the Windows service logs:
 <ul>
 <li>Click on "Service Logs".</li>
 <li>The 3 following files contain all necessary info to check if AceQL is successfully running and to fix configuration errors:
@@ -108,5 +108,39 @@ If the start is successful, the aceqlhttpservice-stdout.yyyy-mm-dd.log last line
 <code><pre>[ACEQL HTTP START] SQL Web Server OK. Running on port 9090 & port 9443.</code></pre> 
 <font face="Arial" size=4>for SSL configuration.
 
+<br><br><br>
+
+<b><font color=blue>Service Mode - How CLASSPATH is set</font></b> 
+<br><br>
+In Service Mode, the CLASSPATH contains:
+<ul>
+    <li>The paths to the necessary jar files to run the software.</li>
+    <li>The paths to the installed JDBC Drivers.</li>
+    <li>Plus the content of the user CLASSPATH environment when service is started from this interface (i.e. the environment variable is the one of the user that runs this AceQL interface).</li>
+</ul>
+
+N.B.: the value of the system environment variable CLASSPATH is never used.</li>
+    
+<br><br><br>
+
+<b><font color=blue>Service Mode - Changing the CLASSPATH</font></b> 
+<br><br>
+If you have changed your CLASSPATH environment variable, you must do following actions for AceQL to use the new CLASSPATH value:
+<ul>
+    <li>Stop the Windows service.</li>
+    <li>Quit completely the AceQL interface. (File menu ==> Quit item or Ctrl-Q.)</li>
+    <li>Restart the AceQL program.</li>
+    <li>Start the Windows service from the AceQL interface (not from the Windows Services Console).</li>
+    <li>Click "Service Logs" and verify in the aceqlhttpservice-stdout.yyyy-mm-dd.log that the displayed CLASSPATH contains the new value.</li>
+</ul>
+
 <br>
-<br>
+
+<b><font color=blue>Service Mode - Ensure service restart at server reboot</font></b> 
+<br><br>
+In order to tnsure that the Windows service is effectively restarted after reboot, change the Startup type from "Automatic" to "Automatic (Delayed Start)" using the
+Microsoft Management Console ("Services Console" button).
+
+<br><br><br>
+
+

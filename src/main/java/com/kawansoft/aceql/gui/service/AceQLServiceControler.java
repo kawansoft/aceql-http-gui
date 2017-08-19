@@ -30,8 +30,6 @@ public class AceQLServiceControler {
     public static void start(String arg[]) {
 
         System.out.println(ClientLogger.formatLogMsg(AceQLServiceControler.class, "Starting " + AceQLTask.class.getSimpleName() + "..."));
-        System.out.println(ClientLogger.formatLogMsg(AceQLServiceControler.class, "CLASSPATH: " + System.getProperty("java.class.path")));
-        System.out.println("");
         
         String aceqlProperties = null;
         String host = null;

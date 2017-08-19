@@ -17,8 +17,7 @@ import java.util.prefs.Preferences;
 
 public class WindowSettingMgr
 {
-    /** The DEBUG flag */
-    public static boolean DEBUG = false;
+
     
     /** Not visible constructor */
     protected WindowSettingMgr()
@@ -41,7 +40,7 @@ public class WindowSettingMgr
         int width = window.getWidth();   
         int height = window.getHeight();   
         
-        if (DEBUG)
+        if (WindowSettingMgrDebug.DEBUG)
         {
             System.out.println();
             System.out.println("Best Ratio: 1 / 0,80 / 1,33 / 1,78");
@@ -164,7 +163,7 @@ public class WindowSettingMgr
 
     protected void debug(String sMsg)
     {
-        if(DEBUG)
+        if(WindowSettingMgrDebug.DEBUG)
             System.out.println("DBG> " + sMsg) ;
     }    
     
