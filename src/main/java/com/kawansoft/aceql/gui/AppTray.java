@@ -141,7 +141,7 @@ public class AppTray {
         //menuItem.setFont(font);
 
         // "Exit" menu item
-        menuItem = new MenuItem("Exit");
+        menuItem = new MenuItem("Quit");
         menuItem.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
