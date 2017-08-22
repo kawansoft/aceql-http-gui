@@ -308,6 +308,33 @@ public class AceQLManager extends javax.swing.JFrame {
     private void setJdbcDrivers() {
         File[] files = getJdbcDrivers();
 
+        if (files == null) {
+            return;
+        }
+
+        defaultListModel.removeAllElements();
+        for (int i = 0; i < files.length; i++) {
+            try {
+                defaultListModel.addElement(files[i].getName());
+            } catch (Exception e) {
+                // Nothing. Do not write on interface...
+            }
+        }
+
+        String classpath = System.getProperty("java.class.path");
+
+        for (int i = 0; i < files.length; i++) {
+            if (!classpath.contains(files[i].toString())) {
+                try {
+                    ClassPathHacker.addFile(files[i]);
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                    Logger.getLogger(AceQLManager.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+                
+        /*
         if (previousFiles == null && files == null) {
             return;
         }
@@ -349,6 +376,7 @@ public class AceQLManager extends javax.swing.JFrame {
                 }
             }
         }
+        */
     }
 
     public void loadConfiguration() {
@@ -1249,7 +1277,7 @@ public class AceQLManager extends javax.swing.JFrame {
         jButtonDisplayConsole = new javax.swing.JButton();
         jPanelSepBlanc8spaces4 = new javax.swing.JPanel();
         jPanelRadioService = new javax.swing.JPanel();
-        jPanelLeft25 = new javax.swing.JPanel();
+        jPanelLeft26 = new javax.swing.JPanel();
         jLabelWindowsServiceMode = new javax.swing.JLabel();
         jLabelServiceStartModeValue = new javax.swing.JLabel();
         jLabelServiceStatus = new javax.swing.JLabel();
@@ -1911,10 +1939,10 @@ public class AceQLManager extends javax.swing.JFrame {
         jPanelRadioStandard.setMaximumSize(new java.awt.Dimension(2147483647, 32));
         jPanelRadioStandard.setMinimumSize(new java.awt.Dimension(91, 32));
         jPanelRadioStandard.setPreferredSize(new java.awt.Dimension(191, 32));
-        jPanelRadioStandard.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
+        jPanelRadioStandard.setLayout(new javax.swing.BoxLayout(jPanelRadioStandard, javax.swing.BoxLayout.LINE_AXIS));
 
-        jPanelLeft23.setMaximumSize(new java.awt.Dimension(0, 0));
-        jPanelLeft23.setPreferredSize(new java.awt.Dimension(0, 0));
+        jPanelLeft23.setMaximumSize(new java.awt.Dimension(10, 10));
+        jPanelLeft23.setMinimumSize(new java.awt.Dimension(10, 10));
 
         javax.swing.GroupLayout jPanelLeft23Layout = new javax.swing.GroupLayout(jPanelLeft23);
         jPanelLeft23.setLayout(jPanelLeft23Layout);
@@ -2003,22 +2031,23 @@ public class AceQLManager extends javax.swing.JFrame {
         jPanelRadioService.setMaximumSize(new java.awt.Dimension(32767, 32));
         jPanelRadioService.setMinimumSize(new java.awt.Dimension(91, 32));
         jPanelRadioService.setPreferredSize(new java.awt.Dimension(191, 32));
-        jPanelRadioService.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
+        jPanelRadioService.setLayout(new javax.swing.BoxLayout(jPanelRadioService, javax.swing.BoxLayout.LINE_AXIS));
 
-        jPanelLeft25.setMaximumSize(new java.awt.Dimension(0, 0));
+        jPanelLeft26.setMaximumSize(new java.awt.Dimension(10, 10));
+        jPanelLeft26.setMinimumSize(new java.awt.Dimension(10, 10));
 
-        javax.swing.GroupLayout jPanelLeft25Layout = new javax.swing.GroupLayout(jPanelLeft25);
-        jPanelLeft25.setLayout(jPanelLeft25Layout);
-        jPanelLeft25Layout.setHorizontalGroup(
-            jPanelLeft25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout jPanelLeft26Layout = new javax.swing.GroupLayout(jPanelLeft26);
+        jPanelLeft26.setLayout(jPanelLeft26Layout);
+        jPanelLeft26Layout.setHorizontalGroup(
+            jPanelLeft26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 0, Short.MAX_VALUE)
         );
-        jPanelLeft25Layout.setVerticalGroup(
-            jPanelLeft25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jPanelLeft26Layout.setVerticalGroup(
+            jPanelLeft26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        jPanelRadioService.add(jPanelLeft25);
+        jPanelRadioService.add(jPanelLeft26);
 
         jLabelWindowsServiceMode.setText("Service Mode - \"AceQL HTTP Server\" Service");
         jPanelRadioService.add(jLabelWindowsServiceMode);
@@ -2638,7 +2667,7 @@ public class AceQLManager extends javax.swing.JFrame {
     private javax.swing.JPanel jPanelLeft22;
     private javax.swing.JPanel jPanelLeft23;
     private javax.swing.JPanel jPanelLeft24;
-    private javax.swing.JPanel jPanelLeft25;
+    private javax.swing.JPanel jPanelLeft26;
     private javax.swing.JPanel jPanelLeft31;
     private javax.swing.JPanel jPanelLeft33;
     private javax.swing.JPanel jPanelLogo;

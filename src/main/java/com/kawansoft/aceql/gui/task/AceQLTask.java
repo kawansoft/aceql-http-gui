@@ -48,10 +48,7 @@ public class AceQLTask extends Thread implements Runnable {
         if (host == null) {
             throw new NullPointerException("host is null!");
         }
-        
-        // Replace the ! by #, if there were any, because deamon uses # as args separator
-        propertiesFile = propertiesFile.replace("!", "#");
-        
+                
         this.mode = mode;
         this.propertiesFile = propertiesFile;
         this.host = host;
