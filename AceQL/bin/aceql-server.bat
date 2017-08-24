@@ -3,8 +3,8 @@ REM ********************************************************************
 REM AceQL Web Server Launcher                                          *
 REM                                                                    *        
 REM Before launch:                                                     *
-REM  - 1) set ACEQL_HOME to AceQL installation directory               *  
-REM  - 2) Drop your JDBC Driver into ACEQL_SERVER\lib-server directory *                                                            *                                 *
+REM  - 1) set ACEQL_HOME to AceQL <installation directory>\AceQL       *  
+REM  - 2) Drop your JDBC Driver into ACEQL_SERVER\lib-jdbc   directory *                                                            *                                 *
 REM ********************************************************************
 
 IF [%ACEQL_HOME%] == [] (

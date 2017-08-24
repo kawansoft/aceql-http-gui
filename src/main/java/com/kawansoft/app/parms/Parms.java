@@ -10,7 +10,7 @@ import com.kawansoft.app.parms.util.ParmsUtil;
 public class Parms {
     
     // BEGIN COMMON TO ALL APPS
-    public static String APP_NAME = "AceQL HTTP" + " " + org.kawanfw.sql.version.Version.PRODUCT.TYPE;
+    public static String APP_NAME = "AceQL HTTP";
 
     // Tray and default App Icon 
     public static final String TRAY_ICON = "images/data_up_20.png";
