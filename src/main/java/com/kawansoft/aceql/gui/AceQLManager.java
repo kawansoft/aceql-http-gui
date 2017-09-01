@@ -32,6 +32,7 @@ import com.kawansoft.app.util.SystemPropDisplayer;
 import com.kawansoft.app.util.WindowSettingMgr;
 import com.kawansoft.app.util.classpath.ClassPathHacker;
 import com.kawansoft.app.util.registry.RegistryReader;
+import com.kawansoft.app.version.GuiVersionValues;
 import com.swing.util.SwingUtil;
 import java.awt.Desktop;
 import java.awt.FileDialog;
@@ -205,9 +206,6 @@ public class AceQLManager extends javax.swing.JFrame {
                     Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
             jMenuItemClose.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F4, java.awt.event.InputEvent.ALT_MASK));
         }
-
-        // No What's new for now
-        jMenuWhatsNew.setVisible(false);
 
         SwingUtil.resizeJComponentsForNimbusAndMacOsX(rootPane);
 
@@ -415,9 +413,7 @@ public class AceQLManager extends javax.swing.JFrame {
 
         jTextFieldHost.setText(host);
         jTextFieldPort.setText("" + port);
-
-        setAceQLServerURL(host, port);
-
+        
         if (aceqlProperties == null || aceqlProperties.isEmpty()) {
             File fileIn = new File(ParmsUtil.getInstallAceQLDir() + File.separator + "conf" + File.separator + "aceql-server.properties");
 
@@ -450,7 +446,16 @@ public class AceQLManager extends javax.swing.JFrame {
             jTextFieldPropertiesFile.setText(aceqlProperties);
         }
         
-        // Store th properties if they did not exists
+        try {
+            setAceQLServerURL(host, port,  new File(jTextFieldPropertiesFile.getText()));
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this,
+                    "Can not load the Property File. Reason: " + ex.getMessage(), Parms.APP_NAME,
+                    JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+                
+        // Store the properties if they did not exists
         if ( ! ConfigurationUtil.getConfirurationProperties().exists()) {
             storeConfiguration();
         }
@@ -1068,7 +1073,14 @@ public class AceQLManager extends javax.swing.JFrame {
             return;
         }
 
-        setAceQLServerURL(jTextFieldHost.getText(), Integer.parseInt(jTextFieldPort.getText()));
+        try {
+            setAceQLServerURL(jTextFieldHost.getText(), Integer.parseInt(jTextFieldPort.getText()), new File(jTextFieldPropertiesFile.getText()));
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this,
+                    "Can not load the Property File. Reason: " + ex.getMessage(), Parms.APP_NAME,
+                    JOptionPane.ERROR_MESSAGE);
+            return;
+        }
 
         storeConfiguration();
         jButtonApply.setEnabled(false);
@@ -1105,23 +1117,25 @@ public class AceQLManager extends javax.swing.JFrame {
         return files;
     }
 
-    public void setAceQLServerURL(String host, int port) throws HeadlessException {
+    public void setAceQLServerURL(String host, int port, File propertiesFile) throws HeadlessException, Exception {
 
-        if (jTextFieldPropertiesFile.getText() == null || jTextFieldPropertiesFile.getText().isEmpty()) {
+        if (propertiesFile == null || ! propertiesFile.exists()) {
             return;
         }
 
-        Properties properties = null;
-        try {
-            properties = TomcatStarterUtil.getProperties(new File(jTextFieldPropertiesFile.getText()));
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this,
-                    "Can not load the Property File. Reason: " + ex.getMessage(), Parms.APP_NAME,
-                    JOptionPane.ERROR_MESSAGE);
-            return;
-        }
+        Properties properties = TomcatStarterUtil.getProperties(propertiesFile);
         String aceqlServer = properties.getProperty("serverSqlManagerServletName");
-        this.jButtonURL.setText("http://" + host + ":" + port + "/" + aceqlServer);
+        String scheme = "http";
+
+        String sslConnectorSSLEnabled = properties
+                .getProperty("sslConnector.SSLEnabled");
+
+        if (sslConnectorSSLEnabled != null && sslConnectorSSLEnabled.trim().equals("true")) {
+            scheme = properties
+                    .getProperty("sslConnector.scheme").trim();
+        }
+        
+        this.jButtonURL.setText(scheme + "://" + host + ":" + port + "/" + aceqlServer);
     }
 
 
@@ -1296,8 +1310,6 @@ public class AceQLManager extends javax.swing.JFrame {
         jPanel29 = new javax.swing.JPanel();
         jPanelBottom = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        jPanelButtonsLeft = new javax.swing.JPanel();
-        jButtonResetWindows = new javax.swing.JButton();
         jPanelButtons = new javax.swing.JPanel();
         jButtonOk = new javax.swing.JButton();
         jButtonApply = new javax.swing.JButton();
@@ -1308,11 +1320,13 @@ public class AceQLManager extends javax.swing.JFrame {
         jMenuItemServiceInstall = new javax.swing.JMenuItem();
         jMenuItemClose = new javax.swing.JMenuItem();
         jMenuItemQuit = new javax.swing.JMenuItem();
+        jMenuOptions = new javax.swing.JMenu();
+        jMenuCheckForUpdates = new javax.swing.JMenuItem();
+        jMenuItemResetWindows = new javax.swing.JMenuItem();
         jMenuHelp = new javax.swing.JMenu();
         jMenuItemHelp = new javax.swing.JMenuItem();
         jSeparator3 = new javax.swing.JPopupMenu.Separator();
         jMenuItemSystemInfo = new javax.swing.JMenuItem();
-        jMenuWhatsNew = new javax.swing.JMenuItem();
         jMenuItemAbout = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -1942,7 +1956,6 @@ public class AceQLManager extends javax.swing.JFrame {
         jPanelRadioStandard.setLayout(new javax.swing.BoxLayout(jPanelRadioStandard, javax.swing.BoxLayout.LINE_AXIS));
 
         jPanelLeft23.setMaximumSize(new java.awt.Dimension(10, 10));
-        jPanelLeft23.setMinimumSize(new java.awt.Dimension(10, 10));
 
         javax.swing.GroupLayout jPanelLeft23Layout = new javax.swing.GroupLayout(jPanelLeft23);
         jPanelLeft23.setLayout(jPanelLeft23Layout);
@@ -2034,7 +2047,6 @@ public class AceQLManager extends javax.swing.JFrame {
         jPanelRadioService.setLayout(new javax.swing.BoxLayout(jPanelRadioService, javax.swing.BoxLayout.LINE_AXIS));
 
         jPanelLeft26.setMaximumSize(new java.awt.Dimension(10, 10));
-        jPanelLeft26.setMinimumSize(new java.awt.Dimension(10, 10));
 
         javax.swing.GroupLayout jPanelLeft26Layout = new javax.swing.GroupLayout(jPanelLeft26);
         jPanelLeft26.setLayout(jPanelLeft26Layout);
@@ -2179,32 +2191,6 @@ public class AceQLManager extends javax.swing.JFrame {
         jPanel2.setLayout(new javax.swing.BoxLayout(jPanel2, javax.swing.BoxLayout.LINE_AXIS));
         jPanelBottom.add(jPanel2);
 
-        jPanelButtonsLeft.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 0, 14));
-
-        jButtonResetWindows.setForeground(new java.awt.Color(0, 0, 255));
-        jButtonResetWindows.setText("Reset Windows");
-        jButtonResetWindows.setBorder(null);
-        jButtonResetWindows.setBorderPainted(false);
-        jButtonResetWindows.setContentAreaFilled(false);
-        jButtonResetWindows.setFocusPainted(false);
-        jButtonResetWindows.setMargin(new java.awt.Insets(2, 0, 2, 0));
-        jButtonResetWindows.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jButtonResetWindowsMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                jButtonResetWindowsMouseExited(evt);
-            }
-        });
-        jButtonResetWindows.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonResetWindowsActionPerformed(evt);
-            }
-        });
-        jPanelButtonsLeft.add(jButtonResetWindows);
-
-        jPanelBottom.add(jPanelButtonsLeft);
-
         jPanelButtons.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT));
 
         jButtonOk.setText("OK");
@@ -2282,6 +2268,28 @@ public class AceQLManager extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenuFile);
 
+        jMenuOptions.setText("Options");
+
+        jMenuCheckForUpdates.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F5, 0));
+        jMenuCheckForUpdates.setText("Check for updates (new version)");
+        jMenuCheckForUpdates.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuCheckForUpdatesActionPerformed(evt);
+            }
+        });
+        jMenuOptions.add(jMenuCheckForUpdates);
+
+        jMenuItemResetWindows.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F6, 0));
+        jMenuItemResetWindows.setText("Reset Windows");
+        jMenuItemResetWindows.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemResetWindowsActionPerformed(evt);
+            }
+        });
+        jMenuOptions.add(jMenuItemResetWindows);
+
+        jMenuBar1.add(jMenuOptions);
+
         jMenuHelp.setText("Help");
 
         jMenuItemHelp.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F1, 0));
@@ -2295,7 +2303,7 @@ public class AceQLManager extends javax.swing.JFrame {
         jMenuHelp.add(jMenuItemHelp);
         jMenuHelp.add(jSeparator3);
 
-        jMenuItemSystemInfo.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F5, 0));
+        jMenuItemSystemInfo.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F11, 0));
         jMenuItemSystemInfo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/kawansoft/app/parms/images/about_16.png"))); // NOI18N
         jMenuItemSystemInfo.setText("System Info");
         jMenuItemSystemInfo.addActionListener(new java.awt.event.ActionListener() {
@@ -2304,15 +2312,6 @@ public class AceQLManager extends javax.swing.JFrame {
             }
         });
         jMenuHelp.add(jMenuItemSystemInfo);
-
-        jMenuWhatsNew.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F11, 0));
-        jMenuWhatsNew.setText("Show what's new");
-        jMenuWhatsNew.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuWhatsNewActionPerformed(evt);
-            }
-        });
-        jMenuHelp.add(jMenuWhatsNew);
 
         jMenuItemAbout.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F12, 0));
         jMenuItemAbout.setText("About");
@@ -2396,6 +2395,9 @@ public class AceQLManager extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonURLActionPerformed
 
     private void jButtonBrowseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBrowseActionPerformed
+        
+        jButtonApply.setEnabled(true);
+
         // AWT does not work (freeze) on Windows
         if (SystemUtils.IS_OS_WINDOWS) {
             addFileWithSwing();
@@ -2406,6 +2408,9 @@ public class AceQLManager extends javax.swing.JFrame {
 
     private void jButtonEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditActionPerformed
         try {
+            
+            jButtonApply.setEnabled(true);
+            
             if (jTextFieldPropertiesFile.getText() == null || jTextFieldPropertiesFile.getText().isEmpty()) {
                 JOptionPane.showMessageDialog(this,
                         "Please enter a valid file",
@@ -2471,18 +2476,6 @@ public class AceQLManager extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButtonDisplayConsoleActionPerformed
 
-    private void jButtonResetWindowsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonResetWindowsActionPerformed
-        actionResetWindows();
-    }//GEN-LAST:event_jButtonResetWindowsActionPerformed
-
-    private void jButtonResetWindowsMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonResetWindowsMouseExited
-        this.setCursor(Cursor.getDefaultCursor());
-    }//GEN-LAST:event_jButtonResetWindowsMouseExited
-
-    private void jButtonResetWindowsMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonResetWindowsMouseEntered
-        this.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-    }//GEN-LAST:event_jButtonResetWindowsMouseEntered
-
     private void jMenuItemCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemCloseActionPerformed
         this.setVisible(false);
     }//GEN-LAST:event_jMenuItemCloseActionPerformed
@@ -2512,17 +2505,17 @@ public class AceQLManager extends javax.swing.JFrame {
         aboutFrame = new AboutFrame(this);
     }//GEN-LAST:event_jMenuItemAboutActionPerformed
 
-    private void jMenuWhatsNewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuWhatsNewActionPerformed
+    private void jMenuCheckForUpdatesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuCheckForUpdatesActionPerformed
 
         try {
-            URL url = new URL(Parms.INSTALLER_DIR + "/whats_new.html");
+            URL url = new URL("https://www.aceql.com/CheckForUpdates?version=" + org.kawanfw.sql.version.VersionValues.VERSION);
             Desktop desktop = Desktop.getDesktop();
             desktop.browse(url.toURI());
         } catch (Exception e) {
             e.printStackTrace();
-            JOptionPane.showMessageDialog(this, "Impossible to display What's New page: " + e.toString(), Parms.APP_NAME, JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Impossible to display Check For Updates Page " + e.toString(), Parms.APP_NAME, JOptionPane.ERROR_MESSAGE);
         }
-    }//GEN-LAST:event_jMenuWhatsNewActionPerformed
+    }//GEN-LAST:event_jMenuCheckForUpdatesActionPerformed
 
     private void jButtonStartServiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonStartServiceActionPerformed
         startService();
@@ -2543,6 +2536,10 @@ public class AceQLManager extends javax.swing.JFrame {
     private void jMenuItemServiceInstallActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemServiceInstallActionPerformed
          serviceInstall();
     }//GEN-LAST:event_jMenuItemServiceInstallActionPerformed
+
+    private void jMenuItemResetWindowsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemResetWindowsActionPerformed
+        actionResetWindows();
+    }//GEN-LAST:event_jMenuItemResetWindowsActionPerformed
 
     public static void setLookAndFeel() throws IOException, ClassNotFoundException, InstantiationException, IllegalAccessException, UnsupportedLookAndFeelException {
         JFrame.setDefaultLookAndFeelDecorated(true);
@@ -2599,7 +2596,6 @@ public class AceQLManager extends javax.swing.JFrame {
     private javax.swing.JButton jButtonHelp;
     private javax.swing.JButton jButtonOk;
     private javax.swing.JButton jButtonOpenLocation;
-    private javax.swing.JButton jButtonResetWindows;
     private javax.swing.JButton jButtonServicesConsole;
     private javax.swing.JButton jButtonStart;
     private javax.swing.JButton jButtonStartService;
@@ -2621,15 +2617,17 @@ public class AceQLManager extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelWindowsServiceMode;
     private javax.swing.JList<String> jList;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuCheckForUpdates;
     private javax.swing.JMenu jMenuFile;
     private javax.swing.JMenu jMenuHelp;
     private javax.swing.JMenuItem jMenuItemAbout;
     private javax.swing.JMenuItem jMenuItemClose;
     private javax.swing.JMenuItem jMenuItemHelp;
     private javax.swing.JMenuItem jMenuItemQuit;
+    private javax.swing.JMenuItem jMenuItemResetWindows;
     private javax.swing.JMenuItem jMenuItemServiceInstall;
     private javax.swing.JMenuItem jMenuItemSystemInfo;
-    private javax.swing.JMenuItem jMenuWhatsNew;
+    private javax.swing.JMenu jMenuOptions;
     private javax.swing.JPanel jPaneBlanklLeft1;
     private javax.swing.JPanel jPaneBlanklLeft2;
     private javax.swing.JPanel jPaneJdbc;
@@ -2646,7 +2644,6 @@ public class AceQLManager extends javax.swing.JFrame {
     private javax.swing.JPanel jPanelBottom;
     private javax.swing.JPanel jPanelButtonStartStop;
     private javax.swing.JPanel jPanelButtons;
-    private javax.swing.JPanel jPanelButtonsLeft;
     private javax.swing.JPanel jPanelButtonsStartService;
     private javax.swing.JPanel jPanelButtonsStartStandard;
     private javax.swing.JPanel jPanelEndField4;

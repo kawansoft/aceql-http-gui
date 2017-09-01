@@ -21,8 +21,6 @@ public class Parms {
     public static final String LOGO_SMALL = "images/logos/logo-AceQL_48.png";
         
     public static final String DOT_APP_DIR = ".aceql-http";
-
-    public static final String INSTALLER_DIR = "https://www.aceql.com/download";
     
     // For automatic install of new versions:    
 //    public static final int INSTALLER_APPROX_SIZE = ParmsGetter.getInt("installer_approx_size") * ParmsUtil.MB;
