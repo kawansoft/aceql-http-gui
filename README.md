@@ -1,2 +1,2 @@
 # aceql-http-gui
-AceQL HTTP Windows Manager
+<a href="https://www.aceql.com>AceQL HTTP/<a> Windows Manager.
