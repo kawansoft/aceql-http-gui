@@ -1,6 +1,28 @@
-
+/*
+ * This file is part of AceQL HTTP.
+ * AceQL HTTP: SQL Over HTTP                                     
+ * Copyright (C) 2017,  KawanSoft SAS
+ * (http://www.kawansoft.com). All rights reserved.                                
+ *                                                                               
+ * AceQL HTTP is free software; you can redistribute it and/or                 
+ * modify it under the terms of the GNU Lesser General Public                    
+ * License as published by the Free Software Foundation; either                  
+ * version 2.1 of the License, or (at your option) any later version.            
+ *                                                                               
+ * AceQL HTTP is distributed in the hope that it will be useful,               
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of                
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU             
+ * Lesser General Public License for more details.                               
+ *                                                                               
+ * You should have received a copy of the GNU Lesser General Public              
+ * License along with this library; if not, write to the Free Software           
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  
+ * 02110-1301  USA
+ * 
+ * Any modifications to this file must keep this entire header
+ * intact.
+ */
 package com.kawansoft.aceql.gui;
-
 /*
  * Copyright (C) 2004 Sun Microsystems, Inc. All rights reserved. Use is
  * subject to license terms.
@@ -20,6 +42,7 @@ package com.kawansoft.aceql.gui;
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307
  * USA.
  */
+
 import static com.kawansoft.aceql.gui.AceQLManager.setLookAndFeel;
 import com.kawansoft.aceql.gui.util.UserPreferencesManager;
 import com.kawansoft.app.parms.MessagesManager;

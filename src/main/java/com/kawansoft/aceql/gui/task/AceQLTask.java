@@ -1,3 +1,27 @@
+/*
+ * This file is part of AceQL HTTP.
+ * AceQL HTTP: SQL Over HTTP                                     
+ * Copyright (C) 2017,  KawanSoft SAS
+ * (http://www.kawansoft.com). All rights reserved.                                
+ *                                                                               
+ * AceQL HTTP is free software; you can redistribute it and/or                 
+ * modify it under the terms of the GNU Lesser General Public                    
+ * License as published by the Free Software Foundation; either                  
+ * version 2.1 of the License, or (at your option) any later version.            
+ *                                                                               
+ * AceQL HTTP is distributed in the hope that it will be useful,               
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of                
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU             
+ * Lesser General Public License for more details.                               
+ *                                                                               
+ * You should have received a copy of the GNU Lesser General Public              
+ * License along with this library; if not, write to the Free Software           
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  
+ * 02110-1301  USA
+ * 
+ * Any modifications to this file must keep this entire header
+ * intact.
+ */
 package com.kawansoft.aceql.gui.task;
 
 import com.kawansoft.aceql.gui.AceQLManager;
@@ -94,14 +118,22 @@ public class AceQLTask extends Thread implements Runnable {
             setStandardStartedStatus();
             webServerApi.startServer(host, port, new File(propertiesFile));
 
-        } catch (DatabaseConfigurationException e) {
+        } catch (IllegalArgumentException e) {
             System.err.println(SqlTag.SQL_PRODUCT_START_FAILURE + " "
                     + SqlTag.USER_CONFIGURATION_FAILURE + " "
                     + e.getMessage());
+
+            if (e.getCause() == null) {
+                //e.printStackTrace();
+            } else {
+                e.getCause().printStackTrace();
+            }
+
             System.err.println();
         } catch (ConnectException e) {
             System.err.println(SqlTag.SQL_PRODUCT_START_FAILURE + " "
                     + e.getMessage());
+            e.printStackTrace();
             System.err.println();
         } catch (IOException e) {
 
@@ -113,8 +145,10 @@ public class AceQLTask extends Thread implements Runnable {
                         + e.getMessage());
             }
 
-            if (e.getCause() != null) {
+            if (e.getCause() == null) {
                 e.printStackTrace();
+            } else {
+                e.getCause().printStackTrace();
             }
 
             System.err.println();
@@ -122,9 +156,8 @@ public class AceQLTask extends Thread implements Runnable {
             System.err.println(SqlTag.SQL_PRODUCT_START_FAILURE);
             e.printStackTrace();
             System.err.println();
-        }
-        finally {
-             setStandardStoppedStatus();
+        } finally {
+            setStandardStoppedStatus();
         }
 
     }

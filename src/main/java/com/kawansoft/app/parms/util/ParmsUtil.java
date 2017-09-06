@@ -1,7 +1,26 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * This file is part of AceQL HTTP.
+ * AceQL HTTP: SQL Over HTTP                                     
+ * Copyright (C) 2017,  KawanSoft SAS
+ * (http://www.kawansoft.com). All rights reserved.                                
+ *                                                                               
+ * AceQL HTTP is free software; you can redistribute it and/or                 
+ * modify it under the terms of the GNU Lesser General Public                    
+ * License as published by the Free Software Foundation; either                  
+ * version 2.1 of the License, or (at your option) any later version.            
+ *                                                                               
+ * AceQL HTTP is distributed in the hope that it will be useful,               
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of                
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU             
+ * Lesser General Public License for more details.                               
+ *                                                                               
+ * You should have received a copy of the GNU Lesser General Public              
+ * License along with this library; if not, write to the Free Software           
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  
+ * 02110-1301  USA
+ * 
+ * Any modifications to this file must keep this entire header
+ * intact.
  */
 package com.kawansoft.app.parms.util;
 
@@ -49,10 +68,28 @@ public class ParmsUtil {
 	return template;
     }
         
-    public static String getInstallAceQLDir() {
-        return SystemUtils.USER_DIR + File.separator + "AceQL";
+    public static boolean isAceQLPro() {
+        if (org.kawanfw.sql.version.Version.PRODUCT.TYPE.equals(org.kawanfw.sql.version.Version.PRODUCT.TYPE_PROFESSIONAL)) {
+            return true;
+        }
+        else {
+            return false;
+        }
     }
     
+    
+    public static String getInstallAceQLDir() {
+
+        String subDir = null;
+        if (isAceQLPro()) {
+            subDir = "AceQLPro";
+        } else {
+            subDir = "AceQL";
+        }
+
+        return SystemUtils.USER_DIR + File.separator + subDir;
+    }
+
     /**
      * Returns the base dir
      * @return c:\.DOT_APP_DIR or /usr/local/APP_NAME
@@ -97,7 +134,8 @@ public class ParmsUtil {
         tempDir.mkdir();
         return tempDirStr;
     }
-    
+
+
 
     
     

@@ -1,16 +1,27 @@
-//ClipboardManager.java
-//Copyright (c) SafeLogic, 2000 - 2005
-//
-//Last Updates: 
-// 3 avr. 2006 11:27:25 Nicolas de Pomereu
-// 04/04/06 19:50 NDP - use new SwingUtil to get all components 
-// 05/06/06 19:50 NDP - New cast for objects & values
-// 26/09/08 10:55 NDP - Add paste from Clipboard
-// 01/10/08 11:15 NDP - Clean it all
-// 09/10/08 17:25 NDP - Add file is refused in copy/paste of same file.getName()
-// 09/10/08 11:55 NDP - Dismiss PDF files as input
-// 10/10/08 18:30 NDP - Allow PDF files as input
-// 06/03/09 11:30 : ABE Force deletion of file if parent is DepotDir in private void delete()
+/*
+ * This file is part of AceQL HTTP.
+ * AceQL HTTP: SQL Over HTTP                                     
+ * Copyright (C) 2017,  KawanSoft SAS
+ * (http://www.kawansoft.com). All rights reserved.                                
+ *                                                                               
+ * AceQL HTTP is free software; you can redistribute it and/or                 
+ * modify it under the terms of the GNU Lesser General Public                    
+ * License as published by the Free Software Foundation; either                  
+ * version 2.1 of the License, or (at your option) any later version.            
+ *                                                                               
+ * AceQL HTTP is distributed in the hope that it will be useful,               
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of                
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU             
+ * Lesser General Public License for more details.                               
+ *                                                                               
+ * You should have received a copy of the GNU Lesser General Public              
+ * License along with this library; if not, write to the Free Software           
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  
+ * 02110-1301  USA
+ * 
+ * Any modifications to this file must keep this entire header
+ * intact.
+ */
 package com.kawansoft.app.util.table;
 
 import com.kawansoft.app.parms.MessagesManager;

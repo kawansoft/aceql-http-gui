@@ -1,20 +1,27 @@
-//FileUtil.java
-//Copyright (c) SafeLogic, 2000 - 2005
-//
-//Last Updates: 
-// 26 mai 2006 19:36:53 Nicolas de Pomereu
-// 01/03/07 11:35 NDP - Add isUnlocked()
-// 13/04/07 15:55 NDP - Modify get/Put text Content to handle read texts
-// 30/04/07 15:55 NDP - New isUnlockedForRead() and new name for isUnlocked() : isUnlockedForWrite()
-// 31/04/07 20:55 NDP - Directories are always readable & writable
-// 05/07/07 16:20 NDP - Do not test if file is  a directory in isUnlocked...() methods
-//                      (May cause false results with small recorders)
-//
-// 30/07/08 13:25 NDP - Add getCleanLastModifed() & getCleanFileLengthInKo()
-// 12/08/09 16:00 NDP - Modify putTextContent() to handle "ISO-8859-1" format
-// 17/09/08 10:45 NDP - Silent close of input stream in finally
-//
-// 08/10/09 21:10 NDP - Modify getTextContent() to handle "ISO-8859-1" format   
+/*
+ * This file is part of AceQL HTTP.
+ * AceQL HTTP: SQL Over HTTP                                     
+ * Copyright (C) 2017,  KawanSoft SAS
+ * (http://www.kawansoft.com). All rights reserved.                                
+ *                                                                               
+ * AceQL HTTP is free software; you can redistribute it and/or                 
+ * modify it under the terms of the GNU Lesser General Public                    
+ * License as published by the Free Software Foundation; either                  
+ * version 2.1 of the License, or (at your option) any later version.            
+ *                                                                               
+ * AceQL HTTP is distributed in the hope that it will be useful,               
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of                
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU             
+ * Lesser General Public License for more details.                               
+ *                                                                               
+ * You should have received a copy of the GNU Lesser General Public              
+ * License along with this library; if not, write to the Free Software           
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  
+ * 02110-1301  USA
+ * 
+ * Any modifications to this file must keep this entire header
+ * intact.
+ */
 package com.kawansoft.app.util;
 
 import com.kawansoft.app.parms.LanguageManager;

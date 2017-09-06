@@ -1,3 +1,27 @@
+/*
+ * This file is part of AceQL HTTP.
+ * AceQL HTTP: SQL Over HTTP                                     
+ * Copyright (C) 2017,  KawanSoft SAS
+ * (http://www.kawansoft.com). All rights reserved.                                
+ *                                                                               
+ * AceQL HTTP is free software; you can redistribute it and/or                 
+ * modify it under the terms of the GNU Lesser General Public                    
+ * License as published by the Free Software Foundation; either                  
+ * version 2.1 of the License, or (at your option) any later version.            
+ *                                                                               
+ * AceQL HTTP is distributed in the hope that it will be useful,               
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of                
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU             
+ * Lesser General Public License for more details.                               
+ *                                                                               
+ * You should have received a copy of the GNU Lesser General Public              
+ * License along with this library; if not, write to the Free Software           
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  
+ * 02110-1301  USA
+ * 
+ * Any modifications to this file must keep this entire header
+ * intact.
+ */
 package com.kawansoft.aceql.gui.service;
 
 import static com.kawansoft.aceql.gui.AceQLManager.getJdbcDrivers;
@@ -23,7 +47,7 @@ public class ServiceInstaller {
 
     public static final String CR_LF = System.getProperty("line.separator");
 
-    public static final String SERVICE_DIRECTORY = SystemUtils.USER_DIR + File.separator + "AceQL" + File.separator + "service";
+    public static final String SERVICE_DIRECTORY = ParmsUtil.getInstallAceQLDir()  + File.separator + "service";
     private static String USER_DIR_WITH_QUOTES = "\"" + SystemUtils.USER_DIR + "\"";
     private static String USER_HOME_SYSTEM = ParmsUtil.getBaseDir();
 
@@ -35,6 +59,7 @@ public class ServiceInstaller {
 
     }
 
+    
     /**
      * Installs the AceQLHTTPService.exe service in specified directory. Call is
      * done via via a bat wrapper because of Windows Authorization.
