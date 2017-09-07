@@ -1153,7 +1153,8 @@ public class AceQLManager extends javax.swing.JFrame {
         }
 
         Properties properties = TomcatStarterUtil.getProperties(propertiesFile);
-        String aceqlServer = properties.getProperty("serverSqlManagerServletName");
+        String aceqlServer = "";
+        aceqlServer = properties.getProperty("aceQLManagerServletCallName");
         String scheme = "http";
 
         String sslConnectorSSLEnabled = properties
