@@ -58,7 +58,7 @@ public class AceQLServiceControler {
         String host = null;
         int port = 0;
 
-        File configurationProperties = ConfigurationUtil.getConfirurationProperties();
+        File configurationProperties = ConfigurationUtil.getConfirurationPropertiesFile();
         
         if (! configurationProperties.exists()) {
             throw new IllegalArgumentException(new FileNotFoundException("The configuration file that stores properties file name, host and port does not exist: " + configurationProperties));

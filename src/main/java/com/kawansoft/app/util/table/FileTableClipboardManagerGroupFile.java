@@ -147,7 +147,7 @@ public class FileTableClipboardManagerGroupFile
      * 
      * @param parent
      * @param jtable         The JTable to add a contextual pop menu
-     * @param isDeletable    id true the files may be deleted
+     * @param isDeletable    if true the files may be deleted
      */
     public FileTableClipboardManagerGroupFile(Window parent, JTable jtable,  boolean isDeletable)
     {          

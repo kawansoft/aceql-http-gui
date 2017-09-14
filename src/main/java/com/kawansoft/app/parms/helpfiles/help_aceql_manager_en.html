@@ -23,7 +23,13 @@ Click "Edit" to modify the default AceQL properties file that comes with install
 The minimum properties to define when starting an AceQL Web Server instance are:
 <ul>
 <li>The databases property must contain at least a database name.</li>
-<li>The 4 JDBC properties: driverClassName.database, url.database, username.database and password.database.</li>
+<li>The 4 JDBC properties: 
+    <ul>
+        <li>database.driverClassName,</li>
+        <li>database.url,</li> 
+        <li>database.username, </li> 
+        <li>database.password.</li>
+    </ul>
 </ul>
 Refer to the <a href="https://www.aceql.com/rest/soft/1.0/aceql-http1.0-user-guide-server.pdf">AceQL Server Guide</a> for detailed information.
 
@@ -43,12 +49,18 @@ localhost, www.acme.com, prefix.acme.org, etc.
 
 <b><font color=blue>Installed JDBC Drivers</font></b> 
 <br><br>
-The text area displays all the installed JDBC Drivers that will be automatically added to the CLASSPATH.
+The area displays all the installed JDBC Drivers that will be automatically added to the CLASSPATH.
 <br>
-Default installation includes a recent PostgreSQL JDBC Driver.
+Default installation includes a recent PostgreSQL JDBC Driver. (We could not pre-install other vendor drivers due to license restrictions.)
 <br>
 <br>
-To add your JDBC Driver(s), click "Open Location" and drop your JDBC jar(s) in the opened folder.
+To add your JDBC Driver(s), click "Browse" and select your Driver files that you want to install. You can also copy & paste your files on the area.
+<br>
+<br>
+To delete/uninstall a JDBC Driver: select it, right-click and click "Delete". 
+
+<br><br>
+Note that is impossible to delete/uninstall a JDBC Driver after server startup. You must stop the running server instance and restart the AceQL interface.
 
 <br><br><br>
 
@@ -87,13 +99,13 @@ After the Windows Service is started, it is recommended to check the success of 
 <li>Click on "Service Logs".</li>
 <li>The 3 following files contain all the necessary info to check if AceQL is successfully running, and to fix configuration errors:
     <ul>
-        <li>aceqlhttpservice-stderr.yyyy-mm-dd.log</li>
-        <li>aceqlhttpservice-stdout.yyyy-mm-dd.log</li>
-        <li>commons-daemon.yyyy-mm-dd.log </li>
+        <li><code>aceqlhttpservice-stderr.yyyy-mm-dd.log</code></li>
+        <li><code>aceqlhttpservice-stdout.yyyy-mm-dd.log</code></li>
+        <li><code>commons-daemon.yyyy-mm-dd.log</code></li>
     </ul>
 </li></ul>
 <br>
-If the start is successful, the last line of aceqlhttpservice-stdout.yyyy-mm-dd.log will display: 
+If the start is successful, the last line of <code>aceqlhttpservice-stdout.yyyy-mm-dd.log</code> will display: 
 <code><pre>[ACEQL HTTP START] SQL Web Server OK. Running on port &lt;port_number&gt;.</code></pre>
 
 <font face="Arial" size=4>
@@ -110,8 +122,8 @@ Note: if you change the account, the service must be restarted using the AceQL i
 
 The value of the user.home system property depends on the account chosen to open the session:
 <ul>
-    <li><b>Default Local System account</b>: user.home system property value is set to "c:\.aceql-http" for the Java session.</li>
-    <li><b>Any other account</b>: user.home system property value is the default/regular value. For example, on Windows 8.1, if the account chosen is ".\Mike", the value of user.home will be "C:\Users\Mike"</li>
+    <li><b>Default Local System account</b>: user.home system property value is set to <code>"c:\.aceql-http"</code> for the Java session.</li>
+    <li><b>Any other account</b>: user.home system property value is the default/regular value. For example, on Windows 8.1, if the account chosen is <code>".\Mike"</code>, the value of user.home will be <code>"C:\Users\Mike"</code>.</li>
 </ul>
 
 <br>
@@ -137,7 +149,7 @@ If you have changed your CLASSPATH environment variable, you must do following a
     <li>Quit AceQL completely. (Ctrl-Q or File menu ==&gt; Quit item.)</li>
     <li>Restart AceQL.</li>
     <li>Start the Windows Service from the AceQL interface (not from the Windows Services Console).</li>
-    <li>Click "Service Logs" and verify that the displayed CLASSPATH contains the new value in the aceqlhttpservice-stdout.yyyy-mm-dd.log.</li>
+    <li>Click "Service Logs" and verify that the displayed CLASSPATH contains the new value in the <code>aceqlhttpservice-stdout.yyyy-mm-dd.log</code> file.</li>
 </ul>
 
 <br>

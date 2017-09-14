@@ -90,6 +90,8 @@ public class ParmsUtil {
         return SystemUtils.USER_DIR + File.separator + subDir;
     }
 
+    
+    
     /**
      * Returns the base dir
      * @return c:\.DOT_APP_DIR or /usr/local/APP_NAME

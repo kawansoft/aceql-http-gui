@@ -28,6 +28,7 @@ import com.kawansoft.aceql.gui.service.ServiceInstaller;
 import com.kawansoft.aceql.gui.service.ServiceUtil;
 import com.kawansoft.aceql.gui.task.AceQLTask;
 import com.kawansoft.aceql.gui.util.ConfigurationUtil;
+import com.kawansoft.aceql.gui.util.JarFileFilter;
 import com.kawansoft.aceql.gui.util.PropertiesFileFilter;
 import com.kawansoft.app.parms.MessagesManager;
 import com.kawansoft.app.parms.Parms;
@@ -55,7 +56,10 @@ import com.kawansoft.app.util.JFileChooserMemory;
 import com.kawansoft.app.util.SystemPropDisplayer;
 import com.kawansoft.app.util.WindowSettingMgr;
 import com.kawansoft.app.util.classpath.ClassPathHacker;
+import com.kawansoft.aceql.gui.jlist.FileListClipboardManager;
+import com.kawansoft.aceql.gui.jlist.FilesListCellRenderer;
 import com.kawansoft.app.util.registry.RegistryReader;
+import com.kawansoft.app.util.table.FileDrop;
 import com.swing.util.SwingUtil;
 import java.awt.Desktop;
 import java.awt.FileDialog;
@@ -69,6 +73,8 @@ import java.net.ConnectException;
 import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -78,6 +84,7 @@ import javax.swing.JFileChooser;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.KeyStroke;
+import javax.swing.ListModel;
 import javax.swing.ListSelectionModel;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
@@ -89,6 +96,7 @@ import javax.swing.text.AttributeSet;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.DocumentFilter;
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.lang3.NotImplementedException;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.SystemUtils;
 import org.kawanfw.sql.api.server.web.WebServerApi;
@@ -143,6 +151,7 @@ public class AceQLManager extends javax.swing.JFrame {
 
     private DefaultListModel defaultListModel = new DefaultListModel();
     private AceQLManagerInstall aceQLManagerInstall = null;
+    private FileListClipboardManager fileListClipboardManager;
 
     /**
      * Creates new form Preferences
@@ -157,7 +166,7 @@ public class AceQLManager extends javax.swing.JFrame {
      */
     public void initializeIt() {
 
-        Dimension dim = new Dimension(633, 633);
+        Dimension dim = new Dimension(625, 625);
         this.setPreferredSize(dim);
         this.setSize(dim);
 
@@ -184,28 +193,20 @@ public class AceQLManager extends javax.swing.JFrame {
                 installService();
             }
         });
-        
-        
-        Thread t = new Thread() {
-            @Override
-            public void run() {
-                try {
-                    while (true) {
-                        setJdbcDrivers();
-                        Thread.sleep(2000);
-                    }
-                } catch (InterruptedException ex) {
-                    Logger.getLogger(AceQLConsole.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-        };
-        t.start();
+
 
         loadConfiguration();
-
         updateStandardStatusThreadStart();
 
-        
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                File[] finalFiles = getInstalledJdbcDrivers();
+                List<File> newList = Arrays.asList(finalFiles);
+                setJdbcDrivers(newList);
+            }
+        });
+                
         if (SystemUtils.IS_OS_WINDOWS) {
             updateServiceStatusThreadStart();
             jMenuItemServiceInstall.setVisible(false); // Futur usage if any problem
@@ -275,6 +276,8 @@ public class AceQLManager extends javax.swing.JFrame {
             }
         };
 
+
+        
         // Listen for changes in the text
         jTextFieldPropertiesFile.getDocument().addDocumentListener(documentListener);
         jTextFieldHost.getDocument().addDocumentListener(documentListener);
@@ -282,12 +285,13 @@ public class AceQLManager extends javax.swing.JFrame {
         //defaultListModel.addListDataListener(new MyListDataListener());
 
         jList = new JList(defaultListModel);
-
-        jList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        jList.setCellRenderer(new FilesListCellRenderer(null));
+        
+        jList.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
         jList.setLayoutOrientation(JList.HORIZONTAL_WRAP);
         jList.setVisibleRowCount(-1);
         jScrollPane.setViewportView(jList);
-
+                
         this.keyListenerAdder();
 
         this.setTitle(jLabelLogo.getText());
@@ -304,6 +308,19 @@ public class AceQLManager extends javax.swing.JFrame {
         ButtonResizer buttonResizer3 = new ButtonResizer(jPanelButtonStartStop);
         buttonResizer3.setWidthToMax();
 
+        new FileDrop(this, new FileDrop.Listener()
+        {
+            @Override
+            public void filesDropped(java.io.File[] files)
+            {
+                // handle file drop  
+                addDropedFiles(files);               
+                             
+            } // end filesDropped
+        }); 
+                
+        fileListClipboardManager = new FileListClipboardManager(this, jList, true);
+                
         // Load and activate previous windows settings
         WindowSettingMgr.load(this);
 
@@ -332,83 +349,42 @@ public class AceQLManager extends javax.swing.JFrame {
     }
      */
     
-    private void setJdbcDrivers() {
-        File[] files = getJdbcDrivers();
+    public void setJdbcDrivers(List<File> files ) {
 
         if (files == null) {
             return;
         }
 
         defaultListModel.removeAllElements();
-        for (int i = 0; i < files.length; i++) {
+        for (int i = 0; i < files.size(); i++) {
             try {
-                defaultListModel.addElement(files[i].getName());
+                defaultListModel.addElement(files.get(i));
             } catch (Exception e) {
                 // Nothing. Do not write on interface...
             }
         }
 
-        String classpath = System.getProperty("java.class.path");
+        //addDriversToClasspath(files);
+    }
 
-        for (int i = 0; i < files.length; i++) {
-            if (!classpath.contains(files[i].toString())) {
+    public void addFilesToClasspath(List<File> files) {
+        String classpath = System.getProperty("java.class.path");
+        
+        for (int i = 0; i < files.size(); i++) {
+            if (!classpath.contains(files.get(i).toString())) {
                 try {
-                    ClassPathHacker.addFile(files[i]);
+                    ClassPathHacker.addFile(files.get(i));
                 } catch (IOException ex) {
                     ex.printStackTrace();
                     Logger.getLogger(AceQLManager.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
-        }
-                
-        /*
-        if (previousFiles == null && files == null) {
-            return;
-        }
-
-        if (files == null) {
-            defaultListModel.removeAllElements();
-            previousFiles = null;
-            return;
-        }
-
-        if (previousFiles != null && previousFiles.length == files.length) {
-            boolean different = false;
-            for (int i = 0; i < files.length; i++) {
-                if (!files[i].toString().equals(previousFiles[i].toString())) {
-                    different = true;
-                }
-            }
-
-            if (!different) {
-                return;
-            }
-        }
-
-        defaultListModel.removeAllElements();
-        for (int i = 0; i < files.length; i++) {
-            defaultListModel.addElement(files[i].getName());
-        }
-        previousFiles = files;
-
-        String classpath = System.getProperty("java.class.path");
-
-        for (int i = 0; i < files.length; i++) {
-            if (!classpath.contains(files[i].toString())) {
-                try {
-                    ClassPathHacker.addFile(files[i]);
-                } catch (IOException ex) {
-                    ex.printStackTrace();
-                    Logger.getLogger(AceQLManager.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-        }
-        */
+        }   
     }
 
     public void loadConfiguration() {
 
-        File configurationProperties = ConfigurationUtil.getConfirurationProperties();
+        File configurationProperties = ConfigurationUtil.getConfirurationPropertiesFile();
 
         String aceqlProperties = null;
         String host = null;
@@ -470,6 +446,9 @@ public class AceQLManager extends javax.swing.JFrame {
             } else {
                 jTextFieldPropertiesFile.setText(fileOut.toString());
             }
+            
+            // Install Postgres Driver
+            
 
         } else {
             jTextFieldPropertiesFile.setText(aceqlProperties);
@@ -485,7 +464,7 @@ public class AceQLManager extends javax.swing.JFrame {
         }
                 
         // Store the properties if they did not exists
-        if ( ! ConfigurationUtil.getConfirurationProperties().exists()) {
+        if ( ! ConfigurationUtil.getConfirurationPropertiesFile().exists()) {
             storeConfiguration();
         }
     }
@@ -525,6 +504,14 @@ public class AceQLManager extends javax.swing.JFrame {
 
         aceQLConsole = new AceQLConsole(this);
                 
+        // Add Jdbc Drivers to classpath
+        ListModel listModel = jList.getModel();
+        List<File> files = new ArrayList<>();
+        for (int i = 0; i < listModel.getSize(); i++) {
+            files.add((File) listModel.getElementAt(i));
+        }
+        addFilesToClasspath(files);
+
         AceQLTask aceQLTask = new AceQLTask(AceQLTask.STANDARD_MODE, jTextFieldPropertiesFile.getText(), jTextFieldHost.getText(), port);
         aceQLTask.start();
 
@@ -952,6 +939,8 @@ public class AceQLManager extends javax.swing.JFrame {
     }
 
 
+
+
     // See http://stackoverflow.com/questions/14058505/jtextfield-accept-only-alphabet-and-white-space/14060047#14060047
     class MyDocumentFilter extends DocumentFilter {
 
@@ -1125,12 +1114,12 @@ public class AceQLManager extends javax.swing.JFrame {
 
         } catch (IOException ex) {
             JOptionPane.showMessageDialog(this,
-                    "Enable to store configuration on configuration file: " + ConfigurationUtil.getConfirurationProperties() + ". Reason: " + ex, Parms.APP_NAME,
+                    "Enable to store configuration on configuration file: " + ConfigurationUtil.getConfirurationPropertiesFile() + ". Reason: " + ex, Parms.APP_NAME,
                     JOptionPane.ERROR_MESSAGE);
         };
     }
 
-    public static File[] getJdbcDrivers() {
+    public static File[] getInstalledJdbcDrivers() {
         File libJdbcDir = new File(ParmsUtil.getInstallAceQLDir() + File.separator + "lib-jdbc");
         FilenameFilter filenameFilter = new FilenameFilter() {
             @Override
@@ -1200,7 +1189,7 @@ public class AceQLManager extends javax.swing.JFrame {
         System.exit(0);
     }
 
-    private void addFileWithAwt() {
+    private void addPropertyFileWithAwt() {
         FileDialog fileDialog = new FileDialogMemory(this, MessagesManager.get("system_open"), FileDialog.LOAD);
         fileDialog.setIconImage(ImageParmsUtil.getAppIcon());
         fileDialog.setType(FileDialog.Type.NORMAL);
@@ -1220,7 +1209,7 @@ public class AceQLManager extends javax.swing.JFrame {
 
     }
 
-    private void addFileWithSwing() throws HeadlessException {
+    private void addPropertyFileWithSwing() throws HeadlessException {
         JFileChooser jfileChooser = new JFileChooserMemory();
 
         jfileChooser.setDialogType(JFileChooser.OPEN_DIALOG);
@@ -1238,7 +1227,96 @@ public class AceQLManager extends javax.swing.JFrame {
             jTextFieldPropertiesFile.setText(file.toString());
         }
     }
+    
+   /**
+     * Add files to the AbstractFileListManager
+     * <br>
+     * may be called by outside program
+     * @param files     Files to addDropedFiles
+     */
+    @SuppressWarnings("unchecked")
+    public void addDropedFiles(File[] files) {
+        if (files == null || files.length == 0) {
+            return;
+        }
+        
+        List<File> drivers = new ArrayList<>();
+        
+        for (File file : files) {
+            if (file.toString().endsWith(".jar")) {
+                drivers.add(file);
+            }
+        }
+        
+        File[] fileArray = new File[drivers.size()];
+        fileArray = drivers.toArray(fileArray);
 
+        addDrivers(fileArray);
+        
+    }
+    
+    private void addDriversFileWithSwing() {
+
+        JFileChooser jfileChooser = new JFileChooserMemory();
+
+        jfileChooser.setDialogType(JFileChooser.OPEN_DIALOG);
+        jfileChooser.setMultiSelectionEnabled(true);
+
+        jfileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+
+        jfileChooser.setFileFilter(new JarFileFilter());
+        jfileChooser.setAcceptAllFileFilterUsed(false);
+
+        int returnVal = jfileChooser.showOpenDialog(this);
+
+        if (returnVal == JFileChooser.APPROVE_OPTION) {
+
+            File[] selectedFiles = jfileChooser.getSelectedFiles();
+            addDrivers(selectedFiles);
+        }
+
+    }
+
+    public void addDrivers(File[] files) throws HeadlessException {
+        
+        File libJdbcDir = new File(ParmsUtil.getInstallAceQLDir() + File.separator + "lib-jdbc");
+                
+        if (files == null || files.length == 0) {
+            return;
+        }
+        for (File file : files) {
+            File targetFile = new File(libJdbcDir.toString() + File.separator + file.getName());
+            
+            if (!targetFile.exists()) {
+                try {
+                    FileUtils.copyFile(file, targetFile);
+                } catch (IOException ex) {
+                    JOptionPane.showMessageDialog(this,
+                            "Enable to install JDBC Driver: " + file.getName() + ". Reason: " + ex, Parms.APP_NAME,
+                            JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+            }
+        }
+        
+        File [] finalFiles = getInstalledJdbcDrivers();
+        List<File> newList = Arrays.asList(finalFiles);
+        setJdbcDrivers(newList);
+    }
+
+    private void doAddDrivers() {
+         
+       jButtonApply.setEnabled(true);
+
+        // AWT does not work (freeze) on Windows
+        if (SystemUtils.IS_OS_WINDOWS) {
+            addDriversFileWithSwing();
+        } else {
+            throw new NotImplementedException("Program is designed to work on Windows only in this version.");
+        }
+        
+    }
+        
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -1292,7 +1370,7 @@ public class AceQLManager extends javax.swing.JFrame {
         jScrollPane = new javax.swing.JScrollPane();
         jList = new javax.swing.JList<>();
         jPanelLeft11 = new javax.swing.JPanel();
-        jButtonOpenLocation = new javax.swing.JButton();
+        jButtonBrowseDrivers = new javax.swing.JButton();
         jPanelEndField5 = new javax.swing.JPanel();
         jPanelSepBlanc8spaces2 = new javax.swing.JPanel();
         jPanelTitledSeparator5 = new javax.swing.JPanel();
@@ -1748,9 +1826,10 @@ public class AceQLManager extends javax.swing.JFrame {
         jPanelSepBlanc8spaces.setPreferredSize(new java.awt.Dimension(1000, 8));
         jPanelMain.add(jPanelSepBlanc8spaces);
 
-        jPaneJdbc.setMaximumSize(new java.awt.Dimension(33079, 40));
-        jPaneJdbc.setMinimumSize(new java.awt.Dimension(329, 40));
-        jPaneJdbc.setPreferredSize(new java.awt.Dimension(353, 40));
+        jPaneJdbc.setMaximumSize(new java.awt.Dimension(33079, 35));
+        jPaneJdbc.setMinimumSize(new java.awt.Dimension(329, 35));
+        jPaneJdbc.setName(""); // NOI18N
+        jPaneJdbc.setPreferredSize(new java.awt.Dimension(353, 35));
         jPaneJdbc.setLayout(new javax.swing.BoxLayout(jPaneJdbc, javax.swing.BoxLayout.LINE_AXIS));
 
         jPanelLeft12.setMaximumSize(new java.awt.Dimension(10, 10));
@@ -1790,8 +1869,6 @@ public class AceQLManager extends javax.swing.JFrame {
 
         jScrollPane.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         jScrollPane.setName(""); // NOI18N
-
-        jList.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane.setViewportView(jList);
 
         jPaneJdbc.add(jScrollPane);
@@ -1812,14 +1889,14 @@ public class AceQLManager extends javax.swing.JFrame {
 
         jPaneJdbc.add(jPanelLeft11);
 
-        jButtonOpenLocation.setText("Open Location");
-        jButtonOpenLocation.setToolTipText("");
-        jButtonOpenLocation.addActionListener(new java.awt.event.ActionListener() {
+        jButtonBrowseDrivers.setText("Browse");
+        jButtonBrowseDrivers.setToolTipText("");
+        jButtonBrowseDrivers.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonOpenLocationActionPerformed(evt);
+                jButtonBrowseDriversActionPerformed(evt);
             }
         });
-        jPaneJdbc.add(jButtonOpenLocation);
+        jPaneJdbc.add(jButtonBrowseDrivers);
 
         jPanelEndField5.setMaximumSize(new java.awt.Dimension(50, 10));
         jPanelEndField5.setMinimumSize(new java.awt.Dimension(50, 10));
@@ -2381,27 +2458,15 @@ public class AceQLManager extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonApplyActionPerformed
 
     private void jTextFieldPropertiesFileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldPropertiesFileActionPerformed
-        // TODO add your handling code here:
+        // TODO addDropedFiles your handling code here:
     }//GEN-LAST:event_jTextFieldPropertiesFileActionPerformed
 
-    private void jButtonOpenLocationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOpenLocationActionPerformed
-        try {
-            File libJdbcDir = new File(ParmsUtil.getInstallAceQLDir() + File.separator + "lib-jdbc");
-            Desktop.getDesktop().open(libJdbcDir);
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this,
-                    "Unable to display JDBC Drivers directory: " + CR_LF + ex.getMessage(),
-                    Parms.APP_NAME,
-                    JOptionPane.ERROR_MESSAGE);
-        }
-    }//GEN-LAST:event_jButtonOpenLocationActionPerformed
-
     private void jTextFieldHostActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldHostActionPerformed
-        // TODO add your handling code here:
+        // TODO addDropedFiles your handling code here:
     }//GEN-LAST:event_jTextFieldHostActionPerformed
 
     private void jTextFieldPortActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldPortActionPerformed
-        // TODO add your handling code here:
+        // TODO addDropedFiles your handling code here:
     }//GEN-LAST:event_jTextFieldPortActionPerformed
 
     private void jButtonURLMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonURLMouseEntered
@@ -2430,9 +2495,9 @@ public class AceQLManager extends javax.swing.JFrame {
 
         // AWT does not work (freeze) on Windows
         if (SystemUtils.IS_OS_WINDOWS) {
-            addFileWithSwing();
+            addPropertyFileWithSwing();
         } else {
-            addFileWithAwt();
+            addPropertyFileWithAwt();
         }
     }//GEN-LAST:event_jButtonBrowseActionPerformed
 
@@ -2538,7 +2603,10 @@ public class AceQLManager extends javax.swing.JFrame {
     private void jMenuCheckForUpdatesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuCheckForUpdatesActionPerformed
 
         try {
-            URL url = new URL("https://www.aceql.com/CheckForUpdates?version=" + org.kawanfw.sql.version.VersionValues.VERSION);
+            
+            String currentVersion = org.kawanfw.sql.version.VersionValues.VERSION;
+            
+            URL url = new URL("https://www.aceql.com/CheckForUpdates?version=" + currentVersion);
             Desktop desktop = Desktop.getDesktop();
             desktop.browse(url.toURI());
         } catch (Exception e) {
@@ -2570,6 +2638,12 @@ public class AceQLManager extends javax.swing.JFrame {
     private void jMenuItemResetWindowsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemResetWindowsActionPerformed
         actionResetWindows();
     }//GEN-LAST:event_jMenuItemResetWindowsActionPerformed
+
+    private void jButtonBrowseDriversActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBrowseDriversActionPerformed
+        
+         doAddDrivers();
+         
+    }//GEN-LAST:event_jButtonBrowseDriversActionPerformed
 
     public static void setLookAndFeel() throws IOException, ClassNotFoundException, InstantiationException, IllegalAccessException, UnsupportedLookAndFeelException {
         JFrame.setDefaultLookAndFeelDecorated(true);
@@ -2620,12 +2694,12 @@ public class AceQLManager extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonApply;
     private javax.swing.JButton jButtonBrowse;
+    private javax.swing.JButton jButtonBrowseDrivers;
     private javax.swing.JButton jButtonDisplayConsole;
     private javax.swing.JButton jButtonDisplayLogs;
     private javax.swing.JButton jButtonEdit;
     private javax.swing.JButton jButtonHelp;
     private javax.swing.JButton jButtonOk;
-    private javax.swing.JButton jButtonOpenLocation;
     private javax.swing.JButton jButtonServicesConsole;
     private javax.swing.JButton jButtonStart;
     private javax.swing.JButton jButtonStartService;

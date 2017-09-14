@@ -24,7 +24,6 @@
  */
 package com.kawansoft.aceql.gui.service;
 
-import static com.kawansoft.aceql.gui.AceQLManager.getJdbcDrivers;
 import com.kawansoft.app.parms.util.ParmsUtil;
 import java.io.BufferedReader;
 import java.io.File;
@@ -33,6 +32,7 @@ import java.io.InputStreamReader;
 
 import org.apache.commons.lang3.SystemUtils;
 import javax.swing.JOptionPane;
+import static com.kawansoft.aceql.gui.AceQLManager.getInstalledJdbcDrivers;
 
 /**
  * Utility class to installService or uninstallService the AceQLHTTPService

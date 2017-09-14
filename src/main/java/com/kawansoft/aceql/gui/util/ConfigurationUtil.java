@@ -57,7 +57,7 @@ public class ConfigurationUtil {
 
     }
 
-    public static File getConfirurationProperties() {
+    public static File getConfirurationPropertiesFile() {
         File confDir = new File(ParmsUtil.getBaseDir() + File.separator + "conf");
         if (!confDir.exists()) {
             confDir.mkdirs();
@@ -68,7 +68,7 @@ public class ConfigurationUtil {
 
     public void load() throws IOException {
 
-        File configurationProperties = getConfirurationProperties();
+        File configurationProperties = getConfirurationPropertiesFile();
 
         if (!configurationProperties.exists()) {
             return;
@@ -106,7 +106,7 @@ public class ConfigurationUtil {
             throw new FileNotFoundException("aceql properties file does not exists: " + aceqlProperties);
         }
 
-        File configuationProperties = getConfirurationProperties();
+        File configuationProperties = getConfirurationPropertiesFile();
         try (final OutputStream out = new FileOutputStream(configuationProperties)) {
             
             Properties properties = new Properties();

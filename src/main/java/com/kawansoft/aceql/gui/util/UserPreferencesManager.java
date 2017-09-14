@@ -51,6 +51,8 @@ public class UserPreferencesManager implements AppPreferencesManager {
 
     /**
      * Get a preference
+     * @param prefName
+     * @return 
      */
     @Override
     public String getPreference(String prefName) {

@@ -59,7 +59,7 @@ import org.apache.commons.io.IOUtils;
  *
  * @author Nicolas de Pomereu
  */
-public class Help extends javax.swing.JDialog {
+public class Help extends javax.swing.JFrame {
 
     public static final String CR_LF = System.getProperty("line.separator");
 
@@ -177,8 +177,6 @@ public class Help extends javax.swing.JDialog {
         Point upRight = new Point(dim.width - theWidth  - 1, 0);
                 
         WindowSettingMgr.load(this, upRight);
-
-        this.setAlwaysOnTop(true);
 
         // These 2 stupid lines : only to Force to diplay top of file first
         jEditorPane1.moveCaretPosition(0);
@@ -358,8 +356,6 @@ public class Help extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Aide");
-        setAlwaysOnTop(true);
-        setModal(true);
         getContentPane().setLayout(new javax.swing.BoxLayout(getContentPane(), javax.swing.BoxLayout.Y_AXIS));
 
         jPanelBorderTop.setMaximumSize(new java.awt.Dimension(32767, 10));
