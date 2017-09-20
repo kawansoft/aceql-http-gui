@@ -211,7 +211,6 @@ public class FileListClipboardManager
         menuItemPaste.setIcon(ImageParmsUtil.createImageIcon(ParmsUtil.PASTE_ICON));
         popupMenu.add(menuItemPaste);        
         
-        
         menuItemDelete = new JMenuItem(delete);
         menuItemDelete.addActionListener((new ActionListener() {
             public void actionPerformed(ActionEvent e) {

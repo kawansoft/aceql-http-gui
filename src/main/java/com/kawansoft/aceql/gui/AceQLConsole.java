@@ -73,15 +73,17 @@ public class AceQLConsole extends javax.swing.JFrame {
      */
     public void initializeIt() {
 
-        this.setSize(new Dimension(1160, 580));
-
+        Dimension dim = new Dimension(1259, 616);
+        this.setPreferredSize(dim);
+        this.setSize(dim);
+        
         try {
             this.setIconImage(ImageParmsUtil.getAppIcon());
         } catch (RuntimeException e1) {
             e1.printStackTrace();
         }
 
-        Toolkit.getDefaultToolkit().setDynamicLayout(true);
+       // Toolkit.getDefaultToolkit().setDynamicLayout(true);
 
         // Add a Clipboard Manager
         clipboard = new ClipboardManager(this.getContentPane());
@@ -112,6 +114,7 @@ public class AceQLConsole extends javax.swing.JFrame {
                 saveSettings();
             }
 
+            @Override
             public void componentResized(ComponentEvent e) {
                 saveSettings();
             }
@@ -135,6 +138,7 @@ public class AceQLConsole extends javax.swing.JFrame {
         jTextPane1.moveCaretPosition(0);
         jTextPane1.setSelectionEnd(0);
 
+        this.pack();
         this.setVisible(true);
        
     }

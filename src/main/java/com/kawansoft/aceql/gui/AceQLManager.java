@@ -96,7 +96,6 @@ import javax.swing.text.AttributeSet;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.DocumentFilter;
 import org.apache.commons.io.FileUtils;
-import org.apache.commons.lang3.NotImplementedException;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.SystemUtils;
 import org.kawanfw.sql.api.server.web.WebServerApi;
@@ -152,6 +151,8 @@ public class AceQLManager extends javax.swing.JFrame {
     private DefaultListModel defaultListModel = new DefaultListModel();
     private AceQLManagerInstall aceQLManagerInstall = null;
     private FileListClipboardManager fileListClipboardManager;
+    
+    private static boolean WINDOWS_OK_WITH_AWT = false;
 
     /**
      * Creates new form Preferences
@@ -283,9 +284,9 @@ public class AceQLManager extends javax.swing.JFrame {
         jTextFieldHost.getDocument().addDocumentListener(documentListener);
         jTextFieldPort.getDocument().addDocumentListener(documentListener);
         //defaultListModel.addListDataListener(new MyListDataListener());
-
+        
         jList = new JList(defaultListModel);
-        jList.setCellRenderer(new FilesListCellRenderer(null));
+        jList.setCellRenderer(new FilesListCellRenderer());
         
         jList.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
         jList.setLayoutOrientation(JList.HORIZONTAL_WRAP);
@@ -1204,8 +1205,11 @@ public class AceQLManager extends javax.swing.JFrame {
         });
 
         fileDialog.setVisible(true);
-        String file = fileDialog.getFile();
-        jTextFieldPropertiesFile.setText(file);
+        File[] selectedFiles = fileDialog.getFiles();
+        if (selectedFiles.length == 0) {
+            return;
+        }
+        jTextFieldPropertiesFile.setText(selectedFiles[0].toString());
 
     }
 
@@ -1255,6 +1259,25 @@ public class AceQLManager extends javax.swing.JFrame {
         
     }
     
+   private void addDriversFileWithAwt() {
+        FileDialog fileDialog = new FileDialogMemory(this, MessagesManager.get("system_open"), FileDialog.LOAD);
+        fileDialog.setIconImage(ImageParmsUtil.getAppIcon());
+        fileDialog.setType(FileDialog.Type.NORMAL);
+        fileDialog.setMultipleMode(true);
+
+        fileDialog.setFile("*.jar");
+        fileDialog.setFilenameFilter(new FilenameFilter() {
+            @Override
+            public boolean accept(File dir, String name) {
+                return name.toLowerCase().endsWith(".jar");
+            }
+        });
+
+        fileDialog.setVisible(true);
+        File[] selectedFiles = fileDialog.getFiles();
+        addDrivers(selectedFiles);
+    }
+        
     private void addDriversFileWithSwing() {
 
         JFileChooser jfileChooser = new JFileChooserMemory();
@@ -1306,13 +1329,17 @@ public class AceQLManager extends javax.swing.JFrame {
 
     private void doAddDrivers() {
          
-       jButtonApply.setEnabled(true);
+        jButtonApply.setEnabled(true);
 
         // AWT does not work (freeze) on Windows
         if (SystemUtils.IS_OS_WINDOWS) {
-            addDriversFileWithSwing();
+            if (WINDOWS_OK_WITH_AWT) {
+                addDriversFileWithAwt();
+            } else {
+                addDriversFileWithSwing();
+            }
         } else {
-            throw new NotImplementedException("Program is designed to work on Windows only in this version.");
+            addDriversFileWithAwt();
         }
         
     }
@@ -1433,6 +1460,7 @@ public class AceQLManager extends javax.swing.JFrame {
         jMenuItemResetWindows = new javax.swing.JMenuItem();
         jMenuHelp = new javax.swing.JMenu();
         jMenuItemHelp = new javax.swing.JMenuItem();
+        jMenuItemReleaseNotes = new javax.swing.JMenuItem();
         jSeparator3 = new javax.swing.JPopupMenu.Separator();
         jMenuItemSystemInfo = new javax.swing.JMenuItem();
         jMenuItemAbout = new javax.swing.JMenuItem();
@@ -2408,6 +2436,14 @@ public class AceQLManager extends javax.swing.JFrame {
             }
         });
         jMenuHelp.add(jMenuItemHelp);
+
+        jMenuItemReleaseNotes.setText("Release Notes");
+        jMenuItemReleaseNotes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemReleaseNotesActionPerformed(evt);
+            }
+        });
+        jMenuHelp.add(jMenuItemReleaseNotes);
         jMenuHelp.add(jSeparator3);
 
         jMenuItemSystemInfo.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F11, 0));
@@ -2495,7 +2531,12 @@ public class AceQLManager extends javax.swing.JFrame {
 
         // AWT does not work (freeze) on Windows
         if (SystemUtils.IS_OS_WINDOWS) {
-            addPropertyFileWithSwing();
+            if (WINDOWS_OK_WITH_AWT) {
+               addPropertyFileWithAwt();
+            }
+            else {
+                addPropertyFileWithSwing();
+            }
         } else {
             addPropertyFileWithAwt();
         }
@@ -2603,10 +2644,12 @@ public class AceQLManager extends javax.swing.JFrame {
     private void jMenuCheckForUpdatesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuCheckForUpdatesActionPerformed
 
         try {
+            String currentVersion = com.kawansoft.app.version.GuiVersionValues.VERSION;
             
-            String currentVersion = org.kawanfw.sql.version.VersionValues.VERSION;
+            String productType = org.kawanfw.sql.version.Version.PRODUCT.TYPE;
+            productType = StringUtils.substringBefore(productType, " ");
+            URL url = new URL("https://www.aceql.com/CheckForUpdates?version=" + currentVersion + "&edition=" + productType);
             
-            URL url = new URL("https://www.aceql.com/CheckForUpdates?version=" + currentVersion);
             Desktop desktop = Desktop.getDesktop();
             desktop.browse(url.toURI());
         } catch (Exception e) {
@@ -2640,10 +2683,22 @@ public class AceQLManager extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItemResetWindowsActionPerformed
 
     private void jButtonBrowseDriversActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBrowseDriversActionPerformed
-        
+
          doAddDrivers();
-         
     }//GEN-LAST:event_jButtonBrowseDriversActionPerformed
+
+    private void jMenuItemReleaseNotesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemReleaseNotesActionPerformed
+        try {
+ 
+            URL url = new URL("https://www.aceql.com/rest/soft/1.0/RELEASE-NOTES.txt");
+            
+            Desktop desktop = Desktop.getDesktop();
+            desktop.browse(url.toURI());
+        } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Impossible to display Check For Updates Page " + e.toString(), Parms.APP_NAME, JOptionPane.ERROR_MESSAGE);
+        }        
+    }//GEN-LAST:event_jMenuItemReleaseNotesActionPerformed
 
     public static void setLookAndFeel() throws IOException, ClassNotFoundException, InstantiationException, IllegalAccessException, UnsupportedLookAndFeelException {
         JFrame.setDefaultLookAndFeelDecorated(true);
@@ -2728,6 +2783,7 @@ public class AceQLManager extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItemClose;
     private javax.swing.JMenuItem jMenuItemHelp;
     private javax.swing.JMenuItem jMenuItemQuit;
+    private javax.swing.JMenuItem jMenuItemReleaseNotes;
     private javax.swing.JMenuItem jMenuItemResetWindows;
     private javax.swing.JMenuItem jMenuItemServiceInstall;
     private javax.swing.JMenuItem jMenuItemSystemInfo;

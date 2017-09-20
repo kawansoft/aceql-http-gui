@@ -104,7 +104,7 @@ public class AboutFrame extends javax.swing.JFrame {
         
         jPanelCenter.setBorder(javax.swing.BorderFactory.createTitledBorder(MessagesManager.get("about")));
         
-        this.jLabelVersion.setText(org.kawanfw.sql.version.Version.getServerVersion());
+        jLabelVersion.setText(org.kawanfw.sql.version.Version.getVersion());
         this.jLabelVersionGui.setText(GuiVersion.getVersion());
         this.jLabelCopyright .setText("<html>" + GuiVersion.VENDOR.COPYRIGHT + "</html>");
 

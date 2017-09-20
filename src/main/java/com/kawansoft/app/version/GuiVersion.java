@@ -24,8 +24,6 @@
  */
 package com.kawansoft.app.version;
 
-import com.kawansoft.app.parms.Parms;
-
 /**
  * Displays the SafeJdbc product GuiVersion
  */

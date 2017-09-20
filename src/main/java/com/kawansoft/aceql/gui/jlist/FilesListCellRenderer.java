@@ -31,17 +31,21 @@ import javax.swing.Icon;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.ListCellRenderer;
+import javax.swing.filechooser.FileSystemView;
 
 
 public class FilesListCellRenderer extends JLabel
 implements ListCellRenderer {
+  
+    
+    /** If true, all files have same extensions and we set the icon once */
+    public static boolean SAME_EXT_FOR_ALL_FILES = true;
 
-    /** The icon to use for files */
-    Icon icon = null;   
-
-    public FilesListCellRenderer(Icon icon) 
+    FileSystemView fsv = FileSystemView.getFileSystemView();
+    Icon icon = null;
+    
+    public FilesListCellRenderer() 
     {
-        this.icon = icon;
         setOpaque(true);
     }
 
@@ -62,12 +66,6 @@ implements ListCellRenderer {
             boolean isSelected,
             boolean cellHasFocus) 
     {
-
-        // The icon to set on filename
-        if (icon != null)
-        {
-            setIcon(icon);
-        }
                 
         if (isSelected) {
             setBackground(list.getSelectionBackground());
@@ -80,9 +78,24 @@ implements ListCellRenderer {
         //setForeground(URL_COLOR);
 
         File file = (File)value;
+        
         if (file != null)
         {
             setText(file.getName() + " ");
+            
+            if (SAME_EXT_FOR_ALL_FILES) {
+                if (icon == null) {
+                    icon = fsv.getSystemIcon(file);
+                }
+                setIcon(icon);
+            }
+            else {
+                icon = fsv.getSystemIcon(file);
+                setIcon(icon);
+            }
+
+            
+            
         }
 
         return this;
