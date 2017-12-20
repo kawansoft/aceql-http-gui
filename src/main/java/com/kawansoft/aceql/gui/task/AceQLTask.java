@@ -27,7 +27,7 @@ package com.kawansoft.aceql.gui.task;
 import com.kawansoft.aceql.gui.AceQLManager;
 import static com.kawansoft.aceql.gui.AceQLManager.CR_LF;
 import com.kawansoft.app.util.ClientLogger;
-import com.kawansoft.app.util.classpath.ClasspatUtil;
+import com.kawansoft.app.util.classpath.ClasspathUtil;
 import java.io.File;
 import java.io.IOException;
 import java.net.ConnectException;
@@ -104,7 +104,7 @@ public class AceQLTask extends Thread implements Runnable {
                 System.out.println(ClientLogger.formatLogMsg(null, "user.dir         : " + SystemUtils.getUserDir()));
             }
 
-            List<String> classpathList = ClasspatUtil.getOrderedClasspath();
+            List<String> classpathList = ClasspathUtil.getOrderedClasspath();
 
             String classpathCrLf = "";
             for (String classpathElement : classpathList) {

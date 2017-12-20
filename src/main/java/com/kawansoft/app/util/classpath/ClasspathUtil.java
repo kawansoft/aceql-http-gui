@@ -32,7 +32,7 @@ import java.util.List;
  *
  * @author Nicolas de Pomereu
  */
-public class ClasspatUtil {
+public class ClasspathUtil {
 
     public static List<String> getOrderedClasspath() {
         String classpath = System.getProperty("java.class.path");

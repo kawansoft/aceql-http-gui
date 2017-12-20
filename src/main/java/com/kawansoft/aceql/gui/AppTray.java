@@ -133,6 +133,14 @@ public class AppTray {
      */
     public void startAsTray(String[] args) {
 
+        String javaVersion = System.getProperty("java.version");
+        if (javaVersion.compareTo("1.9") >= 0) {
+            JOptionPane.showMessageDialog(null,
+                    "We are sorry: Java 9 is not yet supported in this AceQL HTTP Windows version.", Parms.APP_NAME,
+                    JOptionPane.ERROR_MESSAGE);
+            System.exit(-1);
+        }
+        
         PopupMenu menu;
         MenuItem menuItem;
 

@@ -1,0 +1,467 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<DOCUMENT Type="Advanced Installer" CreateVersion="12.0" version="12.0" Modules="java" RootPath="." Language="en" Id="{00E13B41-5B98-441E-80E0-CDD2266B66AF}">
+  <COMPONENT cid="caphyon.advinst.msicomp.ProjectOptionsComponent">
+    <ROW Name="HiddenItems" Value="MsiDriverPackagesComponent;UserAccountsComponent;ScheduledTasksComponent;SqlConnectionComponent;AutorunComponent;FirewallExceptionComponent;GameUxComponent;MsiDirectEditorComponent;SharePointSlnComponent;SilverlightSlnComponent;MultipleInstancesComponent;SccmComponent;ActSyncAppComponent"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiPropsComponent">
+    <ROW Property="AI_BITMAP_DISPLAY_MODE" Value="0"/>
+    <ROW Property="AI_FINDEXE_TITLE" Value="Select the installation package for [|ProductName]" ValueLocId="AI.Property.FindExeTitle"/>
+    <ROW Property="ALLUSERS" Value="1"/>
+    <ROW Property="ARPCOMMENTS" Value="This installer database contains the logic and data required to install [|ProductName]." ValueLocId="*"/>
+    <ROW Property="ARPCONTACT" Value="https://www.aceql.com/"/>
+    <ROW Property="ARPHELPLINK" Value="https://www.aceql.com/"/>
+    <ROW Property="ARPPRODUCTICON" Value="data_up_128_sRU_icon.exe" Type="8"/>
+    <ROW Property="ARPURLINFOABOUT" Value="https://www.aceql.com/"/>
+    <ROW Property="ARPURLUPDATEINFO" Value="https://www.aceql.com/"/>
+    <ROW Property="BannerBitmap" Value="banner" MultiBuildValue="DefaultBuild:banner_aceql.bmp_1" Type="1" MsiKey="BannerBitmap"/>
+    <ROW Property="CTRLS" Value="2"/>
+    <ROW Property="DialogBitmap" Value="dialog" MultiBuildValue="DefaultBuild:dialog_aceql.bmp_1" Type="1" MsiKey="DialogBitmap"/>
+    <ROW Property="Manufacturer" Value="KawanSoft"/>
+    <ROW Property="ProductCode" Value="1033:{FD209CFB-BCDD-497B-AB88-428C0845316E} " Type="16"/>
+    <ROW Property="ProductLanguage" Value="1033"/>
+    <ROW Property="ProductName" Value="AceQL HTTP"/>
+    <ROW Property="ProductVersion" Value="1.0.0" Type="32"/>
+    <ROW Property="RUNAPPLICATION" Value="1" Type="4"/>
+    <ROW Property="SecureCustomProperties" Value="OLDPRODUCTS;AI_NEWERPRODUCTFOUND;AI_SETUPEXEPATH;SETUPEXEDIR"/>
+    <ROW Property="UpgradeCode" Value="{CA50C7AC-50FE-48F6-A033-498B4F11256F}"/>
+    <ROW Property="WindowsType9X" MultiBuildValue="DefaultBuild:Windows 9x/ME" ValueLocId="-"/>
+    <ROW Property="WindowsType9XDisplay" MultiBuildValue="DefaultBuild:Windows 9x/ME" ValueLocId="-"/>
+    <ROW Property="WindowsTypeNT40" MultiBuildValue="DefaultBuild:Windows NT 4.0" ValueLocId="-"/>
+    <ROW Property="WindowsTypeNT40Display" MultiBuildValue="DefaultBuild:Windows NT 4.0" ValueLocId="-"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiDirsComponent">
+    <ROW Directory="APPDIR" Directory_Parent="TARGETDIR" DefaultDir="APPDIR:." IsPseudoRoot="1"/>
+    <ROW Directory="AceQL_Dir" Directory_Parent="APPDIR" DefaultDir="AceQL"/>
+    <ROW Directory="DesktopFolder" Directory_Parent="TARGETDIR" DefaultDir="DESKTO~1|DesktopFolder" IsPseudoRoot="1"/>
+    <ROW Directory="ProgramMenuFolder" Directory_Parent="TARGETDIR" DefaultDir="PROGRA~1|ProgramMenuFolder" IsPseudoRoot="1"/>
+    <ROW Directory="TARGETDIR" DefaultDir="SourceDir"/>
+    <ROW Directory="WEBINF_Dir" Directory_Parent="webapp_Dir" DefaultDir="WEB-INF"/>
+    <ROW Directory="api_Dir" Directory_Parent="sql_Dir" DefaultDir="api"/>
+    <ROW Directory="bin_Dir" Directory_Parent="AceQL_Dir" DefaultDir="bin"/>
+    <ROW Directory="blob_Dir" Directory_Parent="server_Dir" DefaultDir="blob"/>
+    <ROW Directory="classuse_1_Dir" Directory_Parent="server_Dir" DefaultDir="CLASS-~1|class-use"/>
+    <ROW Directory="classuse_2_Dir" Directory_Parent="connectionstore_Dir" DefaultDir="CLASS-~1|class-use"/>
+    <ROW Directory="classuse_3_Dir" Directory_Parent="session_Dir" DefaultDir="CLASS-~1|class-use"/>
+    <ROW Directory="classuse_4_Dir" Directory_Parent="util_Dir" DefaultDir="CLASS-~1|class-use"/>
+    <ROW Directory="classuse_5_Dir" Directory_Parent="web_Dir" DefaultDir="CLASS-~1|class-use"/>
+    <ROW Directory="classuse_6_Dir" Directory_Parent="sql_Dir" DefaultDir="CLASS-~1|class-use"/>
+    <ROW Directory="classuse_Dir" Directory_Parent="blob_Dir" DefaultDir="CLASS-~1|class-use"/>
+    <ROW Directory="conf_Dir" Directory_Parent="AceQL_Dir" DefaultDir="conf"/>
+    <ROW Directory="connectionstore_Dir" Directory_Parent="server_Dir" DefaultDir="CONNEC~1|connectionstore"/>
+    <ROW Directory="img_Dir" Directory_Parent="AceQL_Dir" DefaultDir="img"/>
+    <ROW Directory="indexfiles_Dir" Directory_Parent="javadoc_Dir" DefaultDir="INDEX-~1|index-files"/>
+    <ROW Directory="javadoc_Dir" Directory_Parent="AceQL_Dir" DefaultDir="javadoc"/>
+    <ROW Directory="kawanfw_Dir" Directory_Parent="org_Dir" DefaultDir="kawanfw"/>
+    <ROW Directory="legal_Dir" Directory_Parent="AceQL_Dir" DefaultDir="legal"/>
+    <ROW Directory="lib_Dir" Directory_Parent="WEBINF_Dir" DefaultDir="lib"/>
+    <ROW Directory="libjdbc_Dir" Directory_Parent="AceQL_Dir" DefaultDir="lib-jdbc"/>
+    <ROW Directory="libserver_Dir" Directory_Parent="AceQL_Dir" DefaultDir="LIB-SE~1|lib-server"/>
+    <ROW Directory="libtomcat_Dir" Directory_Parent="WEBINF_Dir" DefaultDir="LIB-TO~1|lib-tomcat"/>
+    <ROW Directory="org_Dir" Directory_Parent="javadoc_Dir" DefaultDir="org"/>
+    <ROW Directory="resources_Dir" Directory_Parent="javadoc_Dir" DefaultDir="RESOUR~1|resources"/>
+    <ROW Directory="server_Dir" Directory_Parent="api_Dir" DefaultDir="server"/>
+    <ROW Directory="service_Dir" Directory_Parent="AceQL_Dir" DefaultDir="service"/>
+    <ROW Directory="session_Dir" Directory_Parent="server_Dir" DefaultDir="session"/>
+    <ROW Directory="sql_Dir" Directory_Parent="kawanfw_Dir" DefaultDir="sql"/>
+    <ROW Directory="util_Dir" Directory_Parent="server_Dir" DefaultDir="util"/>
+    <ROW Directory="web_Dir" Directory_Parent="server_Dir" DefaultDir="web"/>
+    <ROW Directory="webapp_Dir" Directory_Parent="AceQL_Dir" DefaultDir="webapp"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiCompsComponent">
+    <ROW Component="AI_ExePath" ComponentId="{18913ED7-D0C1-4C72-9876-874F09EF3B5C}" Directory_="APPDIR" Attributes="4" KeyPath="AI_ExePath"/>
+    <ROW Component="AceQLHTTP.exe" ComponentId="{8C7BD482-FDDA-4B56-A96A-2597616A9368}" Directory_="APPDIR" Attributes="0" KeyPath="AceQLHTTP.exe"/>
+    <ROW Component="AceQLHTTPService.exe" ComponentId="{44583D95-C59E-4830-9E64-07A7A92022DE}" Directory_="service_Dir" Attributes="0" KeyPath="AceQLHTTPService.exe"/>
+    <ROW Component="AceQLHTTPServicew.exe" ComponentId="{9CA353D9-0AB1-49FC-8773-20E30A7F44F2}" Directory_="service_Dir" Attributes="0" KeyPath="AceQLHTTPServicew.exe"/>
+    <ROW Component="AceQLOpenSourceLicense.txt" ComponentId="{E1964EF7-4EEF-4A15-AD24-34D0E46F811A}" Directory_="AceQL_Dir" Attributes="0" KeyPath="AceQLOpenSourceLicense.txt" Type="0"/>
+    <ROW Component="Apache_License_v2.0.txt" ComponentId="{50B4975C-4A45-4C67-9EB0-97164A931288}" Directory_="legal_Dir" Attributes="0" KeyPath="Apache_License_v2.0.txt" Type="0"/>
+    <ROW Component="BlobDownloadConfigurator.html" ComponentId="{479C52DD-2A04-41A9-896D-34FF4B89EAD6}" Directory_="blob_Dir" Attributes="0" KeyPath="BlobDownloadConfigurator.html" Type="0"/>
+    <ROW Component="BlobDownloadConfigurator.html_1" ComponentId="{BD817B29-9611-4A7D-8023-4CE9CE148BD0}" Directory_="classuse_Dir" Attributes="0" KeyPath="BlobDownloadConfigurator.html_1" Type="0"/>
+    <ROW Component="ConnectionKey.html" ComponentId="{2159E2AE-5E45-4C62-BF0F-22AC7AE9164D}" Directory_="classuse_2_Dir" Attributes="0" KeyPath="ConnectionKey.html" Type="0"/>
+    <ROW Component="ConnectionKey.html_1" ComponentId="{956F9F20-5FFE-42BA-AAAB-8DE10B7AD371}" Directory_="connectionstore_Dir" Attributes="0" KeyPath="ConnectionKey.html_1" Type="0"/>
+    <ROW Component="DatabaseConfigurationException.html" ComponentId="{687F71E7-39CA-4DBB-93CB-54F01FEEC4F1}" Directory_="classuse_1_Dir" Attributes="0" KeyPath="DatabaseConfigurationException.html" Type="0"/>
+    <ROW Component="DatabaseConfigurationException.html_1" ComponentId="{58CA4047-8975-4E01-8C67-B26504E7C9A0}" Directory_="server_Dir" Attributes="0" KeyPath="DatabaseConfigurationException.html_1" Type="0"/>
+    <ROW Component="DefaultSessionConfigurator.html" ComponentId="{DED9B725-B446-465D-BCB8-2BE8AC2B3C2F}" Directory_="classuse_3_Dir" Attributes="0" KeyPath="DefaultSessionConfigurator.html" Type="0"/>
+    <ROW Component="DefaultSessionConfigurator.html_1" ComponentId="{CDB22007-F601-43BA-94EE-B7CAA94C6609}" Directory_="session_Dir" Attributes="0" KeyPath="DefaultSessionConfigurator.html_1" Type="0"/>
+    <ROW Component="HttpServletRequestStore.html" ComponentId="{428C91FC-578D-4A2A-8B78-8F7F9B2492EE}" Directory_="classuse_4_Dir" Attributes="0" KeyPath="HttpServletRequestStore.html" Type="0"/>
+    <ROW Component="HttpServletRequestStore.html_1" ComponentId="{61E9E0F3-0355-4644-B5B1-DF7C9BAF05B4}" Directory_="util_Dir" Attributes="0" KeyPath="HttpServletRequestStore.html_1" Type="0"/>
+    <ROW Component="ProductInformation" ComponentId="{089D126C-7664-48FC-8D05-05D74391E631}" Directory_="APPDIR" Attributes="4" KeyPath="Version"/>
+    <ROW Component="WebServer.html" ComponentId="{7C5CAD2C-E74F-48E0-89F9-96361F7B8DAA}" Directory_="classuse_6_Dir" Attributes="0" KeyPath="WebServer.html" Type="0"/>
+    <ROW Component="WebServerApi.html" ComponentId="{A72B2A32-A293-4489-A7CC-34337BB8A94E}" Directory_="classuse_5_Dir" Attributes="0" KeyPath="WebServerApi.html" Type="0"/>
+    <ROW Component="aceql_rocket_64.bmp" ComponentId="{1934DEE9-D6E4-433F-B4BD-A7CAEBEB51EE}" Directory_="img_Dir" Attributes="0" KeyPath="logoAceQL.png" Type="0"/>
+    <ROW Component="aceqlhttpgui1.0beta3.jar" ComponentId="{1EF26275-ABB7-44DA-A856-8B189CA747AC}" Directory_="libserver_Dir" Attributes="0" KeyPath="commonscli1.4.jar" Type="0"/>
+    <ROW Component="aceqlhttplocal1.0beta5.jar" ComponentId="{793C6806-6795-4C1D-89EA-7AD96AD8BC9F}" Directory_="lib_Dir" Attributes="0" KeyPath="commonscli1.4.jar_1" Type="0"/>
+    <ROW Component="aceqlserver.bat" ComponentId="{BAE13462-6666-4D23-BEBB-87DB77A88BA8}" Directory_="bin_Dir" Attributes="0" KeyPath="aceqlserver.bat" Type="0"/>
+    <ROW Component="aceqlserver.properties" ComponentId="{303D2173-C916-45C5-84EA-9100AD3C2549}" Directory_="conf_Dir" Attributes="0" KeyPath="aceqlserver.properties" Type="0"/>
+    <ROW Component="allclassesframe.html" ComponentId="{4F73590D-8520-419F-A1D3-0094DAFEA062}" Directory_="javadoc_Dir" Attributes="0" KeyPath="allclassesframe.html" Type="0"/>
+    <ROW Component="background.gif" ComponentId="{1831916E-78EF-4C65-A8AD-5C52BC1E79A7}" Directory_="resources_Dir" Attributes="0" KeyPath="background.gif" Type="0"/>
+    <ROW Component="index1.html" ComponentId="{FEA2F32F-0347-4665-B956-66E0F1C3784E}" Directory_="indexfiles_Dir" Attributes="0" KeyPath="index1.html" Type="0"/>
+    <ROW Component="installService.bat" ComponentId="{CBF1FC93-DD0F-4E16-96D6-BE2E7EC2B2F0}" Directory_="service_Dir" Attributes="0" KeyPath="uninstallService.bat" Type="0"/>
+    <ROW Component="packageframe.html" ComponentId="{8844AB4A-E8D2-4D58-ABD5-0170BA44D059}" Directory_="web_Dir" Attributes="0" KeyPath="packageframe.html_5" Type="0"/>
+    <ROW Component="packageframe.html_1" ComponentId="{DA55F88E-A898-41A2-AF74-105B6ED2113A}" Directory_="sql_Dir" Attributes="0" KeyPath="packageframe.html_6" Type="0"/>
+    <ROW Component="postgresql42.1.4.jre7.jar" ComponentId="{AEBDBB0A-58E3-4852-8126-02ADC4BAD929}" Directory_="libjdbc_Dir" Attributes="0" KeyPath="postgresql42.1.4.jre7.jar" Type="0"/>
+    <ROW Component="tomcatjdbc8.5.20.jar" ComponentId="{31C708BA-8D34-47DC-A903-5F36E0B17FFC}" Directory_="libtomcat_Dir" Attributes="0" KeyPath="tomcatjdbc8.5.24.jar_1" Type="0"/>
+    <ROW Component="web.xml" ComponentId="{BF2F2EC8-CCDA-406A-8A00-B0C7512EBEF8}" Directory_="WEBINF_Dir" Attributes="0" KeyPath="web.xml" Type="0"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiFeatsComponent">
+    <ROW Feature="MainFeature" Title="MainFeature" Description="Description" Display="1" Level="1" Directory_="APPDIR" Attributes="0" Components="AI_ExePath AceQLHTTP.exe AceQLHTTPService.exe AceQLHTTPServicew.exe AceQLOpenSourceLicense.txt Apache_License_v2.0.txt BlobDownloadConfigurator.html BlobDownloadConfigurator.html_1 ConnectionKey.html ConnectionKey.html_1 DatabaseConfigurationException.html DatabaseConfigurationException.html_1 DefaultSessionConfigurator.html DefaultSessionConfigurator.html_1 HttpServletRequestStore.html HttpServletRequestStore.html_1 ProductInformation WebServer.html WebServerApi.html aceql_rocket_64.bmp aceqlhttpgui1.0beta3.jar aceqlhttplocal1.0beta5.jar aceqlserver.bat aceqlserver.properties allclassesframe.html background.gif index1.html installService.bat packageframe.html packageframe.html_1 postgresql42.1.4.jre7.jar tomcatjdbc8.5.20.jar web.xml"/>
+    <ATTRIBUTE name="CurrentFeature" value="MainFeature"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiFilesComponent">
+    <ROW File="AceQLHTTP.exe" Component_="AceQLHTTP.exe" FileName="ACEQLH~1.EXE|AceQLHTTP.exe" Attributes="0" SourcePath="&lt;AI_STUBS&gt;aijclw.exe" SelfReg="false" NextFile="AceQLOpenSourceLicense.txt" DigSign="true"/>
+    <ROW File="AceQLHTTPService.exe" Component_="AceQLHTTPService.exe" FileName="ACEQLH~1.EXE|AceQLHTTPService.exe" Attributes="0" SourcePath="AceQL\service\AceQLHTTPService.exe" SelfReg="false" NextFile="AceQLHTTPServicew.exe" DigSign="true"/>
+    <ROW File="AceQLHTTPServicew.exe" Component_="AceQLHTTPServicew.exe" FileName="ACEQLH~2.EXE|AceQLHTTPServicew.exe" Attributes="0" SourcePath="AceQL\service\AceQLHTTPServicew.exe" SelfReg="false" NextFile="installService.bat" DigSign="true"/>
+    <ROW File="AceQLOpenSourceLicense.txt" Component_="AceQLOpenSourceLicense.txt" FileName="ACEQLO~1.TXT|AceQLOpenSourceLicense.txt" Attributes="0" SourcePath="AceQL\AceQLOpenSourceLicense.txt" SelfReg="false" NextFile="aceqlserver.bat"/>
+    <ROW File="Apache_License_v2.0.txt" Component_="Apache_License_v2.0.txt" FileName="APACHE~1.TXT|Apache_License_v2.0.txt" Attributes="0" SourcePath="AceQL\legal\Apache_License_v2.0.txt" SelfReg="false" NextFile="PostgreSQLLicense.txt"/>
+    <ROW File="BlobDownloadConfigurator.html" Component_="BlobDownloadConfigurator.html" FileName="BLOBDO~1.HTM|BlobDownloadConfigurator.html" Attributes="0" SourcePath="AceQLPro\javadoc\org\kawanfw\sql\api\server\blob\BlobDownloadConfigurator.html" SelfReg="false" NextFile="BlobUploadConfigurator.html"/>
+    <ROW File="BlobDownloadConfigurator.html_1" Component_="BlobDownloadConfigurator.html_1" FileName="BLOBDO~1.HTM|BlobDownloadConfigurator.html" Attributes="0" SourcePath="AceQLPro\javadoc\org\kawanfw\sql\api\server\blob\class-use\BlobDownloadConfigurator.html" SelfReg="false" NextFile="BlobUploadConfigurator.html_1"/>
+    <ROW File="BlobUploadConfigurator.html" Component_="BlobDownloadConfigurator.html" FileName="BLOBUP~1.HTM|BlobUploadConfigurator.html" Attributes="0" SourcePath="AceQLPro\javadoc\org\kawanfw\sql\api\server\blob\BlobUploadConfigurator.html" SelfReg="false" NextFile="BlobDownloadConfigurator.html_1"/>
+    <ROW File="BlobUploadConfigurator.html_1" Component_="BlobDownloadConfigurator.html_1" FileName="BLOBUP~1.HTM|BlobUploadConfigurator.html" Attributes="0" SourcePath="AceQLPro\javadoc\org\kawanfw\sql\api\server\blob\class-use\BlobUploadConfigurator.html" SelfReg="false" NextFile="DefaultBlobDownloadConfigurator.html"/>
+    <ROW File="ConnectionKey.html" Component_="ConnectionKey.html" FileName="CONNEC~1.HTM|ConnectionKey.html" Attributes="0" SourcePath="AceQLPro\javadoc\org\kawanfw\sql\api\server\connectionstore\class-use\ConnectionKey.html" SelfReg="false" NextFile="ConnectionStoreManager.html"/>
+    <ROW File="ConnectionKey.html_1" Component_="ConnectionKey.html_1" FileName="CONNEC~1.HTM|ConnectionKey.html" Attributes="0" SourcePath="AceQLPro\javadoc\org\kawanfw\sql\api\server\connectionstore\ConnectionKey.html" SelfReg="false" NextFile="ConnectionStoreManager.html_1"/>
+    <ROW File="ConnectionStoreManager.html" Component_="ConnectionKey.html" FileName="CONNEC~2.HTM|ConnectionStoreManager.html" Attributes="0" SourcePath="AceQLPro\javadoc\org\kawanfw\sql\api\server\connectionstore\class-use\ConnectionStoreManager.html" SelfReg="false" NextFile="ConnectionKey.html_1"/>
+    <ROW File="ConnectionStoreManager.html_1" Component_="ConnectionKey.html_1" FileName="CONNEC~2.HTM|ConnectionStoreManager.html" Attributes="0" SourcePath="AceQLPro\javadoc\org\kawanfw\sql\api\server\connectionstore\ConnectionStoreManager.html" SelfReg="false" NextFile="packageframe.html_1"/>
+    <ROW File="DataSourceStore.html" Component_="DatabaseConfigurationException.html" FileName="DATASO~1.HTM|DataSourceStore.html" Attributes="0" SourcePath="AceQLPro\javadoc\org\kawanfw\sql\api\server\class-use\DataSourceStore.html" SelfReg="false" NextFile="DefaultDatabaseConfigurator.html"/>
+    <ROW File="DataSourceStore.html_1" Component_="DatabaseConfigurationException.html_1" FileName="DATASO~1.HTM|DataSourceStore.html" Attributes="0" SourcePath="AceQLPro\javadoc\org\kawanfw\sql\api\server\DataSourceStore.html" SelfReg="false" NextFile="DefaultDatabaseConfigurator.html_1"/>
+    <ROW File="DatabaseConfigurationException.html" Component_="DatabaseConfigurationException.html" FileName="DATABA~1.HTM|DatabaseConfigurationException.html" Attributes="0" SourcePath="AceQLPro\javadoc\org\kawanfw\sql\api\server\class-use\DatabaseConfigurationException.html" SelfReg="false" NextFile="DatabaseConfigurator.html"/>
+    <ROW File="DatabaseConfigurationException.html_1" Component_="DatabaseConfigurationException.html_1" FileName="DATABA~1.HTM|DatabaseConfigurationException.html" Attributes="0" SourcePath="AceQLPro\javadoc\org\kawanfw\sql\api\server\DatabaseConfigurationException.html" SelfReg="false" NextFile="DatabaseConfigurator.html_1"/>
+    <ROW File="DatabaseConfigurator.html" Component_="DatabaseConfigurationException.html" FileName="DATABA~2.HTM|DatabaseConfigurator.html" Attributes="0" SourcePath="AceQLPro\javadoc\org\kawanfw\sql\api\server\class-use\DatabaseConfigurator.html" SelfReg="false" NextFile="DataSourceStore.html"/>
+    <ROW File="DatabaseConfigurator.html_1" Component_="DatabaseConfigurationException.html_1" FileName="DATABA~2.HTM|DatabaseConfigurator.html" Attributes="0" SourcePath="AceQLPro\javadoc\org\kawanfw\sql\api\server\DatabaseConfigurator.html" SelfReg="false" NextFile="DataSourceStore.html_1"/>
+    <ROW File="DefaultBlobDownloadConfigurator.html" Component_="BlobDownloadConfigurator.html_1" FileName="DEFAUL~1.HTM|DefaultBlobDownloadConfigurator.html" Attributes="0" SourcePath="AceQLPro\javadoc\org\kawanfw\sql\api\server\blob\class-use\DefaultBlobDownloadConfigurator.html" SelfReg="false" NextFile="DefaultBlobUploadConfigurator.html"/>
+    <ROW File="DefaultBlobDownloadConfigurator.html_1" Component_="BlobDownloadConfigurator.html" FileName="DEFAUL~1.HTM|DefaultBlobDownloadConfigurator.html" Attributes="0" SourcePath="AceQLPro\javadoc\org\kawanfw\sql\api\server\blob\DefaultBlobDownloadConfigurator.html" SelfReg="false" NextFile="DefaultBlobUploadConfigurator.html_1"/>
+    <ROW File="DefaultBlobUploadConfigurator.html" Component_="BlobDownloadConfigurator.html_1" FileName="DEFAUL~2.HTM|DefaultBlobUploadConfigurator.html" Attributes="0" SourcePath="AceQLPro\javadoc\org\kawanfw\sql\api\server\blob\class-use\DefaultBlobUploadConfigurator.html" SelfReg="false" NextFile="DefaultBlobDownloadConfigurator.html_1"/>
+    <ROW File="DefaultBlobUploadConfigurator.html_1" Component_="BlobDownloadConfigurator.html" FileName="DEFAUL~2.HTM|DefaultBlobUploadConfigurator.html" Attributes="0" SourcePath="AceQLPro\javadoc\org\kawanfw\sql\api\server\blob\DefaultBlobUploadConfigurator.html" SelfReg="false" NextFile="packageframe.html"/>
+    <ROW File="DefaultDatabaseConfigurator.html" Component_="DatabaseConfigurationException.html" FileName="DEFAUL~1.HTM|DefaultDatabaseConfigurator.html" Attributes="0" SourcePath="AceQLPro\javadoc\org\kawanfw\sql\api\server\class-use\DefaultDatabaseConfigurator.html" SelfReg="false" NextFile="DefaultPoolsInfo.html"/>
+    <ROW File="DefaultDatabaseConfigurator.html_1" Component_="DatabaseConfigurationException.html_1" FileName="DEFAUL~1.HTM|DefaultDatabaseConfigurator.html" Attributes="0" SourcePath="AceQLPro\javadoc\org\kawanfw\sql\api\server\DefaultDatabaseConfigurator.html" SelfReg="false" NextFile="DefaultPoolsInfo.html_1"/>
+    <ROW File="DefaultPoolsInfo.html" Component_="DatabaseConfigurationException.html" FileName="DEFAUL~2.HTM|DefaultPoolsInfo.html" Attributes="0" SourcePath="AceQLPro\javadoc\org\kawanfw\sql\api\server\class-use\DefaultPoolsInfo.html" SelfReg="false" NextFile="SshAuthDatabaseConfigurator.html"/>
+    <ROW File="DefaultPoolsInfo.html_1" Component_="DatabaseConfigurationException.html_1" FileName="DEFAUL~2.HTM|DefaultPoolsInfo.html" Attributes="0" SourcePath="AceQLPro\javadoc\org\kawanfw\sql\api\server\DefaultPoolsInfo.html" SelfReg="false" NextFile="packageframe.html_2"/>
+    <ROW File="DefaultSessionConfigurator.html" Component_="DefaultSessionConfigurator.html" FileName="DEFAUL~1.HTM|DefaultSessionConfigurator.html" Attributes="0" SourcePath="AceQLPro\javadoc\org\kawanfw\sql\api\server\session\class-use\DefaultSessionConfigurator.html" SelfReg="false" NextFile="JwtSessionConfigurator.html"/>
+    <ROW File="DefaultSessionConfigurator.html_1" Component_="DefaultSessionConfigurator.html_1" FileName="DEFAUL~1.HTM|DefaultSessionConfigurator.html" Attributes="0" SourcePath="AceQLPro\javadoc\org\kawanfw\sql\api\server\session\DefaultSessionConfigurator.html" SelfReg="false" NextFile="JwtSessionConfigurator.html_1"/>
+    <ROW File="HttpServletRequestStore.html" Component_="HttpServletRequestStore.html" FileName="HTTPSE~1.HTM|HttpServletRequestStore.html" Attributes="0" SourcePath="AceQLPro\javadoc\org\kawanfw\sql\api\server\util\class-use\HttpServletRequestStore.html" SelfReg="false" NextFile="ServerInfo.html"/>
+    <ROW File="HttpServletRequestStore.html_1" Component_="HttpServletRequestStore.html_1" FileName="HTTPSE~1.HTM|HttpServletRequestStore.html" Attributes="0" SourcePath="AceQLPro\javadoc\org\kawanfw\sql\api\server\util\HttpServletRequestStore.html" SelfReg="false" NextFile="packageframe.html_4"/>
+    <ROW File="JwtSessionConfigurator.html" Component_="DefaultSessionConfigurator.html" FileName="JWTSES~1.HTM|JwtSessionConfigurator.html" Attributes="0" SourcePath="AceQLPro\javadoc\org\kawanfw\sql\api\server\session\class-use\JwtSessionConfigurator.html" SelfReg="false" NextFile="SessionConfigurator.html"/>
+    <ROW File="JwtSessionConfigurator.html_1" Component_="DefaultSessionConfigurator.html_1" FileName="JWTSES~1.HTM|JwtSessionConfigurator.html" Attributes="0" SourcePath="AceQLPro\javadoc\org\kawanfw\sql\api\server\session\JwtSessionConfigurator.html" SelfReg="false" NextFile="packageframe.html_3"/>
+    <ROW File="PostgreSQLLicense.txt" Component_="Apache_License_v2.0.txt" FileName="POSTGR~1.TXT|PostgreSQLLicense.txt" Attributes="0" SourcePath="AceQL\legal\PostgreSQLLicense.txt" SelfReg="false" NextFile="postgresql42.1.4.jre7.jar"/>
+    <ROW File="README.txt" Component_="AceQLOpenSourceLicense.txt" FileName="README.txt" Attributes="0" SourcePath="AceQL\README.txt" SelfReg="false" NextFile="RELEASENOTES.html"/>
+    <ROW File="RELEASENOTES.html" Component_="AceQLOpenSourceLicense.txt" FileName="RELEAS~1.HTM|RELEASE-NOTES.html" Attributes="0" SourcePath="AceQL\RELEASE-NOTES.html" SelfReg="false" NextFile="AceQLHTTPService.exe"/>
+    <ROW File="ServerInfo.html" Component_="HttpServletRequestStore.html" FileName="SERVER~1.HTM|ServerInfo.html" Attributes="0" SourcePath="AceQLPro\javadoc\org\kawanfw\sql\api\server\util\class-use\ServerInfo.html" SelfReg="false" NextFile="SimpleSha1.html"/>
+    <ROW File="ServerInfo.html_1" Component_="HttpServletRequestStore.html_1" FileName="SERVER~1.HTM|ServerInfo.html" Attributes="0" SourcePath="AceQLPro\javadoc\org\kawanfw\sql\api\server\util\ServerInfo.html" SelfReg="false" NextFile="SimpleSha1.html_1"/>
+    <ROW File="SessionConfigurator.html" Component_="DefaultSessionConfigurator.html" FileName="SESSIO~1.HTM|SessionConfigurator.html" Attributes="0" SourcePath="AceQLPro\javadoc\org\kawanfw\sql\api\server\session\class-use\SessionConfigurator.html" SelfReg="false" NextFile="SessionIdentifierGenerator.html"/>
+    <ROW File="SessionConfigurator.html_1" Component_="DefaultSessionConfigurator.html_1" FileName="SESSIO~1.HTM|SessionConfigurator.html" Attributes="0" SourcePath="AceQLPro\javadoc\org\kawanfw\sql\api\server\session\SessionConfigurator.html" SelfReg="false" NextFile="SessionIdentifierGenerator.html_1"/>
+    <ROW File="SessionIdentifierGenerator.html" Component_="DefaultSessionConfigurator.html" FileName="SESSIO~2.HTM|SessionIdentifierGenerator.html" Attributes="0" SourcePath="AceQLPro\javadoc\org\kawanfw\sql\api\server\session\class-use\SessionIdentifierGenerator.html" SelfReg="false" NextFile="SessionInfo.html"/>
+    <ROW File="SessionIdentifierGenerator.html_1" Component_="DefaultSessionConfigurator.html_1" FileName="SESSIO~2.HTM|SessionIdentifierGenerator.html" Attributes="0" SourcePath="AceQLPro\javadoc\org\kawanfw\sql\api\server\session\SessionIdentifierGenerator.html" SelfReg="false" NextFile="SessionInfo.html_1"/>
+    <ROW File="SessionInfo.html" Component_="DefaultSessionConfigurator.html" FileName="SESSIO~3.HTM|SessionInfo.html" Attributes="0" SourcePath="AceQLPro\javadoc\org\kawanfw\sql\api\server\session\class-use\SessionInfo.html" SelfReg="false" NextFile="DefaultSessionConfigurator.html_1"/>
+    <ROW File="SessionInfo.html_1" Component_="DefaultSessionConfigurator.html_1" FileName="SESSIO~3.HTM|SessionInfo.html" Attributes="0" SourcePath="AceQLPro\javadoc\org\kawanfw\sql\api\server\session\SessionInfo.html" SelfReg="false" NextFile="SshAuthDatabaseConfigurator.html_1"/>
+    <ROW File="SimpleSha1.html" Component_="HttpServletRequestStore.html" FileName="SIMPLE~1.HTM|SimpleSha1.html" Attributes="0" SourcePath="AceQLPro\javadoc\org\kawanfw\sql\api\server\util\class-use\SimpleSha1.html" SelfReg="false" NextFile="Ssh.html"/>
+    <ROW File="SimpleSha1.html_1" Component_="HttpServletRequestStore.html_1" FileName="SIMPLE~1.HTM|SimpleSha1.html" Attributes="0" SourcePath="AceQLPro\javadoc\org\kawanfw\sql\api\server\util\SimpleSha1.html" SelfReg="false" NextFile="Ssh.html_1"/>
+    <ROW File="Ssh.html" Component_="HttpServletRequestStore.html" FileName="SSH~1.HTM|Ssh.html" Attributes="0" SourcePath="AceQLPro\javadoc\org\kawanfw\sql\api\server\util\class-use\Ssh.html" SelfReg="false" NextFile="Version.html"/>
+    <ROW File="Ssh.html_1" Component_="HttpServletRequestStore.html_1" FileName="SSH~1.HTM|Ssh.html" Attributes="0" SourcePath="AceQLPro\javadoc\org\kawanfw\sql\api\server\util\Ssh.html" SelfReg="false" NextFile="Version.html_1"/>
+    <ROW File="SshAuthDatabaseConfigurator.html" Component_="DatabaseConfigurationException.html" FileName="SSHAUT~1.HTM|SshAuthDatabaseConfigurator.html" Attributes="0" SourcePath="AceQLPro\javadoc\org\kawanfw\sql\api\server\class-use\SshAuthDatabaseConfigurator.html" SelfReg="false" NextFile="StatementAnalyzer.html"/>
+    <ROW File="SshAuthDatabaseConfigurator.html_1" Component_="DatabaseConfigurationException.html_1" FileName="SSHAUT~1.HTM|SshAuthDatabaseConfigurator.html" Attributes="0" SourcePath="AceQLPro\javadoc\org\kawanfw\sql\api\server\SshAuthDatabaseConfigurator.html" SelfReg="false" NextFile="StatementAnalyzer.html_1"/>
+    <ROW File="StatementAnalyzer.html" Component_="DatabaseConfigurationException.html" FileName="STATEM~1.HTM|StatementAnalyzer.html" Attributes="0" SourcePath="AceQLPro\javadoc\org\kawanfw\sql\api\server\class-use\StatementAnalyzer.html" SelfReg="false" NextFile="ConnectionKey.html"/>
+    <ROW File="StatementAnalyzer.html_1" Component_="DatabaseConfigurationException.html_1" FileName="STATEM~1.HTM|StatementAnalyzer.html" Attributes="0" SourcePath="AceQLPro\javadoc\org\kawanfw\sql\api\server\StatementAnalyzer.html" SelfReg="false" NextFile="HttpServletRequestStore.html"/>
+    <ROW File="Version.html" Component_="HttpServletRequestStore.html" FileName="VERSIO~1.HTM|Version.html" Attributes="0" SourcePath="AceQLPro\javadoc\org\kawanfw\sql\api\server\util\class-use\Version.html" SelfReg="false" NextFile="HttpServletRequestStore.html_1"/>
+    <ROW File="Version.html_1" Component_="HttpServletRequestStore.html_1" FileName="VERSIO~1.HTM|Version.html" Attributes="0" SourcePath="AceQLPro\javadoc\org\kawanfw\sql\api\server\util\Version.html" SelfReg="false" NextFile="WebServerApi.html"/>
+    <ROW File="WebServer.html" Component_="WebServer.html" FileName="WEBSER~1.HTM|WebServer.html" Attributes="0" SourcePath="AceQLPro\javadoc\org\kawanfw\sql\class-use\WebServer.html" SelfReg="false" NextFile="packageframe.html_6"/>
+    <ROW File="WebServer.html_1" Component_="packageframe.html_1" FileName="WEBSER~1.HTM|WebServer.html" Attributes="0" SourcePath="AceQLPro\javadoc\org\kawanfw\sql\WebServer.html" SelfReg="false" NextFile="overviewframe.html"/>
+    <ROW File="WebServerApi.html" Component_="WebServerApi.html" FileName="WEBSER~1.HTM|WebServerApi.html" Attributes="0" SourcePath="AceQLPro\javadoc\org\kawanfw\sql\api\server\web\class-use\WebServerApi.html" SelfReg="false" NextFile="packageframe.html_5"/>
+    <ROW File="WebServerApi.html_1" Component_="packageframe.html" FileName="WEBSER~1.HTM|WebServerApi.html" Attributes="0" SourcePath="AceQLPro\javadoc\org\kawanfw\sql\api\server\web\WebServerApi.html" SelfReg="false" NextFile="WebServer.html"/>
+    <ROW File="aceql_rocket_64.bmp" Component_="aceql_rocket_64.bmp" FileName="ACEQL_~1.BMP|aceql_rocket_64.bmp" Attributes="0" SourcePath="AceQL\img\aceql_rocket_64.bmp" SelfReg="false" NextFile="aceql_rocket_64.png"/>
+    <ROW File="aceql_rocket_64.png" Component_="aceql_rocket_64.bmp" FileName="ACEQL_~1.PNG|aceql_rocket_64.png" Attributes="0" SourcePath="AceQL\img\aceql_rocket_64.png" SelfReg="false" NextFile="banner_aceql.bmp"/>
+    <ROW File="aceqlhttpgui1.0.jar" Component_="aceqlhttpgui1.0beta3.jar" FileName="ACEQL-~3.JAR|aceql-http-gui-1.0.jar" Attributes="0" SourcePath="AceQL\lib-server\aceql-http-gui-1.0.jar" SelfReg="false" NextFile="aceqlhttplocal1.0.jar"/>
+    <ROW File="aceqlhttpgui1.0.jar_1" Component_="aceqlhttplocal1.0beta5.jar" FileName="ACEQL-~2.JAR|aceql-http-gui-1.0.jar" Attributes="0" SourcePath="AceQL\webapp\WEB-INF\lib\aceql-http-gui-1.0.jar" SelfReg="false" NextFile="aceqlhttplocal1.0.jar_1"/>
+    <ROW File="aceqlhttplocal1.0.jar" Component_="aceqlhttpgui1.0beta3.jar" FileName="ACEQL-~4.JAR|aceql-http-local-1.0.jar" Attributes="0" SourcePath="AceQL\lib-server\aceql-http-local-1.0.jar" SelfReg="false" NextFile="commonsio2.6.jar"/>
+    <ROW File="aceqlhttplocal1.0.jar_1" Component_="aceqlhttplocal1.0beta5.jar" FileName="ACEQL-~3.JAR|aceql-http-local-1.0.jar" Attributes="0" SourcePath="AceQL\webapp\WEB-INF\lib\aceql-http-local-1.0.jar" SelfReg="false" NextFile="commonsio2.6.jar_1"/>
+    <ROW File="aceqlserver.bat" Component_="aceqlserver.bat" FileName="ACEQL-~1.BAT|aceql-server.bat" Attributes="0" SourcePath="AceQL\bin\aceql-server.bat" SelfReg="false" NextFile="aceqlserver.properties"/>
+    <ROW File="aceqlserver.properties" Component_="aceqlserver.properties" FileName="ACEQL-~1.PRO|aceql-server.properties" Attributes="0" SourcePath="AceQL\conf\aceql-server.properties" SelfReg="false" NextFile="aceql_rocket_64.bmp"/>
+    <ROW File="allclassesframe.html" Component_="allclassesframe.html" FileName="ALLCLA~1.HTM|allclasses-frame.html" Attributes="0" SourcePath="AceQLPro\javadoc\allclasses-frame.html" SelfReg="false" NextFile="allclassesnoframe.html"/>
+    <ROW File="allclassesnoframe.html" Component_="allclassesframe.html" FileName="ALLCLA~2.HTM|allclasses-noframe.html" Attributes="0" SourcePath="AceQLPro\javadoc\allclasses-noframe.html" SelfReg="false" NextFile="constantvalues.html"/>
+    <ROW File="background.gif" Component_="background.gif" FileName="BACKGR~1.GIF|background.gif" Attributes="0" SourcePath="AceQLPro\javadoc\resources\background.gif" SelfReg="false" NextFile="tab.gif"/>
+    <ROW File="banner_aceql.bmp" Component_="aceql_rocket_64.bmp" FileName="BANNER~1.BMP|banner_aceql.bmp" Attributes="0" SourcePath="AceQL\img\banner_aceql.bmp" SelfReg="false" NextFile="data_up_128.bmp"/>
+    <ROW File="commonscli1.4.jar" Component_="aceqlhttpgui1.0beta3.jar" FileName="COMMON~1.JAR|commons-cli-1.4.jar" Attributes="0" SourcePath="AceQL\lib-server\commons-cli-1.4.jar" SelfReg="false" NextFile="commonscodec1.10.jar"/>
+    <ROW File="commonscli1.4.jar_1" Component_="aceqlhttplocal1.0beta5.jar" FileName="COMMON~1.JAR|commons-cli-1.4.jar" Attributes="0" SourcePath="AceQL\webapp\WEB-INF\lib\commons-cli-1.4.jar" SelfReg="false" NextFile="commonscodec1.10.jar_1"/>
+    <ROW File="commonscodec1.10.jar" Component_="aceqlhttpgui1.0beta3.jar" FileName="COMMON~2.JAR|commons-codec-1.10.jar" Attributes="0" SourcePath="AceQL\lib-server\commons-codec-1.10.jar" SelfReg="false" NextFile="javax.json1.0.4.jar"/>
+    <ROW File="commonscodec1.10.jar_1" Component_="aceqlhttplocal1.0beta5.jar" FileName="COMMON~2.JAR|commons-codec-1.10.jar" Attributes="0" SourcePath="AceQL\webapp\WEB-INF\lib\commons-codec-1.10.jar" SelfReg="false" NextFile="javax.json1.0.4.jar_1"/>
+    <ROW File="commonsio2.6.jar" Component_="aceqlhttpgui1.0beta3.jar" FileName="COMMON~5.JAR|commons-io-2.6.jar" Attributes="0" SourcePath="AceQL\lib-server\commons-io-2.6.jar" SelfReg="false" NextFile="commonslang33.7.jar"/>
+    <ROW File="commonsio2.6.jar_1" Component_="aceqlhttplocal1.0beta5.jar" FileName="COMMON~5.JAR|commons-io-2.6.jar" Attributes="0" SourcePath="AceQL\webapp\WEB-INF\lib\commons-io-2.6.jar" SelfReg="false" NextFile="commonslang33.7.jar_1"/>
+    <ROW File="commonslang33.7.jar" Component_="aceqlhttpgui1.0beta3.jar" FileName="COMMON~6.JAR|commons-lang3-3.7.jar" Attributes="0" SourcePath="AceQL\lib-server\commons-lang3-3.7.jar" SelfReg="false" NextFile="jacksonannotations2.9.0.jar"/>
+    <ROW File="commonslang33.7.jar_1" Component_="aceqlhttplocal1.0beta5.jar" FileName="COMMON~6.JAR|commons-lang3-3.7.jar" Attributes="0" SourcePath="AceQL\webapp\WEB-INF\lib\commons-lang3-3.7.jar" SelfReg="false" NextFile="jacksonannotations2.9.0.jar_1"/>
+    <ROW File="constantvalues.html" Component_="allclassesframe.html" FileName="CONSTA~1.HTM|constant-values.html" Attributes="0" SourcePath="AceQLPro\javadoc\constant-values.html" SelfReg="false" NextFile="deprecatedlist.html"/>
+    <ROW File="data_up_128.bmp" Component_="aceql_rocket_64.bmp" FileName="DATA_U~1.BMP|data_up_128.bmp" Attributes="0" SourcePath="AceQL\img\data_up_128.bmp" SelfReg="false" NextFile="data_up_128_sRU_icon.ico"/>
+    <ROW File="data_up_128_sRU_icon.ico" Component_="aceql_rocket_64.bmp" FileName="DATA_U~1.ICO|data_up_128_sRU_icon.ico" Attributes="0" SourcePath="AceQL\img\data_up_128_sRU_icon.ico" SelfReg="false" NextFile="dialog_aceql.bmp"/>
+    <ROW File="deprecatedlist.html" Component_="allclassesframe.html" FileName="DEPREC~1.HTM|deprecated-list.html" Attributes="0" SourcePath="AceQLPro\javadoc\deprecated-list.html" SelfReg="false" NextFile="helpdoc.html"/>
+    <ROW File="dialog_aceql.bmp" Component_="aceql_rocket_64.bmp" FileName="DIALOG~1.BMP|dialog_aceql.bmp" Attributes="0" SourcePath="AceQL\img\dialog_aceql.bmp" SelfReg="false" NextFile="logoAceQL.bmp"/>
+    <ROW File="helpdoc.html" Component_="allclassesframe.html" FileName="HELP-D~1.HTM|help-doc.html" Attributes="0" SourcePath="AceQLPro\javadoc\help-doc.html" SelfReg="false" NextFile="index1.html"/>
+    <ROW File="index.html" Component_="allclassesframe.html" FileName="INDEX~1.HTM|index.html" Attributes="0" SourcePath="AceQLPro\javadoc\index.html" SelfReg="false" NextFile="BlobDownloadConfigurator.html"/>
+    <ROW File="index1.html" Component_="index1.html" FileName="INDEX-~1.HTM|index-1.html" Attributes="0" SourcePath="AceQLPro\javadoc\index-files\index-1.html" SelfReg="false" NextFile="index10.html"/>
+    <ROW File="index10.html" Component_="index1.html" FileName="INDEX-~2.HTM|index-10.html" Attributes="0" SourcePath="AceQLPro\javadoc\index-files\index-10.html" SelfReg="false" NextFile="index11.html"/>
+    <ROW File="index11.html" Component_="index1.html" FileName="INDEX-~3.HTM|index-11.html" Attributes="0" SourcePath="AceQLPro\javadoc\index-files\index-11.html" SelfReg="false" NextFile="index12.html"/>
+    <ROW File="index12.html" Component_="index1.html" FileName="INDEX-~4.HTM|index-12.html" Attributes="0" SourcePath="AceQLPro\javadoc\index-files\index-12.html" SelfReg="false" NextFile="index13.html"/>
+    <ROW File="index13.html" Component_="index1.html" FileName="INDEX-~5.HTM|index-13.html" Attributes="0" SourcePath="AceQLPro\javadoc\index-files\index-13.html" SelfReg="false" NextFile="index14.html"/>
+    <ROW File="index14.html" Component_="index1.html" FileName="INDEX-~6.HTM|index-14.html" Attributes="0" SourcePath="AceQLPro\javadoc\index-files\index-14.html" SelfReg="false" NextFile="index15.html"/>
+    <ROW File="index15.html" Component_="index1.html" FileName="INDEX-~7.HTM|index-15.html" Attributes="0" SourcePath="AceQLPro\javadoc\index-files\index-15.html" SelfReg="false" NextFile="index16.html"/>
+    <ROW File="index16.html" Component_="index1.html" FileName="INDEX-~8.HTM|index-16.html" Attributes="0" SourcePath="AceQLPro\javadoc\index-files\index-16.html" SelfReg="false" NextFile="index17.html"/>
+    <ROW File="index17.html" Component_="index1.html" FileName="INDEX-~9.HTM|index-17.html" Attributes="0" SourcePath="AceQLPro\javadoc\index-files\index-17.html" SelfReg="false" NextFile="index18.html"/>
+    <ROW File="index18.html" Component_="index1.html" FileName="INDEX~10.HTM|index-18.html" Attributes="0" SourcePath="AceQLPro\javadoc\index-files\index-18.html" SelfReg="false" NextFile="index19.html"/>
+    <ROW File="index19.html" Component_="index1.html" FileName="INDEX~11.HTM|index-19.html" Attributes="0" SourcePath="AceQLPro\javadoc\index-files\index-19.html" SelfReg="false" NextFile="index2.html"/>
+    <ROW File="index2.html" Component_="index1.html" FileName="INDEX~12.HTM|index-2.html" Attributes="0" SourcePath="AceQLPro\javadoc\index-files\index-2.html" SelfReg="false" NextFile="index3.html"/>
+    <ROW File="index3.html" Component_="index1.html" FileName="INDEX~13.HTM|index-3.html" Attributes="0" SourcePath="AceQLPro\javadoc\index-files\index-3.html" SelfReg="false" NextFile="index4.html"/>
+    <ROW File="index4.html" Component_="index1.html" FileName="INDEX~14.HTM|index-4.html" Attributes="0" SourcePath="AceQLPro\javadoc\index-files\index-4.html" SelfReg="false" NextFile="index5.html"/>
+    <ROW File="index5.html" Component_="index1.html" FileName="INDEX~15.HTM|index-5.html" Attributes="0" SourcePath="AceQLPro\javadoc\index-files\index-5.html" SelfReg="false" NextFile="index6.html"/>
+    <ROW File="index6.html" Component_="index1.html" FileName="INDEX~16.HTM|index-6.html" Attributes="0" SourcePath="AceQLPro\javadoc\index-files\index-6.html" SelfReg="false" NextFile="index7.html"/>
+    <ROW File="index7.html" Component_="index1.html" FileName="INDEX~17.HTM|index-7.html" Attributes="0" SourcePath="AceQLPro\javadoc\index-files\index-7.html" SelfReg="false" NextFile="index8.html"/>
+    <ROW File="index8.html" Component_="index1.html" FileName="INDEX~18.HTM|index-8.html" Attributes="0" SourcePath="AceQLPro\javadoc\index-files\index-8.html" SelfReg="false" NextFile="index9.html"/>
+    <ROW File="index9.html" Component_="index1.html" FileName="INDEX~19.HTM|index-9.html" Attributes="0" SourcePath="AceQLPro\javadoc\index-files\index-9.html" SelfReg="false" NextFile="index.html"/>
+    <ROW File="installService.bat" Component_="installService.bat" FileName="INSTAL~1.BAT|installService.bat" Attributes="0" SourcePath="AceQL\service\installService.bat" SelfReg="false" NextFile="serviceProperties.bat"/>
+    <ROW File="jacksonannotations2.9.0.jar" Component_="aceqlhttpgui1.0beta3.jar" FileName="JACKSO~4.JAR|jackson-annotations-2.9.0.jar" Attributes="0" SourcePath="AceQL\lib-server\jackson-annotations-2.9.0.jar" SelfReg="false" NextFile="jacksoncore2.9.2.jar"/>
+    <ROW File="jacksonannotations2.9.0.jar_1" Component_="aceqlhttplocal1.0beta5.jar" FileName="JACKSO~4.JAR|jackson-annotations-2.9.0.jar" Attributes="0" SourcePath="AceQL\webapp\WEB-INF\lib\jackson-annotations-2.9.0.jar" SelfReg="false" NextFile="jacksoncore2.9.2.jar_1"/>
+    <ROW File="jacksoncore2.9.2.jar" Component_="aceqlhttpgui1.0beta3.jar" FileName="JACKSO~5.JAR|jackson-core-2.9.2.jar" Attributes="0" SourcePath="AceQL\lib-server\jackson-core-2.9.2.jar" SelfReg="false" NextFile="jacksondatabind2.9.2.jar"/>
+    <ROW File="jacksoncore2.9.2.jar_1" Component_="aceqlhttplocal1.0beta5.jar" FileName="JACKSO~5.JAR|jackson-core-2.9.2.jar" Attributes="0" SourcePath="AceQL\webapp\WEB-INF\lib\jackson-core-2.9.2.jar" SelfReg="false" NextFile="jacksondatabind2.9.2.jar_1"/>
+    <ROW File="jacksondatabind2.9.2.jar" Component_="aceqlhttpgui1.0beta3.jar" FileName="JACKSO~6.JAR|jackson-databind-2.9.2.jar" Attributes="0" SourcePath="AceQL\lib-server\jackson-databind-2.9.2.jar" SelfReg="false" NextFile="javajwt3.3.0.jar"/>
+    <ROW File="jacksondatabind2.9.2.jar_1" Component_="aceqlhttplocal1.0beta5.jar" FileName="JACKSO~6.JAR|jackson-databind-2.9.2.jar" Attributes="0" SourcePath="AceQL\webapp\WEB-INF\lib\jackson-databind-2.9.2.jar" SelfReg="false" NextFile="javajwt3.3.0.jar_1"/>
+    <ROW File="javajwt3.3.0.jar" Component_="aceqlhttpgui1.0beta3.jar" FileName="JAVA-J~2.JAR|java-jwt-3.3.0.jar" Attributes="0" SourcePath="AceQL\lib-server\java-jwt-3.3.0.jar" SelfReg="false" NextFile="postgresql42.1.4.jre7.jar_1"/>
+    <ROW File="javajwt3.3.0.jar_1" Component_="aceqlhttplocal1.0beta5.jar" FileName="JAVA-J~2.JAR|java-jwt-3.3.0.jar" Attributes="0" SourcePath="AceQL\webapp\WEB-INF\lib\java-jwt-3.3.0.jar" SelfReg="false" NextFile="postgresql42.1.4.jre7.jar_2"/>
+    <ROW File="javax.json1.0.4.jar" Component_="aceqlhttpgui1.0beta3.jar" FileName="JAVAXJ~1.JAR|javax.json-1.0.4.jar" Attributes="0" SourcePath="AceQL\lib-server\javax.json-1.0.4.jar" SelfReg="false" NextFile="jsch0.1.54.jar"/>
+    <ROW File="javax.json1.0.4.jar_1" Component_="aceqlhttplocal1.0beta5.jar" FileName="JAVAXJ~1.JAR|javax.json-1.0.4.jar" Attributes="0" SourcePath="AceQL\webapp\WEB-INF\lib\javax.json-1.0.4.jar" SelfReg="false" NextFile="jsch0.1.54.jar_1"/>
+    <ROW File="jsch0.1.54.jar" Component_="aceqlhttpgui1.0beta3.jar" FileName="JSCH-0~1.JAR|jsch-0.1.54.jar" Attributes="0" SourcePath="AceQL\lib-server\jsch-0.1.54.jar" SelfReg="false" NextFile="swingxall1.6.51.jar"/>
+    <ROW File="jsch0.1.54.jar_1" Component_="aceqlhttplocal1.0beta5.jar" FileName="JSCH-0~1.JAR|jsch-0.1.54.jar" Attributes="0" SourcePath="AceQL\webapp\WEB-INF\lib\jsch-0.1.54.jar" SelfReg="false" NextFile="web.xml"/>
+    <ROW File="logoAceQL.bmp" Component_="aceql_rocket_64.bmp" FileName="LOGO-A~1.BMP|logo-AceQL.bmp" Attributes="0" SourcePath="AceQL\img\logo-AceQL.bmp" SelfReg="false" NextFile="logoAceQL_48.bmp"/>
+    <ROW File="logoAceQL.png" Component_="aceql_rocket_64.bmp" FileName="LOGO-A~1.PNG|logo-AceQL.png" Attributes="0" SourcePath="AceQL\img\logo-AceQL.png" SelfReg="false" NextFile="uninstallService.bat"/>
+    <ROW File="logoAceQL_48.bmp" Component_="aceql_rocket_64.bmp" FileName="LOGO-A~2.BMP|logo-AceQL_48.bmp" Attributes="0" SourcePath="AceQL\img\logo-AceQL_48.bmp" SelfReg="false" NextFile="logoAceQL_48.png"/>
+    <ROW File="logoAceQL_48.png" Component_="aceql_rocket_64.bmp" FileName="LOGO-A~2.PNG|logo-AceQL_48.png" Attributes="0" SourcePath="AceQL\img\logo-AceQL_48.png" SelfReg="false" NextFile="Apache_License_v2.0.txt"/>
+    <ROW File="overviewframe.html" Component_="allclassesframe.html" FileName="OVERVI~1.HTM|overview-frame.html" Attributes="0" SourcePath="AceQLPro\javadoc\overview-frame.html" SelfReg="false" NextFile="overviewsummary.html"/>
+    <ROW File="overviewsummary.html" Component_="allclassesframe.html" FileName="OVERVI~2.HTM|overview-summary.html" Attributes="0" SourcePath="AceQLPro\javadoc\overview-summary.html" SelfReg="false" NextFile="overviewtree.html"/>
+    <ROW File="overviewtree.html" Component_="allclassesframe.html" FileName="OVERVI~3.HTM|overview-tree.html" Attributes="0" SourcePath="AceQLPro\javadoc\overview-tree.html" SelfReg="false" NextFile="packagelist"/>
+    <ROW File="packageframe.html" Component_="BlobDownloadConfigurator.html" FileName="PACKAG~1.HTM|package-frame.html" Attributes="0" SourcePath="AceQLPro\javadoc\org\kawanfw\sql\api\server\blob\package-frame.html" SelfReg="false" NextFile="packagesummary.html"/>
+    <ROW File="packageframe.html_1" Component_="ConnectionKey.html_1" FileName="PACKAG~1.HTM|package-frame.html" Attributes="0" SourcePath="AceQLPro\javadoc\org\kawanfw\sql\api\server\connectionstore\package-frame.html" SelfReg="false" NextFile="packagesummary.html_1"/>
+    <ROW File="packageframe.html_2" Component_="DatabaseConfigurationException.html_1" FileName="PACKAG~1.HTM|package-frame.html" Attributes="0" SourcePath="AceQLPro\javadoc\org\kawanfw\sql\api\server\package-frame.html" SelfReg="false" NextFile="packagesummary.html_2"/>
+    <ROW File="packageframe.html_3" Component_="DefaultSessionConfigurator.html_1" FileName="PACKAG~1.HTM|package-frame.html" Attributes="0" SourcePath="AceQLPro\javadoc\org\kawanfw\sql\api\server\session\package-frame.html" SelfReg="false" NextFile="packagesummary.html_3"/>
+    <ROW File="packageframe.html_4" Component_="HttpServletRequestStore.html_1" FileName="PACKAG~1.HTM|package-frame.html" Attributes="0" SourcePath="AceQLPro\javadoc\org\kawanfw\sql\api\server\util\package-frame.html" SelfReg="false" NextFile="packagesummary.html_4"/>
+    <ROW File="packageframe.html_5" Component_="packageframe.html" FileName="PACKAG~1.HTM|package-frame.html" Attributes="0" SourcePath="AceQLPro\javadoc\org\kawanfw\sql\api\server\web\package-frame.html" SelfReg="false" NextFile="packagesummary.html_5"/>
+    <ROW File="packageframe.html_6" Component_="packageframe.html_1" FileName="PACKAG~1.HTM|package-frame.html" Attributes="0" SourcePath="AceQLPro\javadoc\org\kawanfw\sql\package-frame.html" SelfReg="false" NextFile="packagesummary.html_6"/>
+    <ROW File="packagelist" Component_="allclassesframe.html" FileName="PACKAG~1|package-list" Attributes="0" SourcePath="AceQLPro\javadoc\package-list" SelfReg="false" NextFile="background.gif"/>
+    <ROW File="packagesummary.html" Component_="BlobDownloadConfigurator.html" FileName="PACKAG~2.HTM|package-summary.html" Attributes="0" SourcePath="AceQLPro\javadoc\org\kawanfw\sql\api\server\blob\package-summary.html" SelfReg="false" NextFile="packagetree.html"/>
+    <ROW File="packagesummary.html_1" Component_="ConnectionKey.html_1" FileName="PACKAG~2.HTM|package-summary.html" Attributes="0" SourcePath="AceQLPro\javadoc\org\kawanfw\sql\api\server\connectionstore\package-summary.html" SelfReg="false" NextFile="packagetree.html_1"/>
+    <ROW File="packagesummary.html_2" Component_="DatabaseConfigurationException.html_1" FileName="PACKAG~2.HTM|package-summary.html" Attributes="0" SourcePath="AceQLPro\javadoc\org\kawanfw\sql\api\server\package-summary.html" SelfReg="false" NextFile="packagetree.html_2"/>
+    <ROW File="packagesummary.html_3" Component_="DefaultSessionConfigurator.html_1" FileName="PACKAG~2.HTM|package-summary.html" Attributes="0" SourcePath="AceQLPro\javadoc\org\kawanfw\sql\api\server\session\package-summary.html" SelfReg="false" NextFile="packagetree.html_3"/>
+    <ROW File="packagesummary.html_4" Component_="HttpServletRequestStore.html_1" FileName="PACKAG~2.HTM|package-summary.html" Attributes="0" SourcePath="AceQLPro\javadoc\org\kawanfw\sql\api\server\util\package-summary.html" SelfReg="false" NextFile="packagetree.html_4"/>
+    <ROW File="packagesummary.html_5" Component_="packageframe.html" FileName="PACKAG~2.HTM|package-summary.html" Attributes="0" SourcePath="AceQLPro\javadoc\org\kawanfw\sql\api\server\web\package-summary.html" SelfReg="false" NextFile="packagetree.html_5"/>
+    <ROW File="packagesummary.html_6" Component_="packageframe.html_1" FileName="PACKAG~2.HTM|package-summary.html" Attributes="0" SourcePath="AceQLPro\javadoc\org\kawanfw\sql\package-summary.html" SelfReg="false" NextFile="packagetree.html_6"/>
+    <ROW File="packagetree.html" Component_="BlobDownloadConfigurator.html" FileName="PACKAG~3.HTM|package-tree.html" Attributes="0" SourcePath="AceQLPro\javadoc\org\kawanfw\sql\api\server\blob\package-tree.html" SelfReg="false" NextFile="packageuse.html"/>
+    <ROW File="packagetree.html_1" Component_="ConnectionKey.html_1" FileName="PACKAG~3.HTM|package-tree.html" Attributes="0" SourcePath="AceQLPro\javadoc\org\kawanfw\sql\api\server\connectionstore\package-tree.html" SelfReg="false" NextFile="packageuse.html_1"/>
+    <ROW File="packagetree.html_2" Component_="DatabaseConfigurationException.html_1" FileName="PACKAG~3.HTM|package-tree.html" Attributes="0" SourcePath="AceQLPro\javadoc\org\kawanfw\sql\api\server\package-tree.html" SelfReg="false" NextFile="packageuse.html_2"/>
+    <ROW File="packagetree.html_3" Component_="DefaultSessionConfigurator.html_1" FileName="PACKAG~3.HTM|package-tree.html" Attributes="0" SourcePath="AceQLPro\javadoc\org\kawanfw\sql\api\server\session\package-tree.html" SelfReg="false" NextFile="packageuse.html_3"/>
+    <ROW File="packagetree.html_4" Component_="HttpServletRequestStore.html_1" FileName="PACKAG~3.HTM|package-tree.html" Attributes="0" SourcePath="AceQLPro\javadoc\org\kawanfw\sql\api\server\util\package-tree.html" SelfReg="false" NextFile="packageuse.html_4"/>
+    <ROW File="packagetree.html_5" Component_="packageframe.html" FileName="PACKAG~3.HTM|package-tree.html" Attributes="0" SourcePath="AceQLPro\javadoc\org\kawanfw\sql\api\server\web\package-tree.html" SelfReg="false" NextFile="packageuse.html_5"/>
+    <ROW File="packagetree.html_6" Component_="packageframe.html_1" FileName="PACKAG~3.HTM|package-tree.html" Attributes="0" SourcePath="AceQLPro\javadoc\org\kawanfw\sql\package-tree.html" SelfReg="false" NextFile="packageuse.html_6"/>
+    <ROW File="packageuse.html" Component_="BlobDownloadConfigurator.html" FileName="PACKAG~4.HTM|package-use.html" Attributes="0" SourcePath="AceQLPro\javadoc\org\kawanfw\sql\api\server\blob\package-use.html" SelfReg="false" NextFile="DatabaseConfigurationException.html"/>
+    <ROW File="packageuse.html_1" Component_="ConnectionKey.html_1" FileName="PACKAG~4.HTM|package-use.html" Attributes="0" SourcePath="AceQLPro\javadoc\org\kawanfw\sql\api\server\connectionstore\package-use.html" SelfReg="false" NextFile="DatabaseConfigurationException.html_1"/>
+    <ROW File="packageuse.html_2" Component_="DatabaseConfigurationException.html_1" FileName="PACKAG~4.HTM|package-use.html" Attributes="0" SourcePath="AceQLPro\javadoc\org\kawanfw\sql\api\server\package-use.html" SelfReg="false" NextFile="DefaultSessionConfigurator.html"/>
+    <ROW File="packageuse.html_3" Component_="DefaultSessionConfigurator.html_1" FileName="PACKAG~4.HTM|package-use.html" Attributes="0" SourcePath="AceQLPro\javadoc\org\kawanfw\sql\api\server\session\package-use.html" SelfReg="false" NextFile="SessionConfigurator.html_1"/>
+    <ROW File="packageuse.html_4" Component_="HttpServletRequestStore.html_1" FileName="PACKAG~4.HTM|package-use.html" Attributes="0" SourcePath="AceQLPro\javadoc\org\kawanfw\sql\api\server\util\package-use.html" SelfReg="false" NextFile="ServerInfo.html_1"/>
+    <ROW File="packageuse.html_5" Component_="packageframe.html" FileName="PACKAG~4.HTM|package-use.html" Attributes="0" SourcePath="AceQLPro\javadoc\org\kawanfw\sql\api\server\web\package-use.html" SelfReg="false" NextFile="WebServerApi.html_1"/>
+    <ROW File="packageuse.html_6" Component_="packageframe.html_1" FileName="PACKAG~4.HTM|package-use.html" Attributes="0" SourcePath="AceQLPro\javadoc\org\kawanfw\sql\package-use.html" SelfReg="false" NextFile="WebServer.html_1"/>
+    <ROW File="postgresql42.1.4.jre7.jar" Component_="postgresql42.1.4.jre7.jar" FileName="POSTGR~1.JAR|postgresql-42.1.4.jre7.jar" Attributes="0" SourcePath="AceQL\lib-jdbc\postgresql-42.1.4.jre7.jar" SelfReg="false" NextFile="commonscli1.4.jar"/>
+    <ROW File="postgresql42.1.4.jre7.jar_1" Component_="aceqlhttpgui1.0beta3.jar" FileName="POSTGR~1.JAR|postgresql-42.1.4.jre7.jar" Attributes="0" SourcePath="AceQL\lib-server\postgresql-42.1.4.jre7.jar" SelfReg="false" NextFile="tomcatannotationsapi8.5.24.jar"/>
+    <ROW File="postgresql42.1.4.jre7.jar_2" Component_="aceqlhttplocal1.0beta5.jar" FileName="POSTGR~1.JAR|postgresql-42.1.4.jre7.jar" Attributes="0" SourcePath="AceQL\webapp\WEB-INF\lib\postgresql-42.1.4.jre7.jar" SelfReg="false" NextFile="swingxall1.6.51.jar_1"/>
+    <ROW File="serializedform.html" Component_="allclassesframe.html" FileName="SERIAL~1.HTM|serialized-form.html" Attributes="0" SourcePath="AceQLPro\javadoc\serialized-form.html" SelfReg="false" NextFile="stylesheet.css"/>
+    <ROW File="serviceProperties.bat" Component_="installService.bat" FileName="SERVIC~1.BAT|serviceProperties.bat" Attributes="0" SourcePath="AceQL\service\serviceProperties.bat" SelfReg="false" NextFile="startMmc.bat"/>
+    <ROW File="startMmc.bat" Component_="installService.bat" FileName="startMmc.bat" Attributes="0" SourcePath="AceQL\service\startMmc.bat" SelfReg="false" NextFile="startService.bat"/>
+    <ROW File="startService.bat" Component_="installService.bat" FileName="STARTS~1.BAT|startService.bat" Attributes="0" SourcePath="AceQL\service\startService.bat" SelfReg="false" NextFile="stopService.bat"/>
+    <ROW File="stopService.bat" Component_="installService.bat" FileName="STOPSE~1.BAT|stopService.bat" Attributes="0" SourcePath="AceQL\service\stopService.bat" SelfReg="false" NextFile="testInstall.bat"/>
+    <ROW File="stylesheet.css" Component_="allclassesframe.html" FileName="STYLES~1.CSS|stylesheet.css" Attributes="0" SourcePath="AceQLPro\javadoc\stylesheet.css" SelfReg="false"/>
+    <ROW File="swingxall1.6.51.jar" Component_="aceqlhttpgui1.0beta3.jar" FileName="SWINGX~1.JAR|swingx-all-1.6.5-1.jar" Attributes="0" SourcePath="AceQL\lib-server\swingx-all-1.6.5-1.jar" SelfReg="false" NextFile="README.txt"/>
+    <ROW File="swingxall1.6.51.jar_1" Component_="aceqlhttplocal1.0beta5.jar" FileName="SWINGX~1.JAR|swingx-all-1.6.5-1.jar" Attributes="0" SourcePath="AceQL\webapp\WEB-INF\lib\swingx-all-1.6.5-1.jar" SelfReg="false" NextFile="tomcatjdbc8.5.24.jar_1"/>
+    <ROW File="tab.gif" Component_="background.gif" FileName="tab.gif" Attributes="0" SourcePath="AceQLPro\javadoc\resources\tab.gif" SelfReg="false" NextFile="titlebar.gif"/>
+    <ROW File="testInstall.bat" Component_="installService.bat" FileName="TESTIN~1.BAT|testInstall.bat" Attributes="0" SourcePath="AceQL\service\testInstall.bat" SelfReg="false" NextFile="updateServiceClasspath.bat"/>
+    <ROW File="titlebar.gif" Component_="background.gif" FileName="titlebar.gif" Attributes="0" SourcePath="AceQLPro\javadoc\resources\titlebar.gif" SelfReg="false" NextFile="titlebar_end.gif"/>
+    <ROW File="titlebar_end.gif" Component_="background.gif" FileName="TITLEB~1.GIF|titlebar_end.gif" Attributes="0" SourcePath="AceQLPro\javadoc\resources\titlebar_end.gif" SelfReg="false" NextFile="serializedform.html"/>
+    <ROW File="tomcatannotationsapi8.5.24.jar" Component_="aceqlhttpgui1.0beta3.jar" FileName="TOMCAT~4.JAR|tomcat-annotations-api-8.5.24.jar" Attributes="0" SourcePath="AceQL\lib-server\tomcat-annotations-api-8.5.24.jar" SelfReg="false" NextFile="tomcatembedcore8.5.24.jar"/>
+    <ROW File="tomcatembedcore8.5.24.jar" Component_="aceqlhttpgui1.0beta3.jar" FileName="TOMCAT~5.JAR|tomcat-embed-core-8.5.24.jar" Attributes="0" SourcePath="AceQL\lib-server\tomcat-embed-core-8.5.24.jar" SelfReg="false" NextFile="tomcatjdbc8.5.24.jar"/>
+    <ROW File="tomcatjdbc8.5.24.jar" Component_="aceqlhttpgui1.0beta3.jar" FileName="TOMCAT~6.JAR|tomcat-jdbc-8.5.24.jar" Attributes="0" SourcePath="AceQL\lib-server\tomcat-jdbc-8.5.24.jar" SelfReg="false" NextFile="tomcatjuli8.5.24.jar"/>
+    <ROW File="tomcatjdbc8.5.24.jar_1" Component_="tomcatjdbc8.5.20.jar" FileName="TOMCAT~2.JAR|tomcat-jdbc-8.5.24.jar" Attributes="0" SourcePath="AceQL\webapp\WEB-INF\lib-tomcat\tomcat-jdbc-8.5.24.jar" SelfReg="false" NextFile="allclassesframe.html"/>
+    <ROW File="tomcatjuli8.5.24.jar" Component_="aceqlhttpgui1.0beta3.jar" FileName="TOMCAT~7.JAR|tomcat-juli-8.5.24.jar" Attributes="0" SourcePath="AceQL\lib-server\tomcat-juli-8.5.24.jar" SelfReg="false" NextFile="aceqlhttpgui1.0.jar_1"/>
+    <ROW File="uninstallService.bat" Component_="installService.bat" FileName="UNINST~1.BAT|uninstallService.bat" Attributes="0" SourcePath="AceQL\service\uninstallService.bat" SelfReg="false" NextFile="AceQLHTTP.exe"/>
+    <ROW File="updateServiceClasspath.bat" Component_="installService.bat" FileName="UPDATE~1.BAT|updateServiceClasspath.bat" Attributes="0" SourcePath="AceQL\service\updateServiceClasspath.bat" SelfReg="false" NextFile="updateServiceUserHomeNormal.bat"/>
+    <ROW File="updateServiceUserHomeNormal.bat" Component_="installService.bat" FileName="UPDATE~2.BAT|updateServiceUserHomeNormal.bat" Attributes="0" SourcePath="AceQL\service\updateServiceUserHomeNormal.bat" SelfReg="false" NextFile="updateServiceUserHomeSystem.bat"/>
+    <ROW File="updateServiceUserHomeSystem.bat" Component_="installService.bat" FileName="UPDATE~3.BAT|updateServiceUserHomeSystem.bat" Attributes="0" SourcePath="AceQL\service\updateServiceUserHomeSystem.bat" SelfReg="false" NextFile="commonscli1.4.jar_1"/>
+    <ROW File="web.xml" Component_="web.xml" FileName="web.xml" Attributes="0" SourcePath="AceQL\webapp\WEB-INF\web.xml" SelfReg="false" NextFile="aceqlhttpgui1.0.jar"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.BuildComponent">
+    <ROW BuildKey="DefaultBuild" BuildName="DefaultBuild" BuildOrder="1" BuildType="1" PackageFolder="C:\Users\Nicolas de Pomereu\Desktop" Languages="en" InstallationType="2" CabsLocation="1" CompressCabs="false" UseLzma="true" LzmaMethod="2" LzmaCompressionLevel="2" PackageType="1" FilesInsideExe="true" ExeIconPath="AceQL\img\data_up_128_sRU_icon.ico" ExtractionFolder="[AppDataFolder][|Manufacturer]\[|ProductName] [|ProductVersion]\install" Options="8" UseLargeSchema="true" UACExecutionLevel="2"/>
+    <ATTRIBUTE name="CurrentBuild" value="DefaultBuild"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.DictionaryComponent">
+    <ROW Path="&lt;AI_DICTS&gt;ui.ail"/>
+    <ROW Path="&lt;AI_DICTS&gt;ui_en.ail"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.DigCertStoreComponent">
+    <ROW DigitalCertificate="..\..\..\install_src\kawandoc\cert\myCertExported.pfx" TimeStampUrl="http://timestamp.verisign.com/scripts/timstamp.dll" SignerDescription="[|ProductName]" SignOptions="7" SignTool="0" UseSha256="1" Password="1299EDA4C593F7031180A453BA42A911F7FB647AB3800900C696C8076F689222"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.FragmentComponent">
+    <ROW Fragment="CommonUI.aip" Path="&lt;AI_FRAGS&gt;CommonUI.aip"/>
+    <ROW Fragment="FolderDlg.aip" Path="&lt;AI_THEMES&gt;classic\fragments\FolderDlg.aip"/>
+    <ROW Fragment="MaintenanceTypeDlg.aip" Path="&lt;AI_THEMES&gt;classic\fragments\MaintenanceTypeDlg.aip"/>
+    <ROW Fragment="MaintenanceWelcomeDlg.aip" Path="&lt;AI_THEMES&gt;classic\fragments\MaintenanceWelcomeDlg.aip"/>
+    <ROW Fragment="SequenceDialogs.aip" Path="&lt;AI_THEMES&gt;classic\fragments\SequenceDialogs.aip"/>
+    <ROW Fragment="Sequences.aip" Path="&lt;AI_FRAGS&gt;Sequences.aip"/>
+    <ROW Fragment="StaticUIStrings.aip" Path="&lt;AI_FRAGS&gt;StaticUIStrings.aip"/>
+    <ROW Fragment="UI.aip" Path="&lt;AI_THEMES&gt;classic\fragments\UI.aip"/>
+    <ROW Fragment="Validation.aip" Path="&lt;AI_FRAGS&gt;Validation.aip"/>
+    <ROW Fragment="VerifyRemoveDlg.aip" Path="&lt;AI_THEMES&gt;classic\fragments\VerifyRemoveDlg.aip"/>
+    <ROW Fragment="VerifyRepairDlg.aip" Path="&lt;AI_THEMES&gt;classic\fragments\VerifyRepairDlg.aip"/>
+    <ROW Fragment="WelcomeDlg.aip" Path="&lt;AI_THEMES&gt;classic\fragments\WelcomeDlg.aip"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiActionTextComponent">
+    <ROW Action="AI_DeleteLzma" Description="Deleting files extracted from archive" DescriptionLocId="ActionText.Description.AI_DeleteLzma" TemplateLocId="-"/>
+    <ROW Action="AI_DeleteRLzma" Description="Deleting files extracted from archive" DescriptionLocId="ActionText.Description.AI_DeleteLzma" TemplateLocId="-"/>
+    <ROW Action="AI_ExtractFiles" Description="Extracting files from archive" DescriptionLocId="ActionText.Description.AI_ExtractLzma" TemplateLocId="-"/>
+    <ROW Action="AI_ExtractLzma" Description="Extracting files from archive" DescriptionLocId="ActionText.Description.AI_ExtractLzma" TemplateLocId="-"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiAppSearchComponent">
+    <ROW Property="AI_SETUPEXEPATH" Signature_="AI_EXE_PATH_CU" Builds="DefaultBuild"/>
+    <ROW Property="AI_SETUPEXEPATH" Signature_="AI_EXE_PATH_LM" Builds="DefaultBuild"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiBinaryComponent">
+    <ROW Name="Prereq.dll" SourcePath="&lt;AI_CUSTACTS&gt;Prereq.dll"/>
+    <ROW Name="aicustact.dll" SourcePath="&lt;AI_CUSTACTS&gt;aicustact.dll"/>
+    <ROW Name="banner_aceql.bmp_1" SourcePath="AceQL\img\banner_aceql.bmp"/>
+    <ROW Name="dialog_aceql.bmp_1" SourcePath="AceQL\img\dialog_aceql.bmp"/>
+    <ROW Name="lzmaextractor.dll" SourcePath="&lt;AI_CUSTACTS&gt;lzmaextractor.dll"/>
+    <ROW Name="viewer.exe" SourcePath="&lt;AI_CUSTACTS&gt;viewer.exe"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiControlEventComponent">
+    <ROW Dialog_="WelcomeDlg" Control_="Next" Event="NewDialog" Argument="FolderDlg" Condition="AI_INSTALL" Ordering="1"/>
+    <ROW Dialog_="FolderDlg" Control_="Next" Event="NewDialog" Argument="VerifyReadyDlg" Condition="AI_INSTALL" Ordering="201"/>
+    <ROW Dialog_="FolderDlg" Control_="Back" Event="NewDialog" Argument="WelcomeDlg" Condition="AI_INSTALL" Ordering="1"/>
+    <ROW Dialog_="MaintenanceWelcomeDlg" Control_="Next" Event="NewDialog" Argument="MaintenanceTypeDlg" Condition="AI_MAINT" Ordering="99"/>
+    <ROW Dialog_="VerifyReadyDlg" Control_="Install" Event="EndDialog" Argument="Return" Condition="AI_MAINT" Ordering="198"/>
+    <ROW Dialog_="VerifyReadyDlg" Control_="Back" Event="NewDialog" Argument="CustomizeDlg" Condition="AI_MAINT" Ordering="202"/>
+    <ROW Dialog_="VerifyReadyDlg" Control_="Install" Event="EndDialog" Argument="Return" Condition="AI_INSTALL" Ordering="197"/>
+    <ROW Dialog_="VerifyReadyDlg" Control_="Back" Event="NewDialog" Argument="FolderDlg" Condition="AI_INSTALL" Ordering="201"/>
+    <ROW Dialog_="CustomizeDlg" Control_="Next" Event="NewDialog" Argument="VerifyReadyDlg" Condition="AI_MAINT" Ordering="101"/>
+    <ROW Dialog_="CustomizeDlg" Control_="Back" Event="NewDialog" Argument="MaintenanceTypeDlg" Condition="AI_MAINT" Ordering="1"/>
+    <ROW Dialog_="MaintenanceTypeDlg" Control_="ChangeButton" Event="NewDialog" Argument="CustomizeDlg" Condition="AI_MAINT" Ordering="501"/>
+    <ROW Dialog_="MaintenanceTypeDlg" Control_="Back" Event="NewDialog" Argument="MaintenanceWelcomeDlg" Condition="AI_MAINT" Ordering="1"/>
+    <ROW Dialog_="MaintenanceTypeDlg" Control_="RemoveButton" Event="NewDialog" Argument="VerifyRemoveDlg" Condition="AI_MAINT AND InstallMode=&quot;Remove&quot;" Ordering="601"/>
+    <ROW Dialog_="VerifyRemoveDlg" Control_="Back" Event="NewDialog" Argument="MaintenanceTypeDlg" Condition="AI_MAINT AND InstallMode=&quot;Remove&quot;" Ordering="1"/>
+    <ROW Dialog_="MaintenanceTypeDlg" Control_="RepairButton" Event="NewDialog" Argument="VerifyRepairDlg" Condition="AI_MAINT AND InstallMode=&quot;Repair&quot;" Ordering="601"/>
+    <ROW Dialog_="VerifyRepairDlg" Control_="Back" Event="NewDialog" Argument="MaintenanceTypeDlg" Condition="AI_MAINT AND InstallMode=&quot;Repair&quot;" Ordering="1"/>
+    <ROW Dialog_="VerifyRepairDlg" Control_="Repair" Event="EndDialog" Argument="Return" Condition="AI_MAINT AND InstallMode=&quot;Repair&quot;" Ordering="399" Options="1"/>
+    <ROW Dialog_="VerifyRemoveDlg" Control_="Remove" Event="EndDialog" Argument="Return" Condition="AI_MAINT AND InstallMode=&quot;Remove&quot;" Ordering="299" Options="1"/>
+    <ROW Dialog_="PatchWelcomeDlg" Control_="Next" Event="NewDialog" Argument="VerifyReadyDlg" Condition="AI_PATCH" Ordering="201"/>
+    <ROW Dialog_="ResumeDlg" Control_="Install" Event="EndDialog" Argument="Return" Condition="AI_RESUME" Ordering="299"/>
+    <ROW Dialog_="VerifyReadyDlg" Control_="Install" Event="EndDialog" Argument="Return" Condition="AI_PATCH" Ordering="199"/>
+    <ROW Dialog_="VerifyReadyDlg" Control_="Back" Event="NewDialog" Argument="PatchWelcomeDlg" Condition="AI_PATCH" Ordering="203"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiCustActComponent">
+    <ROW Action="AI_BACKUP_AI_SETUPEXEPATH" Type="51" Source="AI_SETUPEXEPATH_ORIGINAL" Target="[AI_SETUPEXEPATH]"/>
+    <ROW Action="AI_DATA_SETTER" Type="51" Source="AI_ExtractFiles" Target="[AI_SETUPEXEPATH]"/>
+    <ROW Action="AI_DATA_SETTER_1" Type="51" Source="CustomActionData" Target="AceQLHTTPService"/>
+    <ROW Action="AI_DATA_SETTER_2" Type="51" Source="StopService_1" Target="AceQLHTTPService"/>
+    <ROW Action="AI_DOWNGRADE" Type="19" Target="4010"/>
+    <ROW Action="AI_DeleteCadLzma" Type="51" Source="AI_DeleteLzma" Target="[AI_SETUPEXEPATH]"/>
+    <ROW Action="AI_DeleteLzma" Type="1025" Source="lzmaextractor.dll" Target="DeleteLZMAFiles"/>
+    <ROW Action="AI_DeleteRCadLzma" Type="51" Source="AI_DeleteRLzma" Target="[AI_SETUPEXEPATH]"/>
+    <ROW Action="AI_DeleteRLzma" Type="1281" Source="lzmaextractor.dll" Target="DeleteLZMAFiles"/>
+    <ROW Action="AI_DpiContentScale" Type="1" Source="aicustact.dll" Target="DpiContentScale"/>
+    <ROW Action="AI_EstimateExtractFiles" Type="1" Source="Prereq.dll" Target="EstimateExtractFiles"/>
+    <ROW Action="AI_ExtractCadLzma" Type="51" Source="AI_ExtractLzma" Target="[AI_SETUPEXEPATH]"/>
+    <ROW Action="AI_ExtractFiles" Type="1025" Source="Prereq.dll" Target="ExtractSourceFiles" AdditionalSeq="AI_DATA_SETTER"/>
+    <ROW Action="AI_ExtractLzma" Type="1025" Source="lzmaextractor.dll" Target="ExtractLZMAFiles"/>
+    <ROW Action="AI_FindExeLzma" Type="1" Source="lzmaextractor.dll" Target="FindEXE"/>
+    <ROW Action="AI_InstallModeCheck" Type="1" Source="aicustact.dll" Target="UpdateInstallMode" WithoutSeq="true"/>
+    <ROW Action="AI_LaunchApp" Type="1" Source="aicustact.dll" Target="[#AceQLHTTP.exe]"/>
+    <ROW Action="AI_PREPARE_UPGRADE" Type="65" Source="aicustact.dll" Target="PrepareUpgrade"/>
+    <ROW Action="AI_RESTORE_AI_SETUPEXEPATH" Type="51" Source="AI_SETUPEXEPATH" Target="[AI_SETUPEXEPATH_ORIGINAL]"/>
+    <ROW Action="AI_RESTORE_LOCATION" Type="65" Source="aicustact.dll" Target="RestoreLocation"/>
+    <ROW Action="AI_ResolveKnownFolders" Type="1" Source="aicustact.dll" Target="AI_ResolveKnownFolders"/>
+    <ROW Action="AI_SHOW_LOG" Type="65" Source="aicustact.dll" Target="LaunchLogFile" WithoutSeq="true"/>
+    <ROW Action="AI_STORE_LOCATION" Type="51" Source="ARPINSTALLLOCATION" Target="[APPDIR]"/>
+    <ROW Action="LaunchFile" Type="66" Source="viewer.exe" Target="/RunAsAdmin /HideWindow &quot;[#uninstallService.bat]&quot;" Options="1"/>
+    <ROW Action="LaunchFile_1" Type="1602" Source="viewer.exe" Target="/RunAsAdmin /HideWindow &quot;[#uninstallService.bat]&quot;" Options="1"/>
+    <ROW Action="SET_APPDIR" Type="307" Source="APPDIR" Target="[ProgramFilesFolder][Manufacturer]\[ProductName]"/>
+    <ROW Action="SET_SHORTCUTDIR" Type="307" Source="SHORTCUTDIR" Target="[ProgramMenuFolder][ProductName]"/>
+    <ROW Action="SET_TARGETDIR_TO_APPDIR" Type="51" Source="TARGETDIR" Target="[APPDIR]"/>
+    <ROW Action="StopService" Type="65" Source="aicustact.dll" Target="StopWinService" Options="1" AdditionalSeq="AI_DATA_SETTER_1"/>
+    <ROW Action="StopService_1" Type="1601" Source="aicustact.dll" Target="StopWinService" Options="1" AdditionalSeq="AI_DATA_SETTER_2"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiIconsComponent">
+    <ROW Name="data_up_128_sRU_icon.exe" SourcePath="AceQL\img\data_up_128_sRU_icon.ico" Index="0"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiIniFileComponent">
+    <ROW IniFile="ApplicationType" FileName="ACEQLH~2.INI|AceQLHTTP.ini" DirProperty="APPDIR" Section="Application" Key="Application Type" Value="gui" Action="0" Component_="AceQLHTTP.exe"/>
+    <ROW IniFile="ClassPath" FileName="ACEQLH~2.INI|AceQLHTTP.ini" DirProperty="APPDIR" Section="Class Path" Key="Class Path" Value="[libserver_Dir]*.jar;%CLASSPATH%;" Action="0" Component_="AceQLHTTP.exe"/>
+    <ROW IniFile="FailureCheck" FileName="ACEQLH~2.INI|AceQLHTTP.ini" DirProperty="APPDIR" Section="Application" Key="Failure Check" Value="yes" Action="0" Component_="AceQLHTTP.exe"/>
+    <ROW IniFile="JVMSource" FileName="ACEQLH~2.INI|AceQLHTTP.ini" DirProperty="APPDIR" Section="Java Runtime Environment" Key="JVM Source" Value="favor_JDK" Action="0" Component_="AceQLHTTP.exe"/>
+    <ROW IniFile="JVMType" FileName="ACEQLH~2.INI|AceQLHTTP.ini" DirProperty="APPDIR" Section="Java Runtime Environment" Key="JVM Type" Value="favor_server" Action="0" Component_="AceQLHTTP.exe"/>
+    <ROW IniFile="MainClass" FileName="ACEQLH~2.INI|AceQLHTTP.ini" DirProperty="APPDIR" Section="Java Runtime Environment" Key="Main Class" Value="com.kawansoft.aceql.gui.AppTray" Action="0" Component_="AceQLHTTP.exe"/>
+    <ROW IniFile="MaximumVersion" FileName="ACEQLH~2.INI|AceQLHTTP.ini" DirProperty="APPDIR" Section="Java Runtime Environment" Key="Maximum Version" Value="any" Action="0" Component_="AceQLHTTP.exe"/>
+    <ROW IniFile="MinimumVersion" FileName="ACEQLH~2.INI|AceQLHTTP.ini" DirProperty="APPDIR" Section="Java Runtime Environment" Key="Minimum Version" Value="1.7" Action="0" Component_="AceQLHTTP.exe"/>
+    <ROW IniFile="PrefferNativeSplashScreen" FileName="ACEQLH~2.INI|AceQLHTTP.ini" DirProperty="APPDIR" Section="Display" Key="Preffer Native Splash Screen" Value="Yes" Action="0" Component_="AceQLHTTP.exe"/>
+    <ROW IniFile="SingleInstance" FileName="ACEQLH~2.INI|AceQLHTTP.ini" DirProperty="APPDIR" Section="Application" Key="Single Instance" Value="yes" Action="0" Component_="AceQLHTTP.exe"/>
+    <ROW IniFile="SplashScreen" FileName="ACEQLH~2.INI|AceQLHTTP.ini" DirProperty="APPDIR" Section="Display" Key="Splash Screen" Value="[#logoAceQL.png]" Action="0" Component_="AceQLHTTP.exe"/>
+    <ROW IniFile="SplashScreenShadow" FileName="ACEQLH~2.INI|AceQLHTTP.ini" DirProperty="APPDIR" Section="Display" Key="Splash Screen Shadow" Value="true" Action="0" Component_="AceQLHTTP.exe"/>
+    <ROW IniFile="VMProvider" FileName="ACEQLH~2.INI|AceQLHTTP.ini" DirProperty="APPDIR" Section="Java Runtime Environment" Key="VM Provider" Value="favor_sun" Action="0" Component_="AceQLHTTP.exe"/>
+    <ROW IniFile="VirtualMachineParameters" FileName="ACEQLH~2.INI|AceQLHTTP.ini" DirProperty="APPDIR" Section="Java Runtime Environment" Key="Virtual Machine Parameters" Value="-Xms128M -Xmx256M " Action="0" Component_="AceQLHTTP.exe"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiInstExSeqComponent">
+    <ROW Action="AI_DOWNGRADE" Condition="AI_NEWERPRODUCTFOUND AND (UILevel &lt;&gt; 5)" Sequence="210"/>
+    <ROW Action="AI_RESTORE_LOCATION" Condition="APPDIR=&quot;&quot;" Sequence="748"/>
+    <ROW Action="AI_STORE_LOCATION" Condition="(Not Installed) OR REINSTALL" Sequence="1505"/>
+    <ROW Action="AI_PREPARE_UPGRADE" Condition="AI_UPGRADE=&quot;No&quot; AND (Not Installed)" Sequence="1399"/>
+    <ROW Action="AI_ResolveKnownFolders" Sequence="51"/>
+    <ROW Action="AI_BACKUP_AI_SETUPEXEPATH" Sequence="99" Builds="DefaultBuild"/>
+    <ROW Action="AI_RESTORE_AI_SETUPEXEPATH" Condition="AI_SETUPEXEPATH_ORIGINAL" Sequence="101" Builds="DefaultBuild"/>
+    <ROW Action="AI_DeleteCadLzma" Condition="SETUPEXEDIR=&quot;&quot; AND Installed AND (REMOVE&lt;&gt;&quot;ALL&quot;) AND (AI_INSTALL_MODE&lt;&gt;&quot;Remove&quot;) AND (NOT PATCH)" Sequence="199" Builds="DefaultBuild"/>
+    <ROW Action="AI_DeleteRCadLzma" Condition="SETUPEXEDIR=&quot;&quot; AND Installed AND (REMOVE&lt;&gt;&quot;ALL&quot;) AND (AI_INSTALL_MODE&lt;&gt;&quot;Remove&quot;) AND (NOT PATCH)" Sequence="198" Builds="DefaultBuild"/>
+    <ROW Action="AI_ExtractCadLzma" Condition="SETUPEXEDIR=&quot;&quot; AND Installed AND (REMOVE&lt;&gt;&quot;ALL&quot;) AND (AI_INSTALL_MODE&lt;&gt;&quot;Remove&quot;) AND (NOT PATCH)" Sequence="197" Builds="DefaultBuild"/>
+    <ROW Action="AI_FindExeLzma" Condition="SETUPEXEDIR=&quot;&quot; AND Installed AND (REMOVE&lt;&gt;&quot;ALL&quot;) AND (AI_INSTALL_MODE&lt;&gt;&quot;Remove&quot;) AND (NOT PATCH)" Sequence="196" Builds="DefaultBuild"/>
+    <ROW Action="AI_ExtractLzma" Condition="SETUPEXEDIR=&quot;&quot; AND Installed AND (REMOVE&lt;&gt;&quot;ALL&quot;) AND (AI_INSTALL_MODE&lt;&gt;&quot;Remove&quot;) AND (NOT PATCH)" Sequence="1549" Builds="DefaultBuild"/>
+    <ROW Action="AI_DeleteRLzma" Condition="SETUPEXEDIR=&quot;&quot; AND Installed AND (REMOVE&lt;&gt;&quot;ALL&quot;) AND (AI_INSTALL_MODE&lt;&gt;&quot;Remove&quot;) AND (NOT PATCH)" Sequence="1548" Builds="DefaultBuild"/>
+    <ROW Action="AI_DeleteLzma" Condition="SETUPEXEDIR=&quot;&quot; AND Installed AND (REMOVE&lt;&gt;&quot;ALL&quot;) AND (AI_INSTALL_MODE&lt;&gt;&quot;Remove&quot;) AND (NOT PATCH)" Sequence="6599" Builds="DefaultBuild"/>
+    <ROW Action="AI_ExtractFiles" Sequence="3998" Builds="DefaultBuild"/>
+    <ROW Action="AI_DATA_SETTER" Sequence="3997"/>
+    <ROW Action="AI_EstimateExtractFiles" Sequence="3999" Builds="DefaultBuild"/>
+    <ROW Action="LaunchFile" Sequence="6402"/>
+    <ROW Action="LaunchFile_1" Sequence="6401"/>
+    <ROW Action="StopService" Sequence="1504"/>
+    <ROW Action="AI_DATA_SETTER_1" Sequence="1503"/>
+    <ROW Action="StopService_1" Sequence="1502"/>
+    <ROW Action="AI_DATA_SETTER_2" Sequence="1501"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiInstallUISequenceComponent">
+    <ROW Action="AI_RESTORE_LOCATION" Condition="APPDIR=&quot;&quot;" Sequence="748"/>
+    <ROW Action="AI_ResolveKnownFolders" Sequence="52"/>
+    <ROW Action="AI_DpiContentScale" Sequence="51"/>
+    <ROW Action="AI_BACKUP_AI_SETUPEXEPATH" Sequence="99"/>
+    <ROW Action="AI_RESTORE_AI_SETUPEXEPATH" Condition="AI_SETUPEXEPATH_ORIGINAL" Sequence="101"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiJavaComponent">
+    <ROW Name="AceQLHTTP.exe" Launcher="AceQLHTTP.exe" MainClass="MainClass" ClassPath="ClassPath" VMParams="VirtualMachineParameters" JREMin="MinimumVersion" JREMax="MaximumVersion" SplashScreen="SplashScreen" SplashShadow="SplashScreenShadow" IconPath="AceQL\img\data_up_128_sRU_icon.ico" AppType="ApplicationType" JVMType="JVMType" SingleInstance="SingleInstance" PlusList="APPDIR;" MinusList="#AceQLHTTP.exe;" MacDescription="[|CurrentJavaProductName] [|ProductVersion] © [|Manufacturer], Inc, 2017" MacBundleId="com.[|Manufacturer].[|ProductName].[|CurrentJavaProductName]" JVMSourcePreference="JVMSource" FailureCheck="FailureCheck" UACExecutionLevel="2" NativeSplashScreen="PrefferNativeSplashScreen" VMProviderOptions="VMProvider" MacExcluded="true"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiLaunchConditionsComponent">
+    <ROW Condition="(VersionNT &lt;&gt; 400)" Description="[ProductName] cannot be installed on the following Windows versions: [WindowsTypeNT40Display]" DescriptionLocId="AI.LaunchCondition.NoNT40" IsPredefined="true" Builds="DefaultBuild"/>
+    <ROW Condition="SETUPEXEDIR OR (REMOVE=&quot;ALL&quot;)" Description="This package can only be run from a bootstrapper." DescriptionLocId="AI.LaunchCondition.RequireBootstrapper" IsPredefined="true" Builds="DefaultBuild"/>
+    <ROW Condition="VersionNT" Description="[ProductName] cannot be installed on [WindowsType9XDisplay]" DescriptionLocId="AI.LaunchCondition.No9X" IsPredefined="true" Builds="DefaultBuild"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiRegLocatorComponent">
+    <ROW Signature_="AI_EXE_PATH_CU" Root="1" Key="Software\Caphyon\Advanced Installer\LZMA\[ProductCode]\[ProductVersion]" Name="AI_ExePath" Type="2"/>
+    <ROW Signature_="AI_EXE_PATH_LM" Root="2" Key="Software\Caphyon\Advanced Installer\LZMA\[ProductCode]\[ProductVersion]" Name="AI_ExePath" Type="2"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiRegsComponent">
+    <ROW Registry="AI_ExePath" Root="-1" Key="Software\Caphyon\Advanced Installer\LZMA\[ProductCode]\[ProductVersion]" Name="AI_ExePath" Value="[AI_SETUPEXEPATH]" Component_="AI_ExePath"/>
+    <ROW Registry="Path" Root="-1" Key="Software\[Manufacturer]\[ProductName]" Name="Path" Value="[APPDIR]" Component_="ProductInformation"/>
+    <ROW Registry="Version" Root="-1" Key="Software\[Manufacturer]\[ProductName]" Name="Version" Value="[ProductVersion]" Component_="ProductInformation"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiShortsComponent">
+    <ROW Shortcut="AceQLHTTP" Directory_="DesktopFolder" Name="ACEQLH~1|AceQL HTTP" Component_="AceQLHTTP.exe" Target="[#AceQLHTTP.exe]" Hotkey="0" Icon_="data_up_128_sRU_icon.exe" IconIndex="0" ShowCmd="1" WkDir="APPDIR"/>
+    <ROW Shortcut="AceQLHTTP_1" Directory_="ProgramMenuFolder" Name="ACEQLH~1|AceQL HTTP" Component_="AceQLHTTP.exe" Target="[#AceQLHTTP.exe]" Hotkey="0" Icon_="data_up_128_sRU_icon.exe" IconIndex="0" ShowCmd="1" WkDir="APPDIR"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiThemeComponent">
+    <ATTRIBUTE name="UsedTheme" value="classic"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiUpgradeComponent">
+    <ROW UpgradeCode="[|UpgradeCode]" VersionMin="0.0.1" VersionMax="[|ProductVersion]" Attributes="257" ActionProperty="OLDPRODUCTS"/>
+    <ROW UpgradeCode="[|UpgradeCode]" VersionMin="[|ProductVersion]" Attributes="2" ActionProperty="AI_NEWERPRODUCTFOUND"/>
+  </COMPONENT>
+</DOCUMENT>
