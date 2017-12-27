@@ -83,6 +83,12 @@ public class AppendStore  implements Closeable{
      **/
     @Override
     public synchronized void close() throws IOException {
-	IOUtils.closeQuietly(raf);
+	//IOUtils.closeQuietly(raf);
+        if (raf != null) {
+            try {
+                raf.close();
+            } catch (Exception exception) {
+            }
+        }
     }
 }

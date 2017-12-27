@@ -37,7 +37,7 @@ import org.apache.commons.lang3.text.translate.NumericEntityEscaper;
  * @author Nicolas de Pomereu
  * 
  */
-
+@SuppressWarnings("deprecation")
 public class HtmlConverter {
     
     private static boolean DO_NOTHING = false;

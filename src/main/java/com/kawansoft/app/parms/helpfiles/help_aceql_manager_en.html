@@ -47,20 +47,11 @@ localhost, www.acme.com, prefix.acme.org, etc.
 
 <br><br><br>
 
-<b><font color=blue>Installed JDBC Drivers</font></b> 
+<b><font color=blue>Display CLASSPATH</font></b> 
 <br><br>
-The area displays all the installed JDBC Drivers that will be automatically added to the CLASSPATH.
-<br>
-Default installation includes a recent PostgreSQL JDBC Driver. (We could not pre-install other vendor drivers due to license restrictions.)
-<br>
-<br>
-To add your JDBC Driver(s), click "Browse" and select your Driver files that you want to install. You can also copy & paste your files on the area.
-<br>
-<br>
-To delete/uninstall a JDBC Driver: select it, right-click and click "Delete". 
-
-<br><br>
-Note that is impossible to delete/uninstall a JDBC Driver after server startup. You must stop the running server instance and restart the AceQL interface.
+This button displays the CLASSPATH that will be used by the AceQL Server at startup.
+<br><br>This allows you to be sure that your JDBC Driver has been added to the CLASSPATH, and/or that your Configurator classes have been added to the CLASSPATH.
+<br><br>Found JDBC Drivers are highlighted in <font color="blue">blue</font> to allow you a rapid check-up.
 
 <br><br><br>
 
@@ -69,6 +60,9 @@ Note that is impossible to delete/uninstall a JDBC Driver after server startup. 
 Server may be started within the current JVM, or as a Windows Service.
 <br>
 <br>
+<i>N.B: Make sure your JDBC Driver is in the CLASSPATH before starting the Server</i>.
+<br><br>
+
 If you wish to run the AceQL Web Server as a Windows Service, it is highly recommended to test your configuration by starting the server once in Standard Mode.
 
 <br><br><br>

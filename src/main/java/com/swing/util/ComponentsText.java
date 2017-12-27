@@ -243,7 +243,6 @@ public class ComponentsText {
 //                    return (T) potentialMatch;
 //                }
 
-                
                 String theType = null;
                 if (field.getGenericType().toString().contains(".")) {
                     theType = StringUtils.substringAfterLast(field.getGenericType().toString(), ".");
@@ -309,7 +308,7 @@ public class ComponentsText {
                         appendStore.append(iniToolTipLine);
                     }
                 } finally {
-                    IOUtils.closeQuietly(appendStore);
+                    //IOUtils.closeQuietly(appendStore);
                 }
 
             } catch (Exception e) {

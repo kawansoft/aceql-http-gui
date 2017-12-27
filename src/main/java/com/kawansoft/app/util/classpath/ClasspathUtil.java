@@ -34,7 +34,7 @@ import java.util.List;
  */
 public class ClasspathUtil {
 
-    public static List<String> getOrderedClasspath() {
+    public static List<String> getClasspath() {
         String classpath = System.getProperty("java.class.path");
         
         String [] classpathArray = classpath.split(System.getProperty("path.separator"));
@@ -44,7 +44,6 @@ public class ClasspathUtil {
         }         
         
         List<String> classpathList = Arrays.asList(classpathArray);
-        Collections.sort(classpathList);
         return classpathList;
         
     }

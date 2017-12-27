@@ -73,6 +73,7 @@ import java.net.ConnectException;
 import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URL;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Properties;
@@ -108,9 +109,9 @@ import org.kawanfw.sql.tomcat.TomcatStarterUtil;
 public class AceQLManager extends javax.swing.JFrame {
 
     public static final String CR_LF = System.getProperty("line.separator");
-    
+
     public static final int SLEEP_SCAN = 330;
-        
+
     /**
      * Says if we continue to udate Windows Service Status
      */
@@ -146,13 +147,10 @@ public class AceQLManager extends javax.swing.JFrame {
 
     private AboutFrame aboutFrame = null;
     private SystemPropDisplayer systemPropDisplayer = null;
-    private File[] previousFiles;
-
-    private DefaultListModel defaultListModel = new DefaultListModel();
     private AceQLManagerInstall aceQLManagerInstall = null;
-    private FileListClipboardManager fileListClipboardManager;
-    
+
     private static boolean WINDOWS_OK_WITH_AWT = false;
+    private ClasspathDisplayer classpathDisplayer;
 
     /**
      * Creates new form Preferences
@@ -167,16 +165,16 @@ public class AceQLManager extends javax.swing.JFrame {
      */
     public void initializeIt() {
 
-        Dimension dim = new Dimension(625, 625);
+        Dimension dim = new Dimension(604, 604);
         this.setPreferredSize(dim);
         this.setSize(dim);
 
         String appName = Parms.APP_NAME;
-        
+
         if (ParmsUtil.isAceQLPro()) {
             appName += " Pro";
         }
-        
+
         this.jLabelLogo.setText(appName);
 
         try {
@@ -187,7 +185,7 @@ public class AceQLManager extends javax.swing.JFrame {
 
         // Add a Clipboard Manager
         clipboard = new ClipboardManager(jPanelMain);
-        
+
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
@@ -195,19 +193,9 @@ public class AceQLManager extends javax.swing.JFrame {
             }
         });
 
-
         loadConfiguration();
         updateStandardStatusThreadStart();
 
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                File[] finalFiles = getInstalledJdbcDrivers();
-                List<File> newList = Arrays.asList(finalFiles);
-                setJdbcDrivers(newList);
-            }
-        });
-                
         if (SystemUtils.IS_OS_WINDOWS) {
             updateServiceStatusThreadStart();
             jMenuItemServiceInstall.setVisible(false); // Futur usage if any problem
@@ -220,7 +208,7 @@ public class AceQLManager extends javax.swing.JFrame {
             jButtonStopService.setEnabled(false);
             jButtonDisplayLogs.setEnabled(false);
             jButtonServicesConsole.setEnabled(false);
-            
+
             jMenuItemServiceInstall.setVisible(false);
         }
 
@@ -277,22 +265,12 @@ public class AceQLManager extends javax.swing.JFrame {
             }
         };
 
-
-        
         // Listen for changes in the text
         jTextFieldPropertiesFile.getDocument().addDocumentListener(documentListener);
         jTextFieldHost.getDocument().addDocumentListener(documentListener);
         jTextFieldPort.getDocument().addDocumentListener(documentListener);
         //defaultListModel.addListDataListener(new MyListDataListener());
-        
-        jList = new JList(defaultListModel);
-        jList.setCellRenderer(new FilesListCellRenderer());
-        
-        jList.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
-        jList.setLayoutOrientation(JList.HORIZONTAL_WRAP);
-        jList.setVisibleRowCount(-1);
-        jScrollPane.setViewportView(jList);
-                
+
         this.keyListenerAdder();
 
         this.setTitle(jLabelLogo.getText());
@@ -309,19 +287,15 @@ public class AceQLManager extends javax.swing.JFrame {
         ButtonResizer buttonResizer3 = new ButtonResizer(jPanelButtonStartStop);
         buttonResizer3.setWidthToMax();
 
-        new FileDrop(this, new FileDrop.Listener()
-        {
+        new FileDrop(this, new FileDrop.Listener() {
             @Override
-            public void filesDropped(java.io.File[] files)
-            {
+            public void filesDropped(java.io.File[] files) {
                 // handle file drop  
-                addDropedFiles(files);               
-                             
+                addDropedFiles(files);
+
             } // end filesDropped
-        }); 
-                
-        fileListClipboardManager = new FileListClipboardManager(this, jList, true);
-                
+        });
+
         // Load and activate previous windows settings
         WindowSettingMgr.load(this);
 
@@ -329,7 +303,6 @@ public class AceQLManager extends javax.swing.JFrame {
         //update(getGraphics());
     }
 
-    
     /*
     class MyListDataListener implements ListDataListener {
 
@@ -349,25 +322,7 @@ public class AceQLManager extends javax.swing.JFrame {
         }
     }
      */
-    
-    public void setJdbcDrivers(List<File> files ) {
-
-        if (files == null) {
-            return;
-        }
-
-        defaultListModel.removeAllElements();
-        for (int i = 0; i < files.size(); i++) {
-            try {
-                defaultListModel.addElement(files.get(i));
-            } catch (Exception e) {
-                // Nothing. Do not write on interface...
-            }
-        }
-
-        //addDriversToClasspath(files);
-    }
-
+ /*
     public void addFilesToClasspath(List<File> files) {
         String classpath = System.getProperty("java.class.path");
         
@@ -381,8 +336,7 @@ public class AceQLManager extends javax.swing.JFrame {
                 }
             }
         }   
-    }
-
+    }*/
     public void loadConfiguration() {
 
         File configurationProperties = ConfigurationUtil.getConfirurationPropertiesFile();
@@ -419,7 +373,7 @@ public class AceQLManager extends javax.swing.JFrame {
 
         jTextFieldHost.setText(host);
         jTextFieldPort.setText("" + port);
-        
+
         if (aceqlProperties == null || aceqlProperties.isEmpty()) {
             File fileIn = new File(ParmsUtil.getInstallAceQLDir() + File.separator + "conf" + File.separator + "aceql-server.properties");
 
@@ -447,29 +401,26 @@ public class AceQLManager extends javax.swing.JFrame {
             } else {
                 jTextFieldPropertiesFile.setText(fileOut.toString());
             }
-            
-            // Install Postgres Driver
-            
 
+            // Install Postgres Driver
         } else {
             jTextFieldPropertiesFile.setText(aceqlProperties);
         }
-        
+
         try {
-            setAceQLServerURL(host, port,  new File(jTextFieldPropertiesFile.getText()));
+            setAceQLServerURL(host, port, new File(jTextFieldPropertiesFile.getText()));
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this,
                     "Can not load the Property File. Reason: " + ex.getMessage(), Parms.APP_NAME,
                     JOptionPane.ERROR_MESSAGE);
             return;
         }
-                
+
         // Store the properties if they did not exists
-        if ( ! ConfigurationUtil.getConfirurationPropertiesFile().exists()) {
+        if (!ConfigurationUtil.getConfirurationPropertiesFile().exists()) {
             storeConfiguration();
         }
     }
-
 
     private void startStandard() {
 
@@ -504,14 +455,6 @@ public class AceQLManager extends javax.swing.JFrame {
         int port = Integer.parseInt(jTextFieldPort.getText());
 
         aceQLConsole = new AceQLConsole(this);
-                
-        // Add Jdbc Drivers to classpath
-        ListModel listModel = jList.getModel();
-        List<File> files = new ArrayList<>();
-        for (int i = 0; i < listModel.getSize(); i++) {
-            files.add((File) listModel.getElementAt(i));
-        }
-        addFilesToClasspath(files);
 
         AceQLTask aceQLTask = new AceQLTask(AceQLTask.STANDARD_MODE, jTextFieldPropertiesFile.getText(), jTextFieldHost.getText(), port);
         aceQLTask.start();
@@ -757,15 +700,14 @@ public class AceQLManager extends javax.swing.JFrame {
 
     }
 
-
     private void installService() {
 
         if (!SystemUtils.IS_OS_WINDOWS) {
             return;
         }
-        
+
         boolean serviceInstalled = false;
-        
+
         try {
             serviceInstalled = ServiceUtil.isInstalled();
         } catch (IOException ioe) {
@@ -775,8 +717,8 @@ public class AceQLManager extends javax.swing.JFrame {
                     JOptionPane.ERROR_MESSAGE);
             return;
         }
-                
-        if (!serviceInstalled) {                
+
+        if (!serviceInstalled) {
             try {
                 ServiceInstaller.installService();
             } catch (Exception e) {
@@ -794,7 +736,7 @@ public class AceQLManager extends javax.swing.JFrame {
                         + e.getMessage());
                 e.printStackTrace();
             }
-               
+
         }
 
     }
@@ -819,9 +761,8 @@ public class AceQLManager extends javax.swing.JFrame {
             return;
         }
 
-        
         boolean isLocalSystem = true;
-        
+
         try {
             isLocalSystem = ServiceUtil.isLocalSystem(ServiceUtil.ACEQL_HTTP_SERVICE);
         } catch (IOException e) {
@@ -831,7 +772,7 @@ public class AceQLManager extends javax.swing.JFrame {
             e.printStackTrace();
             return;
         }
-        
+
         if (isLocalSystem) {
             try {
                 ServiceInstaller.updateServiceUserHomeSystem();
@@ -841,19 +782,18 @@ public class AceQLManager extends javax.swing.JFrame {
                         + e.getMessage());
                 e.printStackTrace();
             }
-        }
-        else {
-              try {
+        } else {
+            try {
                 ServiceInstaller.updateServiceUserHomeNormal();
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(thisOne,
                         "Unable to update Windows Service: "
                         + e.getMessage());
                 e.printStackTrace();
-            }          
-            
+            }
+
         }
-           
+
         try {
             ServiceUtil.startService();
         } catch (Exception e) {
@@ -909,7 +849,7 @@ public class AceQLManager extends javax.swing.JFrame {
             if (!SystemUtils.IS_OS_WINDOWS) {
                 return;
             }
-            
+
             ProcessBuilder pb = new ProcessBuilder("cmd.exe", "/C",
                     "startMmc.bat");
 
@@ -939,8 +879,15 @@ public class AceQLManager extends javax.swing.JFrame {
         aceQLManagerInstall.setVisible(true);
     }
 
+    private void displayClasspath() {
+        if (classpathDisplayer != null) {
+            classpathDisplayer.dispose();
+        }
 
+        classpathDisplayer = new ClasspathDisplayer(this);
+        classpathDisplayer.setVisible(true);
 
+    }
 
     // See http://stackoverflow.com/questions/14058505/jtextfield-accept-only-alphabet-and-white-space/14060047#14060047
     class MyDocumentFilter extends DocumentFilter {
@@ -1138,7 +1085,7 @@ public class AceQLManager extends javax.swing.JFrame {
 
     public void setAceQLServerURL(String host, int port, File propertiesFile) throws HeadlessException, Exception {
 
-        if (propertiesFile == null || ! propertiesFile.exists()) {
+        if (propertiesFile == null || !propertiesFile.exists()) {
             return;
         }
 
@@ -1154,11 +1101,9 @@ public class AceQLManager extends javax.swing.JFrame {
             scheme = properties
                     .getProperty("sslConnector.scheme").trim();
         }
-        
+
         this.jButtonURL.setText(scheme + "://" + host + ":" + port + "/" + aceqlServer);
     }
-
-
 
     private void actionOk() {
 
@@ -1231,119 +1176,33 @@ public class AceQLManager extends javax.swing.JFrame {
             jTextFieldPropertiesFile.setText(file.toString());
         }
     }
-    
-   /**
+
+    /**
      * Add files to the AbstractFileListManager
      * <br>
      * may be called by outside program
-     * @param files     Files to addDropedFiles
+     *
+     * @param files Files to addDropedFiles
      */
     @SuppressWarnings("unchecked")
     public void addDropedFiles(File[] files) {
         if (files == null || files.length == 0) {
             return;
         }
-        
+
         List<File> drivers = new ArrayList<>();
-        
+
         for (File file : files) {
             if (file.toString().endsWith(".jar")) {
                 drivers.add(file);
             }
         }
-        
+
         File[] fileArray = new File[drivers.size()];
         fileArray = drivers.toArray(fileArray);
 
-        addDrivers(fileArray);
-        
-    }
-    
-   private void addDriversFileWithAwt() {
-        FileDialog fileDialog = new FileDialogMemory(this, MessagesManager.get("system_open"), FileDialog.LOAD);
-        fileDialog.setIconImage(ImageParmsUtil.getAppIcon());
-        fileDialog.setType(FileDialog.Type.NORMAL);
-        fileDialog.setMultipleMode(true);
-
-        fileDialog.setFile("*.jar");
-        fileDialog.setFilenameFilter(new FilenameFilter() {
-            @Override
-            public boolean accept(File dir, String name) {
-                return name.toLowerCase().endsWith(".jar");
-            }
-        });
-
-        fileDialog.setVisible(true);
-        File[] selectedFiles = fileDialog.getFiles();
-        addDrivers(selectedFiles);
-    }
-        
-    private void addDriversFileWithSwing() {
-
-        JFileChooser jfileChooser = new JFileChooserMemory();
-
-        jfileChooser.setDialogType(JFileChooser.OPEN_DIALOG);
-        jfileChooser.setMultiSelectionEnabled(true);
-
-        jfileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
-
-        jfileChooser.setFileFilter(new JarFileFilter());
-        jfileChooser.setAcceptAllFileFilterUsed(false);
-
-        int returnVal = jfileChooser.showOpenDialog(this);
-
-        if (returnVal == JFileChooser.APPROVE_OPTION) {
-
-            File[] selectedFiles = jfileChooser.getSelectedFiles();
-            addDrivers(selectedFiles);
-        }
-
     }
 
-    public void addDrivers(File[] files) throws HeadlessException {
-        
-        File libJdbcDir = new File(ParmsUtil.getInstallAceQLDir() + File.separator + "lib-jdbc");
-                
-        if (files == null || files.length == 0) {
-            return;
-        }
-        for (File file : files) {
-            File targetFile = new File(libJdbcDir.toString() + File.separator + file.getName());
-            
-            if (!targetFile.exists()) {
-                try {
-                    FileUtils.copyFile(file, targetFile);
-                } catch (IOException ex) {
-                    JOptionPane.showMessageDialog(this,
-                            "Enable to install JDBC Driver: " + file.getName() + ". Reason: " + ex, Parms.APP_NAME,
-                            JOptionPane.ERROR_MESSAGE);
-                    return;
-                }
-            }
-        }
-        
-        File [] finalFiles = getInstalledJdbcDrivers();
-        List<File> newList = Arrays.asList(finalFiles);
-        setJdbcDrivers(newList);
-    }
-
-    private void doAddDrivers() {
-         
-        jButtonApply.setEnabled(true);
-
-        // AWT does not work (freeze) on Windows
-        if (SystemUtils.IS_OS_WINDOWS) {
-            if (WINDOWS_OK_WITH_AWT) {
-                addDriversFileWithAwt();
-            } else {
-                addDriversFileWithSwing();
-            }
-        } else {
-            addDriversFileWithAwt();
-        }
-        
-    }
-        
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -1389,17 +1248,12 @@ public class AceQLManager extends javax.swing.JFrame {
         jPanelLeft19 = new javax.swing.JPanel();
         jTextFieldPort = new javax.swing.JTextField();
         jPanelEndField6 = new javax.swing.JPanel();
+        jPanelClasspath = new javax.swing.JPanel();
+        jPanelLeft25 = new javax.swing.JPanel();
+        jLabelClasspath = new javax.swing.JLabel();
+        jPanelLeft21 = new javax.swing.JPanel();
+        jButtonDisplayClasspath = new javax.swing.JButton();
         jPanelSepBlanc8spaces = new javax.swing.JPanel();
-        jPaneJdbc = new javax.swing.JPanel();
-        jPanelLeft12 = new javax.swing.JPanel();
-        jLabelName = new javax.swing.JLabel();
-        jPanelLeft10 = new javax.swing.JPanel();
-        jScrollPane = new javax.swing.JScrollPane();
-        jList = new javax.swing.JList<>();
-        jPanelLeft11 = new javax.swing.JPanel();
-        jButtonBrowseDrivers = new javax.swing.JButton();
-        jPanelEndField5 = new javax.swing.JPanel();
-        jPanelSepBlanc8spaces2 = new javax.swing.JPanel();
         jPanelTitledSeparator5 = new javax.swing.JPanel();
         jPaneBlanklLeft2 = new javax.swing.JPanel();
         jXTitledSeparator20pixels1 = new org.jdesktop.swingx.JXTitledSeparator();
@@ -1849,106 +1703,64 @@ public class AceQLManager extends javax.swing.JFrame {
 
         jPanelMain.add(jPanelHost);
 
+        jPanelClasspath.setMaximumSize(new java.awt.Dimension(2147483647, 32));
+        jPanelClasspath.setMinimumSize(new java.awt.Dimension(91, 32));
+        jPanelClasspath.setPreferredSize(new java.awt.Dimension(191, 32));
+        jPanelClasspath.setLayout(new javax.swing.BoxLayout(jPanelClasspath, javax.swing.BoxLayout.LINE_AXIS));
+
+        jPanelLeft25.setMaximumSize(new java.awt.Dimension(10, 10));
+
+        javax.swing.GroupLayout jPanelLeft25Layout = new javax.swing.GroupLayout(jPanelLeft25);
+        jPanelLeft25.setLayout(jPanelLeft25Layout);
+        jPanelLeft25Layout.setHorizontalGroup(
+            jPanelLeft25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 10, Short.MAX_VALUE)
+        );
+        jPanelLeft25Layout.setVerticalGroup(
+            jPanelLeft25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 10, Short.MAX_VALUE)
+        );
+
+        jPanelClasspath.add(jPanelLeft25);
+
+        jLabelClasspath.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        jLabelClasspath.setMaximumSize(new java.awt.Dimension(129, 16));
+        jLabelClasspath.setMinimumSize(new java.awt.Dimension(129, 16));
+        jLabelClasspath.setName(""); // NOI18N
+        jLabelClasspath.setPreferredSize(new java.awt.Dimension(129, 16));
+        jPanelClasspath.add(jLabelClasspath);
+
+        jPanelLeft21.setMaximumSize(new java.awt.Dimension(5, 5));
+        jPanelLeft21.setMinimumSize(new java.awt.Dimension(5, 5));
+
+        javax.swing.GroupLayout jPanelLeft21Layout = new javax.swing.GroupLayout(jPanelLeft21);
+        jPanelLeft21.setLayout(jPanelLeft21Layout);
+        jPanelLeft21Layout.setHorizontalGroup(
+            jPanelLeft21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 5, Short.MAX_VALUE)
+        );
+        jPanelLeft21Layout.setVerticalGroup(
+            jPanelLeft21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 5, Short.MAX_VALUE)
+        );
+
+        jPanelClasspath.add(jPanelLeft21);
+
+        jButtonDisplayClasspath.setText("Display CLASSPATH");
+        jButtonDisplayClasspath.setToolTipText("");
+        jButtonDisplayClasspath.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonDisplayClasspathActionPerformed(evt);
+            }
+        });
+        jPanelClasspath.add(jButtonDisplayClasspath);
+
+        jPanelMain.add(jPanelClasspath);
+
         jPanelSepBlanc8spaces.setMaximumSize(new java.awt.Dimension(32767, 8));
         jPanelSepBlanc8spaces.setMinimumSize(new java.awt.Dimension(10, 8));
         jPanelSepBlanc8spaces.setPreferredSize(new java.awt.Dimension(1000, 8));
         jPanelMain.add(jPanelSepBlanc8spaces);
-
-        jPaneJdbc.setMaximumSize(new java.awt.Dimension(33079, 35));
-        jPaneJdbc.setMinimumSize(new java.awt.Dimension(329, 35));
-        jPaneJdbc.setName(""); // NOI18N
-        jPaneJdbc.setPreferredSize(new java.awt.Dimension(353, 35));
-        jPaneJdbc.setLayout(new javax.swing.BoxLayout(jPaneJdbc, javax.swing.BoxLayout.LINE_AXIS));
-
-        jPanelLeft12.setMaximumSize(new java.awt.Dimension(10, 10));
-
-        javax.swing.GroupLayout jPanelLeft12Layout = new javax.swing.GroupLayout(jPanelLeft12);
-        jPanelLeft12.setLayout(jPanelLeft12Layout);
-        jPanelLeft12Layout.setHorizontalGroup(
-            jPanelLeft12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 10, Short.MAX_VALUE)
-        );
-        jPanelLeft12Layout.setVerticalGroup(
-            jPanelLeft12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 10, Short.MAX_VALUE)
-        );
-
-        jPaneJdbc.add(jPanelLeft12);
-
-        jLabelName.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        jLabelName.setText("Installed JDBC Drivers:");
-        jPaneJdbc.add(jLabelName);
-
-        jPanelLeft10.setMaximumSize(new java.awt.Dimension(5, 5));
-        jPanelLeft10.setMinimumSize(new java.awt.Dimension(5, 5));
-
-        javax.swing.GroupLayout jPanelLeft10Layout = new javax.swing.GroupLayout(jPanelLeft10);
-        jPanelLeft10.setLayout(jPanelLeft10Layout);
-        jPanelLeft10Layout.setHorizontalGroup(
-            jPanelLeft10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 5, Short.MAX_VALUE)
-        );
-        jPanelLeft10Layout.setVerticalGroup(
-            jPanelLeft10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 5, Short.MAX_VALUE)
-        );
-
-        jPaneJdbc.add(jPanelLeft10);
-
-        jScrollPane.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-        jScrollPane.setName(""); // NOI18N
-        jScrollPane.setViewportView(jList);
-
-        jPaneJdbc.add(jScrollPane);
-
-        jPanelLeft11.setMaximumSize(new java.awt.Dimension(5, 5));
-        jPanelLeft11.setMinimumSize(new java.awt.Dimension(5, 5));
-
-        javax.swing.GroupLayout jPanelLeft11Layout = new javax.swing.GroupLayout(jPanelLeft11);
-        jPanelLeft11.setLayout(jPanelLeft11Layout);
-        jPanelLeft11Layout.setHorizontalGroup(
-            jPanelLeft11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 5, Short.MAX_VALUE)
-        );
-        jPanelLeft11Layout.setVerticalGroup(
-            jPanelLeft11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 5, Short.MAX_VALUE)
-        );
-
-        jPaneJdbc.add(jPanelLeft11);
-
-        jButtonBrowseDrivers.setText("Browse");
-        jButtonBrowseDrivers.setToolTipText("");
-        jButtonBrowseDrivers.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonBrowseDriversActionPerformed(evt);
-            }
-        });
-        jPaneJdbc.add(jButtonBrowseDrivers);
-
-        jPanelEndField5.setMaximumSize(new java.awt.Dimension(50, 10));
-        jPanelEndField5.setMinimumSize(new java.awt.Dimension(50, 10));
-        jPanelEndField5.setPreferredSize(new java.awt.Dimension(50, 10));
-
-        javax.swing.GroupLayout jPanelEndField5Layout = new javax.swing.GroupLayout(jPanelEndField5);
-        jPanelEndField5.setLayout(jPanelEndField5Layout);
-        jPanelEndField5Layout.setHorizontalGroup(
-            jPanelEndField5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 50, Short.MAX_VALUE)
-        );
-        jPanelEndField5Layout.setVerticalGroup(
-            jPanelEndField5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 10, Short.MAX_VALUE)
-        );
-
-        jPaneJdbc.add(jPanelEndField5);
-
-        jPanelMain.add(jPaneJdbc);
-
-        jPanelSepBlanc8spaces2.setMaximumSize(new java.awt.Dimension(32767, 14));
-        jPanelSepBlanc8spaces2.setMinimumSize(new java.awt.Dimension(10, 14));
-        jPanelSepBlanc8spaces2.setPreferredSize(new java.awt.Dimension(1000, 14));
-        jPanelMain.add(jPanelSepBlanc8spaces2);
 
         jPanelTitledSeparator5.setMinimumSize(new java.awt.Dimension(184, 24));
         jPanelTitledSeparator5.setPreferredSize(new java.awt.Dimension(518, 24));
@@ -2100,7 +1912,7 @@ public class AceQLManager extends javax.swing.JFrame {
         );
         jPanelLeft23Layout.setVerticalGroup(
             jPanelLeft23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 10, Short.MAX_VALUE)
         );
 
         jPanelRadioStandard.add(jPanelLeft23);
@@ -2191,7 +2003,7 @@ public class AceQLManager extends javax.swing.JFrame {
         );
         jPanelLeft26Layout.setVerticalGroup(
             jPanelLeft26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 10, Short.MAX_VALUE)
         );
 
         jPanelRadioService.add(jPanelLeft26);
@@ -2526,15 +2338,14 @@ public class AceQLManager extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonURLActionPerformed
 
     private void jButtonBrowseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBrowseActionPerformed
-        
+
         jButtonApply.setEnabled(true);
 
         // AWT does not work (freeze) on Windows
         if (SystemUtils.IS_OS_WINDOWS) {
             if (WINDOWS_OK_WITH_AWT) {
-               addPropertyFileWithAwt();
-            }
-            else {
+                addPropertyFileWithAwt();
+            } else {
                 addPropertyFileWithSwing();
             }
         } else {
@@ -2544,9 +2355,9 @@ public class AceQLManager extends javax.swing.JFrame {
 
     private void jButtonEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditActionPerformed
         try {
-            
+
             jButtonApply.setEnabled(true);
-            
+
             if (jTextFieldPropertiesFile.getText() == null || jTextFieldPropertiesFile.getText().isEmpty()) {
                 JOptionPane.showMessageDialog(this,
                         "Please enter a valid file",
@@ -2566,22 +2377,8 @@ public class AceQLManager extends javax.swing.JFrame {
             }
 
             if (SystemUtils.IS_OS_WINDOWS) {
-
-                // If an Open association is done in registry, try it
-                try {
-                    if (existsOpenKeyForProperties()) {
-                        java.awt.Desktop dekstop = java.awt.Desktop.getDesktop();
-                        dekstop.open(file);
-                    } else {
-                        ProcessBuilder pb = new ProcessBuilder("Notepad.exe", file.toString());
-                        pb.start();
-                    }
-
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    ProcessBuilder pb = new ProcessBuilder("Notepad.exe", file.toString());
-                    pb.start();
-                }
+                ProcessBuilder pb = new ProcessBuilder("Notepad.exe", file.toString());
+                pb.start();
 
             } else {
                 java.awt.Desktop dekstop = java.awt.Desktop.getDesktop();
@@ -2645,11 +2442,11 @@ public class AceQLManager extends javax.swing.JFrame {
 
         try {
             String currentVersion = com.kawansoft.app.version.GuiVersionValues.VERSION;
-            
+
             String productType = org.kawanfw.sql.version.Version.PRODUCT.TYPE;
             productType = StringUtils.substringBefore(productType, " ");
             URL url = new URL("https://www.aceql.com/CheckForUpdates?version=" + currentVersion + "&edition=" + productType);
-            
+
             Desktop desktop = Desktop.getDesktop();
             desktop.browse(url.toURI());
         } catch (Exception e) {
@@ -2675,30 +2472,29 @@ public class AceQLManager extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonServicesConsoleActionPerformed
 
     private void jMenuItemServiceInstallActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemServiceInstallActionPerformed
-         serviceInstall();
+        serviceInstall();
     }//GEN-LAST:event_jMenuItemServiceInstallActionPerformed
 
     private void jMenuItemResetWindowsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemResetWindowsActionPerformed
         actionResetWindows();
     }//GEN-LAST:event_jMenuItemResetWindowsActionPerformed
 
-    private void jButtonBrowseDriversActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBrowseDriversActionPerformed
-
-         doAddDrivers();
-    }//GEN-LAST:event_jButtonBrowseDriversActionPerformed
-
     private void jMenuItemReleaseNotesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemReleaseNotesActionPerformed
         try {
- 
+
             URL url = new URL("https://www.aceql.com/rest/soft/1.0/RELEASE-NOTES.txt");
-            
+
             Desktop desktop = Desktop.getDesktop();
             desktop.browse(url.toURI());
         } catch (Exception e) {
             e.printStackTrace();
             JOptionPane.showMessageDialog(this, "Impossible to display Check For Updates Page " + e.toString(), Parms.APP_NAME, JOptionPane.ERROR_MESSAGE);
-        }        
+        }
     }//GEN-LAST:event_jMenuItemReleaseNotesActionPerformed
+
+    private void jButtonDisplayClasspathActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDisplayClasspathActionPerformed
+        displayClasspath();
+    }//GEN-LAST:event_jButtonDisplayClasspathActionPerformed
 
     public static void setLookAndFeel() throws IOException, ClassNotFoundException, InstantiationException, IllegalAccessException, UnsupportedLookAndFeelException {
         JFrame.setDefaultLookAndFeelDecorated(true);
@@ -2706,7 +2502,7 @@ public class AceQLManager extends javax.swing.JFrame {
 
         File lookAndFeelFile = new File(ParmsUtil.LOOK_AND_FEEL_TXT);
         if (lookAndFeelFile.exists()) {
-            String lookAndFeel = FileUtils.readFileToString(lookAndFeelFile);
+            String lookAndFeel = FileUtils.readFileToString(lookAndFeelFile, Charset.defaultCharset());
             if (lookAndFeel != null && !lookAndFeel.isEmpty()) {
                 for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
                     if (lookAndFeel.equalsIgnoreCase(info.getName())) {
@@ -2749,7 +2545,7 @@ public class AceQLManager extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonApply;
     private javax.swing.JButton jButtonBrowse;
-    private javax.swing.JButton jButtonBrowseDrivers;
+    private javax.swing.JButton jButtonDisplayClasspath;
     private javax.swing.JButton jButtonDisplayConsole;
     private javax.swing.JButton jButtonDisplayLogs;
     private javax.swing.JButton jButtonEdit;
@@ -2762,10 +2558,10 @@ public class AceQLManager extends javax.swing.JFrame {
     private javax.swing.JButton jButtonStopService;
     private javax.swing.JButton jButtonURL;
     private javax.swing.JLabel jLabeStandardStatusValue;
+    private javax.swing.JLabel jLabelClasspath;
     private javax.swing.JLabel jLabelHost;
     private javax.swing.JLabel jLabelHost1;
     private javax.swing.JLabel jLabelLogo;
-    private javax.swing.JLabel jLabelName;
     private javax.swing.JLabel jLabelPropertiesFile;
     private javax.swing.JLabel jLabelServiceStartModeValue;
     private javax.swing.JLabel jLabelServiceStatus;
@@ -2774,7 +2570,6 @@ public class AceQLManager extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelStandardStatus;
     private javax.swing.JLabel jLabelURL;
     private javax.swing.JLabel jLabelWindowsServiceMode;
-    private javax.swing.JList<String> jList;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuCheckForUpdates;
     private javax.swing.JMenu jMenuFile;
@@ -2790,7 +2585,6 @@ public class AceQLManager extends javax.swing.JFrame {
     private javax.swing.JMenu jMenuOptions;
     private javax.swing.JPanel jPaneBlanklLeft1;
     private javax.swing.JPanel jPaneBlanklLeft2;
-    private javax.swing.JPanel jPaneJdbc;
     private javax.swing.JPanel jPaneSep2;
     private javax.swing.JPanel jPaneSepInstallAndStart1;
     private javax.swing.JPanel jPanel1;
@@ -2806,13 +2600,10 @@ public class AceQLManager extends javax.swing.JFrame {
     private javax.swing.JPanel jPanelButtons;
     private javax.swing.JPanel jPanelButtonsStartService;
     private javax.swing.JPanel jPanelButtonsStartStandard;
+    private javax.swing.JPanel jPanelClasspath;
     private javax.swing.JPanel jPanelEndField4;
-    private javax.swing.JPanel jPanelEndField5;
     private javax.swing.JPanel jPanelEndField6;
     private javax.swing.JPanel jPanelHost;
-    private javax.swing.JPanel jPanelLeft10;
-    private javax.swing.JPanel jPanelLeft11;
-    private javax.swing.JPanel jPanelLeft12;
     private javax.swing.JPanel jPanelLeft13;
     private javax.swing.JPanel jPanelLeft14;
     private javax.swing.JPanel jPanelLeft15;
@@ -2821,9 +2612,11 @@ public class AceQLManager extends javax.swing.JFrame {
     private javax.swing.JPanel jPanelLeft18;
     private javax.swing.JPanel jPanelLeft19;
     private javax.swing.JPanel jPanelLeft20;
+    private javax.swing.JPanel jPanelLeft21;
     private javax.swing.JPanel jPanelLeft22;
     private javax.swing.JPanel jPanelLeft23;
     private javax.swing.JPanel jPanelLeft24;
+    private javax.swing.JPanel jPanelLeft25;
     private javax.swing.JPanel jPanelLeft26;
     private javax.swing.JPanel jPanelLeft31;
     private javax.swing.JPanel jPanelLeft33;
@@ -2836,7 +2629,6 @@ public class AceQLManager extends javax.swing.JFrame {
     private javax.swing.JPanel jPanelSep3x7;
     private javax.swing.JPanel jPanelSepBlanc8spaces;
     private javax.swing.JPanel jPanelSepBlanc8spaces1;
-    private javax.swing.JPanel jPanelSepBlanc8spaces2;
     private javax.swing.JPanel jPanelSepBlanc8spaces3;
     private javax.swing.JPanel jPanelSepBlanc8spaces4;
     private javax.swing.JPanel jPanelSepBlanc8spaces5;
@@ -2847,7 +2639,6 @@ public class AceQLManager extends javax.swing.JFrame {
     private javax.swing.JPanel jPanelTitledSeparator5;
     private javax.swing.JPanel jPanelTitledSeparator6;
     private javax.swing.JPanel jPanelURL;
-    private javax.swing.JScrollPane jScrollPane;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JPopupMenu.Separator jSeparator3;
     private javax.swing.JSeparator jSeparator4;

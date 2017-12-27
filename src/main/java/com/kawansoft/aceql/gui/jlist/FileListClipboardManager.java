@@ -429,10 +429,6 @@ public class FileListClipboardManager
             return;
         }
         
-        if (parent instanceof AceQLManager) {
-            AceQLManager aceQLManager = (AceQLManager)parent;
-            aceQLManager.addDrivers(files);
-        }
         
     }
     
@@ -500,13 +496,6 @@ public class FileListClipboardManager
             JOptionPane.showMessageDialog(parent, "Stop server instance & restart this program in order to uninstall/delete the Driver(s): " + message, Parms.APP_NAME, JOptionPane.ERROR_MESSAGE);
         }
                 
-
-        if (parent instanceof AceQLManager) {
-            File [] finalFiles = getInstalledJdbcDrivers();
-            List<File> newList = Arrays.asList(finalFiles);
-            AceQLManager aceQLManager = (AceQLManager)parent;
-            aceQLManager.setJdbcDrivers(newList);
-        }
                
     }
     

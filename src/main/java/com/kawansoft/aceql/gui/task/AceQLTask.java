@@ -32,6 +32,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.ConnectException;
 import java.net.UnknownHostException;
+import java.util.Collections;
 import java.util.List;
 import org.apache.commons.lang3.SystemUtils;
 import org.kawanfw.sql.api.server.DatabaseConfigurationException;
@@ -102,17 +103,17 @@ public class AceQLTask extends Thread implements Runnable {
                 System.out.println(ClientLogger.formatLogMsg(null, "user.name        : " + System.getProperty("user.name")));
                 System.out.println(ClientLogger.formatLogMsg(null, "user.home        : " + SystemUtils.getUserHome()));
                 System.out.println(ClientLogger.formatLogMsg(null, "user.dir         : " + SystemUtils.getUserDir()));
+
+                List<String> classpathList = ClasspathUtil.getClasspath();
+                Collections.sort(classpathList);
+
+                String classpathCrLf = "";
+                for (String classpathElement : classpathList) {
+                    classpathCrLf += classpathElement + System.getProperty("path.separator") + CR_LF;
+                }
+
+                System.out.println(ClientLogger.formatLogMsg(null, "CLASSPATH        : " + CR_LF + classpathCrLf));
             }
-
-            List<String> classpathList = ClasspathUtil.getOrderedClasspath();
-
-            String classpathCrLf = "";
-            for (String classpathElement : classpathList) {
-                classpathCrLf += classpathElement + System.getProperty("path.separator") + CR_LF;
-            }
-
-            System.out.println(ClientLogger.formatLogMsg(null, "CLASSPATH        : " + CR_LF + classpathCrLf));
-
             // Start Server
             WebServerApi webServerApi = new WebServerApi();
             setStandardStartedStatus();

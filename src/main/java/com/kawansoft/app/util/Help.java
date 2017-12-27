@@ -191,18 +191,13 @@ public class Help extends javax.swing.JFrame {
      * @param helpFileRaw   raw name of help file the string _fr.txt or _en.txt will be added to get the full name
      * @return  
      */
-    public static String getHelpContentAsText(String helpFileRaw) {
+    public static String getHelpContentAsText(String helpFileRaw) throws IOException {
 
-        InputStream is = null;
-        ByteArrayOutputStream out = null;
-
-        try {
-
-            String helpFileTxt = helpFileRaw + "_" + LanguageManager.getLanguage() + ".txt";
+        String helpFileTxt = helpFileRaw + "_" + LanguageManager.getLanguage() + ".txt";
+                    
+        try (InputStream  is = Parms.class.getResourceAsStream("helpfiles/" + helpFileTxt);
+        ByteArrayOutputStream out = new ByteArrayOutputStream();){
             
-            is = Parms.class.getResourceAsStream("helpfiles/" + helpFileTxt);
-            out = new ByteArrayOutputStream();
-
             try {
                 IOUtils.copy(is, out);
                 String text = out.toString("ISO-8859-1");
@@ -217,8 +212,8 @@ public class Help extends javax.swing.JFrame {
                 return ioe.getMessage();
             }
         } finally {
-            IOUtils.closeQuietly(is);
-            IOUtils.closeQuietly(out);
+            //IOUtils.closeQuietly(is);
+            //IOUtils.closeQuietly(out);
         }
     }
 
@@ -250,12 +245,9 @@ public class Help extends javax.swing.JFrame {
      */
     public static String getHtmlHelpContent(String helpFileRaw) {
         String htmlContent;
-        InputStream is = null;
-        try {
+        
+        try (InputStream is = Parms.class.getResourceAsStream("helpfiles/" + getHtmlNameWithLanguage(helpFileRaw))){
             //debug(urlResource);
-
-            is = Parms.class.getResourceAsStream("helpfiles/" + getHtmlNameWithLanguage(helpFileRaw));
-
             if (is == null) {
                 return "<font face=\"Arial\" size=4><br>"
                         + "<b>Please apologize. <br>  "
@@ -283,7 +275,7 @@ public class Help extends javax.swing.JFrame {
             htmlContent = e.getMessage();
         }
         finally {
-            IOUtils.closeQuietly(is);
+            //IOUtils.closeQuietly(is);
         }
 
         return htmlContent;

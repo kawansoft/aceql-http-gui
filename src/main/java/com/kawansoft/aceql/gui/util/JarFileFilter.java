@@ -42,6 +42,7 @@ public class JarFileFilter extends FileFilter {
 
     /**
      * Accept all directories and all Word Like extensions
+     * @return 
      */
     @Override
     public boolean accept(File f) 

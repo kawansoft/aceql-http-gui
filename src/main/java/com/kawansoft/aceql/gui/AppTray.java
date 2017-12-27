@@ -133,6 +133,7 @@ public class AppTray {
      */
     public void startAsTray(String[] args) {
 
+        /*
         String javaVersion = System.getProperty("java.version");
         if (javaVersion.compareTo("1.9") >= 0) {
             JOptionPane.showMessageDialog(null,
@@ -140,6 +141,7 @@ public class AppTray {
                     JOptionPane.ERROR_MESSAGE);
             System.exit(-1);
         }
+        */
         
         PopupMenu menu;
         MenuItem menuItem;

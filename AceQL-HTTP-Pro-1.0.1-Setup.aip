@@ -17,10 +17,10 @@
     <ROW Property="CTRLS" Value="2"/>
     <ROW Property="DialogBitmap" Value="dialog" MultiBuildValue="DefaultBuild:dialog_aceql.bmp_1" Type="1" MsiKey="DialogBitmap"/>
     <ROW Property="Manufacturer" Value="KawanSoft"/>
-    <ROW Property="ProductCode" Value="1033:{0F38F366-CEF8-4DCF-8FF2-CDC81659EAC0} " Type="16"/>
+    <ROW Property="ProductCode" Value="1033:{EFE5A588-7CC4-4612-924C-B1B9E0B86871} " Type="16"/>
     <ROW Property="ProductLanguage" Value="1033"/>
     <ROW Property="ProductName" Value="AceQL HTTP Pro"/>
-    <ROW Property="ProductVersion" Value="1.0.0" Type="32"/>
+    <ROW Property="ProductVersion" Value="1.0.1" Type="32"/>
     <ROW Property="RUNAPPLICATION" Value="1" Type="4"/>
     <ROW Property="SecureCustomProperties" Value="OLDPRODUCTS;AI_NEWERPRODUCTFOUND;AI_SETUPEXEPATH;SETUPEXEDIR"/>
     <ROW Property="UpgradeCode" Value="{B0F1DEE4-0AEB-468C-A7DA-DAD031DEFABB}"/>
@@ -166,7 +166,7 @@
     <ROW File="aceql_rocket_64.bmp" Component_="aceql_rocket_64.bmp_1" FileName="ACEQL_~1.BMP|aceql_rocket_64.bmp" Attributes="0" SourcePath="AceQLPro\img\aceql_rocket_64.bmp" SelfReg="false" NextFile="aceql_rocket_64.png"/>
     <ROW File="aceql_rocket_64.png" Component_="aceql_rocket_64.bmp_1" FileName="ACEQL_~1.PNG|aceql_rocket_64.png" Attributes="0" SourcePath="AceQLPro\img\aceql_rocket_64.png" SelfReg="false" NextFile="banner_aceql.bmp"/>
     <ROW File="aceqlhttpgui1.0.jar" Component_="aceqlhttpgui1.0beta5.4.jar" FileName="ACEQL-~3.JAR|aceql-http-gui-1.0.jar" Attributes="0" SourcePath="AceQLPro\lib-server\aceql-http-gui-1.0.jar" SelfReg="false" NextFile="aceqlhttplocalpro1.0.jar"/>
-    <ROW File="aceqlhttpgui1.0.jar_1" Component_="aceqlhttpgui1.0beta5.4.jar_1" FileName="ACEQL-~2.JAR|aceql-http-gui-1.0.jar" Attributes="0" SourcePath="AceQLPro\webapp\WEB-INF\lib\aceql-http-gui-1.0.jar" SelfReg="false" NextFile="aceqlhttplocalpro1.0.jar_1"/>
+    <ROW File="aceqlhttpgui1.0.jar_1" Component_="aceqlhttpgui1.0beta5.4.jar_1" FileName="ACEQL-~1.JAR|aceql-http-gui-1.0.jar" Attributes="0" SourcePath="AceQLPro\webapp\WEB-INF\lib\aceql-http-gui-1.0.jar" SelfReg="false"/>
     <ROW File="aceqlhttplocalpro1.0.jar" Component_="aceqlhttpgui1.0beta5.4.jar" FileName="ACEQL-~4.JAR|aceql-http-local-pro-1.0.jar" Attributes="0" SourcePath="AceQLPro\lib-server\aceql-http-local-pro-1.0.jar" SelfReg="false" NextFile="commonsio2.6.jar"/>
     <ROW File="aceqlhttplocalpro1.0.jar_1" Component_="aceqlhttpgui1.0beta5.4.jar_1" FileName="ACEQL-~3.JAR|aceql-http-local-pro-1.0.jar" Attributes="0" SourcePath="AceQLPro\webapp\WEB-INF\lib\aceql-http-local-pro-1.0.jar" SelfReg="false" NextFile="commonsio2.6.jar_1"/>
     <ROW File="aceqlserver.bat" Component_="aceqlserver.bat" FileName="ACEQL-~1.BAT|aceql-server.bat" Attributes="0" SourcePath="AceQLPro\bin\aceql-server.bat" SelfReg="false" NextFile="aceqlserver.properties"/>
@@ -265,7 +265,7 @@
     <ROW File="startMmc.bat" Component_="installService.bat_1" FileName="startMmc.bat" Attributes="0" SourcePath="AceQLPro\service\startMmc.bat" SelfReg="false" NextFile="startService.bat"/>
     <ROW File="startService.bat" Component_="installService.bat_1" FileName="STARTS~1.BAT|startService.bat" Attributes="0" SourcePath="AceQLPro\service\startService.bat" SelfReg="false" NextFile="stopService.bat"/>
     <ROW File="stopService.bat" Component_="installService.bat_1" FileName="STOPSE~1.BAT|stopService.bat" Attributes="0" SourcePath="AceQLPro\service\stopService.bat" SelfReg="false" NextFile="testInstall.bat"/>
-    <ROW File="stylesheet.css" Component_="allclassesframe.html" FileName="STYLES~1.CSS|stylesheet.css" Attributes="0" SourcePath="AceQLPro\javadoc\stylesheet.css" SelfReg="false"/>
+    <ROW File="stylesheet.css" Component_="allclassesframe.html" FileName="STYLES~1.CSS|stylesheet.css" Attributes="0" SourcePath="AceQLPro\javadoc\stylesheet.css" SelfReg="false" NextFile="aceqlhttpgui1.0.jar_1"/>
     <ROW File="swingxall1.6.51.jar" Component_="aceqlhttpgui1.0beta5.4.jar" FileName="SWINGX~1.JAR|swingx-all-1.6.5-1.jar" Attributes="0" SourcePath="AceQLPro\lib-server\swingx-all-1.6.5-1.jar" SelfReg="false" NextFile="README.txt"/>
     <ROW File="swingxall1.6.51.jar_1" Component_="aceqlhttpgui1.0beta5.4.jar_1" FileName="SWINGX~1.JAR|swingx-all-1.6.5-1.jar" Attributes="0" SourcePath="AceQLPro\webapp\WEB-INF\lib\swingx-all-1.6.5-1.jar" SelfReg="false" NextFile="tomcatjdbc8.5.24.jar_1"/>
     <ROW File="tab.gif" Component_="background.gif" FileName="tab.gif" Attributes="0" SourcePath="AceQLPro\javadoc\resources\tab.gif" SelfReg="false" NextFile="titlebar.gif"/>
@@ -276,7 +276,7 @@
     <ROW File="tomcatembedcore8.5.24.jar" Component_="aceqlhttpgui1.0beta5.4.jar" FileName="TOMCAT~5.JAR|tomcat-embed-core-8.5.24.jar" Attributes="0" SourcePath="AceQLPro\lib-server\tomcat-embed-core-8.5.24.jar" SelfReg="false" NextFile="tomcatjdbc8.5.24.jar"/>
     <ROW File="tomcatjdbc8.5.24.jar" Component_="aceqlhttpgui1.0beta5.4.jar" FileName="TOMCAT~6.JAR|tomcat-jdbc-8.5.24.jar" Attributes="0" SourcePath="AceQLPro\lib-server\tomcat-jdbc-8.5.24.jar" SelfReg="false" NextFile="tomcatjuli8.5.24.jar"/>
     <ROW File="tomcatjdbc8.5.24.jar_1" Component_="tomcatjdbc8.5.20.jar" FileName="TOMCAT~2.JAR|tomcat-jdbc-8.5.24.jar" Attributes="0" SourcePath="AceQLPro\webapp\WEB-INF\lib-tomcat\tomcat-jdbc-8.5.24.jar" SelfReg="false" NextFile="allclassesframe.html"/>
-    <ROW File="tomcatjuli8.5.24.jar" Component_="aceqlhttpgui1.0beta5.4.jar" FileName="TOMCAT~7.JAR|tomcat-juli-8.5.24.jar" Attributes="0" SourcePath="AceQLPro\lib-server\tomcat-juli-8.5.24.jar" SelfReg="false" NextFile="aceqlhttpgui1.0.jar_1"/>
+    <ROW File="tomcatjuli8.5.24.jar" Component_="aceqlhttpgui1.0beta5.4.jar" FileName="TOMCAT~7.JAR|tomcat-juli-8.5.24.jar" Attributes="0" SourcePath="AceQLPro\lib-server\tomcat-juli-8.5.24.jar" SelfReg="false" NextFile="aceqlhttplocalpro1.0.jar_1"/>
     <ROW File="uninstallService.bat_1" Component_="installService.bat_1" FileName="UNINST~1.BAT|uninstallService.bat" Attributes="0" SourcePath="AceQLPro\service\uninstallService.bat" SelfReg="false" NextFile="AceQLSingleServerLicense.htm"/>
     <ROW File="updateServiceClasspath.bat" Component_="installService.bat_1" FileName="UPDATE~1.BAT|updateServiceClasspath.bat" Attributes="0" SourcePath="AceQLPro\service\updateServiceClasspath.bat" SelfReg="false" NextFile="updateServiceUserHomeNormal.bat"/>
     <ROW File="updateServiceUserHomeNormal.bat" Component_="installService.bat_1" FileName="UPDATE~2.BAT|updateServiceUserHomeNormal.bat" Attributes="0" SourcePath="AceQLPro\service\updateServiceUserHomeNormal.bat" SelfReg="false" NextFile="updateServiceUserHomeSystem.bat"/>

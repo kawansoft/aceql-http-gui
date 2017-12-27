@@ -64,16 +64,15 @@ public class ProcessUtil {
 
 	Process p = Runtime.getRuntime().exec(System.getenv("windir") +"\\system32\\"+"tasklist.exe");
 
-	BufferedReader input =  null;
 	
-	try {
-	    input = new BufferedReader(new InputStreamReader(p.getInputStream()));
-
+	
+	try (BufferedReader input = new BufferedReader(new InputStreamReader(p.getInputStream()));){
+	    
 	    while ((line = input.readLine()) != null) {
 	        pidInfo+=line; 
 	    }
 	} finally  {
-	    IOUtils.closeQuietly(input);
+	    //IOUtils.closeQuietly(input);
 	}
 
 	if(pidInfo.toLowerCase().contains(programName.toLowerCase()))

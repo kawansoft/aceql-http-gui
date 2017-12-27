@@ -293,12 +293,10 @@ public class FileUtil
         }
                 
         StringBuilder text = new StringBuilder();
-        BufferedReader br = null;
-        
-        try
+       
+        try( BufferedReader br = new BufferedReader(new FileReader(fileIn));)
         {
-            br = new BufferedReader(new FileReader(fileIn));
-
+           
             String line = null;
             
             while ((line = br.readLine()) != null) 
@@ -309,7 +307,7 @@ public class FileUtil
         }
         finally
         {
-            IOUtils.closeQuietly(br);
+            //IOUtils.closeQuietly(br);
         }
                         
         return text.toString();

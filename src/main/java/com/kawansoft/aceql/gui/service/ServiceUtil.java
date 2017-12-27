@@ -256,13 +256,9 @@ public class ServiceUtil {
             return false;
         }
 
-        BufferedReader reader = null;
-
-        try {
-            Process p = Runtime.getRuntime().exec("sc qc " + serviceName);
-
-            reader = new BufferedReader(new InputStreamReader(
-                    p.getInputStream()));
+        Process p = Runtime.getRuntime().exec("sc qc " + serviceName);
+        
+        try (BufferedReader reader = new BufferedReader(new InputStreamReader( p.getInputStream()));) {
 
             String line = reader.readLine();
             while (line != null) {
@@ -283,7 +279,7 @@ public class ServiceUtil {
             return false;
 
         } finally {
-            IOUtils.closeQuietly(reader);
+            //IOUtils.closeQuietly(reader);
         }
     }
         
@@ -300,14 +296,11 @@ public class ServiceUtil {
             return NOT_INSTALLED;
         }
 
-        BufferedReader reader = null;
-
-        try {
-            Process p = Runtime.getRuntime().exec("sc query " + serviceName);
-
-            reader = new BufferedReader(new InputStreamReader(
-                    p.getInputStream()));
-
+        Process p = Runtime.getRuntime().exec("sc query " + serviceName);
+        
+        try (BufferedReader reader = new BufferedReader(new InputStreamReader(
+                    p.getInputStream()));){
+            
             String line = reader.readLine();
             while (line != null) {
 
@@ -348,7 +341,7 @@ public class ServiceUtil {
             return NOT_INSTALLED;
 
         } finally {
-            IOUtils.closeQuietly(reader);
+            //IOUtils.closeQuietly(reader);
         }
     }
 
@@ -366,13 +359,9 @@ public class ServiceUtil {
             return NOT_INSTALLED;
         }
 
-        BufferedReader reader = null;
-
-        try {
-            Process p = Runtime.getRuntime().exec("sc qc " + serviceName);
-
-            reader = new BufferedReader(new InputStreamReader(
-                    p.getInputStream()));
+        Process p = Runtime.getRuntime().exec("sc qc " + serviceName);
+       
+        try ( BufferedReader  reader = new BufferedReader(new InputStreamReader(p.getInputStream()));){
 
             String line = reader.readLine();
             while (line != null) {
@@ -410,7 +399,7 @@ public class ServiceUtil {
             return NOT_INSTALLED;
 
         } finally {
-            IOUtils.closeQuietly(reader);
+            //IOUtils.closeQuietly(reader);
         }
     }
 
