@@ -1,6 +1,6 @@
 
              AceQL HTTP Open Source
-                  Version 1.0
+                  Version 2.0
                     Readme
 
 
