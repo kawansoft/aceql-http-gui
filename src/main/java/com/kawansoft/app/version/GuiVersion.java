@@ -67,14 +67,12 @@ public class GuiVersion {
 	public String server() {
 	    return NAME + " " + TYPE + " " + VERSION + " - " + DATE;
 	}
-	
-	
     }
 
     public static final class VENDOR {
 	public static final String NAME = "KawanSoft SAS";
 	public static final String WEB = "http://www.kawansoft.com";
-	public static final String COPYRIGHT = "Copyright &copy; 2018";
+	public static final String COPYRIGHT = "Copyright &copy; 2020";
 	public static final String EMAIL = "contact@kawansoft.com";
 
 	public String toString() {
