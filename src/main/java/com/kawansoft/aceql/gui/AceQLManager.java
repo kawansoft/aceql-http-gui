@@ -28,7 +28,6 @@ import com.kawansoft.aceql.gui.service.ServiceInstaller;
 import com.kawansoft.aceql.gui.service.ServiceUtil;
 import com.kawansoft.aceql.gui.task.AceQLTask;
 import com.kawansoft.aceql.gui.util.ConfigurationUtil;
-import com.kawansoft.aceql.gui.util.JarFileFilter;
 import com.kawansoft.aceql.gui.util.PropertiesFileFilter;
 import com.kawansoft.app.parms.MessagesManager;
 import com.kawansoft.app.parms.Parms;
@@ -55,9 +54,6 @@ import com.kawansoft.app.util.Help;
 import com.kawansoft.app.util.JFileChooserMemory;
 import com.kawansoft.app.util.SystemPropDisplayer;
 import com.kawansoft.app.util.WindowSettingMgr;
-import com.kawansoft.app.util.classpath.ClassPathHacker;
-import com.kawansoft.aceql.gui.jlist.FileListClipboardManager;
-import com.kawansoft.aceql.gui.jlist.FilesListCellRenderer;
 import com.kawansoft.app.util.registry.RegistryReader;
 import com.kawansoft.app.util.table.FileDrop;
 import com.swing.util.SwingUtil;
@@ -75,18 +71,13 @@ import java.net.URI;
 import java.net.URL;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.DefaultListModel;
 import javax.swing.JDialog;
 import javax.swing.JFileChooser;
-import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.KeyStroke;
-import javax.swing.ListModel;
-import javax.swing.ListSelectionModel;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
@@ -966,11 +957,15 @@ public class AceQLManager extends javax.swing.JFrame {
         WindowSettingMgr.save(this);
     }
 
+    
+    private void doSystemExit() {
+        updateServiceStatusThreadStop();
+        System.exit(0);
+    }
+    
     private void closeOnExit() {
         saveSettings();
-        updateServiceStatusThreadStop();
         this.setVisible(false);
-        this.dispose();
     }
 
     private boolean verifyConfigValues() {
@@ -1319,7 +1314,7 @@ public class AceQLManager extends javax.swing.JFrame {
         jMenuItemSystemInfo = new javax.swing.JMenuItem();
         jMenuItemAbout = new javax.swing.JMenuItem();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         getContentPane().setLayout(new javax.swing.BoxLayout(getContentPane(), javax.swing.BoxLayout.Y_AXIS));
 
         jPanelMain.setLayout(new javax.swing.BoxLayout(jPanelMain, javax.swing.BoxLayout.Y_AXIS));
@@ -2410,11 +2405,11 @@ public class AceQLManager extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonDisplayConsoleActionPerformed
 
     private void jMenuItemCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemCloseActionPerformed
-        this.setVisible(false);
+        closeOnExit();
     }//GEN-LAST:event_jMenuItemCloseActionPerformed
 
     private void jMenuItemQuitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemQuitActionPerformed
-        System.exit(0);
+        doSystemExit();
     }//GEN-LAST:event_jMenuItemQuitActionPerformed
 
     private void jMenuItemHelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemHelpActionPerformed
