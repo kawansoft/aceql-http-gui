@@ -1,6 +1,6 @@
 
              AceQL HTTP Open Source
-                 Version 4.0
+                 Version 4.1
                    Readme
 
 
@@ -15,6 +15,8 @@ AceQL HTTP is provided with two client SDK.
   in their code, just like they would for a local database.
 - The AceQL C# Client SDK allows to wrap the HTTP APIs using Microsoft SQL 
   Server like calls in their code, just like they would for a local database.
+- The AceQL Python Client SDK allows SQL calls to be encoded with standard 
+  unmodified DB-API 2.0 syntax.
 
 Security has been taken into account from the design: It as allowed to specify 
 and code strong security rules in order to protect the databases. 
