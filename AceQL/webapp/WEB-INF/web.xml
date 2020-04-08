@@ -19,10 +19,11 @@
     <servlet>
         <servlet-name>aceql</servlet-name>
         <servlet-class>org.kawanfw.sql.servlet.ServerSqlManager</servlet-class>
-                   
+        <async-supported>true</async-supported>
+					
        <init-param>        
             <param-name>properties</param-name>
-            <param-value>c:\aceql-server.properties</param-value>
+            <param-value>C:\.aceql-http\conf\aceql-server.properties</param-value>
         </init-param> 
 
 
