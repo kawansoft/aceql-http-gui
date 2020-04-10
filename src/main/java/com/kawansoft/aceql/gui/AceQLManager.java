@@ -2477,7 +2477,7 @@ public class AceQLManager extends javax.swing.JFrame {
     private void jMenuItemReleaseNotesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemReleaseNotesActionPerformed
         try {
 
-            URL url = new URL("https://www.aceql.com/rest/soft/5.0/RELEASE-NOTES.txt");
+            URL url = new URL("https://www.aceql.com/rest/soft/5.0.1/RELEASE-NOTES.txt");
 
             Desktop desktop = Desktop.getDesktop();
             desktop.browse(url.toURI());
