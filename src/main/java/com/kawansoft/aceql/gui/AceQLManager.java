@@ -92,6 +92,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.SystemUtils;
 import org.kawanfw.sql.api.server.web.WebServerApi;
 import org.kawanfw.sql.tomcat.TomcatStarterUtil;
+import org.kawanfw.sql.version.Version;
 
 /**
  *
@@ -2477,7 +2478,9 @@ public class AceQLManager extends javax.swing.JFrame {
     private void jMenuItemReleaseNotesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemReleaseNotesActionPerformed
         try {
 
-            URL url = new URL("https://www.aceql.com/rest/soft/5.0.1/RELEASE-NOTES.txt");
+            String version = org.kawanfw.sql.version.VersionValues.VERSION;
+            version = version.substring(1);
+            URL url = new URL("https://www.aceql.com/rest/soft/" + version+ "/RELEASE-NOTES.txt");
 
             Desktop desktop = Desktop.getDesktop();
             desktop.browse(url.toURI());

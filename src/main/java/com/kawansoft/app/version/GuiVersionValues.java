@@ -28,8 +28,8 @@ package com.kawansoft.app.version;
  */
 
 public class GuiVersionValues {
-    public static final String VERSION = "v5.0.1";
-    public static final String DATE = "10-Apr-2020"; 
+    public static final String VERSION = "v5.0.2";
+    public static final String DATE = "22-Apr-2020"; 
 }
 
 // End
