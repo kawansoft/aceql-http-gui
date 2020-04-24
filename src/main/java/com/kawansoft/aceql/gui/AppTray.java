@@ -146,10 +146,15 @@ public class AppTray {
         PopupMenu menu;
         MenuItem menuItem;
 
-        if (Integer.parseInt(System.getProperty("java.version").substring(2, 3)) >= 5) {
-            System.setProperty("javax.swing.adjustPopupLocationToFit", "false");
-        }
-
+        
+        System.out.println(System.getProperty("java.version"));
+        //NO! Will fail on Java new versions
+//        if (Integer.parseInt(System.getProperty("java.version").substring(2, 3)) >= 5) {
+//            System.setProperty("javax.swing.adjustPopupLocationToFit", "false");
+//        }
+         System.setProperty("javax.swing.adjustPopupLocationToFit", "false");
+        
+        
         /*
          Main Window
          Exit
