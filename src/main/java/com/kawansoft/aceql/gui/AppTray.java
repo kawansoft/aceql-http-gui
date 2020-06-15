@@ -62,6 +62,8 @@ import org.apache.commons.lang3.SystemUtils;
 
 import com.kawansoft.app.parms.Parms;
 import com.kawansoft.app.parms.util.ImageParmsUtil;
+import com.kawansoft.app.util.ProcessUtil;
+import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -130,29 +132,23 @@ public class AppTray {
      * Start Https Uploader as Tray
      *
      * @param args args passed to jar
+     * @throws java.io.IOException
      */
-    public void startAsTray(String[] args) {
+    public void startAsTray(String[] args) throws IOException {
 
-        /*
-        String javaVersion = System.getProperty("java.version");
-        if (javaVersion.compareTo("1.9") >= 0) {
-            JOptionPane.showMessageDialog(null,
-                    "We are sorry: Java 9 is not yet supported in this AceQL HTTP Windows version.", Parms.APP_NAME,
-                    JOptionPane.ERROR_MESSAGE);
-            System.exit(-1);
+        if (SystemUtils.IS_OS_WINDOWS && ProcessUtil.countWindowsInstanceRunning(Parms.EXE_NAME) > 1) {
+            MessagesManager messagesManager = new MessagesManager();
+            String message = messagesManager.get("aceql_already_running_use_task_bar");
+            JOptionPane.showMessageDialog(null, message, Parms.APP_NAME, JOptionPane.INFORMATION_MESSAGE);
+            System.exit(0);
         }
-        */
         
         PopupMenu menu;
         MenuItem menuItem;
 
         
         System.out.println(System.getProperty("java.version"));
-        //NO! Will fail on Java new versions
-//        if (Integer.parseInt(System.getProperty("java.version").substring(2, 3)) >= 5) {
-//            System.setProperty("javax.swing.adjustPopupLocationToFit", "false");
-//        }
-         System.setProperty("javax.swing.adjustPopupLocationToFit", "false");
+        System.setProperty("javax.swing.adjustPopupLocationToFit", "false");
         
         
         /*

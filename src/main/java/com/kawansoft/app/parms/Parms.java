@@ -24,8 +24,6 @@
  */
 package com.kawansoft.app.parms;
 
-import com.kawansoft.app.parms.util.ParmsUtil;
-
 /**
  * Application parameters The implementations are in 
  *
@@ -34,8 +32,10 @@ import com.kawansoft.app.parms.util.ParmsUtil;
 public class Parms {
     
     // BEGIN COMMON TO ALL APPS
-    public static String APP_NAME = "AceQL HTTP";
+    public static String EXE_NAME  = "AceQLHTTP.exe"; 
 
+    public static String APP_NAME = "AceQL HTTP";
+    
     // Tray and default App Icon 
     public static final String TRAY_ICON = "images/data_up_20.png";
 
@@ -62,6 +62,6 @@ public class Parms {
    
     // For cover page propaganda
     public static final String CONTACT_AND_INFORMATION = "www.aceql.com";
-    
+   
     
 }
