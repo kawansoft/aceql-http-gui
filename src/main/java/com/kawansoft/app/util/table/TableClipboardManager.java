@@ -132,7 +132,7 @@ public class TableClipboardManager {
         menuItemCut.setText(cut);
         menuItemCut.addActionListener((new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                jTable_clipboard_actionPerformed(e);
+                jTableClipboardActionPerformed(e);
             }
         }));
         menuItemCut.setIcon(ImageParmsUtil.createImageIcon(ParmsUtil.CUT_ICON));
@@ -144,7 +144,7 @@ public class TableClipboardManager {
         menuItemCopy.setText(copy);
         menuItemCopy.addActionListener((new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                jTable_clipboard_actionPerformed(e);
+                jTableClipboardActionPerformed(e);
             }
         }));
         menuItemCopy.setIcon(ImageParmsUtil.createImageIcon(ParmsUtil.COPY_ICON));
@@ -156,7 +156,7 @@ public class TableClipboardManager {
         menuItemPaste.setText(paste);
         menuItemPaste.addActionListener((new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                jTable_clipboard_actionPerformed(e);
+                jTableClipboardActionPerformed(e);
             }
         }));
         menuItemPaste.setIcon(ImageParmsUtil.createImageIcon(ParmsUtil.PASTE_ICON));        
@@ -168,7 +168,7 @@ public class TableClipboardManager {
             menuItemDelete = new JMenuItem(delete);
             menuItemDelete.addActionListener((new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
-                    jTable_clipboard_actionPerformed(e);
+                    jTableClipboardActionPerformed(e);
                 }
             }));
             menuItemDelete.setAccelerator(KeyStroke.getKeyStroke(
@@ -183,7 +183,7 @@ public class TableClipboardManager {
         menuItemSelectAll.setText(select_all);
         menuItemSelectAll.addActionListener((new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                jTable_clipboard_actionPerformed(e);
+                jTableClipboardActionPerformed(e);
             }
         }));
         popupMenu.add(menuItemSelectAll);
@@ -246,7 +246,7 @@ public class TableClipboardManager {
     }
 
     // Paste action
-    public void jTable_clipboard_actionPerformed(ActionEvent e) {
+    public void jTableClipboardActionPerformed(ActionEvent e) {
         //System.out.println("e.getActionCommand(): " + e.getActionCommand());
 
         if (e.getActionCommand().equals(select_all)) {

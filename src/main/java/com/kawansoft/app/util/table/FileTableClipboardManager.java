@@ -167,7 +167,7 @@ public class FileTableClipboardManager {
     public void createClipboard() {
         jTable.addKeyListener(new KeyAdapter() {
             public void keyReleased(KeyEvent e) {
-                jTable_keyReleased(e);
+                jTableKeyReleased(e);
             }
         });
 
@@ -178,7 +178,7 @@ public class FileTableClipboardManager {
         menuItemOpen.setText(open);
         menuItemOpen.addActionListener((new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                jTable_clipboard_actionPerformed(e);
+                jTableClipboardActionPerformed(e);
             }
         }));
         popupMenu.add(menuItemOpen);
@@ -186,7 +186,7 @@ public class FileTableClipboardManager {
         menuItemPaste = new JMenuItem(paste);
         menuItemPaste.addActionListener((new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                jTable_clipboard_actionPerformed(e);
+                jTableClipboardActionPerformed(e);
             }
         }));
         menuItemPaste.setAccelerator(KeyStroke.getKeyStroke(
@@ -197,7 +197,7 @@ public class FileTableClipboardManager {
         menuItemDelete = new JMenuItem(delete);
         menuItemDelete.addActionListener((new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                jTable_clipboard_actionPerformed(e);
+                jTableClipboardActionPerformed(e);
             }
         }));
         menuItemDelete.setIcon(ImageParmsUtil.createImageIcon(ParmsUtil.DELETE_ICON));
@@ -212,14 +212,14 @@ public class FileTableClipboardManager {
         menuItemSelectAll.setText(select_all);
         menuItemSelectAll.addActionListener((new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                jTable_clipboard_actionPerformed(e);
+                jTableClipboardActionPerformed(e);
             }
         }));
         popupMenu.add(menuItemSelectAll);
 
         jTable.addMouseListener(new MouseAdapter() {
             public void mouseReleased(MouseEvent e) {
-                jTable_mouseReleased(e);
+                jTableMouseReleased(e);
             }
         });
 
@@ -231,7 +231,7 @@ public class FileTableClipboardManager {
         //JOptionPaneCustom.showMessageDialog(null, this.getClass().getName() + " 1");
         
         new FileDrop(parent, new FileDrop.Listener() {
-            public void filesDropped(java.io.File[] files) {
+            public void filesDropped(File[] files) {
                 // handle file drop  
                 add(files);
 
@@ -240,7 +240,7 @@ public class FileTableClipboardManager {
         
     }
 
-    private void jTable_keyReleased(KeyEvent e) {
+    private void jTableKeyReleased(KeyEvent e) {
         //System.out.println("this_keyReleased(KeyEvent e) " + e.getComponent().getName()); 
         int id = e.getID();
         if (id == KeyEvent.KEY_RELEASED) {
@@ -263,7 +263,7 @@ public class FileTableClipboardManager {
      *
      * @param e The Mouse Eevent
      */
-    public void jTable_mouseReleased(MouseEvent e) {
+    public void jTableMouseReleased(MouseEvent e) {
 
         // These are disabled because the Table is not editable
         menuItemOpen.setEnabled(false);
@@ -291,7 +291,7 @@ public class FileTableClipboardManager {
     }
 
     // Paste action
-    public void jTable_clipboard_actionPerformed(ActionEvent e) {
+    public void jTableClipboardActionPerformed(ActionEvent e) {
         //System.out.println("e.getActionCommand(): " + e.getActionCommand());
 
         if (e.getActionCommand().equals(select_all)) {
@@ -323,9 +323,7 @@ public class FileTableClipboardManager {
                     JOptionPane.showMessageDialog(parent,
                             "Impossible to read the file: " + ex + "\n(" + ex.toString() + ")");
                 }
-            } else {
-                // Nothing
-            }
+            } 
         } else if (e.getActionCommand().equals(delete)) {
             delete();
         }

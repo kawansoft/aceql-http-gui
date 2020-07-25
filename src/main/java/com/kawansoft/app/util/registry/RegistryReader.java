@@ -129,14 +129,7 @@ public class RegistryReader
      */
     private boolean isWindowsOs()
     {
-        if (System.getProperty("os.name").indexOf("Windows") != -1)
-        {
-            return true;
-        }        
-        else
-        {
-            return false;
-        }
+        return System.getProperty("os.name").contains("Windows");
     }
     
     /**

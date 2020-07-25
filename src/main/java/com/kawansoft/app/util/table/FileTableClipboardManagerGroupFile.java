@@ -186,7 +186,7 @@ public class FileTableClipboardManagerGroupFile
         jTable.addKeyListener(new KeyAdapter() { 
             public void keyReleased(KeyEvent e) 
             { 
-                jTable_keyReleased(e);                                 
+                jTableKeyReleased(e);                                 
             } 
         });
         
@@ -271,7 +271,7 @@ public class FileTableClipboardManagerGroupFile
         
         new FileDrop(parent, new FileDrop.Listener()
         {
-            public void filesDropped(java.io.File[] files)
+            public void filesDropped(File[] files)
             {
                 // handle file drop  
                 add(files);               
@@ -282,7 +282,7 @@ public class FileTableClipboardManagerGroupFile
         
     }
 
-    private void jTable_keyReleased(KeyEvent e) 
+    private void jTableKeyReleased(KeyEvent e) 
     {        
         //System.out.println("this_keyReleased(KeyEvent e) " + e.getComponent().getName()); 
         int id = e.getID();

@@ -68,7 +68,7 @@ public class Help extends javax.swing.JFrame {
      * Add a clipboard manager for content management
      */
     private ClipboardManager clipboard = null;
-    private java.awt.Window parent = null;
+    private Window parent = null;
 
     /**
      * Creates new form Help using content from a file
@@ -95,7 +95,9 @@ public class Help extends javax.swing.JFrame {
      * @param isContent to be set to true (parameter because we can not overload other constructor)
      */
     public Help(Window parent, String content, boolean isContent) {
-
+        
+        System.out.println(isContent);
+        
         initComponents();
 
         this.parent = parent;
@@ -211,10 +213,7 @@ public class Help extends javax.swing.JFrame {
                 ioe.printStackTrace();
                 return ioe.getMessage();
             }
-        } finally {
-            //IOUtils.closeQuietly(is);
-            //IOUtils.closeQuietly(out);
-        }
+        } 
     }
 
         /**
@@ -223,11 +222,7 @@ public class Help extends javax.swing.JFrame {
      * @return 
      */
     private static boolean isHtmlEncoded(String text) {
-        if (text.contains("&") && text.contains(";")) {
-            return true;
-        } else {
-            return false;
-        }
+        return text.contains("&") && text.contains(";");
     }
     
     private static String getHtmlNameWithLanguage(String helpFileHtmlRawName) {
@@ -274,10 +269,7 @@ public class Help extends javax.swing.JFrame {
             e.printStackTrace();
             htmlContent = e.getMessage();
         }
-        finally {
-            //IOUtils.closeQuietly(is);
-        }
-
+        
         return htmlContent;
     }
 
@@ -296,7 +288,7 @@ public class Help extends javax.swing.JFrame {
 
             comp.addKeyListener(new KeyAdapter() {
                 public void keyReleased(KeyEvent e) {
-                    this_keyReleased(e);
+                    thisKeyReleased(e);
                 }
             });
         }
@@ -305,8 +297,8 @@ public class Help extends javax.swing.JFrame {
     ///////////////////////////////////////////////////////////////////////////
     // KEYS PART
     ///////////////////////////////////////////////////////////////////////////    
-    private void this_keyReleased(KeyEvent e) {
-        //System.out.println("this_keyReleased(KeyEvent e) " + e.getComponent().getName()); 
+    private void thisKeyReleased(KeyEvent e) {
+        //System.out.println("thisKeyReleased(KeyEvent e) " + e.getComponent().getName()); 
         int id = e.getID();
         if (id == KeyEvent.KEY_RELEASED) {
             int keyCode = e.getKeyCode();
@@ -413,9 +405,9 @@ public class Help extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-private void jButtonCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCloseActionPerformed
-    actionCancel();
-}//GEN-LAST:event_jButtonCloseActionPerformed
+    private void jButtonCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCloseActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_jButtonCloseActionPerformed
 
     /**
      * @param args the command line arguments

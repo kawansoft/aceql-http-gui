@@ -22,41 +22,14 @@
  * Any modifications to this file must keep this entire header
  * intact.
  */
-package com.kawansoft.app.util;
-
-import javax.swing.UIManager;
-
+package com.swing.util;
 /**
- * Utility class for Look & feels
+ *
  * @author Nicolas de Pomereu
  */
-public class UI_Util {
-    
-    /**
-     * Says if UI is Oracle Nimbus
-     * @return 
-     */
-    public static boolean isNimbus() {
-        if (UIManager.getLookAndFeel().getName().contains("Nimbus")   ) {
-            return true;
-        }
-        else {
-            return false;
-        }            
-    }
-    
-    /**
-     * Says if UI is Oracle Nimbus
-     * @return 
-     */
-    public static boolean isSynthetica() {
-        if (UIManager.getLookAndFeel().getName().toLowerCase().contains("synthetica")) {
-            return true;
-        }        
-        else {
-            return false;
-        }
-    }    
-    
-    
+
+public class ComponentsTextOptionsConstants {
+ 
+        public static boolean DO_WRITE_COMPONENTS_IN_PROPERTIES_FILE = false;
+        
 }

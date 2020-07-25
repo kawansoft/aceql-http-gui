@@ -23,14 +23,30 @@
  * intact.
  */
 package com.kawansoft.app.util;
+
+import javax.swing.UIManager;
+
 /**
- *
+ * Utility class for Look & feels
  * @author Nicolas de Pomereu
  */
-
-public class WindowSettingMgrDebug {
+public class UiUtilsConstants {
     
-    /** The DEBUG flag */
-    public static boolean DEBUG = false;
+    /**
+     * Says if UI is Oracle Nimbus
+     * @return 
+     */
+    public static boolean isNimbus() {
+        return UIManager.getLookAndFeel().getName().contains("Nimbus");         
+    }
+    
+    /**
+     * Says if UI is Oracle Nimbus
+     * @return 
+     */
+    public static boolean isSynthetica() {
+        return UIManager.getLookAndFeel().getName().toLowerCase().contains("synthetica");
+    }    
+    
     
 }

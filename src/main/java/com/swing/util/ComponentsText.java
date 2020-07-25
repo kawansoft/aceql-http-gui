@@ -218,7 +218,7 @@ public class ComponentsText {
     @SuppressWarnings("unchecked")
     public static void writeComponentsInPropertiesFile(Window window) throws IOException {
 
-        if (!ComponentsTextOptions.DO_WRITE_COMPONENTS_IN_PROPERTIES_FILE) {
+        if (!ComponentsTextOptionsConstants.DO_WRITE_COMPONENTS_IN_PROPERTIES_FILE) {
             return;
         }
         

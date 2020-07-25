@@ -161,7 +161,7 @@ public class DialogProxyAuth extends javax.swing.JDialog {
                 @Override
                 public void keyPressed(KeyEvent e)
                 {
-                    this_keyPressed(e);
+                    thisKeyPressed(e);
                 }
             });
         }
@@ -171,7 +171,7 @@ public class DialogProxyAuth extends javax.swing.JDialog {
     // KEYS PART
     ///////////////////////////////////////////////////////////////////////////
 
-    private void this_keyPressed(KeyEvent e)
+    private void thisKeyPressed(KeyEvent e)
     {
         int id = e.getID();
         if (id == KeyEvent.KEY_PRESSED)

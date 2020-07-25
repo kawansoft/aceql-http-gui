@@ -278,7 +278,7 @@ public class AceQLManager extends javax.swing.JFrame {
 
         new FileDrop(this, new FileDrop.Listener() {
             @Override
-            public void filesDropped(java.io.File[] files) {
+            public void filesDropped(File[] files) {
                 // handle file drop  
                 addDropedFiles(files);
 
@@ -923,7 +923,7 @@ public class AceQLManager extends javax.swing.JFrame {
             comp.addKeyListener(new KeyAdapter() {
                 @Override
                 public void keyReleased(KeyEvent e) {
-                    this_keyReleased(e);
+                    thisKeyReleased(e);
                 }
             });
         }
@@ -932,8 +932,8 @@ public class AceQLManager extends javax.swing.JFrame {
     ///////////////////////////////////////////////////////////////////////////
     // KEYS PART
     ///////////////////////////////////////////////////////////////////////////    
-    private void this_keyReleased(KeyEvent e) {
-        //System.out.println("this_keyReleased(KeyEvent e) " + e.getComponent().getName()); 
+    private void thisKeyReleased(KeyEvent e) {
+        //System.out.println("thisKeyReleased(KeyEvent e) " + e.getComponent().getName()); 
         int id = e.getID();
         if (id == KeyEvent.KEY_RELEASED) {
             int keyCode = e.getKeyCode();
@@ -2441,7 +2441,7 @@ public class AceQLManager extends javax.swing.JFrame {
     private void jMenuCheckForUpdatesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuCheckForUpdatesActionPerformed
 
         try {
-            String currentVersion = com.kawansoft.app.version.GuiVersionValues.VERSION;
+            String currentVersion = com.kawansoft.app.version.GuiVersionConstants.VERSION;
 
             String productType = org.kawanfw.sql.version.Version.PRODUCT.TYPE;
             productType = StringUtils.substringBefore(productType, " ");

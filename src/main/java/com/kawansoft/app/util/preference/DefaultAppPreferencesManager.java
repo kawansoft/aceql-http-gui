@@ -39,6 +39,7 @@ import java.util.prefs.Preferences;
  */
 public class DefaultAppPreferencesManager implements AppPreferencesManager {
 
+    private static final String ENCRYPTION_PASSWORD = "loveme*78;5";
 
     /**
      * Set preference
@@ -69,7 +70,7 @@ public class DefaultAppPreferencesManager implements AppPreferencesManager {
         if (prefValue != null) {
             try {
                 PbeAes pbe = new PbeAes();
-                prefValueHex = pbe.encryptToHexa(keyLength, prefValue, DefaultParmsCrypto.ENCRYPTION_PASSWORD.toCharArray());
+                prefValueHex = pbe.encryptToHexa(keyLength, prefValue, ENCRYPTION_PASSWORD.toCharArray());
             } catch (Exception ex) {
                 ex.printStackTrace();
                 throw new IllegalArgumentException("Impossible to encrypt preference " + prefName + ":" + ex.toString());
@@ -91,7 +92,7 @@ public class DefaultAppPreferencesManager implements AppPreferencesManager {
         if (prefValue != null) {
             try {
                 PbeAes pbe = new PbeAes();
-                prefValue = pbe.decryptFromHexa(prefValue, DefaultParmsCrypto.ENCRYPTION_PASSWORD.toCharArray());
+                prefValue = pbe.decryptFromHexa(prefValue, ENCRYPTION_PASSWORD.toCharArray());
             } catch (Exception ex) {
                 ex.printStackTrace();
                 throw new IllegalArgumentException("Impossible to decrypt preference " + prefName + ":" + ex.toString());

@@ -63,7 +63,7 @@ public class WindowSettingMgr
         int width = window.getWidth();   
         int height = window.getHeight();   
         
-        if (WindowSettingMgrDebug.DEBUG)
+        if (WindowSettingMgrDebugConstants.DEBUG)
         {
             System.out.println();
             System.out.println("Best Ratio: 1 / 0,80 / 1,33 / 1,78");
@@ -186,7 +186,7 @@ public class WindowSettingMgr
 
     protected void debug(String sMsg)
     {
-        if(WindowSettingMgrDebug.DEBUG)
+        if(WindowSettingMgrDebugConstants.DEBUG)
             System.out.println("DBG> " + sMsg) ;
     }    
     

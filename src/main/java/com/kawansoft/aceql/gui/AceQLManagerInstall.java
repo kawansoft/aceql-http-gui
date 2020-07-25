@@ -156,7 +156,7 @@ public class AceQLManagerInstall extends javax.swing.JFrame {
 
             comp.addKeyListener(new KeyAdapter() {
                 public void keyReleased(KeyEvent e) {
-                    this_keyReleased(e);
+                    thisKeyReleased(e);
                 }
             });
         }
@@ -165,8 +165,8 @@ public class AceQLManagerInstall extends javax.swing.JFrame {
     ///////////////////////////////////////////////////////////////////////////
     // KEYS PART
     ///////////////////////////////////////////////////////////////////////////    
-    private void this_keyReleased(KeyEvent e) {
-        //System.out.println("this_keyReleased(KeyEvent e) " + e.getComponent().getName()); 
+    private void thisKeyReleased(KeyEvent e) {
+        //System.out.println("thisKeyReleased(KeyEvent e) " + e.getComponent().getName()); 
         int id = e.getID();
         if (id == KeyEvent.KEY_RELEASED) {
             int keyCode = e.getKeyCode();

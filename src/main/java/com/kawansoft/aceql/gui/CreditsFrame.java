@@ -53,7 +53,7 @@ import javax.swing.event.HyperlinkListener;
  *
  * @author Nicolas de Pomereu
  */
-public class CreditsFrame extends javax.swing.JFrame {
+public class CreditsFrame extends JFrame {
 
     public static final String CR_LF = System.getProperty("line.separator");
 
@@ -192,7 +192,7 @@ public class CreditsFrame extends javax.swing.JFrame {
 
             comp.addKeyListener(new KeyAdapter() {
                 public void keyReleased(KeyEvent e) {
-                    this_keyReleased(e);
+                    thisKeyReleased(e);
                 }
             });
         }
@@ -201,8 +201,7 @@ public class CreditsFrame extends javax.swing.JFrame {
     ///////////////////////////////////////////////////////////////////////////
     // KEYS PART
     ///////////////////////////////////////////////////////////////////////////    
-    private void this_keyReleased(KeyEvent e) {
-        //System.out.println("this_keyReleased(KeyEvent e) " + e.getComponent().getName()); 
+    private void thisKeyReleased(KeyEvent e) {
         int id = e.getID();
         if (id == KeyEvent.KEY_RELEASED) {
             int keyCode = e.getKeyCode();

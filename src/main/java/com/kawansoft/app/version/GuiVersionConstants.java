@@ -22,14 +22,14 @@
  * Any modifications to this file must keep this entire header
  * intact.
  */
-package com.swing.util;
+package com.kawansoft.app.version;
 /**
- *
- * @author Nicolas de Pomereu
+ * Contains the package Version info
  */
 
-public class ComponentsTextOptions {
- 
-        public static boolean DO_WRITE_COMPONENTS_IN_PROPERTIES_FILE = false;
-        
+public class GuiVersionConstants {
+    public static final String VERSION = "v5.1.1";
+    public static final String DATE = "25-Jul-2020"; 
 }
+
+// End

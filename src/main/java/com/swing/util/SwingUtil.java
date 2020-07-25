@@ -24,7 +24,7 @@
  */
 package com.swing.util;
 
-import com.kawansoft.app.util.UI_Util;
+import com.kawansoft.app.util.UiUtilsConstants;
 import java.awt.Component;
 import java.awt.Container;
 import java.awt.Dimension;
@@ -62,7 +62,7 @@ public class SwingUtil
      * @return the formated html content
      */
     public static String formatHtmlContentForSyntheticaAndNimbus(String content) {
-        if (UI_Util.isSynthetica() || UI_Util.isNimbus() ) {
+        if (UiUtilsConstants.isSynthetica() || UiUtilsConstants.isNimbus() ) {
             content = content.replaceAll("size=4", "size=5");
             content = content.replaceAll("size=6", "size=7");
         }
@@ -76,7 +76,7 @@ public class SwingUtil
      * @return the JPanel without border
      */
     public static void formatJpanelBorderForSynthetica(JPanel jpanel) {
-        if (UI_Util.isSynthetica()) {
+        if (UiUtilsConstants.isSynthetica()) {
          jpanel.setBorder(null);
         }
     }
@@ -89,7 +89,7 @@ public class SwingUtil
      * @return the JPanel with a line border light gray - thickness 1 and rounded
      */
     public static void formatJXTextFieldForSynthetica(JPanel jPanel) {
-        if (UI_Util.isSynthetica()) {
+        if (UiUtilsConstants.isSynthetica()) {
          jPanel.setBorder(new LineBorder(Color.LIGHT_GRAY, 1, true));
         }
     }    
@@ -172,7 +172,7 @@ public class SwingUtil
             }
         }
         
-        if ((SystemUtils.IS_OS_WINDOWS || SystemUtils.IS_OS_LINUX) && ! UI_Util.isNimbus()) {
+        if ((SystemUtils.IS_OS_WINDOWS || SystemUtils.IS_OS_LINUX) && ! UiUtilsConstants.isNimbus()) {
             return;
         }
         

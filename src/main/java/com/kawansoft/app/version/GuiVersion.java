@@ -52,11 +52,11 @@ public class GuiVersion {
     public static final class PRODUCT {
 
 	public static final String NAME = "GUI Manager";
-	public static final String VERSION = GuiVersionValues.VERSION;
+	public static final String VERSION = GuiVersionConstants.VERSION;
 	public static final String DESCRIPTION = "Remote SQL access over HTTP";
 	public static final String TYPE_OPEN_SOURCE = "Open Source";
 	public static final String TYPE_PROFESSIONAL = "Professional";
-	public static final String DATE = GuiVersionValues.DATE;
+	public static final String DATE = GuiVersionConstants.DATE;
 
 	public static String TYPE = (isOpenSourceVersion()) ? TYPE_OPEN_SOURCE : TYPE_PROFESSIONAL;
 	

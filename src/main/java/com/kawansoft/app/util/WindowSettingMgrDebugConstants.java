@@ -22,14 +22,15 @@
  * Any modifications to this file must keep this entire header
  * intact.
  */
-package com.kawansoft.app.version;
+package com.kawansoft.app.util;
 /**
- * Contains the package Version info
+ *
+ * @author Nicolas de Pomereu
  */
 
-public class GuiVersionValues {
-    public static final String VERSION = "v5.1.1";
-    public static final String DATE = "25-Jul-2020"; 
+public class WindowSettingMgrDebugConstants {
+    
+    /** The DEBUG flag */
+    public static boolean DEBUG = false;
+    
 }
-
-// End
