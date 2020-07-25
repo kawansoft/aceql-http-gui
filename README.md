@@ -1,4 +1,9 @@
+![GitHub top language](https://img.shields.io/github/languages/top/kawansoft/aceql-http-gui) ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/kawansoft/aceql-http-gui) ![GitHub issues](https://img.shields.io/github/issues/kawansoft/aceql-http-gui)
+![GitHub](https://img.shields.io/github/license/kawansoft/aceql-http-gui)
+![GitHub commit activity](https://img.shields.io/github/commit-activity/y/kawansoft/aceql-http-gui) ![GitHub last commit (branch)](https://img.shields.io/github/last-commit/kawansoft/aceql-http-gui/master) ![GitHub contributors](https://img.shields.io/github/contributors/kawansoft/aceql-http-gui)
+
 # aceql-http-gui
+
 <img src="https://www.aceql.com/favicon.png" alt=""/>
 
 <a href="https://www.aceql.com">AceQL HTTP</a> Windows Manager.
