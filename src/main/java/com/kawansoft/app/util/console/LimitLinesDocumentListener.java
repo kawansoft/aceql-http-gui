@@ -102,8 +102,23 @@ public class LimitLinesDocumentListener implements DocumentListener
 		});
 	}
 
-	public void removeUpdate(DocumentEvent e) {}
-	public void changedUpdate(DocumentEvent e) {}
+        /**
+         * Not used.
+         * @param e 
+         */
+        @Override
+	public void removeUpdate(DocumentEvent e) {
+            // Required as override.
+        }
+        
+        /**
+         * No used
+         * @param e 
+         */
+        @Override
+	public void changedUpdate(DocumentEvent e) {
+        // Required as override.
+        }
 
 	/*
 	 *  Remove lines from the Document when necessary

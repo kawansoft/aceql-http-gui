@@ -116,15 +116,13 @@ public class SwingUtil
                 comp.setBackground(color);
             }
             
-            if (includeJTextField) {
-             if (comp instanceof JTextField) {
+            if (includeJTextField && comp instanceof JTextField) {
                  JTextField jTextField = (JTextField)comp;
                  if (! jTextField.isEditable()) {
                      jTextField.setBackground(color);
                      jTextField.setBorder(null);
                      jTextField = addColonBeforeDisplay(jTextField);
-                 }
-             }                 
+                 }         
             }                       
         }        
     }     

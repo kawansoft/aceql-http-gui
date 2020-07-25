@@ -259,7 +259,7 @@ public class Help extends javax.swing.JFrame {
             BufferedInputStream bisIn = new BufferedInputStream(is);
             LineInputStream lisIn = new LineInputStream(bisIn);
 
-            String sLine = new String();
+            String sLine;
 
             htmlContent = "";
 

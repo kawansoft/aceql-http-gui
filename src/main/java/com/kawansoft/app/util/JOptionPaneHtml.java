@@ -26,6 +26,7 @@ package com.kawansoft.app.util;
 
 import java.awt.Component;
 import java.awt.Cursor;
+import java.awt.Desktop;
 import java.awt.Dialog;
 import java.awt.EventQueue;
 import java.awt.HeadlessException;
@@ -202,11 +203,11 @@ public class JOptionPaneHtml
                 }
                 else if (e.getEventType() == HyperlinkEvent.EventType.ACTIVATED)
                 {
-                    //Desktop desktop = Desktop.getDesktop();   
+                    Desktop desktop = Desktop.getDesktop();   
                     
                     try
                     {
-                        //DesktopWrapper.browse(e.getURL());
+                        desktop.browse(e.getURL().toURI());
                     }
                     catch (Exception exception)
                     {

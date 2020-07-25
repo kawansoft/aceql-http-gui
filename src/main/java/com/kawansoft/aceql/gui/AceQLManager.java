@@ -822,6 +822,7 @@ public class AceQLManager extends javax.swing.JFrame {
         }
     }
 
+    /*
     private boolean existsOpenKeyForProperties() throws Exception {
         String subKey = "Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\FileExts\\.properties\\UserChoice";
 
@@ -834,6 +835,7 @@ public class AceQLManager extends javax.swing.JFrame {
             return false;
         }
     }
+    */
 
     private void windowsServiceManagementConsole() {
 
@@ -1060,7 +1062,7 @@ public class AceQLManager extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this,
                     "Enable to store configuration on configuration file: " + ConfigurationUtil.getConfirurationPropertiesFile() + ". Reason: " + ex, Parms.APP_NAME,
                     JOptionPane.ERROR_MESSAGE);
-        };
+        }
     }
 
     public static File[] getInstalledJdbcDrivers() {

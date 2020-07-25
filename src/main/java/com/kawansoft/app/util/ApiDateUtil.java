@@ -41,7 +41,7 @@ public class ApiDateUtil {
      * @return the date as "yyyy-mm"
      */
     public static String getMonth() {
-        String sDate = new String();
+        String sDate;
 
         int nMonth = new GregorianCalendar().get(Calendar.MONTH) + 1;
         sDate = "" + new GregorianCalendar().get(Calendar.YEAR);

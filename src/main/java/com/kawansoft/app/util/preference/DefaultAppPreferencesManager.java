@@ -44,7 +44,7 @@ public class DefaultAppPreferencesManager implements AppPreferencesManager {
      * Set preference
      */
     @Override
-    public void setPreference(String prefName, String prefValue) {;
+    public void setPreference(String prefName, String prefValue) {
         Preferences prefs = Preferences.userNodeForPackage(this.getClass());
         prefs.put(prefName, prefValue);
     }

@@ -117,8 +117,7 @@ public class JTableUtil {
                 width = (int) (width * expansion);
 
                 column.setPreferredWidth(width + margin); // <1.3: without margin
-            } else
-                ; // ???
+            } 
 
             totalWidth += column.getPreferredWidth();
         }
@@ -157,6 +156,7 @@ public class JTableUtil {
      * @param vColIndex
      * @param margin
      */
+    /*
     // METHOD NOT USED IN PGEEP V1.0
     private void fitSizeToContent(JTable table, int vColIndex, int margin) {
 
@@ -188,4 +188,5 @@ public class JTableUtil {
 //       Set the width
         col.setPreferredWidth(width);
     }
+*/
 }

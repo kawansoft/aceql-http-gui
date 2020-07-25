@@ -31,7 +31,6 @@ import com.kawansoft.app.util.console.MessageConsole;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Insets;
-import java.awt.Toolkit;
 import java.awt.Window;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
@@ -51,14 +50,11 @@ public class AceQLConsole extends javax.swing.JFrame {
     /**
      * Add a clipboard manager for content management
      */
-    private ClipboardManager clipboard = null;
-    private java.awt.Window parent = null;
     private Color light_red = new Color(255, 58,58);
 
     
     public AceQLConsole(Window parent) {
         super();
-        this.parent = parent;
         initComponents();
         //
         // TODO: Add any constructor code after initializeComponent call
@@ -86,7 +82,7 @@ public class AceQLConsole extends javax.swing.JFrame {
        // Toolkit.getDefaultToolkit().setDynamicLayout(true);
 
         // Add a Clipboard Manager
-        clipboard = new ClipboardManager(this.getContentPane());
+        ClipboardManager clipboard  = new ClipboardManager(this.getContentPane());
 
         jTextPane1.setEditable(false);
         
@@ -104,7 +100,7 @@ public class AceQLConsole extends javax.swing.JFrame {
         jTextPane1.addKeyListener(new KeyAdapter() {
             @Override
             public void keyReleased(KeyEvent e) {
-                keyReleased_actionPerformed(e);
+                keyReleasedActionPerformed(e);
             }
         });
 
@@ -150,7 +146,7 @@ public class AceQLConsole extends javax.swing.JFrame {
     ///////////////////////////////////////////////////////////////////////////
     // KEYS PART
     /////////////////////////////////////////////////////////////////////////// 
-    private void keyReleased_actionPerformed(KeyEvent e) {
+    private void keyReleasedActionPerformed(KeyEvent e) {
         //debug("this_keyReleased(KeyEvent e) " + e.getComponent().getName()); 
 
         int id = e.getID();

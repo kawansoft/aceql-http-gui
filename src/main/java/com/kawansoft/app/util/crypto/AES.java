@@ -343,8 +343,9 @@ public class AES {
      * A tuple of encryption and authentication keys returned by {@link #keygen}
      */
     private static class Keys {
-	public final SecretKey encryption, authentication;
-
+	public final SecretKey encryption;
+        public final SecretKey authentication;
+                
 	public Keys(SecretKey encryption, SecretKey authentication) {
 	    this.encryption = encryption;
 	    this.authentication = authentication;

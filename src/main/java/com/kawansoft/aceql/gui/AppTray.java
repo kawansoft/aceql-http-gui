@@ -270,13 +270,13 @@ public class AppTray {
      * @param args
      */
     static void secondaryMain(String args[]) {
-
+        // For Advanced Installer
     }
 
     /**
      * debug tool
      */
-    private static void debug(String s) {
+    public static void debug(String s) {
         if (DEBUG) {
             System.out.println(s);
             // System.out.println(this.getClass().getName() + " " + new Date() +

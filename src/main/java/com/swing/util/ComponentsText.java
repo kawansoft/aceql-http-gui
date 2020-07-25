@@ -44,7 +44,6 @@ import java.util.Properties;
 import java.util.ResourceBundle;
 import java.util.Set;
 import javax.swing.JOptionPane;
-import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
 
 /**
@@ -294,7 +293,7 @@ public class ComponentsText {
                     
                     appendStore = new AppendStore(WRITE_PROPERTIES_FILE);
                     
-                    if (text != null || ! text.isEmpty()) {
+                    if (text != null && ! text.isEmpty()) {
                         String iniLine = window.getClass().getSimpleName() + "." + field.getName() + " = " + text;
 
                         debug(iniLine);

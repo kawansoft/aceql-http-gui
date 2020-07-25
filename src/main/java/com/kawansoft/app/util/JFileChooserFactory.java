@@ -54,13 +54,13 @@ public class JFileChooserFactory
      */
     public static JFileChooser getInstance()
     {
-        
-        if (false)
+        boolean useClientProperty = false;
+        if (useClientProperty)
         {
             // Special Light File Chooser 
             JFileChooser saveTo = new JFileChooser() {
                 public void updateUI() {
-                    putClientProperty("FileChooser.useShellFolder", new Boolean(true));
+                    putClientProperty("FileChooser.useShellFolder", Boolean.TRUE);
                     super.updateUI();
                 }
             };
