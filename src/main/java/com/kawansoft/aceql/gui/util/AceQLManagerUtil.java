@@ -13,7 +13,6 @@ public class AceQLManagerUtil {
     
     public static void systemExitWrapper() {
         System.exit(0);
-        
     }
 
     public static void printEvent(Object obj) {
