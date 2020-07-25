@@ -33,12 +33,12 @@ import java.io.PrintStream;
  * @author Nicolas de Pomereu
  *
  */
-public class StdOutAndErrRedirector {
+public class StdOutAndErrRedirectorHelper {
 
     /**
      * Static class
      */
-    protected StdOutAndErrRedirector() {
+    protected StdOutAndErrRedirectorHelper() {
 
     }
     
