@@ -67,7 +67,6 @@ public class MapClipboardManager
     private JPopupMenu popupMenu;
 
     // Clipboard lines
-    private JMenuItem menuItemCancel = null;
     private JMenuItem menuItemCut = null;
     private JMenuItem menuItemCopy = null;
     private JMenuItem menuItemPaste = null;
@@ -109,6 +108,7 @@ public class MapClipboardManager
         popupMenu = new JPopupMenu();        
         popupMenu.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED));
 
+        JMenuItem menuItemCancel = null;
         menuItemCancel = new JMenuItem(cancel);
         menuItemCancel.setEnabled(false);
         popupMenu.add(menuItemCancel);   

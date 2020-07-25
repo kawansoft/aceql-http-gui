@@ -85,7 +85,7 @@ public class AceQLManagerInstall extends JFrame {
     /**
      * Creates new form AceQLManagerInstall
      */
-    public AceQLManagerInstall(Window parentJframe) {
+    public AceQLManagerInstall() {
         initComponents();
         initializeIt();
     }
@@ -667,7 +667,7 @@ public class AceQLManagerInstall extends JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AceQLManagerInstall(null).setVisible(true);
+                new AceQLManagerInstall().setVisible(true);
             }
         });
     }

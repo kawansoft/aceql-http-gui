@@ -884,7 +884,7 @@ public class AceQLManager extends JFrame {
             aceQLManagerInstall.dispose();
         }
 
-        aceQLManagerInstall = new AceQLManagerInstall(this);
+        aceQLManagerInstall = new AceQLManagerInstall();
         aceQLManagerInstall.setVisible(true);
     }
 

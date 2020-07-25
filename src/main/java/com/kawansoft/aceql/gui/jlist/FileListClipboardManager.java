@@ -89,10 +89,8 @@ public class FileListClipboardManager
 
     // Clipboard lines
     private JMenuItem menuItemOpen = null;
-    private JMenuItem menuItemPaste = null; 
     private JMenuItem menuItemDelete= null;
-    private JMenuItem menuItemSelectAll = null;
-
+   
     // Futur usage
     protected UndoManager undo = new UndoManager();
     
@@ -192,6 +190,7 @@ public class FileListClipboardManager
             }})); 
         popupMenu.add(menuItemOpen);   
         
+        JMenuItem menuItemPaste = null; 
         menuItemPaste = new JMenuItem(paste);
         menuItemPaste.addActionListener((new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -201,6 +200,7 @@ public class FileListClipboardManager
         //menuItemPaste.setAccelerator(KeyStroke.getKeyStroke(
         //        KeyEvent.VK_V, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         
+        JMenuItem menuItemSelectAll = null;
         menuItemPaste.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_V,
                 Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
         

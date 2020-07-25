@@ -82,18 +82,18 @@ public class HtmlConverter {
      * 
      */
 
-    public static String toHtml(String string) {
+    public static String toHtml(final String string) {
 		
 	if (DO_NOTHING) return string;
 	
-	string = org.apache.commons.lang3.StringEscapeUtils.ESCAPE_HTML4.with(NumericEntityEscaper.between(0x7f, Integer.MAX_VALUE) ).translate(string); 
+	String stringNew = org.apache.commons.lang3.StringEscapeUtils.ESCAPE_HTML4.with(NumericEntityEscaper.between(0x7f, Integer.MAX_VALUE) ).translate(string); 
 
-	if (string != null) {
-	    string = string.replaceAll("&amp;", "&"); // To keep same result if
+	if (stringNew != null) {
+	    stringNew = stringNew.replaceAll("&amp;", "&"); // To keep same result if
 						      // multi-call
 	}
 	
-	return string;
+	return stringNew;
     }
 
     /**
