@@ -33,6 +33,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.Objects;
 import org.apache.commons.codec.binary.Hex;
 
 import org.apache.commons.io.IOUtils;
@@ -90,13 +91,8 @@ public class PbeAes {
      */
     public String encryptToHexa(int keyLength, String text, char[] password, byte[] salt) throws Exception {
 
-        if (text == null) {
-            throw new NullPointerException("text is null!");
-        }
-
-        if (password == null) {
-            throw new NullPointerException("password is null!");
-        }
+        Objects.requireNonNull(text, "text cannot be null!");
+        Objects.requireNonNull(password, "password cannot be null!");
 
         ByteArrayInputStream in = new ByteArrayInputStream(text.getBytes("UTF-8"));
         ByteArrayOutputStream out = new ByteArrayOutputStream();

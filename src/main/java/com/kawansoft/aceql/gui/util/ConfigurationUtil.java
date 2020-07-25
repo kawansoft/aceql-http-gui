@@ -32,6 +32,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.util.Collections;
 import java.util.Enumeration;
+import java.util.Objects;
 import java.util.Properties;
 import java.util.TreeSet;
 import org.kawanfw.sql.tomcat.TomcatStarterUtil;
@@ -87,17 +88,13 @@ public class ConfigurationUtil {
     }
 
     public void store(String aceqlProperties, String host, int port) throws IOException {
-
-        if (aceqlProperties == null) {
-            throw new NullPointerException("aceqlProperties is null!");
-        }
-        if (host == null) {
-            throw new NullPointerException("host is null!");
-        }
         if (port == 0) {
-            throw new NullPointerException("port is zero!");
+            throw new IllegalArgumentException("port is zero!");
         }
 
+        Objects.requireNonNull(aceqlProperties, "aceqlProperties cannot be null!");
+        Objects.requireNonNull(host, "host cannot be null!");
+        
         if (!new File(aceqlProperties).exists()) {
             throw new FileNotFoundException("aceql properties file does not exists: " + aceqlProperties);
         }

@@ -29,6 +29,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import org.apache.commons.lang3.SystemUtils;
 
@@ -44,9 +45,7 @@ public class ProcessUtil {
             return 0;
         }
 
-        if (programName == null) {
-            throw new NullPointerException("programName can not be null!");
-        }
+        Objects.requireNonNull(programName, "programName cannot be null!");
 
         String line;
         List<String> pidInfoSet = new ArrayList<>();
@@ -86,9 +85,7 @@ public class ProcessUtil {
             return false;
         }
 
-        if (programName == null) {
-            throw new NullPointerException("programName can not be null!");
-        }
+        Objects.requireNonNull(programName, "programName cannot be null!");
 
         String line;
         String pidInfo = "";

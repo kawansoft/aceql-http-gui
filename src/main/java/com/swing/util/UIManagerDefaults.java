@@ -28,6 +28,7 @@ package com.swing.util;
  *  to create a table of key/value pairs for each Swing component.
  */
 
+import com.kawansoft.aceql.gui.util.AceQLManagerUtil;
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.image.*;
@@ -738,7 +739,7 @@ public class UIManagerDefaults implements ActionListener, ItemListener
 
 		public void actionPerformed(ActionEvent e)
 		{
-			System.exit(0);
+			AceQLManagerUtil.systemExitWrapper();
 		}
 	}
 

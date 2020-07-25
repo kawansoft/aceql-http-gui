@@ -44,6 +44,7 @@ package com.kawansoft.aceql.gui;
  */
 
 import static com.kawansoft.aceql.gui.AceQLManager.setLookAndFeel;
+import com.kawansoft.aceql.gui.util.AceQLManagerUtil;
 import com.kawansoft.aceql.gui.util.UserPreferencesManager;
 import com.kawansoft.app.parms.MessagesManager;
 
@@ -132,7 +133,7 @@ public class AppTray {
             MessagesManager messagesManager = new MessagesManager();
             String message = messagesManager.get("aceql_already_running_use_task_bar");
             JOptionPane.showMessageDialog(null, message, Parms.APP_NAME, JOptionPane.INFORMATION_MESSAGE);
-            System.exit(0);
+            AceQLManagerUtil.systemExitWrapper();
         }
         
         PopupMenu menu;
@@ -171,7 +172,7 @@ public class AppTray {
         menuItem.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.exit(0);
+                AceQLManagerUtil.systemExitWrapper();
             }
         });
         menu.add(menuItem);

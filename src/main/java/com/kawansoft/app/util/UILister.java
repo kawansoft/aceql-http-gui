@@ -24,6 +24,7 @@
  */
 package com.kawansoft.app.util;
 
+import com.kawansoft.aceql.gui.util.AceQLManagerUtil;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
@@ -83,7 +84,7 @@ public class UILister
             {
                 public void actionPerformed(ActionEvent e)
                 {
-                    System.exit(0);
+                    AceQLManagerUtil.systemExitWrapper();
                 }
             });
             JPanel buttons = new JPanel(new FlowLayout(FlowLayout.CENTER, 6, 6));

@@ -185,7 +185,6 @@ public class SwingUtil
         for (Component component : components) {
             if (component instanceof JPanel) {
                 JPanel panel = (JPanel)component;
-                Dimension min = panel.getMinimumSize();
                 Dimension max = panel.getMaximumSize();
                 Dimension pre = panel.getPreferredSize();
                 

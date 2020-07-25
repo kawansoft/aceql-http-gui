@@ -133,8 +133,7 @@ public class TableTransferHandler extends StringTransferHandler {
         //JOptionPane.showMessageDialog(null, values);
         
         //addCount = values.length;
-        
-        int colCount = target.getColumnCount();
+        //int colCount = target.getColumnCount();
                             
         // Compute first columns  valurs for each row      
         firstColumns = new HashSet();

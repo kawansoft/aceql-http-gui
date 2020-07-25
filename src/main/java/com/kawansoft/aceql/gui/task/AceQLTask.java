@@ -28,15 +28,14 @@ import com.kawansoft.aceql.gui.AceQLManager;
 import static com.kawansoft.aceql.gui.AceQLManager.CR_LF;
 import com.kawansoft.app.util.ClientLogger;
 import com.kawansoft.app.util.classpath.ClasspathUtil;
-import java.awt.GraphicsEnvironment;
 import java.io.File;
 import java.io.IOException;
 import java.net.ConnectException;
 import java.net.UnknownHostException;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 import org.apache.commons.lang3.SystemUtils;
-import org.kawanfw.sql.api.server.DatabaseConfigurationException;
 import org.kawanfw.sql.api.server.web.WebServerApi;
 import org.kawanfw.sql.util.SqlTag;
 
@@ -69,20 +68,16 @@ public class AceQLTask extends Thread implements Runnable {
         }
 
         if (propertiesFile == null) {
-            throw new NullPointerException("propertiesFile is null!");
+            Objects.requireNonNull(propertiesFile, "propertiesFile cannot be null!");
         }
 
         if (!new File(propertiesFile).exists()) {
             throw new IllegalArgumentException("propertiesFile does not exist: " + propertiesFile);
         }
 
-        if (host == null) {
-            throw new NullPointerException("host is null!");
-        }
-
         this.mode = mode;
-        this.propertiesFile = propertiesFile;
-        this.host = host;
+        this.propertiesFile = Objects.requireNonNull(propertiesFile, "propertiesFile cannot be null!");
+        this.host = Objects.requireNonNull(host, "host cannot be null!");
         this.port = port;
     }
 

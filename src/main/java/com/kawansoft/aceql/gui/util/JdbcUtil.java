@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.Objects;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
@@ -23,9 +24,7 @@ public class JdbcUtil {
     public static boolean isJdbcDriver(String filePath)
             throws FileNotFoundException, IOException {
         
-        if (filePath == null) {
-            throw new NullPointerException("filePath is null!");
-        }
+        Objects.requireNonNull(filePath, "filePath cannot be null!");
         
         File file  = new File(filePath);
         

@@ -27,6 +27,7 @@ package com.kawansoft.aceql.gui;
 import com.kawansoft.aceql.gui.service.ServiceInstaller;
 import com.kawansoft.aceql.gui.service.ServiceUtil;
 import com.kawansoft.aceql.gui.task.AceQLTask;
+import com.kawansoft.aceql.gui.util.AceQLManagerUtil;
 import com.kawansoft.aceql.gui.util.ConfigurationUtil;
 import com.kawansoft.aceql.gui.util.PropertiesFileFilter;
 import com.kawansoft.app.parms.MessagesManager;
@@ -125,8 +126,6 @@ public class AceQLManager extends javax.swing.JFrame {
     private JFrame thisOne = this;
 
     private Help help = null;
-
-    private Window parent = null;
 
     private AceQLConsole aceQLConsole = null;
 
@@ -961,7 +960,7 @@ public class AceQLManager extends javax.swing.JFrame {
     
     private void doSystemExit() {
         updateServiceStatusThreadStop();
-        System.exit(0);
+        AceQLManagerUtil.systemExitWrapper();
     }
     
     private void closeOnExit() {
@@ -1015,6 +1014,11 @@ public class AceQLManager extends javax.swing.JFrame {
             }
 
             url = new URL("http://" + host + ":" + port);
+            boolean doDisplay = false;
+            if (doDisplay) {
+             System.out.println(url);               
+            }
+
         } catch (MalformedURLException ex) {
             JOptionPane.showMessageDialog(this,
                     "Please enter a valid URL without the scheme for Host. Examples: localhost, www.acme.com", Parms.APP_NAME,
@@ -1128,7 +1132,7 @@ public class AceQLManager extends javax.swing.JFrame {
 
         WindowSettingMgr.resetAll();
         JOptionPane.showMessageDialog(this, MessagesManager.get("the_windows_have_been_reset"), Parms.APP_NAME, JOptionPane.INFORMATION_MESSAGE);
-        System.exit(0);
+        AceQLManagerUtil.systemExitWrapper();
     }
 
     private void addPropertyFileWithAwt() {

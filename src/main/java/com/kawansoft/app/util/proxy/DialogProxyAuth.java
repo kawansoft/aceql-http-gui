@@ -24,6 +24,7 @@
  */
 package com.kawansoft.app.util.proxy;
 
+import com.kawansoft.aceql.gui.util.AceQLManagerUtil;
 import com.kawansoft.app.parms.MessagesManager;
 import com.kawansoft.app.parms.Parms;
 import java.awt.Component;
@@ -451,7 +452,7 @@ public class DialogProxyAuth extends javax.swing.JDialog {
                 DialogProxyAuth dialog = new DialogProxyAuth(new javax.swing.JFrame());
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
+                        AceQLManagerUtil.systemExitWrapper();
                     }
                 });
                 dialog.setVisible(true);

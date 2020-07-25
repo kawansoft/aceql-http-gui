@@ -338,7 +338,7 @@ public class FileDrop
                             // Get a useful list
                             java.util.List fileList = (java.util.List) 
                                 tr.getTransferData(java.awt.datatransfer.DataFlavor.javaFileListFlavor);
-                            java.util.Iterator iterator = fileList.iterator();
+                            //java.util.Iterator iterator = fileList.iterator();
 
                             // Convert list to array
                             java.io.File[] filesTemp = new java.io.File[ fileList.size() ];
