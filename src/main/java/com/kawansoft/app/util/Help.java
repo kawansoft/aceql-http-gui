@@ -27,7 +27,7 @@ package com.kawansoft.app.util;
 import com.kawansoft.aceql.gui.util.AceQLManagerUtil;
 import com.kawansoft.app.parms.LanguageManager;
 import com.kawansoft.app.parms.MessagesManager;
-import com.kawansoft.app.parms.Parms;
+import com.kawansoft.app.parms.ParmsConstants;
 import java.awt.Component;
 import java.awt.Desktop;
 import java.awt.Dimension;
@@ -208,7 +208,7 @@ public class Help extends javax.swing.JFrame {
 
         String helpFileTxt = helpFileRaw + "_" + LanguageManager.getLanguage() + ".txt";
                     
-        try (InputStream  is = Parms.class.getResourceAsStream("helpfiles/" + helpFileTxt);
+        try (InputStream  is = ParmsConstants.class.getResourceAsStream("helpfiles/" + helpFileTxt);
         ByteArrayOutputStream out = new ByteArrayOutputStream();){
             
             try {
@@ -252,7 +252,7 @@ public class Help extends javax.swing.JFrame {
     public static String getHtmlHelpContent(String helpFileRaw) {
         String htmlContent;
         
-        try (InputStream is = Parms.class.getResourceAsStream("helpfiles/" + getHtmlNameWithLanguage(helpFileRaw))){
+        try (InputStream is = ParmsConstants.class.getResourceAsStream("helpfiles/" + getHtmlNameWithLanguage(helpFileRaw))){
             //debug(urlResource);
             if (is == null) {
                 return "<font face=\"Arial\" size=4><br>"

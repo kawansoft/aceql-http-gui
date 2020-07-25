@@ -25,6 +25,7 @@
 package com.kawansoft.aceql.gui.service;
 
 import com.kawansoft.aceql.gui.task.AceQLTask;
+import com.kawansoft.aceql.gui.util.AceQLManagerUtil;
 import com.kawansoft.aceql.gui.util.ConfigurationUtil;
 import com.kawansoft.app.util.ClientLogger;
 import java.io.File;
@@ -36,14 +37,14 @@ import java.io.IOException;
  * @author Nicolas de Pomereu
  *
  */
-public class AceQLServiceControler {
+public class AceQLServiceControlerHelp {
 
     public static final String CR_LF = System.getProperty("line.separator");
 
     
     public static void start(String arg[]) {
 
-        System.out.println(ClientLogger.formatLogMsg(AceQLServiceControler.class, "Starting " + AceQLTask.class.getSimpleName() + "..."));
+        System.out.println(ClientLogger.formatLogMsg(AceQLServiceControlerHelp.class, "Starting " + AceQLTask.class.getSimpleName() + "..."));
         
         String aceqlProperties = null;
         String host = null;
@@ -73,8 +74,8 @@ public class AceQLServiceControler {
 
     public static void stop(String arg[]) {
         
-	System.out.println(ClientLogger.formatLogMsg(AceQLServiceControler.class, "Stopping " + AceQLTask.class.getSimpleName() + "..." ));        
-        System.exit(1);
+	System.out.println(ClientLogger.formatLogMsg(AceQLServiceControlerHelp.class, "Stopping " + AceQLTask.class.getSimpleName() + "..." ));        
+        AceQLManagerUtil.systemExitWrapper();
     }
 
 }

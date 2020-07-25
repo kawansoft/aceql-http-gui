@@ -26,7 +26,7 @@ package com.kawansoft.app.util.proxy;
 
 import com.kawansoft.aceql.gui.util.AceQLManagerUtil;
 import com.kawansoft.app.parms.MessagesManager;
-import com.kawansoft.app.parms.Parms;
+import com.kawansoft.app.parms.ParmsConstants;
 import java.awt.Component;
 import java.awt.Window;
 import java.awt.event.KeyAdapter;
@@ -215,13 +215,13 @@ public class DialogProxyAuth extends javax.swing.JDialog {
         this.proxyPassword = new String(jPasswordField.getPassword());
         
         if (this.proxyUsername.isEmpty()) {
-            JOptionPane.showMessageDialog(this, MessagesManager.get("please_enter_a_username"), Parms.APP_NAME, JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, MessagesManager.get("please_enter_a_username"), ParmsConstants.APP_NAME, JOptionPane.ERROR_MESSAGE);
             jTextFieldUsername.requestFocusInWindow();
             return;
         }
         
         if (this.jPasswordField.getPassword().length  == 0) {
-            JOptionPane.showMessageDialog(this, MessagesManager.get("please_enter_a_password"), Parms.APP_NAME, JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, MessagesManager.get("please_enter_a_password"), ParmsConstants.APP_NAME, JOptionPane.ERROR_MESSAGE);
             jPasswordField.requestFocusInWindow();
             return;
         }

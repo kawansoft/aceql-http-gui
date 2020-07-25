@@ -42,6 +42,7 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import javax.swing.BoxLayout;
 import javax.swing.GroupLayout;
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextPane;
@@ -52,7 +53,7 @@ import javax.swing.WindowConstants;
  *
  * @author Nicolas de Pomereu
  */
-public class AceQLConsole extends javax.swing.JFrame {
+public class AceQLConsole extends JFrame {
 
     public static final String CR_LF = System.getProperty("line.separator");
     /**
@@ -61,7 +62,7 @@ public class AceQLConsole extends javax.swing.JFrame {
     private Color light_red = new Color(255, 58,58);
 
     
-    public AceQLConsole(Window parent) {
+    public AceQLConsole() {
         super();
         initComponents();
         //
@@ -240,7 +241,7 @@ public class AceQLConsole extends javax.swing.JFrame {
         
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AceQLConsole(null);
+                new AceQLConsole();
             }
         });
     }

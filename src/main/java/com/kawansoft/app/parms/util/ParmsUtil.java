@@ -24,7 +24,7 @@
  */
 package com.kawansoft.app.parms.util;
 
-import com.kawansoft.app.parms.Parms;
+import com.kawansoft.app.parms.ParmsConstants;
 import java.awt.Color;
 import java.io.File;
 import java.util.Date;
@@ -113,10 +113,10 @@ public class ParmsUtil {
         File baseDir = null;
         
         if (SystemUtils.IS_OS_WINDOWS) {
-            baseDir = new File("c:\\" + Parms.DOT_APP_DIR);
+            baseDir = new File("c:\\" + ParmsConstants.DOT_APP_DIR);
         }
         else {
-            baseDir = new File("/usr/local/" + Parms.DOT_APP_DIR);
+            baseDir = new File("/usr/local/" + ParmsConstants.DOT_APP_DIR);
         }
         
         if (!baseDir.exists()) {
@@ -143,7 +143,7 @@ public class ParmsUtil {
      * @return
      */
     public static String getTempDir() {
-        String tempDirStr = System.getProperty("java.io.tmpdir") + File.separator + Parms.DOT_APP_DIR + File.separator;
+        String tempDirStr = System.getProperty("java.io.tmpdir") + File.separator + ParmsConstants.DOT_APP_DIR + File.separator;
         File tempDir = new File(tempDirStr);
         tempDir.mkdir();
         return tempDirStr;

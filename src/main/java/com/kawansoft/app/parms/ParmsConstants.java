@@ -29,7 +29,7 @@ package com.kawansoft.app.parms;
  *
  * @author Nicolas de Pomereu
  */
-public class Parms {
+public class ParmsConstants {
     
     // BEGIN COMMON TO ALL APPS
     public static String EXE_NAME  = "AceQLHTTP.exe"; 

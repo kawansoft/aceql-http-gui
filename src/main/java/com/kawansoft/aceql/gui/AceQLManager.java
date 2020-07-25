@@ -31,7 +31,7 @@ import com.kawansoft.aceql.gui.util.AceQLManagerUtil;
 import com.kawansoft.aceql.gui.util.ConfigurationUtil;
 import com.kawansoft.aceql.gui.util.PropertiesFileFilter;
 import com.kawansoft.app.parms.MessagesManager;
-import com.kawansoft.app.parms.Parms;
+import com.kawansoft.app.parms.ParmsConstants;
 
 import java.awt.Component;
 import java.awt.Cursor;
@@ -180,7 +180,7 @@ public class AceQLManager extends javax.swing.JFrame {
         this.setPreferredSize(dim);
         this.setSize(dim);
 
-        String appName = Parms.APP_NAME;
+        String appName = ParmsConstants.APP_NAME;
 
         if (ParmsUtil.isAceQLPro()) {
             appName += " Pro";
@@ -362,10 +362,9 @@ public class AceQLManager extends javax.swing.JFrame {
                 configurationUtil.load();
             } catch (Exception ex) {
                 JOptionPane
-                        .showMessageDialog(
-                                this,
+                        .showMessageDialog(this,
                                 "Unable to read properties file " + configurationProperties + ": " + ex.toString(),
-                                Parms.APP_NAME, JOptionPane.ERROR_MESSAGE);
+                                ParmsConstants.APP_NAME, JOptionPane.ERROR_MESSAGE);
                 return;
             }
 
@@ -390,10 +389,9 @@ public class AceQLManager extends javax.swing.JFrame {
 
             if (!fileIn.exists()) {
                 JOptionPane
-                        .showMessageDialog(
-                                this,
+                        .showMessageDialog(this,
                                 "Missing base configuration file. Please reinstall AceQL HTTP.",
-                                Parms.APP_NAME, JOptionPane.ERROR_MESSAGE);
+                                ParmsConstants.APP_NAME, JOptionPane.ERROR_MESSAGE);
                 return;
             }
 
@@ -422,7 +420,7 @@ public class AceQLManager extends javax.swing.JFrame {
             setAceQLServerURL(host, port, new File(jTextFieldPropertiesFile.getText()));
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this,
-                    "Can not load the Property File. Reason: " + ex.getMessage(), Parms.APP_NAME,
+                    "Can not load the Property File. Reason: " + ex.getMessage(), ParmsConstants.APP_NAME,
                     JOptionPane.ERROR_MESSAGE);
             return;
         }
@@ -442,17 +440,16 @@ public class AceQLManager extends javax.swing.JFrame {
         try {
             if ((ServiceUtil.isStarting() || ServiceUtil.isRunning())) {
                 JOptionPane
-                        .showMessageDialog(
-                                this,
+                        .showMessageDialog(this,
                                 "Please stop Windows Service in order to run in Standard Mode.",
-                                Parms.APP_NAME, JOptionPane.ERROR_MESSAGE);
+                                ParmsConstants.APP_NAME, JOptionPane.ERROR_MESSAGE);
                 return;
             }
 
         } catch (IOException ioe) {
             JOptionPane.showMessageDialog(this,
                     "Unable to display Windows Service Status: "
-                    + ioe.getMessage(), Parms.APP_NAME,
+                    + ioe.getMessage(), ParmsConstants.APP_NAME,
                     JOptionPane.ERROR_MESSAGE);
             return;
         }
@@ -465,7 +462,7 @@ public class AceQLManager extends javax.swing.JFrame {
 
         int port = Integer.parseInt(jTextFieldPort.getText());
 
-        aceQLConsole = new AceQLConsole(this);
+        aceQLConsole = new AceQLConsole();
 
         AceQLTask aceQLTask = new AceQLTask(AceQLTask.STANDARD_MODE, jTextFieldPropertiesFile.getText(), jTextFieldHost.getText(), port);
         aceQLTask.start();
@@ -483,7 +480,7 @@ public class AceQLManager extends javax.swing.JFrame {
             port = Integer.parseInt(jTextFieldPort.getText());
         } catch (NumberFormatException e1) {
             JOptionPane.showMessageDialog(this,
-                    "Port must be numeric.", Parms.APP_NAME,
+                    "Port must be numeric.", ParmsConstants.APP_NAME,
                     JOptionPane.ERROR_MESSAGE);
             return;
         }
@@ -724,7 +721,7 @@ public class AceQLManager extends javax.swing.JFrame {
         } catch (IOException ioe) {
             JOptionPane.showMessageDialog(this,
                     "Unable to get if service is installed: "
-                    + ioe.getMessage(), Parms.APP_NAME,
+                    + ioe.getMessage(), ParmsConstants.APP_NAME,
                     JOptionPane.ERROR_MESSAGE);
             return;
         }
@@ -755,10 +752,9 @@ public class AceQLManager extends javax.swing.JFrame {
     private void startService() {
         if (STANDARD_STATUS != STANDARD_STOPPED) {
             JOptionPane
-                    .showMessageDialog(
-                            this,
+                    .showMessageDialog(this,
                             "Please stop server in Standard Mode in order to run in Windows Service Mode.",
-                            Parms.APP_NAME, JOptionPane.ERROR_MESSAGE);
+                            ParmsConstants.APP_NAME, JOptionPane.ERROR_MESSAGE);
             return;
         }
 
@@ -836,7 +832,7 @@ public class AceQLManager extends javax.swing.JFrame {
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this,
                     "Unable to display Windows Service log directory: " + CR_LF + ex.getMessage(),
-                    Parms.APP_NAME,
+                    ParmsConstants.APP_NAME,
                     JOptionPane.ERROR_MESSAGE);
         }
     }
@@ -878,7 +874,7 @@ public class AceQLManager extends javax.swing.JFrame {
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this,
                     "Unable to display Microsoft Management Console: " + CR_LF + ex.getMessage(),
-                    Parms.APP_NAME,
+                    ParmsConstants.APP_NAME,
                     JOptionPane.ERROR_MESSAGE);
         }
     }
@@ -995,7 +991,7 @@ public class AceQLManager extends javax.swing.JFrame {
 
         if (propertiesFile == null || propertiesFile.isEmpty()) {
             JOptionPane.showMessageDialog(this,
-                    "Please select a Properties File", Parms.APP_NAME,
+                    "Please select a Properties File", ParmsConstants.APP_NAME,
                     JOptionPane.ERROR_MESSAGE);
             return false;
         }
@@ -1003,7 +999,7 @@ public class AceQLManager extends javax.swing.JFrame {
         File file = new File(propertiesFile);
         if (!file.exists()) {
             JOptionPane.showMessageDialog(this,
-                    "The Properties File does not exist: " + CR_LF + file, Parms.APP_NAME,
+                    "The Properties File does not exist: " + CR_LF + file, ParmsConstants.APP_NAME,
                     JOptionPane.ERROR_MESSAGE);
             return false;
         }
@@ -1012,7 +1008,7 @@ public class AceQLManager extends javax.swing.JFrame {
 
         if (host == null || host.isEmpty()) {
             JOptionPane.showMessageDialog(this,
-                    "Please enter a Host.", Parms.APP_NAME,
+                    "Please enter a Host.", ParmsConstants.APP_NAME,
                     JOptionPane.ERROR_MESSAGE);
             return false;
         }
@@ -1023,7 +1019,7 @@ public class AceQLManager extends javax.swing.JFrame {
             port = Integer.parseInt(jTextFieldPort.getText());
         } catch (NumberFormatException e1) {
             JOptionPane.showMessageDialog(this,
-                    "Port must be numeric.", Parms.APP_NAME,
+                    "Port must be numeric.", ParmsConstants.APP_NAME,
                     JOptionPane.ERROR_MESSAGE);
             return false;
         }
@@ -1043,7 +1039,7 @@ public class AceQLManager extends javax.swing.JFrame {
 
         } catch (MalformedURLException ex) {
             JOptionPane.showMessageDialog(this,
-                    "Please enter a valid URL without the scheme for Host. Examples: localhost, www.acme.com", Parms.APP_NAME,
+                    "Please enter a valid URL without the scheme for Host. Examples: localhost, www.acme.com", ParmsConstants.APP_NAME,
                     JOptionPane.ERROR_MESSAGE);
             return false;
         }
@@ -1065,7 +1061,7 @@ public class AceQLManager extends javax.swing.JFrame {
             setAceQLServerURL(jTextFieldHost.getText(), Integer.parseInt(jTextFieldPort.getText()), new File(jTextFieldPropertiesFile.getText()));
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this,
-                    "Can not load the Property File. Reason: " + ex.getMessage(), Parms.APP_NAME,
+                    "Can not load the Property File. Reason: " + ex.getMessage(), ParmsConstants.APP_NAME,
                     JOptionPane.ERROR_MESSAGE);
             return;
         }
@@ -1084,7 +1080,7 @@ public class AceQLManager extends javax.swing.JFrame {
 
         } catch (IOException ex) {
             JOptionPane.showMessageDialog(this,
-                    "Enable to store configuration on configuration file: " + ConfigurationUtil.getConfirurationPropertiesFile() + ". Reason: " + ex, Parms.APP_NAME,
+                    "Enable to store configuration on configuration file: " + ConfigurationUtil.getConfirurationPropertiesFile() + ". Reason: " + ex, ParmsConstants.APP_NAME,
                     JOptionPane.ERROR_MESSAGE);
         }
     }
@@ -1145,7 +1141,7 @@ public class AceQLManager extends javax.swing.JFrame {
     private void actionResetWindows() {
         int response = JOptionPane.showConfirmDialog(this,
                 MessagesManager.get("the_windows_will_be_reset"),
-                Parms.APP_NAME,
+                ParmsConstants.APP_NAME,
                 JOptionPane.OK_CANCEL_OPTION);
 
         if (response != JOptionPane.OK_OPTION) {
@@ -1153,7 +1149,7 @@ public class AceQLManager extends javax.swing.JFrame {
         }
 
         WindowSettingMgr.resetAll();
-        JOptionPane.showMessageDialog(this, MessagesManager.get("the_windows_have_been_reset"), Parms.APP_NAME, JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(this, MessagesManager.get("the_windows_have_been_reset"), ParmsConstants.APP_NAME, JOptionPane.INFORMATION_MESSAGE);
         AceQLManagerUtil.systemExitWrapper();
     }
 
@@ -2300,7 +2296,7 @@ public class AceQLManager extends javax.swing.JFrame {
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this,
                     "Unable to browse AceQL Server URL: " + CR_LF + ex.getMessage(),
-                    Parms.APP_NAME,
+                    ParmsConstants.APP_NAME,
                     JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jButtonURLActionPerformed
@@ -2329,7 +2325,7 @@ public class AceQLManager extends javax.swing.JFrame {
             if (jTextFieldPropertiesFile.getText() == null || jTextFieldPropertiesFile.getText().isEmpty()) {
                 JOptionPane.showMessageDialog(this,
                         "Please enter a valid file",
-                        Parms.APP_NAME,
+                        ParmsConstants.APP_NAME,
                         JOptionPane.ERROR_MESSAGE);
                 return;
             }
@@ -2339,7 +2335,7 @@ public class AceQLManager extends javax.swing.JFrame {
             if (!file.exists()) {
                 JOptionPane.showMessageDialog(this,
                         "The file does not exists: " + CR_LF + file,
-                        Parms.APP_NAME,
+                        ParmsConstants.APP_NAME,
                         JOptionPane.ERROR_MESSAGE);
                 return;
             }
@@ -2373,7 +2369,7 @@ public class AceQLManager extends javax.swing.JFrame {
     private void jButtonDisplayConsoleActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jButtonDisplayConsoleActionPerformed
         AceQLManagerUtil.printEvent(evt);
         if (aceQLConsole == null) {
-            aceQLConsole = new AceQLConsole(this);
+            aceQLConsole = new AceQLConsole();
         } else {
             aceQLConsole.setState(Frame.NORMAL);
             aceQLConsole.setVisible(true);
@@ -2426,7 +2422,7 @@ public class AceQLManager extends javax.swing.JFrame {
             desktop.browse(url.toURI());
         } catch (Exception e) {
             e.printStackTrace();
-            JOptionPane.showMessageDialog(this, "Impossible to display Check For Updates Page " + e.toString(), Parms.APP_NAME, JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Impossible to display Check For Updates Page " + e.toString(), ParmsConstants.APP_NAME, JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jMenuCheckForUpdatesActionPerformed
 
@@ -2471,7 +2467,7 @@ public class AceQLManager extends javax.swing.JFrame {
             desktop.browse(url.toURI());
         } catch (Exception e) {
             e.printStackTrace();
-            JOptionPane.showMessageDialog(this, "Impossible to display Check For Updates Page " + e.toString(), Parms.APP_NAME, JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Impossible to display Check For Updates Page " + e.toString(), ParmsConstants.APP_NAME, JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jMenuItemReleaseNotesActionPerformed
 
@@ -2515,7 +2511,7 @@ public class AceQLManager extends javax.swing.JFrame {
             setLookAndFeel();
         } catch (Exception ex) {
             ex.printStackTrace();
-            JOptionPane.showMessageDialog(null, "Start Error: " + ex.toString(), Parms.APP_NAME, JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Start Error: " + ex.toString(), ParmsConstants.APP_NAME, JOptionPane.ERROR_MESSAGE);
         }
 
         /* Create and display the form */

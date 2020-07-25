@@ -26,7 +26,7 @@ package com.kawansoft.aceql.gui;
 
 import com.kawansoft.aceql.gui.util.AceQLManagerUtil;
 import com.kawansoft.app.parms.MessagesManager;
-import com.kawansoft.app.parms.Parms;
+import com.kawansoft.app.parms.ParmsConstants;
 import com.kawansoft.app.parms.util.ImageParmsUtil;
 import com.kawansoft.app.util.ButtonResizer;
 import com.kawansoft.app.util.SystemPropDisplayer;
@@ -126,8 +126,8 @@ public class AboutFrame extends javax.swing.JFrame {
         this.jLabelCopyright .setText("<html>" + GuiVersion.VENDOR.COPYRIGHT + "</html>");
 
         jLabelLogo.setIcon(ImageParmsUtil.getSmallLogo());
-        jButtonUrl.setText(Parms.ABOUT_WEB_SITE);
-        jButtonEmailSupport.setText(Parms.ABOUT_EMAIL_SUPPORT);
+        jButtonUrl.setText(ParmsConstants.ABOUT_WEB_SITE);
+        jButtonEmailSupport.setText(ParmsConstants.ABOUT_EMAIL_SUPPORT);
                 
         ButtonResizer buttonResizer = new ButtonResizer(jPanelButtons);
         buttonResizer.setWidthToMax();
@@ -553,7 +553,7 @@ private void jButtonEmailSupportMouseExited(MouseEvent evt) {//GEN-FIRST:event_j
 private void jButtonUrlActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jButtonUrlActionPerformed
     AceQLManagerUtil.printEvent(evt);
     Desktop desktop = Desktop.getDesktop();
-    String url = "http://" + Parms.ABOUT_WEB_SITE;
+    String url = "http://" + ParmsConstants.ABOUT_WEB_SITE;
 
     try {
         desktop.browse(new URI(url));
@@ -566,7 +566,7 @@ private void jButtonUrlActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jButt
 
 private void jButtonEmailSupportActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jButtonEmailSupportActionPerformed
     Desktop desktop = Desktop.getDesktop();
-    String email = "mailto:" + Parms.ABOUT_EMAIL_SUPPORT;
+    String email = "mailto:" + ParmsConstants.ABOUT_EMAIL_SUPPORT;
 
     try {
         desktop.mail(new URI(email));
@@ -613,7 +613,7 @@ private void jButtonDeveloppedByActionPerformed(ActionEvent evt) {//GEN-FIRST:ev
             creditsFrame.dispose();
         }
 
-        creditsFrame = new CreditsFrame(this, Parms.APP_NAME);
+        creditsFrame = new CreditsFrame(this, ParmsConstants.APP_NAME);
     }//GEN-LAST:event_jButtonCreditsActionPerformed
 
     /**

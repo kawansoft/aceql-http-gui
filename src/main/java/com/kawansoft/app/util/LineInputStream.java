@@ -24,6 +24,7 @@
  */
 package com.kawansoft.app.util;
 
+import com.kawansoft.aceql.gui.util.AceQLManagerUtil;
 import java.io.FilterInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -135,12 +136,14 @@ public class LineInputStream
     //Rule 9: Make your classes nonserializeable
     private final void writeObject(ObjectOutputStream out)
             throws IOException {
+        AceQLManagerUtil.printEvent(out);
         throw new IOException("Object cannot be serialized");
     }
 
     //Rule 10: Make your classes nondeserializeable
     private final void readObject(ObjectInputStream in)
             throws IOException {
+        AceQLManagerUtil.printEvent(in);
         throw new IOException("Class cannot be deserialized");
     }
 }

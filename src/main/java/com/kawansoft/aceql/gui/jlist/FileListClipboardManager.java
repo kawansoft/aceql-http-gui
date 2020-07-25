@@ -25,7 +25,7 @@
 package com.kawansoft.aceql.gui.jlist;
 
 import com.kawansoft.app.parms.MessagesManager;
-import com.kawansoft.app.parms.Parms;
+import com.kawansoft.app.parms.ParmsConstants;
 import com.kawansoft.app.parms.util.ImageParmsUtil;
 import com.kawansoft.app.parms.util.ParmsUtil;
 import java.awt.Toolkit;
@@ -449,7 +449,7 @@ public class FileListClipboardManager
         {
             int response = JOptionPane.showConfirmDialog(parent, 
                     MessagesManager.get("are_you_sure_to_delete_these_files"), //"Voulez-vous vraiment supprimer du disque dur les fichiers sélectionnés ?",
-                    Parms.APP_NAME,
+                    ParmsConstants.APP_NAME,
                     JOptionPane.YES_NO_OPTION);
             
             if (response != JOptionPane.YES_OPTION)
@@ -488,7 +488,7 @@ public class FileListClipboardManager
             for (File nonDeletable : nonDeletableList) {
                 message += nonDeletable.getName() + CR_LF;
             }
-            JOptionPane.showMessageDialog(parent, "Stop server instance & restart this program in order to uninstall/delete the Driver(s): " + message, Parms.APP_NAME, JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(parent, "Stop server instance & restart this program in order to uninstall/delete the Driver(s): " + message, ParmsConstants.APP_NAME, JOptionPane.ERROR_MESSAGE);
         }
                 
                

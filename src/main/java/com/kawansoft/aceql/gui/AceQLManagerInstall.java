@@ -67,7 +67,7 @@ import org.apache.commons.lang3.SystemUtils;
  *
  * @author Nicolas de Pomereu
  */
-public class AceQLManagerInstall extends javax.swing.JFrame {
+public class AceQLManagerInstall extends JFrame {
 
     /**
      * Says if we continue to udate Windows Service Status
@@ -77,7 +77,6 @@ public class AceQLManagerInstall extends javax.swing.JFrame {
     private Help help = null;
     private JFrame thisOne = this;
 
-   private Window parentJframe = null;
     /**
      * Windows Service Status
      */
@@ -87,7 +86,6 @@ public class AceQLManagerInstall extends javax.swing.JFrame {
      * Creates new form AceQLManagerInstall
      */
     public AceQLManagerInstall(Window parentJframe) {
-        this.parentJframe = parentJframe;
         initComponents();
         initializeIt();
     }

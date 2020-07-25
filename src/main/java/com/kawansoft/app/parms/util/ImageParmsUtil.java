@@ -24,7 +24,7 @@
  */
 package com.kawansoft.app.parms.util;
 
-import com.kawansoft.app.parms.Parms;
+import com.kawansoft.app.parms.ParmsConstants;
 import java.awt.Image;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -40,7 +40,7 @@ public class ImageParmsUtil {
      * @return an ImageIcon, or null if the path was invalid
      */
     public static ImageIcon createImageIcon(String path) {
-        java.net.URL imgURL = Parms.class.getResource(path);
+        java.net.URL imgURL = ParmsConstants.class.getResource(path);
         if (imgURL != null) {
             return new ImageIcon(imgURL);
         } else {
@@ -54,7 +54,7 @@ public class ImageParmsUtil {
      * @return  the App Icon to use
      */
     public static Image getAppIcon() {
-        return ImageParmsUtil.createImageIcon(Parms.ICON).getImage();
+        return ImageParmsUtil.createImageIcon(ParmsConstants.ICON).getImage();
     }
     
      /**
@@ -62,7 +62,7 @@ public class ImageParmsUtil {
      * @return  the Tray Icon to use
      */
     public static Image getTrayIcon() {
-        return ImageParmsUtil.createImageIcon(Parms.TRAY_ICON).getImage();
+        return ImageParmsUtil.createImageIcon(ParmsConstants.TRAY_ICON).getImage();
     }
     
     /**
@@ -70,7 +70,7 @@ public class ImageParmsUtil {
      * @return  the Big Logo to use
      */
     public static Icon getBigLogo() {
-        return ImageParmsUtil.createImageIcon(Parms.LOGO_BIG);
+        return ImageParmsUtil.createImageIcon(ParmsConstants.LOGO_BIG);
     }
     
     /**
@@ -78,7 +78,7 @@ public class ImageParmsUtil {
      * @return  the Big Logo to use
      */
     public static Icon getSmallLogo() {
-        return ImageParmsUtil.createImageIcon(Parms.LOGO_SMALL);
+        return ImageParmsUtil.createImageIcon(ParmsConstants.LOGO_SMALL);
     }
    
 }

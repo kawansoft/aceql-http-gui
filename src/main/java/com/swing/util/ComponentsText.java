@@ -26,7 +26,7 @@ package com.swing.util;
 
 import com.kawansoft.app.parms.LanguageManager;
 import com.kawansoft.app.parms.MessagesManager;
-import com.kawansoft.app.parms.Parms;
+import com.kawansoft.app.parms.ParmsConstants;
 import com.kawansoft.app.parms.util.ParmsUtil;
 import com.kawansoft.app.util.AppendStore;
 import java.awt.Window;
@@ -108,7 +108,7 @@ public class ComponentsText {
             RESOURCE_BUNDLE = ResourceBundle.getBundle(baseName, locale);
         } catch (Exception e) {
             e.printStackTrace();
-            JOptionPane.showMessageDialog(null, e.toString(), Parms.APP_NAME, JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, e.toString(), ParmsConstants.APP_NAME, JOptionPane.ERROR_MESSAGE);
         }
     }
 

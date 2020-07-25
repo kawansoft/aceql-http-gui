@@ -61,7 +61,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import org.apache.commons.lang3.SystemUtils;
 
-import com.kawansoft.app.parms.Parms;
+import com.kawansoft.app.parms.ParmsConstants;
 import com.kawansoft.app.parms.util.ImageParmsUtil;
 import com.kawansoft.app.util.ProcessUtil;
 import java.io.IOException;
@@ -129,10 +129,10 @@ public class AppTray {
      */
     public void startAsTray(String[] args) throws IOException {
 
-        if (SystemUtils.IS_OS_WINDOWS && ProcessUtil.countWindowsInstanceRunning(Parms.EXE_NAME) > 1) {
+        if (SystemUtils.IS_OS_WINDOWS && ProcessUtil.countWindowsInstanceRunning(ParmsConstants.EXE_NAME) > 1) {
             MessagesManager messagesManager = new MessagesManager();
             String message = messagesManager.get("aceql_already_running_use_task_bar");
-            JOptionPane.showMessageDialog(null, message, Parms.APP_NAME, JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, message, ParmsConstants.APP_NAME, JOptionPane.INFORMATION_MESSAGE);
             AceQLManagerUtil.systemExitWrapper();
         }
         
@@ -150,10 +150,10 @@ public class AppTray {
          ____________
          About
          */
-        menu = new PopupMenu(Parms.APP_NAME);
+        menu = new PopupMenu(ParmsConstants.APP_NAME);
 
         // JMenuItems
-        menuItem = new MenuItem("Show " + Parms.APP_NAME );
+        menuItem = new MenuItem("Show " + ParmsConstants.APP_NAME );
 
         menuItem.addActionListener(new ActionListener() {
             @Override
@@ -195,7 +195,7 @@ public class AppTray {
                
         ImageIcon i = new ImageIcon(ImageParmsUtil.getTrayIcon());
 
-        trayIcon = new TrayIcon(i.getImage(), Parms.APP_NAME, menu);
+        trayIcon = new TrayIcon(i.getImage(), ParmsConstants.APP_NAME, menu);
         trayIcon.setImageAutoSize(true);
 
         trayIcon.addActionListener(new ActionListener() {
@@ -210,12 +210,12 @@ public class AppTray {
             tray.add(trayIcon);
         } catch (AWTException ex) {
             ex.printStackTrace();
-            JOptionPane.showMessageDialog(aceQLManager, "Impossible to start " + Parms.APP_NAME + " : " + ex.toString());
+            JOptionPane.showMessageDialog(aceQLManager, "Impossible to start " + ParmsConstants.APP_NAME + " : " + ex.toString());
         }
 
         UserPreferencesManager userPreferencesManager = new UserPreferencesManager();
         if (! userPreferencesManager.getBooleanPreference("DISPLAY_TRAY_MESSAGE_DONE")) {
-            trayIcon.displayMessage(null, MessagesManager.get("click_the_icon_to_access") + " " + Parms.APP_NAME + " " + MessagesManager.get("when_the_window_is_closed"), TrayIcon.MessageType.INFO);
+            trayIcon.displayMessage(null, MessagesManager.get("click_the_icon_to_access") + " " + ParmsConstants.APP_NAME + " " + MessagesManager.get("when_the_window_is_closed"), TrayIcon.MessageType.INFO);
             userPreferencesManager.setPreference("DISPLAY_TRAY_MESSAGE_DONE", true);
         }
         
@@ -253,7 +253,7 @@ public class AppTray {
 
         } catch (Exception ex) {
             ex.printStackTrace();
-           JOptionPane.showMessageDialog(null, "Start Exception: " + ex.toString(), Parms.APP_NAME, JOptionPane.ERROR_MESSAGE);
+           JOptionPane.showMessageDialog(null, "Start Exception: " + ex.toString(), ParmsConstants.APP_NAME, JOptionPane.ERROR_MESSAGE);
         }
     }
 

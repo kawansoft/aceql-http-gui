@@ -25,7 +25,7 @@
 package com.kawansoft.app.util.table;
 
 import com.kawansoft.app.parms.MessagesManager;
-import com.kawansoft.app.parms.Parms;
+import com.kawansoft.app.parms.ParmsConstants;
 import com.kawansoft.app.parms.util.ImageParmsUtil;
 import com.kawansoft.app.parms.util.ParmsUtil;
 import java.awt.Toolkit;
@@ -479,7 +479,7 @@ public class FileTableClipboardManagerGroupFile
                 {
                     JOptionPane.showMessageDialog(parent, 
                               MessagesManager.get("only_pdf_files_are_accepted"),
-                              Parms.APP_NAME, JOptionPane.ERROR_MESSAGE);
+                              ParmsConstants.APP_NAME, JOptionPane.ERROR_MESSAGE);
                 }
                     
                 messageDone = true;    
@@ -508,7 +508,7 @@ public class FileTableClipboardManagerGroupFile
         
         if (dropWithDuplicate) {
             JOptionPane.showMessageDialog(parent,
-                    MessagesManager.get("warning_file_name_duplicates_are_ignored"), Parms.APP_NAME, JOptionPane.INFORMATION_MESSAGE);
+                    MessagesManager.get("warning_file_name_duplicates_are_ignored"), ParmsConstants.APP_NAME, JOptionPane.INFORMATION_MESSAGE);
         }
 
 
@@ -536,7 +536,7 @@ public class FileTableClipboardManagerGroupFile
         {
             int response = JOptionPane.showConfirmDialog(parent, 
                     MessagesManager.get("are_you_sure_to_delete_these_files"), //"Voulez-vous vraiment supprimer du disque dur les fichiers sélectionnés ?",
-                    Parms.APP_NAME,
+                    ParmsConstants.APP_NAME,
                     JOptionPane.YES_NO_OPTION);
             
             if (response != JOptionPane.YES_OPTION)

@@ -58,7 +58,7 @@ import javax.swing.table.TableModel;
 import javax.swing.text.DefaultEditorKit;
 import javax.swing.undo.UndoManager;
 
-import com.kawansoft.app.parms.Parms;
+import com.kawansoft.app.parms.ParmsConstants;
 import com.kawansoft.app.parms.util.ImageParmsUtil;
 import com.kawansoft.app.parms.util.ParmsUtil;
 import com.kawansoft.app.util.FileUtil;
@@ -394,7 +394,7 @@ public class FileTableClipboardManager {
         if (realDeleteOfFiles) {
             int response = JOptionPane.showConfirmDialog(parent,
                     MessagesManager.get("do_you_realy_want_to_delete_selected_files"),
-                    Parms.APP_NAME,
+                    ParmsConstants.APP_NAME,
                     JOptionPane.YES_NO_OPTION);
 
             if (response != JOptionPane.YES_OPTION) {

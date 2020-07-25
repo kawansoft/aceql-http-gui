@@ -73,7 +73,7 @@ public class MessagesManager
             RESOURCE_BUNDLE = ResourceBundle.getBundle(baseName, locale);
         } catch (Exception e) {
             e.printStackTrace();
-            JOptionPane.showMessageDialog(null, e.toString(), Parms.APP_NAME, JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, e.toString(), ParmsConstants.APP_NAME, JOptionPane.ERROR_MESSAGE);
         }
     }
     
