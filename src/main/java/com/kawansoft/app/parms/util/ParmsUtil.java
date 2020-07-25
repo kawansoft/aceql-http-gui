@@ -27,6 +27,7 @@ package com.kawansoft.app.parms.util;
 import com.kawansoft.app.parms.Parms;
 import java.awt.Color;
 import java.io.File;
+import java.util.Date;
 import org.apache.commons.lang3.SystemUtils;
 
 /**
@@ -94,10 +95,26 @@ public class ParmsUtil {
     
     /**
      * Returns the base dir
-     * @return c:\.DOT_APP_DIR or /usr/local/APP_NAME
+     * @return c:\.DOT_APP_DIR or /usr/local/APP_NAME.
+     * In case there is a aceql.service.dir property , it returns the di contained in the directory
      */
     public static String getBaseDir() {
                 
+        // Case the user has hacked the .bat for service cration and has added the aceql.service.dir property to
+        // define a special base dir
+        String forceUserHome = System.getProperty("is.windows.service");
+        if (forceUserHome != null && Boolean.parseBoolean(forceUserHome) && SystemUtils.IS_OS_WINDOWS) {
+            System.out.println(new Date() + " " + "is.windows.service property is true. Force user.home directory for base dir configuration: " + SystemUtils.USER_HOME);
+            File userHome = new File(SystemUtils.USER_HOME);
+            if (!userHome.exists()) {
+                userHome.mkdirs();
+            }
+            if (! userHome.exists()) {
+                throw new IllegalArgumentException("Can not created the designated user.home " + userHome);
+            }
+            return userHome.toString();
+        }
+        
         File baseDir = null;
         
         if (SystemUtils.IS_OS_WINDOWS) {

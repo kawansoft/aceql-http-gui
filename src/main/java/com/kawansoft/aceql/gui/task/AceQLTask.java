@@ -28,6 +28,7 @@ import com.kawansoft.aceql.gui.AceQLManager;
 import static com.kawansoft.aceql.gui.AceQLManager.CR_LF;
 import com.kawansoft.app.util.ClientLogger;
 import com.kawansoft.app.util.classpath.ClasspathUtil;
+import java.awt.GraphicsEnvironment;
 import java.io.File;
 import java.io.IOException;
 import java.net.ConnectException;

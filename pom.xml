@@ -79,11 +79,10 @@
 	    <artifactId>jsqlparser</artifactId>
 	    <version>3.1</version>
    </dependency>
-   
-   <dependency>
-            <groupId>aceql-http</groupId>
-            <artifactId>aceql.com</artifactId>
-            <version>5.0.3</version>
+        <dependency>
+            <groupId>com.aceql</groupId>
+            <artifactId>aceql-http</artifactId>
+            <version>5.0.4</version>
         </dependency>
     </dependencies>
   

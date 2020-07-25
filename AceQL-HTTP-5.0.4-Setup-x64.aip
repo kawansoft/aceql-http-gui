@@ -17,10 +17,10 @@
     <ROW Property="CTRLS" Value="2"/>
     <ROW Property="DialogBitmap" Value="dialog" MultiBuildValue="DefaultBuild:dialog_aceql.bmp_1" Type="1" MsiKey="DialogBitmap"/>
     <ROW Property="Manufacturer" Value="KawanSoft"/>
-    <ROW Property="ProductCode" Value="1033:{924259CC-17E8-47FB-B4A0-BB60C96BF19E} " Type="16"/>
+    <ROW Property="ProductCode" Value="1033:{58E5A30F-4953-44F1-B486-477C426A8E9D} " Type="16"/>
     <ROW Property="ProductLanguage" Value="1033"/>
     <ROW Property="ProductName" Value="AceQL HTTP"/>
-    <ROW Property="ProductVersion" Value="5.0.3" Type="32"/>
+    <ROW Property="ProductVersion" Value="5.0.4" Type="32"/>
     <ROW Property="RUNAPPLICATION" Value="1" Type="4"/>
     <ROW Property="SecureCustomProperties" Value="OLDPRODUCTS;AI_NEWERPRODUCTFOUND;AI_SETUPEXEPATH;SETUPEXEDIR"/>
     <ROW Property="UpgradeCode" Value="{CA50C7AC-50FE-48F6-A033-498B4F11256F}"/>
@@ -82,9 +82,9 @@
     <ROW File="RELEASENOTES.html" Component_="AceQLOpenSourceLicense.txt" FileName="RELEAS~1.HTM|RELEASE-NOTES.html" Attributes="0" SourcePath="AceQL\RELEASE-NOTES.html" SelfReg="false" NextFile="commonscli1.4.jar_1"/>
     <ROW File="aceql_rocket_64.bmp" Component_="aceql_rocket_64.bmp" FileName="ACEQL_~1.BMP|aceql_rocket_64.bmp" Attributes="0" SourcePath="AceQL\img\aceql_rocket_64.bmp" SelfReg="false" NextFile="aceql_rocket_64.png"/>
     <ROW File="aceql_rocket_64.png" Component_="aceql_rocket_64.bmp" FileName="ACEQL_~1.PNG|aceql_rocket_64.png" Attributes="0" SourcePath="AceQL\img\aceql_rocket_64.png" SelfReg="false" NextFile="banner_aceql.bmp"/>
-    <ROW File="aceqlhttp5.0.3.jar" Component_="aceqlhttp3.0.jar" FileName="ACEQL-~1.JAR|aceql-http-5.0.3.jar" Attributes="0" SourcePath="AceQL\lib-server\aceql-http-5.0.3.jar" SelfReg="false" NextFile="aceqlhttpgui5.0.3.jar"/>
-    <ROW File="aceqlhttp5.0.3.jar_1" Component_="aceqlhttpgui2.0.jar_1" FileName="ACEQL-~2.JAR|aceql-http-5.0.3.jar" Attributes="0" SourcePath="AceQL\lib-server\aceql-http-5.0.3.jar" SelfReg="false" NextFile="tomcatjdbc8.5.56.jar_1"/>
-    <ROW File="aceqlhttpgui5.0.3.jar" Component_="aceqlhttp3.0.jar" FileName="ACEQL-~2.JAR|aceql-http-gui-5.0.3.jar" Attributes="0" SourcePath="AceQL\lib-server\aceql-http-gui-5.0.3.jar" SelfReg="false" NextFile="tomcatannotationsapi8.5.56.jar"/>
+    <ROW File="aceqlhttp5.0.4.jar" Component_="aceqlhttp3.0.jar" FileName="ACEQL-~1.JAR|aceql-http-5.0.4.jar" Attributes="0" SourcePath="AceQL\lib-server\aceql-http-5.0.4.jar" SelfReg="false" NextFile="aceqlhttp5.0.4.jar_1"/>
+    <ROW File="aceqlhttp5.0.4.jar_1" Component_="aceqlhttpgui2.0.jar_1" FileName="ACEQL-~1.JAR|aceql-http-5.0.4.jar" Attributes="0" SourcePath="AceQL\webapp\WEB-INF\lib\aceql-http-5.0.4.jar" SelfReg="false" NextFile="commonslang33.10.jar"/>
+    <ROW File="aceqlhttpgui5.1.jar" Component_="aceqlhttp3.0.jar" FileName="ACEQL-~2.JAR|aceql-http-gui-5.1.jar" Attributes="0" SourcePath="AceQL\lib-server\aceql-http-gui-5.1.jar" SelfReg="false" NextFile="installService_force.is.windows.service.bat"/>
     <ROW File="aceqlserver.bat" Component_="aceqlserver.bat" FileName="ACEQL-~1.BAT|aceql-server.bat" Attributes="0" SourcePath="AceQL\bin\aceql-server.bat" SelfReg="false" NextFile="aceqlserver.properties"/>
     <ROW File="aceqlserver.properties" Component_="aceqlserver.properties" FileName="ACEQL-~1.PRO|aceql-server.properties" Attributes="0" SourcePath="AceQL\conf\aceql-server.properties" SelfReg="false" NextFile="aceql_rocket_64.bmp"/>
     <ROW File="banner_aceql.bmp" Component_="aceql_rocket_64.bmp" FileName="BANNER~1.BMP|banner_aceql.bmp" Attributes="0" SourcePath="AceQL\img\banner_aceql.bmp" SelfReg="false" NextFile="data_up_128.bmp"/>
@@ -92,10 +92,10 @@
     <ROW File="commonscli1.4.jar_1" Component_="aceqlhttpgui2.0.jar_1" FileName="COMMON~1.JAR|commons-cli-1.4.jar" Attributes="0" SourcePath="AceQL\webapp\WEB-INF\lib\commons-cli-1.4.jar" SelfReg="false" NextFile="commonscodec1.10.jar_1"/>
     <ROW File="commonscodec1.10.jar" Component_="aceqlhttp3.0.jar" FileName="COMMON~2.JAR|commons-codec-1.10.jar" Attributes="0" SourcePath="AceQL\lib-server\commons-codec-1.10.jar" SelfReg="false" NextFile="commonsio2.6.jar"/>
     <ROW File="commonscodec1.10.jar_1" Component_="aceqlhttpgui2.0.jar_1" FileName="COMMON~2.JAR|commons-codec-1.10.jar" Attributes="0" SourcePath="AceQL\webapp\WEB-INF\lib\commons-codec-1.10.jar" SelfReg="false" NextFile="commonsio2.6.jar_1"/>
-    <ROW File="commonsio2.6.jar" Component_="aceqlhttp3.0.jar" FileName="COMMON~3.JAR|commons-io-2.6.jar" Attributes="0" SourcePath="AceQL\lib-server\commons-io-2.6.jar" SelfReg="false" NextFile="commonslang33.8.1.jar"/>
-    <ROW File="commonsio2.6.jar_1" Component_="aceqlhttpgui2.0.jar_1" FileName="COMMON~3.JAR|commons-io-2.6.jar" Attributes="0" SourcePath="AceQL\webapp\WEB-INF\lib\commons-io-2.6.jar" SelfReg="false" NextFile="jacksonannotations2.9.0.jar_1"/>
-    <ROW File="commonslang33.8.1.jar" Component_="aceqlhttp3.0.jar" FileName="COMMON~4.JAR|commons-lang3-3.8.1.jar" Attributes="0" SourcePath="AceQL\lib-server\commons-lang3-3.8.1.jar" SelfReg="false" NextFile="jacksonannotations2.9.0.jar"/>
-    <ROW File="commonslang33.8.1.jar_1" Component_="aceqlhttpgui2.0.jar_1" FileName="COMMON~4.JAR|commons-lang3-3.8.1.jar" Attributes="0" SourcePath="AceQL\webapp\WEB-INF\lib\commons-lang3-3.8.1.jar" SelfReg="false" NextFile="gson2.8.6.jar"/>
+    <ROW File="commonsio2.6.jar" Component_="aceqlhttp3.0.jar" FileName="COMMON~3.JAR|commons-io-2.6.jar" Attributes="0" SourcePath="AceQL\lib-server\commons-io-2.6.jar" SelfReg="false" NextFile="postgresql42.1.4.jre7.jar_1"/>
+    <ROW File="commonsio2.6.jar_1" Component_="aceqlhttpgui2.0.jar_1" FileName="COMMON~3.JAR|commons-io-2.6.jar" Attributes="0" SourcePath="AceQL\webapp\WEB-INF\lib\commons-io-2.6.jar" SelfReg="false" NextFile="postgresql42.1.4.jre7.jar_2"/>
+    <ROW File="commonslang33.10.jar" Component_="aceqlhttp3.0.jar" FileName="COMMON~4.JAR|commons-lang3-3.10.jar" Attributes="0" SourcePath="AceQL\lib-server\commons-lang3-3.10.jar" SelfReg="false" NextFile="jacksonannotations2.10.3.jar"/>
+    <ROW File="commonslang33.10.jar_1" Component_="aceqlhttpgui2.0.jar_1" FileName="COMMON~4.JAR|commons-lang3-3.10.jar" Attributes="0" SourcePath="AceQL\webapp\WEB-INF\lib\commons-lang3-3.10.jar" SelfReg="false" NextFile="jacksonannotations2.10.3.jar_1"/>
     <ROW File="data_up_128.bmp" Component_="aceql_rocket_64.bmp" FileName="DATA_U~1.BMP|data_up_128.bmp" Attributes="0" SourcePath="AceQL\img\data_up_128.bmp" SelfReg="false" NextFile="data_up_128_sRU_icon.ico"/>
     <ROW File="data_up_128_sRU_icon.ico" Component_="aceql_rocket_64.bmp" FileName="DATA_U~1.ICO|data_up_128_sRU_icon.ico" Attributes="0" SourcePath="AceQL\img\data_up_128_sRU_icon.ico" SelfReg="false" NextFile="dialog_aceql.bmp"/>
     <ROW File="dialog_aceql.bmp" Component_="aceql_rocket_64.bmp" FileName="DIALOG~1.BMP|dialog_aceql.bmp" Attributes="0" SourcePath="AceQL\img\dialog_aceql.bmp" SelfReg="false" NextFile="logoAceQL.bmp"/>
@@ -103,18 +103,20 @@
     <ROW File="gson2.8.6.jar_1" Component_="aceqlhttpgui2.0.jar_1" FileName="GSON-2~1.JAR|gson-2.8.6.jar" Attributes="0" SourcePath="AceQL\webapp\WEB-INF\lib\gson-2.8.6.jar" SelfReg="false" NextFile="jsqlparser3.1.jar_1"/>
     <ROW File="index.html" Component_="index.html" FileName="INDEX~1.HTM|index.html" Attributes="0" SourcePath="AceQL\javadoc\index.html" SelfReg="false" NextFile="Apache_License_v2.0.txt"/>
     <ROW File="installService.bat" Component_="installService.bat" FileName="INSTAL~1.BAT|installService.bat" Attributes="0" SourcePath="AceQL\service\installService.bat" SelfReg="false" NextFile="serviceProperties.bat"/>
-    <ROW File="jacksonannotations2.9.0.jar" Component_="aceqlhttp3.0.jar" FileName="JACKSO~1.JAR|jackson-annotations-2.9.0.jar" Attributes="0" SourcePath="AceQL\lib-server\jackson-annotations-2.9.0.jar" SelfReg="false" NextFile="jacksoncore2.9.2.jar"/>
-    <ROW File="jacksonannotations2.9.0.jar_1" Component_="aceqlhttpgui2.0.jar_1" FileName="JACKSO~1.JAR|jackson-annotations-2.9.0.jar" Attributes="0" SourcePath="AceQL\webapp\WEB-INF\lib\jackson-annotations-2.9.0.jar" SelfReg="false" NextFile="jacksoncore2.9.2.jar_1"/>
-    <ROW File="jacksoncore2.9.2.jar" Component_="aceqlhttp3.0.jar" FileName="JACKSO~2.JAR|jackson-core-2.9.2.jar" Attributes="0" SourcePath="AceQL\lib-server\jackson-core-2.9.2.jar" SelfReg="false" NextFile="jacksondatabind2.9.2.jar"/>
-    <ROW File="jacksoncore2.9.2.jar_1" Component_="aceqlhttpgui2.0.jar_1" FileName="JACKSO~2.JAR|jackson-core-2.9.2.jar" Attributes="0" SourcePath="AceQL\webapp\WEB-INF\lib\jackson-core-2.9.2.jar" SelfReg="false" NextFile="jacksondatabind2.9.2.jar_1"/>
-    <ROW File="jacksondatabind2.9.2.jar" Component_="aceqlhttp3.0.jar" FileName="JACKSO~3.JAR|jackson-databind-2.9.2.jar" Attributes="0" SourcePath="AceQL\lib-server\jackson-databind-2.9.2.jar" SelfReg="false" NextFile="javajwt3.3.0.jar"/>
-    <ROW File="jacksondatabind2.9.2.jar_1" Component_="aceqlhttpgui2.0.jar_1" FileName="JACKSO~3.JAR|jackson-databind-2.9.2.jar" Attributes="0" SourcePath="AceQL\webapp\WEB-INF\lib\jackson-databind-2.9.2.jar" SelfReg="false" NextFile="javajwt3.3.0.jar_1"/>
-    <ROW File="javajwt3.3.0.jar" Component_="aceqlhttp3.0.jar" FileName="JAVA-J~1.JAR|java-jwt-3.3.0.jar" Attributes="0" SourcePath="AceQL\lib-server\java-jwt-3.3.0.jar" SelfReg="false" NextFile="jsch0.1.54.jar"/>
-    <ROW File="javajwt3.3.0.jar_1" Component_="aceqlhttpgui2.0.jar_1" FileName="JAVA-J~1.JAR|java-jwt-3.3.0.jar" Attributes="0" SourcePath="AceQL\webapp\WEB-INF\lib\java-jwt-3.3.0.jar" SelfReg="false" NextFile="jsch0.1.54.jar_1"/>
+    <ROW File="installService_force.is.windows.service.bat" Component_="installService.bat" FileName="INSTAL~2.BAT|installService_force.is.windows.service.bat" Attributes="0" SourcePath="AceQL\service\installService_force.is.windows.service.bat" SelfReg="false" NextFile="installService_force.is.windows.service.parms.txt"/>
+    <ROW File="installService_force.is.windows.service.parms.txt" Component_="installService.bat" FileName="INSTAL~1.TXT|installService_force.is.windows.service.parms.txt" Attributes="0" SourcePath="AceQL\service\installService_force.is.windows.service.parms.txt" SelfReg="false" NextFile="updateService_force.is.windows.service.bat"/>
+    <ROW File="jacksonannotations2.10.3.jar" Component_="aceqlhttp3.0.jar" FileName="JACKSO~1.JAR|jackson-annotations-2.10.3.jar" Attributes="0" SourcePath="AceQL\lib-server\jackson-annotations-2.10.3.jar" SelfReg="false" NextFile="jacksoncore2.10.3.jar"/>
+    <ROW File="jacksonannotations2.10.3.jar_1" Component_="aceqlhttpgui2.0.jar_1" FileName="JACKSO~1.JAR|jackson-annotations-2.10.3.jar" Attributes="0" SourcePath="AceQL\webapp\WEB-INF\lib\jackson-annotations-2.10.3.jar" SelfReg="false" NextFile="jacksoncore2.10.3.jar_1"/>
+    <ROW File="jacksoncore2.10.3.jar" Component_="aceqlhttp3.0.jar" FileName="JACKSO~2.JAR|jackson-core-2.10.3.jar" Attributes="0" SourcePath="AceQL\lib-server\jackson-core-2.10.3.jar" SelfReg="false" NextFile="jacksondatabind2.10.3.jar"/>
+    <ROW File="jacksoncore2.10.3.jar_1" Component_="aceqlhttpgui2.0.jar_1" FileName="JACKSO~2.JAR|jackson-core-2.10.3.jar" Attributes="0" SourcePath="AceQL\webapp\WEB-INF\lib\jackson-core-2.10.3.jar" SelfReg="false" NextFile="jacksondatabind2.10.3.jar_1"/>
+    <ROW File="jacksondatabind2.10.3.jar" Component_="aceqlhttp3.0.jar" FileName="JACKSO~3.JAR|jackson-databind-2.10.3.jar" Attributes="0" SourcePath="AceQL\lib-server\jackson-databind-2.10.3.jar" SelfReg="false" NextFile="javajwt3.10.3.jar"/>
+    <ROW File="jacksondatabind2.10.3.jar_1" Component_="aceqlhttpgui2.0.jar_1" FileName="JACKSO~3.JAR|jackson-databind-2.10.3.jar" Attributes="0" SourcePath="AceQL\webapp\WEB-INF\lib\jackson-databind-2.10.3.jar" SelfReg="false" NextFile="javajwt3.10.3.jar_1"/>
+    <ROW File="javajwt3.10.3.jar" Component_="aceqlhttp3.0.jar" FileName="JAVA-J~1.JAR|java-jwt-3.10.3.jar" Attributes="0" SourcePath="AceQL\lib-server\java-jwt-3.10.3.jar" SelfReg="false" NextFile="jsch0.1.55.jar"/>
+    <ROW File="javajwt3.10.3.jar_1" Component_="aceqlhttpgui2.0.jar_1" FileName="JAVA-J~1.JAR|java-jwt-3.10.3.jar" Attributes="0" SourcePath="AceQL\webapp\WEB-INF\lib\java-jwt-3.10.3.jar" SelfReg="false" NextFile="jsch0.1.55.jar_1"/>
     <ROW File="javax.json1.1.4.jar" Component_="aceqlhttp3.0.jar" FileName="JAVAXJ~2.JAR|javax.json-1.1.4.jar" Attributes="0" SourcePath="AceQL\lib-server\javax.json-1.1.4.jar" SelfReg="false" NextFile="javax.json1.1.4.jar_1"/>
-    <ROW File="javax.json1.1.4.jar_1" Component_="aceqlhttpgui2.0.jar_1" FileName="JAVAXJ~2.JAR|javax.json-1.1.4.jar" Attributes="0" SourcePath="AceQL\webapp\WEB-INF\lib\javax.json-1.1.4.jar" SelfReg="false" NextFile="aceqlhttp5.0.3.jar"/>
-    <ROW File="jsch0.1.54.jar" Component_="aceqlhttp3.0.jar" FileName="JSCH-0~1.JAR|jsch-0.1.54.jar" Attributes="0" SourcePath="AceQL\lib-server\jsch-0.1.54.jar" SelfReg="false" NextFile="postgresql42.1.4.jre7.jar_1"/>
-    <ROW File="jsch0.1.54.jar_1" Component_="aceqlhttpgui2.0.jar_1" FileName="JSCH-0~1.JAR|jsch-0.1.54.jar" Attributes="0" SourcePath="AceQL\webapp\WEB-INF\lib\jsch-0.1.54.jar" SelfReg="false" NextFile="postgresql42.1.4.jre7.jar_2"/>
+    <ROW File="javax.json1.1.4.jar_1" Component_="aceqlhttpgui2.0.jar_1" FileName="JAVAXJ~2.JAR|javax.json-1.1.4.jar" Attributes="0" SourcePath="AceQL\webapp\WEB-INF\lib\javax.json-1.1.4.jar" SelfReg="false" NextFile="tomcatannotationsapi8.5.56.jar"/>
+    <ROW File="jsch0.1.55.jar" Component_="aceqlhttp3.0.jar" FileName="JSCH-0~1.JAR|jsch-0.1.55.jar" Attributes="0" SourcePath="AceQL\lib-server\jsch-0.1.55.jar" SelfReg="false" NextFile="commonslang33.10.jar_1"/>
+    <ROW File="jsch0.1.55.jar_1" Component_="aceqlhttpgui2.0.jar_1" FileName="JSCH-0~1.JAR|jsch-0.1.55.jar" Attributes="0" SourcePath="AceQL\webapp\WEB-INF\lib\jsch-0.1.55.jar" SelfReg="false"/>
     <ROW File="jsqlparser3.1.jar" Component_="aceqlhttp3.0.jar" FileName="JSQLPA~1.JAR|jsqlparser-3.1.jar" Attributes="0" SourcePath="AceQL\lib-server\jsqlparser-3.1.jar" SelfReg="false" NextFile="schemacrawler16.3.0.jar"/>
     <ROW File="jsqlparser3.1.jar_1" Component_="aceqlhttpgui2.0.jar_1" FileName="JSQLPA~1.JAR|jsqlparser-3.1.jar" Attributes="0" SourcePath="AceQL\webapp\WEB-INF\lib\jsqlparser-3.1.jar" SelfReg="false" NextFile="schemacrawler16.3.0.jar_1"/>
     <ROW File="logoAceQL.bmp" Component_="aceql_rocket_64.bmp" FileName="LOGO-A~1.BMP|logo-AceQL.bmp" Attributes="0" SourcePath="AceQL\img\logo-AceQL.bmp" SelfReg="false" NextFile="logoAceQL_48.bmp"/>
@@ -130,18 +132,19 @@
     <ROW File="startMmc.bat" Component_="installService.bat" FileName="startMmc.bat" Attributes="0" SourcePath="AceQL\service\startMmc.bat" SelfReg="false" NextFile="startService.bat"/>
     <ROW File="startService.bat" Component_="installService.bat" FileName="STARTS~1.BAT|startService.bat" Attributes="0" SourcePath="AceQL\service\startService.bat" SelfReg="false" NextFile="stopService.bat"/>
     <ROW File="stopService.bat" Component_="installService.bat" FileName="STOPSE~1.BAT|stopService.bat" Attributes="0" SourcePath="AceQL\service\stopService.bat" SelfReg="false" NextFile="testInstall.bat"/>
-    <ROW File="swingxall1.6.51.jar" Component_="aceqlhttp3.0.jar" FileName="SWINGX~1.JAR|swingx-all-1.6.5-1.jar" Attributes="0" SourcePath="AceQL\lib-server\swingx-all-1.6.5-1.jar" SelfReg="false" NextFile="commonslang33.8.1.jar_1"/>
+    <ROW File="swingxall1.6.51.jar" Component_="aceqlhttp3.0.jar" FileName="SWINGX~1.JAR|swingx-all-1.6.5-1.jar" Attributes="0" SourcePath="AceQL\lib-server\swingx-all-1.6.5-1.jar" SelfReg="false" NextFile="gson2.8.6.jar"/>
     <ROW File="swingxall1.6.51.jar_1" Component_="aceqlhttpgui2.0.jar_1" FileName="SWINGX~1.JAR|swingx-all-1.6.5-1.jar" Attributes="0" SourcePath="AceQL\webapp\WEB-INF\lib\swingx-all-1.6.5-1.jar" SelfReg="false" NextFile="web.xml"/>
     <ROW File="testInstall.bat" Component_="installService.bat" FileName="TESTIN~1.BAT|testInstall.bat" Attributes="0" SourcePath="AceQL\service\testInstall.bat" SelfReg="false" NextFile="updateServiceClasspath.bat"/>
     <ROW File="tomcatannotationsapi8.5.56.jar" Component_="aceqlhttp3.0.jar" FileName="TOMCAT~5.JAR|tomcat-annotations-api-8.5.56.jar" Attributes="0" SourcePath="AceQL\lib-server\tomcat-annotations-api-8.5.56.jar" SelfReg="false" NextFile="tomcatembedcore8.5.56.jar"/>
     <ROW File="tomcatembedcore8.5.56.jar" Component_="aceqlhttp3.0.jar" FileName="TOMCAT~6.JAR|tomcat-embed-core-8.5.56.jar" Attributes="0" SourcePath="AceQL\lib-server\tomcat-embed-core-8.5.56.jar" SelfReg="false" NextFile="tomcatjdbc8.5.56.jar"/>
     <ROW File="tomcatjdbc8.5.56.jar" Component_="aceqlhttp3.0.jar" FileName="TOMCAT~7.JAR|tomcat-jdbc-8.5.56.jar" Attributes="0" SourcePath="AceQL\lib-server\tomcat-jdbc-8.5.56.jar" SelfReg="false" NextFile="tomcatjuli8.5.56.jar"/>
-    <ROW File="tomcatjdbc8.5.56.jar_1" Component_="tomcatjdbc8.5.53.jar" FileName="TOMCAT~2.JAR|tomcat-jdbc-8.5.56.jar" Attributes="0" SourcePath="AceQL\lib-server\tomcat-jdbc-8.5.56.jar" SelfReg="false"/>
-    <ROW File="tomcatjuli8.5.56.jar" Component_="aceqlhttp3.0.jar" FileName="TOMCAT~8.JAR|tomcat-juli-8.5.56.jar" Attributes="0" SourcePath="AceQL\lib-server\tomcat-juli-8.5.56.jar" SelfReg="false" NextFile="aceqlhttp5.0.3.jar_1"/>
+    <ROW File="tomcatjdbc8.5.56.jar_1" Component_="tomcatjdbc8.5.53.jar" FileName="TOMCAT~2.JAR|tomcat-jdbc-8.5.56.jar" Attributes="0" SourcePath="AceQL\lib-server\tomcat-jdbc-8.5.56.jar" SelfReg="false" NextFile="aceqlhttpgui5.1.jar"/>
+    <ROW File="tomcatjuli8.5.56.jar" Component_="aceqlhttp3.0.jar" FileName="TOMCAT~8.JAR|tomcat-juli-8.5.56.jar" Attributes="0" SourcePath="AceQL\lib-server\tomcat-juli-8.5.56.jar" SelfReg="false" NextFile="tomcatjdbc8.5.56.jar_1"/>
     <ROW File="uninstallService.bat" Component_="installService.bat" FileName="UNINST~1.BAT|uninstallService.bat" Attributes="0" SourcePath="AceQL\service\uninstallService.bat" SelfReg="false" NextFile="AceQLHTTP.exe"/>
     <ROW File="updateServiceClasspath.bat" Component_="installService.bat" FileName="UPDATE~1.BAT|updateServiceClasspath.bat" Attributes="0" SourcePath="AceQL\service\updateServiceClasspath.bat" SelfReg="false" NextFile="updateServiceUserHomeNormal.bat"/>
     <ROW File="updateServiceUserHomeNormal.bat" Component_="installService.bat" FileName="UPDATE~2.BAT|updateServiceUserHomeNormal.bat" Attributes="0" SourcePath="AceQL\service\updateServiceUserHomeNormal.bat" SelfReg="false" NextFile="updateServiceUserHomeSystem.bat"/>
     <ROW File="updateServiceUserHomeSystem.bat" Component_="installService.bat" FileName="UPDATE~3.BAT|updateServiceUserHomeSystem.bat" Attributes="0" SourcePath="AceQL\service\updateServiceUserHomeSystem.bat" SelfReg="false" NextFile="commonscli1.4.jar"/>
+    <ROW File="updateService_force.is.windows.service.bat" Component_="installService.bat" FileName="UPDATE~4.BAT|updateService_force.is.windows.service.bat" Attributes="0" SourcePath="AceQL\service\updateService_force.is.windows.service.bat" SelfReg="false" NextFile="aceqlhttp5.0.4.jar"/>
     <ROW File="web.xml" Component_="web.xml" FileName="web.xml" Attributes="0" SourcePath="AceQL\webapp\WEB-INF\web.xml" SelfReg="false" NextFile="AceQLHTTPService.exe"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.BuildComponent">
@@ -153,7 +156,7 @@
     <ROW Path="&lt;AI_DICTS&gt;ui_en.ail"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.DigCertStoreComponent">
-    <ROW TimeStampUrl="http://timestamp.verisign.com/scripts/timstamp.dll" SignerDescription="[|ProductName]" SignOptions="7" SignTool="0" Thumbprint="c44e6b3c10176802ae427ba0b4e942c7b1568fc1 Subject: KAWANSOFT SAS&#10;Issuer: thawte SHA256 Code Signing CA - G2&#10;Valid from 06/18/2019 to 06/18/2020"/>
+    <ROW TimeStampUrl="http://timestamp.verisign.com/scripts/timstamp.dll" SignerDescription="[|ProductName]" SignOptions="7" SignTool="0" Thumbprint="7e45fdbb8380028249e26c70c223fa176a37a5b1 Subject: KAWANSOFT SAS&#10;Issuer: thawte SHA256 Code Signing CA - G2&#10;Valid from 06/09/2020 to 07/10/2021"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.FragmentComponent">
     <ROW Fragment="CommonUI.aip" Path="&lt;AI_FRAGS&gt;CommonUI.aip"/>
