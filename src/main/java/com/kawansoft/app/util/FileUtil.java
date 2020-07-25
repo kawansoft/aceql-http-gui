@@ -256,8 +256,6 @@ public class FileUtil {
                 text.append(line);
                 text.append(CR_LF);
             }
-        } finally {
-            //IOUtils.closeQuietly(br);
         }
 
         return text.toString();
@@ -270,7 +268,7 @@ public class FileUtil {
      * @return true if the filename is a Window Filename
      */
     public static boolean isPossibleWindowFilename(String filename) {
-        if (filename.indexOf("\\") != -1
+        return !(filename.indexOf("\\") != -1
                 || filename.indexOf("/") != -1
                 || filename.indexOf(":") != -1
                 || filename.indexOf("*") != -1
@@ -279,11 +277,7 @@ public class FileUtil {
                 || filename.indexOf("\"") != -1
                 || filename.indexOf("<") != -1
                 || filename.indexOf(">") != -1
-                || filename.indexOf("|") != -1) {
-            return false;
-        } else {
-            return true;
-        }
+                || filename.indexOf("|") != -1);
     }
 
     private void debug(String sMsg) {

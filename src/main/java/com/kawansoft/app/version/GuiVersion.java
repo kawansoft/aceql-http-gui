@@ -84,7 +84,7 @@ public class GuiVersion {
      * Says if the current AceQL version is Open Source or Professional
      * @return
      */
-     static boolean isOpenSourceVersion() {
+     private static boolean isOpenSourceVersion() {
 	try {
 	    @SuppressWarnings("unused")
 	    Class<?> c = Class.forName("org.kawanfw.sql.licensing.LicenseBuilder");

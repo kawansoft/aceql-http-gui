@@ -99,11 +99,7 @@ public class ProcessUtil {
             }
         }
 
-        if (pidInfo.toLowerCase().contains(programName.toLowerCase())) {
-            return true;
-        } else {
-            return false;
-        }
+        return pidInfo.toLowerCase().contains(programName.toLowerCase());
     }
 
 }

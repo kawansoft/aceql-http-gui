@@ -52,7 +52,7 @@ public class SystemPropsTableCreator {
     /**
      * The font to use
      */
-    Font m_font = null;
+    private Font m_font = null;
 
     /**
      *

@@ -33,7 +33,6 @@ import java.util.List;
 import java.util.Vector;
 
 import javax.swing.JLabel;
-import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.JToolBar;
 

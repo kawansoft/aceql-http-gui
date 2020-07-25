@@ -191,11 +191,11 @@ public class TableClipboardManager {
         jTable.addMouseListener(new MouseAdapter() {
 
             public void mousePressed(MouseEvent e) {
-                jTable_mouseReleased(e);
+                jTableMouseReleased(e);
             }
 
             public void mouseReleased(MouseEvent e) {
-                jTable_mouseReleased(e);
+                jTableMouseReleased(e);
             }
 
         });
@@ -222,7 +222,7 @@ public class TableClipboardManager {
      *
      * @param e The Mouse Eevent
      */
-    public void jTable_mouseReleased(MouseEvent e) {
+    public void jTableMouseReleased(MouseEvent e) {
 
         // These are disabled because the Table is not editable
         menuItemPaste.setEnabled(false);

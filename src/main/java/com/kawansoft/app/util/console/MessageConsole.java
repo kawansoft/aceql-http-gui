@@ -258,12 +258,7 @@ public class MessageConsole {
         private boolean discard(String message) {
             //org.apache.catalina.util.SessionIdGeneratorBase
             //org.apache.tomcat.util.net.NioSelectorPool
-            if (message.contains("org.apache.catalina.util.SessionIdGeneratorBase") || message.contains("org.apache.tomcat.util.net.NioSelectorPool")) {
-                return true;
-            }
-            else {
-                return false;
-            }
+            return message.contains("org.apache.catalina.util.SessionIdGeneratorBase") || message.contains("org.apache.tomcat.util.net.NioSelectorPool");
         }
     }
 }

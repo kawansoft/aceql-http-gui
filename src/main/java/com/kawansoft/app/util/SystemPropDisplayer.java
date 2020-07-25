@@ -70,7 +70,7 @@ public class SystemPropDisplayer extends javax.swing.JFrame {
     /**
      * Pop Up menu
      */
-    JPopupMenu popupMenu;
+    private JPopupMenu popupMenu;
     private Font m_font = new Font("Tahoma", Font.PLAIN, 13);
     /**
      * Add a clipboard manager for right button mouse control over input text
@@ -243,7 +243,7 @@ public class SystemPropDisplayer extends javax.swing.JFrame {
         jPanelWest = new javax.swing.JPanel();
         jPanelSouth = new javax.swing.JPanel();
         jPanelButtons = new javax.swing.JPanel();
-        CopyToClipboard = new javax.swing.JButton();
+        copyToClipboard = new javax.swing.JButton();
         jButtonClose = new javax.swing.JButton();
         jPanelEast = new javax.swing.JPanel();
 
@@ -358,13 +358,13 @@ public class SystemPropDisplayer extends javax.swing.JFrame {
 
         jPanelButtons.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.TRAILING, 10, 10));
 
-        CopyToClipboard.setText("Copier dans le Presse-Papier");
-        CopyToClipboard.addActionListener(new java.awt.event.ActionListener() {
+        copyToClipboard.setText("Copier dans le Presse-Papier");
+        copyToClipboard.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CopyToClipboardActionPerformed(evt);
+                copyToClipboardActionPerformed(evt);
             }
         });
-        jPanelButtons.add(CopyToClipboard);
+        jPanelButtons.add(copyToClipboard);
 
         jButtonClose.setText("Fermer");
         jButtonClose.addActionListener(new java.awt.event.ActionListener() {
@@ -400,7 +400,7 @@ private void jButtonCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
     dispose();
 }//GEN-LAST:event_jButtonCloseActionPerformed
 
-    private void CopyToClipboardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CopyToClipboardActionPerformed
+    private void copyToClipboardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_copyToClipboardActionPerformed
         jTable1.selectAll();
 
         // Put the content of the table in a JTextField
@@ -446,7 +446,7 @@ private void jButtonCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
              */
         }
 
-    }//GEN-LAST:event_CopyToClipboardActionPerformed
+    }//GEN-LAST:event_copyToClipboardActionPerformed
 
     private void jButtonUrlMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonUrlMouseEntered
         this.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
@@ -485,7 +485,7 @@ private void jButtonCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton CopyToClipboard;
+    private javax.swing.JButton copyToClipboard;
     private javax.swing.JButton jButtonClose;
     private javax.swing.JButton jButtonUrl;
     private javax.swing.JLabel jLabelMiniIcon;

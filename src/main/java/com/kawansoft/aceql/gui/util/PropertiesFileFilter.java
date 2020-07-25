@@ -50,13 +50,8 @@ public class PropertiesFileFilter extends FileFilter {
         {
             return true;
         }
+        return PropertiesFileFilter.isPropertiesLikeExtension(f);
 
-        if (PropertiesFileFilter.isPropertiesLikeExtension(f))   
-        {
-            return true;
-        }
-       
-        return false;
     }
 
     /**

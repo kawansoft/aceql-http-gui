@@ -52,12 +52,7 @@ public class JarFileFilter extends FileFilter {
             return true;
         }
 
-        if (JarFileFilter.isJarLikeExtension(f))   
-        {
-            return true;
-        }
-       
-        return false;
+        return JarFileFilter.isJarLikeExtension(f);
     }
 
     /**

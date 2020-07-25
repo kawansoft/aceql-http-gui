@@ -198,7 +198,7 @@ public class FileTableClipboardManagerGroupFile
         menuItemOpen.addActionListener((new ActionListener() {
             public void actionPerformed(ActionEvent e)
             {
-                jTable_clipboard_actionPerformed(e);
+                jTableClipboardActionPerformed(e);
             }})); 
         popupMenu.add(menuItemOpen);   
 
@@ -206,7 +206,7 @@ public class FileTableClipboardManagerGroupFile
         menuItemPaste = new JMenuItem(paste);
         menuItemPaste.addActionListener((new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                jTable_clipboard_actionPerformed(e);
+                jTableClipboardActionPerformed(e);
             }}));
         
         //menuItemPaste.setAccelerator(KeyStroke.getKeyStroke(
@@ -222,7 +222,7 @@ public class FileTableClipboardManagerGroupFile
         menuItemDelete = new JMenuItem(delete);
         menuItemDelete.addActionListener((new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                jTable_clipboard_actionPerformed(e);
+                jTableClipboardActionPerformed(e);
             }}));
         menuItemDelete.setAccelerator(KeyStroke.getKeyStroke(
                 KeyEvent.VK_DELETE, 0));
@@ -241,7 +241,7 @@ public class FileTableClipboardManagerGroupFile
             @Override
             public void actionPerformed(ActionEvent e)
             {
-                jTable_clipboard_actionPerformed(e);
+                jTableClipboardActionPerformed(e);
             }})); 
         popupMenu.add(menuItemSelectAll);        
 
@@ -249,13 +249,13 @@ public class FileTableClipboardManagerGroupFile
 
             @Override
             public void mousePressed(MouseEvent e) {
-                jTable_mouseReleased(e);
+                jTableMouseReleased(e);
             }
                         
             @Override
             public void mouseReleased(MouseEvent e) 
             { 
-                jTable_mouseReleased(e); 
+                jTableMouseReleased(e); 
             } 
                              
         });
@@ -308,7 +308,7 @@ public class FileTableClipboardManagerGroupFile
      * When the Mouse is released, clipboard action is done
      * @param e     The Mouse Eevent
      */
-    public void jTable_mouseReleased(MouseEvent e) 
+    public void jTableMouseReleased(MouseEvent e) 
     { 
 
         // These are disabled because the Table is not editable
@@ -340,7 +340,7 @@ public class FileTableClipboardManagerGroupFile
 
 
     // Paste action
-    public void jTable_clipboard_actionPerformed(ActionEvent e)
+    public void jTableClipboardActionPerformed(ActionEvent e)
     {        
         //System.out.println("e.getActionCommand(): " + e.getActionCommand());
 

@@ -66,7 +66,7 @@ public class DialogProxyAuth extends javax.swing.JDialog {
     /** The proxy password */
     private String proxyPassword = null;
 
-    ClipboardManager clipboardManager;
+    private ClipboardManager clipboardManager;
     private final AppPreferencesManager appUserPreference;
     
         /** Creates new form JDialogProxyAuth

@@ -47,7 +47,7 @@ public class BasicFilesTableCellRenderer extends  DefaultTableCellRenderer  {
     public static Color LIGHT_BLUE = new Color(243, 243, 255);
         
     /** The icon to use for files */
-    Icon icon = null;
+    private Icon icon = null;
     
     /**
      * Constructor    

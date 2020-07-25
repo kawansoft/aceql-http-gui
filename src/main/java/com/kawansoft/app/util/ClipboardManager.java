@@ -106,7 +106,7 @@ public class ClipboardManager
     protected JTextComponent textComponent = null;
 
     /** The container */
-    Container container = null;
+    private Container container = null;
     private static boolean LOCKED = false;
     private boolean canDelete = true;
 
@@ -156,7 +156,7 @@ public class ClipboardManager
         menuItemPaste.addActionListener((new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                jTextComponent_clipboard_actionPerformed(e);
+                jTextComponentClipboardActionPerformed(e);
             }
         }));
         popupMenu.add(menuItemPaste);
@@ -165,7 +165,7 @@ public class ClipboardManager
             @Override
             public void actionPerformed(ActionEvent e)
             {
-                jTextComponent_clipboard_actionPerformed(e);
+                jTextComponentClipboardActionPerformed(e);
             }}));         
         
         if (canDelete) {
@@ -180,7 +180,7 @@ public class ClipboardManager
             @Override
             public void actionPerformed(ActionEvent e)
             {
-                jTextComponent_clipboard_actionPerformed(e);
+                jTextComponentClipboardActionPerformed(e);
             }}));
         popupMenu.add(menuItemSelectAll);
         // Done! Now add the listeners
@@ -218,12 +218,12 @@ public class ClipboardManager
 
                     @Override
                     public void mousePressed(MouseEvent e) {
-                        jTextComponent_mouseReleased(e);
+                        jTextComponentMouseReleased(e);
                     }
 
                     @Override
                     public void mouseReleased(MouseEvent e) {
-                        jTextComponent_mouseReleased(e);
+                        jTextComponentMouseReleased(e);
                     }
 
                 });
@@ -299,7 +299,7 @@ public class ClipboardManager
      * When the Mosue is released, clipboard action is done
      * @param e     The Mouse Eevent
      */
-    public void jTextComponent_mouseReleased(MouseEvent e) 
+    public void jTextComponentMouseReleased(MouseEvent e) 
     { 
         //System.out.println("\njTextFieldCode_mouseReleased(MouseEvent e) called."); 
 
@@ -372,7 +372,7 @@ public class ClipboardManager
 
 
     // Paste action
-    public void jTextComponent_clipboard_actionPerformed(ActionEvent e)
+    public void jTextComponentClipboardActionPerformed(ActionEvent e)
     {        
         
         if ( e.getActionCommand().equals(select_all))

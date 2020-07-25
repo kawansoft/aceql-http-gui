@@ -50,14 +50,14 @@ public class JPromptTextField extends JTextField {
      */
     private static final long serialVersionUID = -320263239861272140L;
 
-   private JPromptTextField thisOne = this;
+    private JPromptTextField thisOne = this;
         
     private String promptText = null;
  
-    UIDefaults defaults = UIManager.getDefaults();
+    private UIDefaults defaults = UIManager.getDefaults();
 
-    final Color defaultTextForegroundColor = defaults.getColor("TextField.foreground");
-    final Color defaultPromptForegroundColor = Color.GRAY;
+    private final Color defaultTextForegroundColor = defaults.getColor("TextField.foreground");
+    private final Color defaultPromptForegroundColor = Color.GRAY;
         
     private Color textForegroundColor = super.getForeground();
     private Color promptForegroundColor = defaultPromptForegroundColor;

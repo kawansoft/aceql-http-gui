@@ -41,8 +41,8 @@ implements ListCellRenderer {
     /** If true, all files have same extensions and we set the icon once */
     public static boolean SAME_EXT_FOR_ALL_FILES = true;
 
-    FileSystemView fsv = FileSystemView.getFileSystemView();
-    Icon icon = null;
+    private FileSystemView fsv = FileSystemView.getFileSystemView();
+    private Icon icon = null;
     
     public FilesListCellRenderer() 
     {

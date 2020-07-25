@@ -36,7 +36,6 @@ import java.io.OutputStream;
 import java.util.Objects;
 import org.apache.commons.codec.binary.Hex;
 
-import org.apache.commons.io.IOUtils;
 
 public class PbeAes {
 
@@ -158,11 +157,7 @@ public class PbeAes {
             byte[] salt = AES.generateSalt(AES.SALT_LENGTH);
 
             AES.encrypt(keyLength, password, in, out, salt);
-        } finally {
-            //IOUtils.closeQuietly(in);
-            //IOUtils.closeQuietly(out);
-        }
-
+        } 
     }
 
     /**

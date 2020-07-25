@@ -51,7 +51,6 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextPane;
 import javax.swing.ScrollPaneConstants;
-import javax.swing.SwingUtilities;
 import org.apache.commons.lang3.StringUtils;
 
 /**
@@ -181,7 +180,7 @@ public class ClasspathDisplayer extends javax.swing.JFrame {
         jtextPane2.addKeyListener(new KeyAdapter() {
             @Override
             public void keyReleased(KeyEvent e) {
-                keyReleased_actionPerformed(e);
+                keyReleasedActionPerformed(e);
             }
         });
 
@@ -308,7 +307,7 @@ public class ClasspathDisplayer extends javax.swing.JFrame {
     ///////////////////////////////////////////////////////////////////////////
     // KEYS PART
     /////////////////////////////////////////////////////////////////////////// 
-    private void keyReleased_actionPerformed(KeyEvent e) {
+    private void keyReleasedActionPerformed(KeyEvent e) {
         //debug("this_keyReleased(KeyEvent e) " + e.getComponent().getName()); 
 
         int id = e.getID();

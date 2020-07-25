@@ -175,7 +175,7 @@ public class FileListClipboardManager
             @Override
             public void keyReleased(KeyEvent e) 
             { 
-                jList_keyReleased(e);                                 
+                jListKeyReleased(e);                                 
             } 
         });
         
@@ -187,14 +187,14 @@ public class FileListClipboardManager
         menuItemOpen.addActionListener((new ActionListener() {
             public void actionPerformed(ActionEvent e)
             {
-                jList_clipboard_actionPerformed(e);
+                jListClipboardActionPerformed(e);
             }})); 
         popupMenu.add(menuItemOpen);   
         
         menuItemPaste = new JMenuItem(paste);
         menuItemPaste.addActionListener((new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                jList_clipboard_actionPerformed(e);
+                jListClipboardActionPerformed(e);
             }}));
         
         //menuItemPaste.setAccelerator(KeyStroke.getKeyStroke(
@@ -209,7 +209,7 @@ public class FileListClipboardManager
         menuItemDelete = new JMenuItem(delete);
         menuItemDelete.addActionListener((new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                jList_clipboard_actionPerformed(e);
+                jListClipboardActionPerformed(e);
             }}));
         menuItemDelete.setAccelerator(KeyStroke.getKeyStroke(
                 KeyEvent.VK_DELETE, 0));
@@ -228,7 +228,7 @@ public class FileListClipboardManager
             @Override
             public void actionPerformed(ActionEvent e)
             {
-                jList_clipboard_actionPerformed(e);
+                jListClipboardActionPerformed(e);
             }})); 
         popupMenu.add(menuItemSelectAll);        
 
@@ -238,13 +238,13 @@ public class FileListClipboardManager
 
             @Override
             public void mousePressed(MouseEvent e) {
-                jList_mouseReleased(e);
+                jListMouseReleased(e);
             }
                         
             @Override
             public void mouseReleased(MouseEvent e) 
             { 
-                jList_mouseReleased(e); 
+                jListMouseReleased(e); 
             } 
                              
         });
@@ -252,7 +252,7 @@ public class FileListClipboardManager
         
     }
 
-    private void jList_keyReleased(KeyEvent e) 
+    private void jListKeyReleased(KeyEvent e) 
     {        
         //System.out.println("this_keyReleased(KeyEvent e) " + e.getComponent().getName()); 
         int id = e.getID();
@@ -278,7 +278,7 @@ public class FileListClipboardManager
      * When the Mouse is released, clipboard action is done
      * @param e     The Mouse Eevent
      */
-    public void jList_mouseReleased(MouseEvent e) 
+    public void jListMouseReleased(MouseEvent e) 
     { 
 
         // These are disabled because the Table is not editable
@@ -310,7 +310,7 @@ public class FileListClipboardManager
 
 
     // Paste action
-    public void jList_clipboard_actionPerformed(ActionEvent e)
+    public void jListClipboardActionPerformed(ActionEvent e)
     {        
         //System.out.println("e.getActionCommand(): " + e.getActionCommand());
 

@@ -94,7 +94,7 @@ public class AppTray {
      */
     private AceQLManager aceQLManager = null;
 
-    AboutFrame aboutFrame = null;
+    private AboutFrame aboutFrame = null;
                    
     private void setVisibleAndOnTopOneSecond() throws SecurityException {
         aceQLManager.setState(Frame.NORMAL);

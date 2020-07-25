@@ -93,8 +93,6 @@ public class MapClipboardManager
 //    private String select_all   = "Tout Sélectionner"; 
 //    private String delete       = "Supprimer";
 
-    /** The parent Window */
-    private Window parent = null;
 
     /** The Map to add a contextual pop menu */
     private Map<String, String> map = null;
@@ -106,7 +104,6 @@ public class MapClipboardManager
 
     public MapClipboardManager(Window parent, Map<String, String> map)
     { 
-        this.parent = parent;
         this.map = map;
 
         popupMenu = new JPopupMenu();        
@@ -123,7 +120,7 @@ public class MapClipboardManager
         menuItemCut.addActionListener((new ActionListener() {
             public void actionPerformed(ActionEvent e)
             {
-                map_clipboard_actionPerformed(e);
+                mapClipboardActionPerformed(e);
             }})); 
         //menuItemCut.setAccelerator(KeyStroke.getKeyStroke(
         //KeyEvent.VK_X, ActionEvent.CTRL_MASK));
@@ -134,7 +131,7 @@ public class MapClipboardManager
         menuItemCopy.addActionListener((new ActionListener() {
             public void actionPerformed(ActionEvent e)
             {
-                map_clipboard_actionPerformed(e);
+                mapClipboardActionPerformed(e);
             }}));         
         //menuItemCopy.setAccelerator(KeyStroke.getKeyStroke(
         //KeyEvent.VK_C, ActionEvent.CTRL_MASK));
@@ -145,7 +142,7 @@ public class MapClipboardManager
         menuItemPaste.addActionListener((new ActionListener() {
             public void actionPerformed(ActionEvent e)
             {
-                map_clipboard_actionPerformed(e);
+                mapClipboardActionPerformed(e);
             }}));               
         //menuItemPaste.setAccelerator(KeyStroke.getKeyStroke(
         //KeyEvent.VK_V, ActionEvent.CTRL_MASK));
@@ -155,7 +152,7 @@ public class MapClipboardManager
         menuItemDelete.addActionListener((new ActionListener() {
             public void actionPerformed(ActionEvent e)
             {
-                map_clipboard_actionPerformed(e);
+                mapClipboardActionPerformed(e);
             }}));         
         popupMenu.add(menuItemDelete);    
 
@@ -166,14 +163,14 @@ public class MapClipboardManager
         menuItemSelectAll.addActionListener((new ActionListener() {
             public void actionPerformed(ActionEvent e)
             {
-                map_clipboard_actionPerformed(e);
+                mapClipboardActionPerformed(e);
             }})); 
         popupMenu.add(menuItemSelectAll);        
 
         parent.addMouseListener(new MouseAdapter() { 
             public void mouseReleased(MouseEvent e) 
             { 
-                this_mouseReleased(e); 
+                thisMouseReleased(e); 
             } 
         });
     }
@@ -182,7 +179,7 @@ public class MapClipboardManager
      * When the Mouse is released, clipboard action is done
      * @param e     The Mouse Eevent
      */
-    public void this_mouseReleased(MouseEvent e) 
+    public void thisMouseReleased(MouseEvent e) 
     { 
 
         // These are disabled because the Table is not editable
@@ -201,7 +198,7 @@ public class MapClipboardManager
 
 
     // Paste action
-    public void map_clipboard_actionPerformed(ActionEvent e)
+    public void mapClipboardActionPerformed(ActionEvent e)
     {        
         //System.out.println("e.getActionCommand(): " + e.getActionCommand());
 

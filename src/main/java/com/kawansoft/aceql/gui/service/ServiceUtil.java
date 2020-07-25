@@ -28,10 +28,6 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Date;
-import javax.swing.JOptionPane;
-
-import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.SystemUtils;
 
 /**
@@ -71,11 +67,7 @@ public class ServiceUtil {
      */
     public static boolean isInstalled() throws IOException {
         int status = ServiceUtil.getServiceStatus(ACEQL_HTTP_SERVICE);
-        if (status == ServiceUtil.NOT_INSTALLED) {
-            return false;
-        } else {
-            return true;
-        }
+        return status == ServiceUtil.NOT_INSTALLED;
     }
 
     /**
@@ -86,11 +78,7 @@ public class ServiceUtil {
      */
     public static boolean isRunning() throws IOException {
         int status = ServiceUtil.getServiceStatus(ACEQL_HTTP_SERVICE);
-        if (status == ServiceUtil.RUNNING) {
-            return true;
-        } else {
-            return false;
-        }
+        return status == ServiceUtil.RUNNING;
     }
 
     /**
@@ -101,11 +89,7 @@ public class ServiceUtil {
      */
     public static boolean isStopped() throws IOException {
         int status = ServiceUtil.getServiceStatus(ACEQL_HTTP_SERVICE);
-        if (status == ServiceUtil.STOPPED) {
-            return true;
-        } else {
-            return false;
-        }
+        return status == ServiceUtil.STOPPED;
     }
 
     /**
@@ -116,11 +100,7 @@ public class ServiceUtil {
      */
     public static boolean isStarting() throws IOException {
         int status = ServiceUtil.getServiceStatus(ACEQL_HTTP_SERVICE);
-        if (status == ServiceUtil.STARTING) {
-            return true;
-        } else {
-            return false;
-        }
+        return status == ServiceUtil.STARTING;
     }
 
     /**
@@ -264,23 +244,15 @@ public class ServiceUtil {
             while (line != null) {
 
                 if (line.trim().startsWith("SERVICE_START_NAME")) {
-
-                    if (line.contains("LocalSystem")) {
-                        return true;
-                    }
-                    else {
-                        return false;
-                    }
+                    return line.contains("LocalSystem");
                 }
-                
+       
                 line = reader.readLine();
             }
 
             return false;
 
-        } finally {
-            //IOUtils.closeQuietly(reader);
-        }
+        } 
     }
         
     /**

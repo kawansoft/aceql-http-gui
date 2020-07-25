@@ -36,7 +36,6 @@ import com.kawansoft.app.parms.Parms;
 import java.awt.Component;
 import java.awt.Cursor;
 import java.awt.Dimension;
-import java.awt.Window;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.awt.event.KeyAdapter;
@@ -121,7 +120,7 @@ public class AceQLManager extends javax.swing.JFrame {
     /**
      * Windows Service Status
      */
-    int serviceStatus = ServiceUtil.NOT_INSTALLED;
+    private int serviceStatus = ServiceUtil.NOT_INSTALLED;
 
     private JFrame thisOne = this;
 

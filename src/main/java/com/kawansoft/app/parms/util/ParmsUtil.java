@@ -70,12 +70,7 @@ public class ParmsUtil {
     }
         
     public static boolean isAceQLPro() {
-        if (org.kawanfw.sql.version.Version.PRODUCT.TYPE.equals(org.kawanfw.sql.version.Version.PRODUCT.TYPE_ENTERPRISE)) {
-            return true;
-        }
-        else {
-            return false;
-        }
+        return org.kawanfw.sql.version.Version.PRODUCT.TYPE.equals(org.kawanfw.sql.version.Version.PRODUCT.TYPE_ENTERPRISE);
     }
     
     

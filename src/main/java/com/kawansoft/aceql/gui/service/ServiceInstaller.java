@@ -31,8 +31,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 import org.apache.commons.lang3.SystemUtils;
-import javax.swing.JOptionPane;
-import static com.kawansoft.aceql.gui.AceQLManager.getInstalledJdbcDrivers;
 
 /**
  * Utility class to installService or uninstallService the AceQLHTTPService

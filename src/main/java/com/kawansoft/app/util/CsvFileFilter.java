@@ -41,13 +41,7 @@ public class CsvFileFilter extends FileFilter {
         }
 
         String name = f.getName().toLowerCase();
-        
-        if (name.endsWith(".csv"))
-        {
-            return true;
-        }
-       
-        return false;
+        return name.endsWith(".csv");
     }
 
     //The description of this filter

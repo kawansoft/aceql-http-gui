@@ -47,27 +47,29 @@ import javax.swing.JOptionPane;
 import org.apache.commons.lang3.StringUtils;
 
 /**
- * Allows to write and load Swing Components text/title from resources file.
- * See technique used in Awt1.
+ * Allows to write and load Swing Components text/title from resources file. See
+ * technique used in Awt1.
  */
 public class ComponentsText {
-    
+
     public static boolean DEBUG = false;
 
-    private static File WRITE_PROPERTIES_FILE = new File(ParmsUtil.getBaseDir()+ File.separator + "Swing_messages_fr.properties");
+    private static File WRITE_PROPERTIES_FILE = new File(ParmsUtil.getBaseDir() + File.separator + "Swing_messages_fr.properties");
 
-    /** Resource Bundle instance */
+    /**
+     * Resource Bundle instance
+     */
     private static ResourceBundle RESOURCE_BUNDLE = null;
-    
+
     public static String[] COMPONENTS
             = {"JButton", "JCheckBox", "JFormattedTextField", "JLabel", "JRadioButton", "JToggleButton", "JMenu", "JMenuItem", "JCheckBoxMenuItem", "JRadioButtonMenuItem", "JXTitledSeparator", "JTitledBorder"};
 
-
     /**
-     * Loads all properties names/values from a properie file and put it in a Set.
-     * Methd mus be used when creatin the write file
+     * Loads all properties names/values from a properie file and put it in a
+     * Set. Methd mus be used when creatin the write file
+     *
      * @return the set containing names/values
-     * @throws IOException 
+     * @throws IOException
      */
     private static Set<String> getWritePropertiesName() throws IOException {
 
@@ -88,7 +90,7 @@ public class ComponentsText {
         return propertiesName;
 
     }
-    
+
     private static void loadResourcesBundle() {
         Locale locale = new Locale(LanguageManager.getLanguage());
 
@@ -109,32 +111,32 @@ public class ComponentsText {
             JOptionPane.showMessageDialog(null, e.toString(), Parms.APP_NAME, JOptionPane.ERROR_MESSAGE);
         }
     }
-        
-    
+
     /**
-     * Calls the setText() of the Swing components using text defined in a properties file.
-     * Do also the setToolTiptext() if necessary
+     * Calls the setText() of the Swing components using text defined in a
+     * properties file. Do also the setToolTiptext() if necessary
+     *
      * @param window JFrame or JDialog containing component
      */
     public static void setComponentsTextFromPropertiesFile(Window window) throws IOException {
-        
+
         // Nothing for French: all is done directly on Swing interface via NetBeans
-        if(LanguageManager.getLanguage().equals(Locale.FRENCH.getLanguage())) {
+        if (LanguageManager.getLanguage().equals(Locale.FRENCH.getLanguage())) {
             return;
         }
-        
+
         if (RESOURCE_BUNDLE == null) {
             loadResourcesBundle();
         }
-       
+
         Set<String> typesSet = new HashSet<String>(Arrays.asList(COMPONENTS));
-                
+
         // loop through all of the class fields on that form
         for (Field field : window.getClass().getDeclaredFields()) {
 
             try {
                 // let us look at private fields, please
-                field.setAccessible(true);                
+                field.setAccessible(true);
                 String theType = null;
                 if (field.getGenericType().toString().contains(".")) {
                     theType = StringUtils.substringAfterLast(field.getGenericType().toString(), ".");
@@ -148,18 +150,18 @@ public class ComponentsText {
                 }
 
                 String thePropertyName = window.getClass().getSimpleName() + "." + field.getName();
-                
+
                 String text = null;
-                
+
                 boolean propertyExists = false;
                 try {
-                    text = RESOURCE_BUNDLE.getString(thePropertyName);  
+                    text = RESOURCE_BUNDLE.getString(thePropertyName);
                     propertyExists = true;
                 } catch (MissingResourceException e) {
                     // Propert does not exists
-                    
+
                 }
-                
+
                 if (propertyExists) {
                     //JButton jButton = (JButton) field.get(window);
                     Object object = field.get(window);
@@ -177,37 +179,34 @@ public class ComponentsText {
                 }
 
                 propertyExists = false;
-                String thePropertyNameTooltipText =  thePropertyName + ".toolTiptext";
+                String thePropertyNameTooltipText = thePropertyName + ".toolTiptext";
                 try {
-                    text = RESOURCE_BUNDLE.getString(thePropertyNameTooltipText);  
+                    text = RESOURCE_BUNDLE.getString(thePropertyNameTooltipText);
                     propertyExists = true;
                 } catch (MissingResourceException e) {
                     // Propert does not exists
-                    
+
                 }
-                
+
                 if (propertyExists) {
-                    
+
                     Object object = field.get(window);
                     Class clazz = object.getClass();
 
                     Method m = clazz.getMethod("setToolTipText", String.class);
                     m.invoke(object, text);
-                     
+
                 }
 
-
             } catch (Exception e) {
-               // ignore but print exceptions
+                // ignore but print exceptions
                 e.printStackTrace();
 
             }
 
         }
     }
-        
-        
-    
+
     /**
      * attempts to retrieve a component from a JFrame or JDialog using the name
      * of the private variable that NetBeans (or other IDE) created to refer to
@@ -221,7 +220,7 @@ public class ComponentsText {
         if (!ComponentsTextOptionsConstants.DO_WRITE_COMPONENTS_IN_PROPERTIES_FILE) {
             return;
         }
-        
+
         Set<String> typesSet = new HashSet<String>(Arrays.asList(COMPONENTS));
         Set<String> propertiesName = getWritePropertiesName();
 
@@ -241,7 +240,6 @@ public class ComponentsText {
 //                    // cast and return the component
 //                    return (T) potentialMatch;
 //                }
-
                 String theType = null;
                 if (field.getGenericType().toString().contains(".")) {
                     theType = StringUtils.substringAfterLast(field.getGenericType().toString(), ".");
@@ -283,35 +281,31 @@ public class ComponentsText {
                 }
 
                 AppendStore appendStore = null;
-                try {
 
-                    String thePropertyName = window.getClass().getSimpleName() + "." + field.getName();
+                String thePropertyName = window.getClass().getSimpleName() + "." + field.getName();
 
-                    if (propertiesName.contains(thePropertyName)) {
-                        continue;
-                    }
-                    
-                    appendStore = new AppendStore(WRITE_PROPERTIES_FILE);
-                    
-                    if (text != null && ! text.isEmpty()) {
-                        String iniLine = window.getClass().getSimpleName() + "." + field.getName() + " = " + text;
+                if (propertiesName.contains(thePropertyName)) {
+                    continue;
+                }
 
-                        debug(iniLine);
-                        appendStore.append(iniLine);
-                    }
+                appendStore = new AppendStore(WRITE_PROPERTIES_FILE);
 
-                    if (toolTipText != null && !toolTipText.isEmpty()) {
-                        String iniToolTipLine = window.getClass().getSimpleName() + "." + field.getName() + ".toolTiptext = " + toolTipText;
+                if (text != null && !text.isEmpty()) {
+                    String iniLine = window.getClass().getSimpleName() + "." + field.getName() + " = " + text;
 
-                        debug(iniToolTipLine);
-                        appendStore.append(iniToolTipLine);
-                    }
-                } finally {
-                    //IOUtils.closeQuietly(appendStore);
+                    debug(iniLine);
+                    appendStore.append(iniLine);
+                }
+
+                if (toolTipText != null && !toolTipText.isEmpty()) {
+                    String iniToolTipLine = window.getClass().getSimpleName() + "." + field.getName() + ".toolTiptext = " + toolTipText;
+
+                    debug(iniToolTipLine);
+                    appendStore.append(iniToolTipLine);
                 }
 
             } catch (Exception e) {
-               // ignore but print exceptions
+                // ignore but print exceptions
                 e.printStackTrace();
 
             }
