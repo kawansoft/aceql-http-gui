@@ -24,6 +24,7 @@
  */
 package com.kawansoft.app.util.table;
 
+import java.awt.Color;
 import java.awt.datatransfer.DataFlavor;
 import java.io.BufferedReader;
 import java.io.File;
@@ -80,7 +81,7 @@ public class FileDrop
     private static Boolean supportsDnD;
     
     // Default border color
-    private static java.awt.Color defaultBorderColor = new java.awt.Color( 0f, 0f, 1f, 0.25f );
+    private static java.awt.Color defaultBorderColor = new Color( 0f, 0f, 1f, 0.25f );
     
     /**
      * Constructs a {@link FileDrop} with a default light-blue border

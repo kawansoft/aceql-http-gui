@@ -24,6 +24,7 @@
  */
 package com.kawansoft.app.util;
 
+import com.kawansoft.aceql.gui.util.AceQLManagerUtil;
 import com.kawansoft.app.parms.LanguageManager;
 import com.kawansoft.app.parms.MessagesManager;
 import com.kawansoft.app.parms.Parms;
@@ -414,6 +415,7 @@ public class Help extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonCloseActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jButtonCloseActionPerformed
+        AceQLManagerUtil.printEvent(evt);
         this.dispose();
     }//GEN-LAST:event_jButtonCloseActionPerformed
 

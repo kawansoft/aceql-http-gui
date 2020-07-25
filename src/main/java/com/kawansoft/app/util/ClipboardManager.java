@@ -24,6 +24,7 @@
  */
 package com.kawansoft.app.util;
 
+import com.kawansoft.aceql.gui.util.AceQLManagerUtil;
 import com.kawansoft.app.parms.MessagesManager;
 import com.kawansoft.app.parms.util.ImageParmsUtil;
 import com.kawansoft.app.parms.util.ParmsUtil;
@@ -255,6 +256,7 @@ public class ClipboardManager
                         new AbstractAction("Undo") {
                     @Override
                     public void actionPerformed(ActionEvent evt) {
+                        AceQLManagerUtil.printEvent(evt);
                         try {
                             if (undo.canUndo()) {
                                 undo.undo();
@@ -273,6 +275,7 @@ public class ClipboardManager
                     @Override
                     public void actionPerformed(ActionEvent evt) {
                         try {
+                            AceQLManagerUtil.printEvent(evt);
                             if (undo.canRedo()) {
                                 undo.redo();
                             }

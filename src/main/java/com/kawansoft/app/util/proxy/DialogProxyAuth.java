@@ -44,7 +44,22 @@ import com.kawansoft.app.util.WindowSettingMgr;
 import com.kawansoft.app.util.preference.AppPreferencesManager;
 import com.kawansoft.app.util.preference.DefaultAppPreferencesManager;
 import com.swing.util.SwingUtil;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.JSeparator;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+import javax.swing.WindowConstants;
 
 /**
  *
@@ -256,165 +271,165 @@ public class DialogProxyAuth extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanelNorth = new javax.swing.JPanel();
-        jPanelCenter = new javax.swing.JPanel();
-        jPanelTitle = new javax.swing.JPanel();
-        jLabelTitle = new javax.swing.JLabel();
-        jPanelSepLine1 = new javax.swing.JPanel();
-        jPanel15 = new javax.swing.JPanel();
-        jSeparator3 = new javax.swing.JSeparator();
-        jPanel16 = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
-        jPanel1 = new javax.swing.JPanel();
-        jLabelMessage = new javax.swing.JLabel();
-        jPanelSep = new javax.swing.JPanel();
-        jPanelUsername = new javax.swing.JPanel();
-        jLabelUsername = new javax.swing.JLabel();
-        jTextFieldUsername = new javax.swing.JTextField();
-        jPanelPassword = new javax.swing.JPanel();
-        jLabelPassword = new javax.swing.JLabel();
-        jPasswordField = new javax.swing.JPasswordField();
-        jPanelRememberPassword = new javax.swing.JPanel();
-        jLabelPassword1 = new javax.swing.JLabel();
-        jCheckBoxRememberInfo = new javax.swing.JCheckBox();
-        jPanelSepBlank = new javax.swing.JPanel();
-        jPanelSepLine = new javax.swing.JPanel();
-        jPanel8 = new javax.swing.JPanel();
-        jSeparator2 = new javax.swing.JSeparator();
-        jPanel11 = new javax.swing.JPanel();
-        jPanelButtons = new javax.swing.JPanel();
-        jButtonOk = new javax.swing.JButton();
-        jButtonCancel = new javax.swing.JButton();
-        jPanel12 = new javax.swing.JPanel();
+        jPanelNorth = new JPanel();
+        jPanelCenter = new JPanel();
+        jPanelTitle = new JPanel();
+        jLabelTitle = new JLabel();
+        jPanelSepLine1 = new JPanel();
+        jPanel15 = new JPanel();
+        jSeparator3 = new JSeparator();
+        jPanel16 = new JPanel();
+        jPanel2 = new JPanel();
+        jPanel1 = new JPanel();
+        jLabelMessage = new JLabel();
+        jPanelSep = new JPanel();
+        jPanelUsername = new JPanel();
+        jLabelUsername = new JLabel();
+        jTextFieldUsername = new JTextField();
+        jPanelPassword = new JPanel();
+        jLabelPassword = new JLabel();
+        jPasswordField = new JPasswordField();
+        jPanelRememberPassword = new JPanel();
+        jLabelPassword1 = new JLabel();
+        jCheckBoxRememberInfo = new JCheckBox();
+        jPanelSepBlank = new JPanel();
+        jPanelSepLine = new JPanel();
+        jPanel8 = new JPanel();
+        jSeparator2 = new JSeparator();
+        jPanel11 = new JPanel();
+        jPanelButtons = new JPanel();
+        jButtonOk = new JButton();
+        jButtonCancel = new JButton();
+        jPanel12 = new JPanel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         setModal(true);
-        getContentPane().setLayout(new javax.swing.BoxLayout(getContentPane(), javax.swing.BoxLayout.Y_AXIS));
+        getContentPane().setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
         getContentPane().add(jPanelNorth);
 
-        jPanelCenter.setLayout(new javax.swing.BoxLayout(jPanelCenter, javax.swing.BoxLayout.Y_AXIS));
+        jPanelCenter.setLayout(new BoxLayout(jPanelCenter, BoxLayout.Y_AXIS));
 
-        jPanelTitle.setMaximumSize(new java.awt.Dimension(32767, 45));
-        jPanelTitle.setMinimumSize(new java.awt.Dimension(153, 45));
-        jPanelTitle.setPreferredSize(new java.awt.Dimension(384, 45));
-        jPanelTitle.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 10, 5));
+        jPanelTitle.setMaximumSize(new Dimension(32767, 45));
+        jPanelTitle.setMinimumSize(new Dimension(153, 45));
+        jPanelTitle.setPreferredSize(new Dimension(384, 45));
+        jPanelTitle.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 5));
 
         jLabelTitle.setText("Proxy avec Authentification");
         jPanelTitle.add(jLabelTitle);
 
         jPanelCenter.add(jPanelTitle);
 
-        jPanelSepLine1.setMaximumSize(new java.awt.Dimension(32767, 10));
-        jPanelSepLine1.setLayout(new javax.swing.BoxLayout(jPanelSepLine1, javax.swing.BoxLayout.LINE_AXIS));
+        jPanelSepLine1.setMaximumSize(new Dimension(32767, 10));
+        jPanelSepLine1.setLayout(new BoxLayout(jPanelSepLine1, BoxLayout.LINE_AXIS));
 
-        jPanel15.setMaximumSize(new java.awt.Dimension(10, 10));
+        jPanel15.setMaximumSize(new Dimension(10, 10));
         jPanelSepLine1.add(jPanel15);
         jPanelSepLine1.add(jSeparator3);
 
-        jPanel16.setMaximumSize(new java.awt.Dimension(10, 10));
+        jPanel16.setMaximumSize(new Dimension(10, 10));
         jPanelSepLine1.add(jPanel16);
 
         jPanelCenter.add(jPanelSepLine1);
 
-        jPanel2.setLayout(new javax.swing.BoxLayout(jPanel2, javax.swing.BoxLayout.Y_AXIS));
+        jPanel2.setLayout(new BoxLayout(jPanel2, BoxLayout.Y_AXIS));
 
-        jPanel1.setMaximumSize(new java.awt.Dimension(32767, 30));
-        jPanel1.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 10, 5));
+        jPanel1.setMaximumSize(new Dimension(32767, 30));
+        jPanel1.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 5));
 
         jLabelMessage.setText("Une authentification est requise pour le proxy :");
         jPanel1.add(jLabelMessage);
 
         jPanel2.add(jPanel1);
 
-        jPanelSep.setMaximumSize(new java.awt.Dimension(32767, 5));
-        jPanelSep.setMinimumSize(new java.awt.Dimension(10, 5));
-        jPanelSep.setPreferredSize(new java.awt.Dimension(10, 5));
+        jPanelSep.setMaximumSize(new Dimension(32767, 5));
+        jPanelSep.setMinimumSize(new Dimension(10, 5));
+        jPanelSep.setPreferredSize(new Dimension(10, 5));
         jPanel2.add(jPanelSep);
 
-        jPanelUsername.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
+        jPanelUsername.setLayout(new FlowLayout(FlowLayout.LEFT));
 
-        jLabelUsername.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        jLabelUsername.setHorizontalAlignment(SwingConstants.TRAILING);
         jLabelUsername.setText("Nom d'utilisateur");
-        jLabelUsername.setPreferredSize(new java.awt.Dimension(160, 16));
+        jLabelUsername.setPreferredSize(new Dimension(160, 16));
         jPanelUsername.add(jLabelUsername);
 
         jTextFieldUsername.setText("jTextFieldLogin");
-        jTextFieldUsername.setPreferredSize(new java.awt.Dimension(200, 20));
+        jTextFieldUsername.setPreferredSize(new Dimension(200, 20));
         jPanelUsername.add(jTextFieldUsername);
 
         jPanel2.add(jPanelUsername);
 
-        jPanelPassword.setPreferredSize(new java.awt.Dimension(100, 39));
-        jPanelPassword.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
+        jPanelPassword.setPreferredSize(new Dimension(100, 39));
+        jPanelPassword.setLayout(new FlowLayout(FlowLayout.LEFT));
 
-        jLabelPassword.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        jLabelPassword.setHorizontalAlignment(SwingConstants.TRAILING);
         jLabelPassword.setText("Mot de passe");
-        jLabelPassword.setPreferredSize(new java.awt.Dimension(160, 16));
+        jLabelPassword.setPreferredSize(new Dimension(160, 16));
         jPanelPassword.add(jLabelPassword);
 
         jPasswordField.setText("jPasswordField1");
-        jPasswordField.setMinimumSize(new java.awt.Dimension(200, 20));
-        jPasswordField.setPreferredSize(new java.awt.Dimension(200, 20));
+        jPasswordField.setMinimumSize(new Dimension(200, 20));
+        jPasswordField.setPreferredSize(new Dimension(200, 20));
         jPanelPassword.add(jPasswordField);
 
         jPanel2.add(jPanelPassword);
 
-        jPanelRememberPassword.setPreferredSize(new java.awt.Dimension(100, 39));
-        jPanelRememberPassword.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
+        jPanelRememberPassword.setPreferredSize(new Dimension(100, 39));
+        jPanelRememberPassword.setLayout(new FlowLayout(FlowLayout.LEFT));
 
-        jLabelPassword1.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        jLabelPassword1.setPreferredSize(new java.awt.Dimension(160, 14));
+        jLabelPassword1.setHorizontalAlignment(SwingConstants.TRAILING);
+        jLabelPassword1.setPreferredSize(new Dimension(160, 14));
         jPanelRememberPassword.add(jLabelPassword1);
 
         jCheckBoxRememberInfo.setText("Mémoriser ces informations");
-        jCheckBoxRememberInfo.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jCheckBoxRememberInfo.setMargin(new Insets(0, 0, 0, 0));
         jPanelRememberPassword.add(jCheckBoxRememberInfo);
 
         jPanel2.add(jPanelRememberPassword);
 
         jPanelCenter.add(jPanel2);
 
-        jPanelSepBlank.setMaximumSize(new java.awt.Dimension(32767, 10));
-        jPanelSepBlank.setPreferredSize(new java.awt.Dimension(0, 10));
-        jPanelSepBlank.setLayout(new javax.swing.BoxLayout(jPanelSepBlank, javax.swing.BoxLayout.LINE_AXIS));
+        jPanelSepBlank.setMaximumSize(new Dimension(32767, 10));
+        jPanelSepBlank.setPreferredSize(new Dimension(0, 10));
+        jPanelSepBlank.setLayout(new BoxLayout(jPanelSepBlank, BoxLayout.LINE_AXIS));
         jPanelCenter.add(jPanelSepBlank);
 
-        jPanelSepLine.setMaximumSize(new java.awt.Dimension(32767, 10));
-        jPanelSepLine.setLayout(new javax.swing.BoxLayout(jPanelSepLine, javax.swing.BoxLayout.LINE_AXIS));
+        jPanelSepLine.setMaximumSize(new Dimension(32767, 10));
+        jPanelSepLine.setLayout(new BoxLayout(jPanelSepLine, BoxLayout.LINE_AXIS));
 
-        jPanel8.setMaximumSize(new java.awt.Dimension(10, 10));
+        jPanel8.setMaximumSize(new Dimension(10, 10));
         jPanelSepLine.add(jPanel8);
         jPanelSepLine.add(jSeparator2);
 
-        jPanel11.setMaximumSize(new java.awt.Dimension(10, 10));
+        jPanel11.setMaximumSize(new Dimension(10, 10));
         jPanelSepLine.add(jPanel11);
 
         jPanelCenter.add(jPanelSepLine);
 
         getContentPane().add(jPanelCenter);
 
-        jPanelButtons.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.TRAILING, 5, 10));
+        jPanelButtons.setLayout(new FlowLayout(FlowLayout.TRAILING, 5, 10));
 
         jButtonOk.setText("Ok");
-        jButtonOk.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jButtonOk.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 jButtonOkActionPerformed(evt);
             }
         });
         jPanelButtons.add(jButtonOk);
 
         jButtonCancel.setText("Annuler");
-        jButtonCancel.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jButtonCancel.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 jButtonCancelActionPerformed(evt);
             }
         });
         jPanelButtons.add(jButtonCancel);
 
-        jPanel12.setMaximumSize(new java.awt.Dimension(0, 10));
-        jPanel12.setMinimumSize(new java.awt.Dimension(0, 10));
-        jPanel12.setPreferredSize(new java.awt.Dimension(0, 10));
-        jPanel12.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 0, 5));
+        jPanel12.setMaximumSize(new Dimension(0, 10));
+        jPanel12.setMinimumSize(new Dimension(0, 10));
+        jPanel12.setPreferredSize(new Dimension(0, 10));
+        jPanel12.setLayout(new FlowLayout(FlowLayout.CENTER, 0, 5));
         jPanelButtons.add(jPanel12);
 
         getContentPane().add(jPanelButtons);
@@ -422,11 +437,11 @@ public class DialogProxyAuth extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButtonOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOkActionPerformed
+    private void jButtonOkActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jButtonOkActionPerformed
         doIt();
     }//GEN-LAST:event_jButtonOkActionPerformed
 
-    private void jButtonCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelActionPerformed
+    private void jButtonCancelActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jButtonCancelActionPerformed
         this.dispose();
     }//GEN-LAST:event_jButtonCancelActionPerformed
 
@@ -461,36 +476,36 @@ public class DialogProxyAuth extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButtonCancel;
-    private javax.swing.JButton jButtonOk;
-    private javax.swing.JCheckBox jCheckBoxRememberInfo;
-    private javax.swing.JLabel jLabelMessage;
-    private javax.swing.JLabel jLabelPassword;
-    private javax.swing.JLabel jLabelPassword1;
-    private javax.swing.JLabel jLabelTitle;
-    private javax.swing.JLabel jLabelUsername;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel11;
-    private javax.swing.JPanel jPanel12;
-    private javax.swing.JPanel jPanel15;
-    private javax.swing.JPanel jPanel16;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel8;
-    private javax.swing.JPanel jPanelButtons;
-    private javax.swing.JPanel jPanelCenter;
-    private javax.swing.JPanel jPanelNorth;
-    private javax.swing.JPanel jPanelPassword;
-    private javax.swing.JPanel jPanelRememberPassword;
-    private javax.swing.JPanel jPanelSep;
-    private javax.swing.JPanel jPanelSepBlank;
-    private javax.swing.JPanel jPanelSepLine;
-    private javax.swing.JPanel jPanelSepLine1;
-    private javax.swing.JPanel jPanelTitle;
-    private javax.swing.JPanel jPanelUsername;
-    private javax.swing.JPasswordField jPasswordField;
-    private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JSeparator jSeparator3;
-    private javax.swing.JTextField jTextFieldUsername;
+    public JButton jButtonCancel;
+    public JButton jButtonOk;
+    public JCheckBox jCheckBoxRememberInfo;
+    public JLabel jLabelMessage;
+    public JLabel jLabelPassword;
+    public JLabel jLabelPassword1;
+    public JLabel jLabelTitle;
+    public JLabel jLabelUsername;
+    public JPanel jPanel1;
+    public JPanel jPanel11;
+    public JPanel jPanel12;
+    public JPanel jPanel15;
+    public JPanel jPanel16;
+    public JPanel jPanel2;
+    public JPanel jPanel8;
+    public JPanel jPanelButtons;
+    public JPanel jPanelCenter;
+    public JPanel jPanelNorth;
+    public JPanel jPanelPassword;
+    public JPanel jPanelRememberPassword;
+    public JPanel jPanelSep;
+    public JPanel jPanelSepBlank;
+    public JPanel jPanelSepLine;
+    public JPanel jPanelSepLine1;
+    public JPanel jPanelTitle;
+    public JPanel jPanelUsername;
+    public JPasswordField jPasswordField;
+    public JSeparator jSeparator2;
+    public JSeparator jSeparator3;
+    public JTextField jTextFieldUsername;
     // End of variables declaration//GEN-END:variables
 
 }

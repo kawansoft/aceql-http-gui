@@ -28,6 +28,6 @@ package com.kawansoft.aceql.gui.util;
  * @author Nicolas de Pomereu
  */
 
-public class ParmsCrypto {
+public class ParmsCryptoConstants {
       public static final String ENCRYPTION_PASSWORD = "loveme*78;5";
 }

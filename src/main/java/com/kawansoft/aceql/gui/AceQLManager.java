@@ -2247,10 +2247,13 @@ public class AceQLManager extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonOkActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jButtonOkActionPerformed
+
+        AceQLManagerUtil.printEvent(evt);
         actionOk();
     }//GEN-LAST:event_jButtonOkActionPerformed
 
     private void jButtonHelpActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jButtonHelpActionPerformed
+        AceQLManagerUtil.printEvent(evt);
         help();
     }//GEN-LAST:event_jButtonHelpActionPerformed
 
@@ -2263,33 +2266,36 @@ public class AceQLManager extends javax.swing.JFrame {
     }
 
     private void jButtonApplyActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jButtonApplyActionPerformed
+        AceQLManagerUtil.printEvent(evt);
         actionApply();
 
     }//GEN-LAST:event_jButtonApplyActionPerformed
 
     private void jTextFieldPropertiesFileActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jTextFieldPropertiesFileActionPerformed
-        // TODO addDropedFiles your handling code here:
+        AceQLManagerUtil.printEvent(evt);
     }//GEN-LAST:event_jTextFieldPropertiesFileActionPerformed
 
     private void jTextFieldHostActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jTextFieldHostActionPerformed
-        // TODO addDropedFiles your handling code here:
+        AceQLManagerUtil.printEvent(evt);
     }//GEN-LAST:event_jTextFieldHostActionPerformed
 
     private void jTextFieldPortActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jTextFieldPortActionPerformed
-        // TODO addDropedFiles your handling code here:
+        AceQLManagerUtil.printEvent(evt);
     }//GEN-LAST:event_jTextFieldPortActionPerformed
 
     private void jButtonURLMouseEntered(MouseEvent evt) {//GEN-FIRST:event_jButtonURLMouseEntered
+        AceQLManagerUtil.printEvent(evt);
         this.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
     }//GEN-LAST:event_jButtonURLMouseEntered
 
     private void jButtonURLMouseExited(MouseEvent evt) {//GEN-FIRST:event_jButtonURLMouseExited
+        AceQLManagerUtil.printEvent(evt);
         this.setCursor(Cursor.getDefaultCursor());
     }//GEN-LAST:event_jButtonURLMouseExited
 
     private void jButtonURLActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jButtonURLActionPerformed
         try {
-
+            AceQLManagerUtil.printEvent(evt);
             Desktop.getDesktop().browse(new URI(jButtonURL.getText()));
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this,
@@ -2300,7 +2306,7 @@ public class AceQLManager extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonURLActionPerformed
 
     private void jButtonBrowseActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jButtonBrowseActionPerformed
-
+        AceQLManagerUtil.printEvent(evt);
         jButtonApply.setEnabled(true);
 
         // AWT does not work (freeze) on Windows
@@ -2317,7 +2323,7 @@ public class AceQLManager extends javax.swing.JFrame {
 
     private void jButtonEditActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jButtonEditActionPerformed
         try {
-
+            AceQLManagerUtil.printEvent(evt);
             jButtonApply.setEnabled(true);
 
             if (jTextFieldPropertiesFile.getText() == null || jTextFieldPropertiesFile.getText().isEmpty()) {
@@ -2355,14 +2361,17 @@ public class AceQLManager extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonEditActionPerformed
 
     private void jButtonStartActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jButtonStartActionPerformed
+        AceQLManagerUtil.printEvent(evt);
         startStandard();
     }//GEN-LAST:event_jButtonStartActionPerformed
 
     private void jButtonStopActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jButtonStopActionPerformed
+        AceQLManagerUtil.printEvent(evt);
         stopStandardThreadStart();
     }//GEN-LAST:event_jButtonStopActionPerformed
 
     private void jButtonDisplayConsoleActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jButtonDisplayConsoleActionPerformed
+        AceQLManagerUtil.printEvent(evt);
         if (aceQLConsole == null) {
             aceQLConsole = new AceQLConsole(this);
         } else {
@@ -2372,18 +2381,22 @@ public class AceQLManager extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonDisplayConsoleActionPerformed
 
     private void jMenuItemCloseActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jMenuItemCloseActionPerformed
+        AceQLManagerUtil.printEvent(evt);
         closeOnExit();
     }//GEN-LAST:event_jMenuItemCloseActionPerformed
 
     private void jMenuItemQuitActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jMenuItemQuitActionPerformed
+        AceQLManagerUtil.printEvent(evt);
         doSystemExit();
     }//GEN-LAST:event_jMenuItemQuitActionPerformed
 
     private void jMenuItemHelpActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jMenuItemHelpActionPerformed
+        AceQLManagerUtil.printEvent(evt);
         help();
     }//GEN-LAST:event_jMenuItemHelpActionPerformed
 
     private void jMenuItemSystemInfoActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jMenuItemSystemInfoActionPerformed
+        AceQLManagerUtil.printEvent(evt);
         if (systemPropDisplayer != null) {
             systemPropDisplayer.dispose();
         }
@@ -2392,7 +2405,7 @@ public class AceQLManager extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItemSystemInfoActionPerformed
 
     private void jMenuItemAboutActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jMenuItemAboutActionPerformed
-
+        AceQLManagerUtil.printEvent(evt);
         if (aboutFrame != null) {
             aboutFrame.dispose();
         }
@@ -2418,32 +2431,38 @@ public class AceQLManager extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuCheckForUpdatesActionPerformed
 
     private void jButtonStartServiceActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jButtonStartServiceActionPerformed
+        AceQLManagerUtil.printEvent(evt);
         startService();
     }//GEN-LAST:event_jButtonStartServiceActionPerformed
 
     private void jButtonStopServiceActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jButtonStopServiceActionPerformed
+        AceQLManagerUtil.printEvent(evt);
         stopService();
     }//GEN-LAST:event_jButtonStopServiceActionPerformed
 
     private void jButtonDisplayLogsActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jButtonDisplayLogsActionPerformed
+        AceQLManagerUtil.printEvent(evt);
         displayLogs();
     }//GEN-LAST:event_jButtonDisplayLogsActionPerformed
 
     private void jButtonServicesConsoleActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jButtonServicesConsoleActionPerformed
+        AceQLManagerUtil.printEvent(evt);
         windowsServiceManagementConsole();
     }//GEN-LAST:event_jButtonServicesConsoleActionPerformed
 
     private void jMenuItemServiceInstallActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jMenuItemServiceInstallActionPerformed
+        AceQLManagerUtil.printEvent(evt);
         serviceInstall();
     }//GEN-LAST:event_jMenuItemServiceInstallActionPerformed
 
     private void jMenuItemResetWindowsActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jMenuItemResetWindowsActionPerformed
+        AceQLManagerUtil.printEvent(evt);
         actionResetWindows();
     }//GEN-LAST:event_jMenuItemResetWindowsActionPerformed
 
     private void jMenuItemReleaseNotesActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jMenuItemReleaseNotesActionPerformed
         try {
-
+            AceQLManagerUtil.printEvent(evt);
             String version = org.kawanfw.sql.version.VersionValues.VERSION;
             version = version.substring(1);
             URL url = new URL("https://www.aceql.com/rest/soft/" + version+ "/RELEASE-NOTES.txt");
@@ -2457,6 +2476,7 @@ public class AceQLManager extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItemReleaseNotesActionPerformed
 
     private void jButtonDisplayClasspathActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jButtonDisplayClasspathActionPerformed
+        AceQLManagerUtil.printEvent(evt);
         displayClasspath();
     }//GEN-LAST:event_jButtonDisplayClasspathActionPerformed
 

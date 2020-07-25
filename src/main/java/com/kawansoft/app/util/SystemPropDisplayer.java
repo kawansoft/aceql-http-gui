@@ -51,6 +51,24 @@ import javax.swing.SwingUtilities;
 import javax.swing.table.TableModel;
 
 import com.swing.util.SwingUtil;
+import java.awt.BorderLayout;
+import java.awt.FlowLayout;
+import java.awt.GridLayout;
+import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import javax.swing.BoxLayout;
+import javax.swing.GroupLayout;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.WindowConstants;
+import javax.swing.table.DefaultTableModel;
 
 
 
@@ -230,73 +248,71 @@ public class SystemPropDisplayer extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanelTop = new javax.swing.JPanel();
-        jPanelIcon = new javax.swing.JPanel();
-        jLabelMiniIcon = new javax.swing.JLabel();
-        jPanel3 = new javax.swing.JPanel();
-        jButtonUrl = new javax.swing.JButton();
-        jPanelEnd = new javax.swing.JPanel();
-        jPanelCenter = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jPanelSep = new javax.swing.JPanel();
-        jPanelWest = new javax.swing.JPanel();
-        jPanelSouth = new javax.swing.JPanel();
-        jPanelButtons = new javax.swing.JPanel();
-        copyToClipboard = new javax.swing.JButton();
-        jButtonClose = new javax.swing.JButton();
-        jPanelEast = new javax.swing.JPanel();
+        jPanelTop = new JPanel();
+        jPanelIcon = new JPanel();
+        jLabelMiniIcon = new JLabel();
+        jPanel3 = new JPanel();
+        jButtonUrl = new JButton();
+        jPanelEnd = new JPanel();
+        jPanelCenter = new JPanel();
+        jScrollPane1 = new JScrollPane();
+        jTable1 = new JTable();
+        jPanelSep = new JPanel();
+        jPanelWest = new JPanel();
+        jPanelSouth = new JPanel();
+        jPanelButtons = new JPanel();
+        copyToClipboard = new JButton();
+        jButtonClose = new JButton();
+        jPanelEast = new JPanel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 
-        jPanelTop.setMaximumSize(new java.awt.Dimension(32767, 80));
-        jPanelTop.setLayout(new javax.swing.BoxLayout(jPanelTop, javax.swing.BoxLayout.LINE_AXIS));
+        jPanelTop.setMaximumSize(new Dimension(32767, 80));
+        jPanelTop.setLayout(new BoxLayout(jPanelTop, BoxLayout.LINE_AXIS));
 
-        jPanelIcon.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 10, 10));
+        jPanelIcon.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
 
-        jLabelMiniIcon.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabelMiniIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/kawansoft/app/parms/images/about.png"))); // NOI18N
+        jLabelMiniIcon.setFont(new Font("Tahoma", 1, 11)); // NOI18N
+        jLabelMiniIcon.setIcon(new ImageIcon(getClass().getResource("/com/kawansoft/app/parms/images/about.png"))); // NOI18N
         jLabelMiniIcon.setText("Infos Système");
         jLabelMiniIcon.setToolTipText("");
         jPanelIcon.add(jLabelMiniIcon);
 
         jPanelTop.add(jPanelIcon);
 
-        jPanel3.setLayout(new javax.swing.BoxLayout(jPanel3, javax.swing.BoxLayout.LINE_AXIS));
+        jPanel3.setLayout(new BoxLayout(jPanel3, BoxLayout.LINE_AXIS));
 
-        jButtonUrl.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jButtonUrl.setForeground(new java.awt.Color(51, 0, 255));
+        jButtonUrl.setFont(new Font("Tahoma", 1, 11)); // NOI18N
+        jButtonUrl.setForeground(new Color(51, 0, 255));
         jButtonUrl.setText("https://www.kawandoc.com/");
         jButtonUrl.setBorderPainted(false);
         jButtonUrl.setContentAreaFilled(false);
         jButtonUrl.setFocusPainted(false);
         jButtonUrl.setIconTextGap(0);
-        jButtonUrl.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        jButtonUrl.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
+        jButtonUrl.setMargin(new Insets(0, 0, 0, 0));
+        jButtonUrl.addMouseListener(new MouseAdapter() {
+            public void mouseEntered(MouseEvent evt) {
                 jButtonUrlMouseEntered(evt);
             }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
+            public void mouseExited(MouseEvent evt) {
                 jButtonUrlMouseExited(evt);
             }
         });
-        jButtonUrl.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jButtonUrl.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 jButtonUrlActionPerformed(evt);
             }
         });
         jPanel3.add(jButtonUrl);
 
-        jPanelEnd.setMaximumSize(new java.awt.Dimension(10, 10));
+        jPanelEnd.setMaximumSize(new Dimension(10, 10));
 
-        javax.swing.GroupLayout jPanelEndLayout = new javax.swing.GroupLayout(jPanelEnd);
+        GroupLayout jPanelEndLayout = new GroupLayout(jPanelEnd);
         jPanelEnd.setLayout(jPanelEndLayout);
-        jPanelEndLayout.setHorizontalGroup(
-            jPanelEndLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jPanelEndLayout.setHorizontalGroup(jPanelEndLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGap(0, 10, Short.MAX_VALUE)
         );
-        jPanelEndLayout.setVerticalGroup(
-            jPanelEndLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jPanelEndLayout.setVerticalGroup(jPanelEndLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGap(0, 10, Short.MAX_VALUE)
         );
 
@@ -304,11 +320,11 @@ public class SystemPropDisplayer extends javax.swing.JFrame {
 
         jPanelTop.add(jPanel3);
 
-        getContentPane().add(jPanelTop, java.awt.BorderLayout.PAGE_START);
+        getContentPane().add(jPanelTop, BorderLayout.PAGE_START);
 
-        jPanelCenter.setLayout(new javax.swing.BoxLayout(jPanelCenter, javax.swing.BoxLayout.Y_AXIS));
+        jPanelCenter.setLayout(new BoxLayout(jPanelCenter, BoxLayout.Y_AXIS));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTable1.setModel(new DefaultTableModel(
             new Object [][] {
                 {null, null}
             },
@@ -320,55 +336,51 @@ public class SystemPropDisplayer extends javax.swing.JFrame {
 
         jPanelCenter.add(jScrollPane1);
 
-        jPanelSep.setMaximumSize(new java.awt.Dimension(32767, 4));
-        jPanelSep.setMinimumSize(new java.awt.Dimension(0, 4));
-        jPanelSep.setPreferredSize(new java.awt.Dimension(608, 4));
+        jPanelSep.setMaximumSize(new Dimension(32767, 4));
+        jPanelSep.setMinimumSize(new Dimension(0, 4));
+        jPanelSep.setPreferredSize(new Dimension(608, 4));
 
-        javax.swing.GroupLayout jPanelSepLayout = new javax.swing.GroupLayout(jPanelSep);
+        GroupLayout jPanelSepLayout = new GroupLayout(jPanelSep);
         jPanelSep.setLayout(jPanelSepLayout);
-        jPanelSepLayout.setHorizontalGroup(
-            jPanelSepLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jPanelSepLayout.setHorizontalGroup(jPanelSepLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGap(0, 489, Short.MAX_VALUE)
         );
-        jPanelSepLayout.setVerticalGroup(
-            jPanelSepLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jPanelSepLayout.setVerticalGroup(jPanelSepLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGap(0, 4, Short.MAX_VALUE)
         );
 
         jPanelCenter.add(jPanelSep);
 
-        getContentPane().add(jPanelCenter, java.awt.BorderLayout.CENTER);
+        getContentPane().add(jPanelCenter, BorderLayout.CENTER);
 
-        jPanelWest.setMaximumSize(new java.awt.Dimension(10, 10));
+        jPanelWest.setMaximumSize(new Dimension(10, 10));
 
-        javax.swing.GroupLayout jPanelWestLayout = new javax.swing.GroupLayout(jPanelWest);
+        GroupLayout jPanelWestLayout = new GroupLayout(jPanelWest);
         jPanelWest.setLayout(jPanelWestLayout);
-        jPanelWestLayout.setHorizontalGroup(
-            jPanelWestLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jPanelWestLayout.setHorizontalGroup(jPanelWestLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGap(0, 10, Short.MAX_VALUE)
         );
-        jPanelWestLayout.setVerticalGroup(
-            jPanelWestLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jPanelWestLayout.setVerticalGroup(jPanelWestLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGap(0, 339, Short.MAX_VALUE)
         );
 
-        getContentPane().add(jPanelWest, java.awt.BorderLayout.WEST);
+        getContentPane().add(jPanelWest, BorderLayout.WEST);
 
-        jPanelSouth.setLayout(new java.awt.GridLayout(1, 2));
+        jPanelSouth.setLayout(new GridLayout(1, 2));
 
-        jPanelButtons.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.TRAILING, 10, 10));
+        jPanelButtons.setLayout(new FlowLayout(FlowLayout.TRAILING, 10, 10));
 
         copyToClipboard.setText("Copier dans le Presse-Papier");
-        copyToClipboard.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        copyToClipboard.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 copyToClipboardActionPerformed(evt);
             }
         });
         jPanelButtons.add(copyToClipboard);
 
         jButtonClose.setText("Fermer");
-        jButtonClose.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jButtonClose.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 jButtonCloseActionPerformed(evt);
             }
         });
@@ -376,31 +388,29 @@ public class SystemPropDisplayer extends javax.swing.JFrame {
 
         jPanelSouth.add(jPanelButtons);
 
-        getContentPane().add(jPanelSouth, java.awt.BorderLayout.PAGE_END);
+        getContentPane().add(jPanelSouth, BorderLayout.PAGE_END);
 
-        jPanelEast.setMaximumSize(new java.awt.Dimension(10, 10));
+        jPanelEast.setMaximumSize(new Dimension(10, 10));
 
-        javax.swing.GroupLayout jPanelEastLayout = new javax.swing.GroupLayout(jPanelEast);
+        GroupLayout jPanelEastLayout = new GroupLayout(jPanelEast);
         jPanelEast.setLayout(jPanelEastLayout);
-        jPanelEastLayout.setHorizontalGroup(
-            jPanelEastLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jPanelEastLayout.setHorizontalGroup(jPanelEastLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGap(0, 10, Short.MAX_VALUE)
         );
-        jPanelEastLayout.setVerticalGroup(
-            jPanelEastLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jPanelEastLayout.setVerticalGroup(jPanelEastLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGap(0, 339, Short.MAX_VALUE)
         );
 
-        getContentPane().add(jPanelEast, java.awt.BorderLayout.LINE_END);
+        getContentPane().add(jPanelEast, BorderLayout.LINE_END);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-private void jButtonCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCloseActionPerformed
+private void jButtonCloseActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jButtonCloseActionPerformed
     dispose();
 }//GEN-LAST:event_jButtonCloseActionPerformed
 
-    private void copyToClipboardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_copyToClipboardActionPerformed
+    private void copyToClipboardActionPerformed(ActionEvent evt) {//GEN-FIRST:event_copyToClipboardActionPerformed
         jTable1.selectAll();
 
         // Put the content of the table in a JTextField
@@ -448,15 +458,15 @@ private void jButtonCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
 
     }//GEN-LAST:event_copyToClipboardActionPerformed
 
-    private void jButtonUrlMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonUrlMouseEntered
+    private void jButtonUrlMouseEntered(MouseEvent evt) {//GEN-FIRST:event_jButtonUrlMouseEntered
         this.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
     }//GEN-LAST:event_jButtonUrlMouseEntered
 
-    private void jButtonUrlMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonUrlMouseExited
+    private void jButtonUrlMouseExited(MouseEvent evt) {//GEN-FIRST:event_jButtonUrlMouseExited
         this.setCursor(Cursor.getDefaultCursor());
     }//GEN-LAST:event_jButtonUrlMouseExited
 
-    private void jButtonUrlActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonUrlActionPerformed
+    private void jButtonUrlActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jButtonUrlActionPerformed
         Desktop desktop = Desktop.getDesktop();
         String url = jButtonUrl.getText();
 
@@ -485,21 +495,21 @@ private void jButtonCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton copyToClipboard;
-    private javax.swing.JButton jButtonClose;
-    private javax.swing.JButton jButtonUrl;
-    private javax.swing.JLabel jLabelMiniIcon;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanelButtons;
-    private javax.swing.JPanel jPanelCenter;
-    private javax.swing.JPanel jPanelEast;
-    private javax.swing.JPanel jPanelEnd;
-    private javax.swing.JPanel jPanelIcon;
-    private javax.swing.JPanel jPanelSep;
-    private javax.swing.JPanel jPanelSouth;
-    private javax.swing.JPanel jPanelTop;
-    private javax.swing.JPanel jPanelWest;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    public JButton copyToClipboard;
+    public JButton jButtonClose;
+    public JButton jButtonUrl;
+    public JLabel jLabelMiniIcon;
+    public JPanel jPanel3;
+    public JPanel jPanelButtons;
+    public JPanel jPanelCenter;
+    public JPanel jPanelEast;
+    public JPanel jPanelEnd;
+    public JPanel jPanelIcon;
+    public JPanel jPanelSep;
+    public JPanel jPanelSouth;
+    public JPanel jPanelTop;
+    public JPanel jPanelWest;
+    public JScrollPane jScrollPane1;
+    public JTable jTable1;
     // End of variables declaration//GEN-END:variables
 }

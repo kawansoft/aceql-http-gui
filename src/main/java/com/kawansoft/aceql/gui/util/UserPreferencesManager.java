@@ -74,7 +74,7 @@ public class UserPreferencesManager implements AppPreferencesManager {
         if (prefValue != null) {
             try {
                 PbeAes pbe = new PbeAes();
-                prefValueHex = pbe.encryptToHexa(keyLength, prefValue, ParmsCrypto.ENCRYPTION_PASSWORD.toCharArray());
+                prefValueHex = pbe.encryptToHexa(keyLength, prefValue, ParmsCryptoConstants.ENCRYPTION_PASSWORD.toCharArray());
             } catch (Exception ex) {
                 ex.printStackTrace();
                 throw new IllegalArgumentException("Impossible to encrypt preference " + prefName + ":" + ex.toString());
@@ -98,7 +98,7 @@ public class UserPreferencesManager implements AppPreferencesManager {
         if (prefValue != null) {
             try {
                 PbeAes pbe = new PbeAes();
-                prefValue = pbe.decryptFromHexa(prefValue, ParmsCrypto.ENCRYPTION_PASSWORD.toCharArray());
+                prefValue = pbe.decryptFromHexa(prefValue, ParmsCryptoConstants.ENCRYPTION_PASSWORD.toCharArray());
             } catch (Exception ex) {
                 ex.printStackTrace();
                 throw new IllegalArgumentException("Impossible to decrypt preference " + prefName + ":" + ex.toString());

@@ -24,6 +24,7 @@
  */
 package com.kawansoft.aceql.gui;
 
+import com.kawansoft.aceql.gui.util.AceQLManagerUtil;
 import com.kawansoft.app.parms.MessagesManager;
 import com.kawansoft.app.parms.util.ImageParmsUtil;
 import com.kawansoft.app.util.WindowSettingMgr;
@@ -303,6 +304,7 @@ public class CreditsFrame extends JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
 private void jButtonCloseActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jButtonCloseActionPerformed
+    AceQLManagerUtil.printEvent(evt);
     closeOnExit();
 }//GEN-LAST:event_jButtonCloseActionPerformed
 

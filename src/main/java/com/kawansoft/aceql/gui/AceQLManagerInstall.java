@@ -26,6 +26,7 @@ package com.kawansoft.aceql.gui;
 
 import com.kawansoft.aceql.gui.service.ServiceInstaller;
 import com.kawansoft.aceql.gui.service.ServiceUtil;
+import com.kawansoft.aceql.gui.util.AceQLManagerUtil;
 import com.kawansoft.app.parms.util.ImageParmsUtil;
 import com.kawansoft.app.parms.util.ParmsUtil;
 import com.kawansoft.app.util.ButtonResizer;
@@ -619,18 +620,22 @@ public class AceQLManagerInstall extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonInstallServiceActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jButtonInstallServiceActionPerformed
+        AceQLManagerUtil.printEvent(evt);
         installService();
     }//GEN-LAST:event_jButtonInstallServiceActionPerformed
 
     private void jButtonUninstallServiceActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jButtonUninstallServiceActionPerformed
+        AceQLManagerUtil.printEvent(evt);
         uninstallService();
     }//GEN-LAST:event_jButtonUninstallServiceActionPerformed
 
     private void jButtonOkActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jButtonOkActionPerformed
+        AceQLManagerUtil.printEvent(evt);
         actionOk();
     }//GEN-LAST:event_jButtonOkActionPerformed
 
     private void jButtonHelpActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jButtonHelpActionPerformed
+        AceQLManagerUtil.printEvent(evt);
         help();
     }//GEN-LAST:event_jButtonHelpActionPerformed
 

@@ -138,7 +138,7 @@ public class ClasspathDisplayer extends javax.swing.JFrame {
 
         jtextPane2.setContentType("text/html");
         jtextPane2.setEditable(false);
-        jtextPane2.setFont(new java.awt.Font("Lucida Console", 0, 16)); // NOI18N
+        jtextPane2.setFont(new Font("Lucida Console", 0, 16)); // NOI18N
         jScrollPane2.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 
         // Add a Clipboard Manager

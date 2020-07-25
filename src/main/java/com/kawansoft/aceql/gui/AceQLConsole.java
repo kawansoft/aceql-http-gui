@@ -245,13 +245,13 @@ public class AceQLConsole extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public JPanel jPanelBorderTop;
-    public JPanel jPanelBottom;
-    public JPanel jPanelHelp;
-    public JPanel jPanelHelpLeft;
-    public JPanel jPanelHelpMain;
-    public JPanel jPanelHelpRight;
-    public JScrollPane jScrollPane1;
-    public JTextPane jTextPane1;
+    JPanel jPanelBorderTop;
+    JPanel jPanelBottom;
+    JPanel jPanelHelp;
+    JPanel jPanelHelpLeft;
+    JPanel jPanelHelpMain;
+    JPanel jPanelHelpRight;
+    JScrollPane jScrollPane1;
+    JTextPane jTextPane1;
     // End of variables declaration//GEN-END:variables
 }

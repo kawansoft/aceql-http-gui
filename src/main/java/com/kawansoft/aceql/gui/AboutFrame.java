@@ -24,6 +24,7 @@
  */
 package com.kawansoft.aceql.gui;
 
+import com.kawansoft.aceql.gui.util.AceQLManagerUtil;
 import com.kawansoft.app.parms.MessagesManager;
 import com.kawansoft.app.parms.Parms;
 import com.kawansoft.app.parms.util.ImageParmsUtil;
@@ -150,11 +151,13 @@ public class AboutFrame extends javax.swing.JFrame {
         this.addComponentListener(new ComponentAdapter() {
             @Override
             public void componentMoved(ComponentEvent e) {
+                AceQLManagerUtil.printEvent(e);
                 saveSettings();
             }
 
             @Override
             public void componentResized(ComponentEvent e) {
+                AceQLManagerUtil.printEvent(e);
                 saveSettings();
             }
         });
@@ -164,6 +167,7 @@ public class AboutFrame extends javax.swing.JFrame {
         this.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
+                AceQLManagerUtil.printEvent(e);
                 closeOnExit();
             }
         });
@@ -519,14 +523,17 @@ public class AboutFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
 private void jButtonSystemInfoActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jButtonSystemInfoActionPerformed
+    AceQLManagerUtil.printEvent(evt);
     callSystemInfo();
 }//GEN-LAST:event_jButtonSystemInfoActionPerformed
 
 private void jButtonCloseActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jButtonCloseActionPerformed
+    AceQLManagerUtil.printEvent(evt);
     closeOnExit();
 }//GEN-LAST:event_jButtonCloseActionPerformed
 
 private void jButtonUrlMouseEntered(MouseEvent evt) {//GEN-FIRST:event_jButtonUrlMouseEntered
+    AceQLManagerUtil.printEvent(evt);
     this.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 }//GEN-LAST:event_jButtonUrlMouseEntered
 
@@ -535,6 +542,7 @@ private void jButtonUrlMouseExited(MouseEvent evt) {//GEN-FIRST:event_jButtonUrl
 }//GEN-LAST:event_jButtonUrlMouseExited
 
 private void jButtonEmailSupportMouseEntered(MouseEvent evt) {//GEN-FIRST:event_jButtonEmailSupportMouseEntered
+    
     this.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 }//GEN-LAST:event_jButtonEmailSupportMouseEntered
 
@@ -543,6 +551,7 @@ private void jButtonEmailSupportMouseExited(MouseEvent evt) {//GEN-FIRST:event_j
 }//GEN-LAST:event_jButtonEmailSupportMouseExited
 
 private void jButtonUrlActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jButtonUrlActionPerformed
+    AceQLManagerUtil.printEvent(evt);
     Desktop desktop = Desktop.getDesktop();
     String url = "http://" + Parms.ABOUT_WEB_SITE;
 
@@ -577,6 +586,7 @@ private void jButtonDeveloppedByMouseExited(MouseEvent evt) {//GEN-FIRST:event_j
 }//GEN-LAST:event_jButtonDeveloppedByMouseExited
 
 private void jButtonDeveloppedByActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jButtonDeveloppedByActionPerformed
+    AceQLManagerUtil.printEvent(evt);
     Desktop desktop = Desktop.getDesktop();
     String url = "http://www.kawansoft.com";
 
@@ -598,6 +608,7 @@ private void jButtonDeveloppedByActionPerformed(ActionEvent evt) {//GEN-FIRST:ev
     }//GEN-LAST:event_jButtonCreditsMouseExited
 
     private void jButtonCreditsActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jButtonCreditsActionPerformed
+        AceQLManagerUtil.printEvent(evt);        
         if (creditsFrame != null) {
             creditsFrame.dispose();
         }
