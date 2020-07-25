@@ -186,10 +186,7 @@ public class PbeAes {
                 OutputStream out = new BufferedOutputStream(new FileOutputStream(fileOut));) {
 
             AES.decrypt(password, in, out);
-        } finally {
-            //IOUtils.closeQuietly(in);
-            //IOUtils.closeQuietly(out);
-        }
+        } 
     }
 
 }

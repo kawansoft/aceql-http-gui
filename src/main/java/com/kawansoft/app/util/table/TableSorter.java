@@ -207,7 +207,7 @@ public class TableSorter extends AbstractTableModel {
 
     public void setSortingStatus(int column, int status) {
         Directive directive = getDirective(column);
-        if (directive != EMPTY_DIRECTIVE) {
+        if (! directive.equals(EMPTY_DIRECTIVE)) {
             sortingColumns.remove(directive);
         }
         if (status != NOT_SORTED) {
@@ -218,7 +218,7 @@ public class TableSorter extends AbstractTableModel {
 
     protected Icon getHeaderRendererIcon(int column, int size) {
         Directive directive = getDirective(column);
-        if (directive == EMPTY_DIRECTIVE) {
+        if (directive.equals(EMPTY_DIRECTIVE)) {
             return null;
         }
         return new Arrow(directive.direction == DESCENDING, size, sortingColumns.indexOf(directive));

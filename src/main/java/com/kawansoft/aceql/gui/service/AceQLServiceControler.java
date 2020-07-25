@@ -37,14 +37,14 @@ import java.io.IOException;
  * @author Nicolas de Pomereu
  *
  */
-public class AceQLServiceControlerHelp {
+public class AceQLServiceControler {
 
     public static final String CR_LF = System.getProperty("line.separator");
 
     
     public static void start(String arg[]) {
 
-        System.out.println(ClientLogger.formatLogMsg(AceQLServiceControlerHelp.class, "Starting " + AceQLTask.class.getSimpleName() + "..."));
+        System.out.println(ClientLogger.formatLogMsg(AceQLServiceControler.class, "Starting " + AceQLTask.class.getSimpleName() + "..."));
         
         String aceqlProperties = null;
         String host = null;
@@ -74,7 +74,7 @@ public class AceQLServiceControlerHelp {
 
     public static void stop(String arg[]) {
         
-	System.out.println(ClientLogger.formatLogMsg(AceQLServiceControlerHelp.class, "Stopping " + AceQLTask.class.getSimpleName() + "..." ));        
+	System.out.println(ClientLogger.formatLogMsg(AceQLServiceControler.class, "Stopping " + AceQLTask.class.getSimpleName() + "..." ));        
         AceQLManagerUtil.systemExitWrapper();
     }
 

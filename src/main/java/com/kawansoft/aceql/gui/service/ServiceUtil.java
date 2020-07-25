@@ -67,7 +67,7 @@ public class ServiceUtil {
      */
     public static boolean isInstalled() throws IOException {
         int status = ServiceUtil.getServiceStatus(ACEQL_HTTP_SERVICE);
-        return status == ServiceUtil.NOT_INSTALLED;
+        return status != ServiceUtil.NOT_INSTALLED;
     }
 
     /**
@@ -158,24 +158,6 @@ public class ServiceUtil {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-
-//        long start = System.currentTimeMillis();
-//        while (true) {
-//            try {
-//		Thread.sleep(20);
-//	    } catch (InterruptedException e) {
-//		e.printStackTrace();
-//	    }
-//            long now = System.currentTimeMillis();
-//            
-//            if (now - start > TWENTY_SECONDS) {
-//        	return false;
-//            }
-//            
-//            if (ServiceUtil.isRunning()) {
-//        	return true;
-//            }
-//        }
     }
 
     /**
@@ -203,23 +185,6 @@ public class ServiceUtil {
             e.printStackTrace();
         }
 
-//        long start = System.currentTimeMillis();
-//        while (true) {
-//            try {
-//		Thread.sleep(20);
-//	    } catch (InterruptedException e) {
-//		e.printStackTrace();
-//	    }
-//            long now = System.currentTimeMillis();
-//            
-//            if (now - start > TWENTY_SECONDS) {
-//        	return false;
-//            }
-//            
-//            if (ServiceUtil.isStopped()) {
-//        	return true;
-//            }
-//        }
     }
 
 
@@ -312,9 +277,7 @@ public class ServiceUtil {
 
             return NOT_INSTALLED;
 
-        } finally {
-            //IOUtils.closeQuietly(reader);
-        }
+        } 
     }
 
    
@@ -369,10 +332,7 @@ public class ServiceUtil {
             }
 
             return NOT_INSTALLED;
-
-        } finally {
-            //IOUtils.closeQuietly(reader);
-        }
+        } 
     }
 
     /**
