@@ -126,7 +126,7 @@ public class AceQLTask extends Thread implements Runnable {
                     + e.getMessage());
 
             if (e.getCause() == null) {
-                //e.printStackTrace();
+                e.printStackTrace();
             } else {
                 e.getCause().printStackTrace();
             }

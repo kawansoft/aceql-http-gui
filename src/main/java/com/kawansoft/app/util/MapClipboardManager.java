@@ -205,11 +205,12 @@ public class MapClipboardManager
     {        
         //System.out.println("e.getActionCommand(): " + e.getActionCommand());
 
-        if ( e.getActionCommand().equals(select_all))
-        {           
-            //table.selectAll();
-        }                   
-        else if ( e.getActionCommand().equals(copy))
+//        if ( e.getActionCommand().equals(select_all))
+//        {           
+//            //table.selectAll();
+//        }         
+//        
+        if ( e.getActionCommand().equals(copy))
         {
             String value = "";
 
