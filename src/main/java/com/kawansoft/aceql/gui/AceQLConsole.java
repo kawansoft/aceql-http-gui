@@ -30,6 +30,8 @@ import com.kawansoft.app.util.WindowSettingMgr;
 import com.kawansoft.app.util.console.MessageConsole;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.Insets;
 import java.awt.Window;
 import java.awt.event.ComponentAdapter;
@@ -38,6 +40,12 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import javax.swing.BoxLayout;
+import javax.swing.GroupLayout;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextPane;
+import javax.swing.WindowConstants;
 
 
 /**
@@ -169,56 +177,54 @@ public class AceQLConsole extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanelBorderTop = new javax.swing.JPanel();
-        jPanelHelp = new javax.swing.JPanel();
-        jPanelHelpLeft = new javax.swing.JPanel();
-        jPanelHelpMain = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTextPane1 = new javax.swing.JTextPane();
-        jPanelHelpRight = new javax.swing.JPanel();
-        jPanelBottom = new javax.swing.JPanel();
+        jPanelBorderTop = new JPanel();
+        jPanelHelp = new JPanel();
+        jPanelHelpLeft = new JPanel();
+        jPanelHelpMain = new JPanel();
+        jScrollPane1 = new JScrollPane();
+        jTextPane1 = new JTextPane();
+        jPanelHelpRight = new JPanel();
+        jPanelBottom = new JPanel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Aide");
-        getContentPane().setLayout(new javax.swing.BoxLayout(getContentPane(), javax.swing.BoxLayout.Y_AXIS));
+        getContentPane().setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
 
-        jPanelBorderTop.setMaximumSize(new java.awt.Dimension(32767, 10));
-        jPanelBorderTop.setPreferredSize(new java.awt.Dimension(20, 10));
-        jPanelBorderTop.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 10, 10));
+        jPanelBorderTop.setMaximumSize(new Dimension(32767, 10));
+        jPanelBorderTop.setPreferredSize(new Dimension(20, 10));
+        jPanelBorderTop.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
         getContentPane().add(jPanelBorderTop);
 
-        jPanelHelp.setLayout(new javax.swing.BoxLayout(jPanelHelp, javax.swing.BoxLayout.LINE_AXIS));
+        jPanelHelp.setLayout(new BoxLayout(jPanelHelp, BoxLayout.LINE_AXIS));
 
-        jPanelHelpLeft.setMaximumSize(new java.awt.Dimension(10, 10));
+        jPanelHelpLeft.setMaximumSize(new Dimension(10, 10));
         jPanelHelp.add(jPanelHelpLeft);
 
-        jPanelHelpMain.setPreferredSize(new java.awt.Dimension(319, 180));
-        jPanelHelpMain.setLayout(new javax.swing.BoxLayout(jPanelHelpMain, javax.swing.BoxLayout.LINE_AXIS));
+        jPanelHelpMain.setPreferredSize(new Dimension(319, 180));
+        jPanelHelpMain.setLayout(new BoxLayout(jPanelHelpMain, BoxLayout.LINE_AXIS));
 
-        jTextPane1.setBackground(new java.awt.Color(0, 0, 0));
-        jTextPane1.setFont(new java.awt.Font("Lucida Console", 0, 18)); // NOI18N
-        jTextPane1.setForeground(new java.awt.Color(192, 192, 192));
+        jTextPane1.setBackground(new Color(0, 0, 0));
+        jTextPane1.setFont(new Font("Lucida Console", 0, 18)); // NOI18N
+        jTextPane1.setForeground(new Color(192, 192, 192));
         jScrollPane1.setViewportView(jTextPane1);
 
         jPanelHelpMain.add(jScrollPane1);
 
         jPanelHelp.add(jPanelHelpMain);
 
-        jPanelHelpRight.setMaximumSize(new java.awt.Dimension(10, 10));
+        jPanelHelpRight.setMaximumSize(new Dimension(10, 10));
         jPanelHelp.add(jPanelHelpRight);
 
         getContentPane().add(jPanelHelp);
 
-        jPanelBottom.setMaximumSize(new java.awt.Dimension(10, 10));
+        jPanelBottom.setMaximumSize(new Dimension(10, 10));
 
-        javax.swing.GroupLayout jPanelBottomLayout = new javax.swing.GroupLayout(jPanelBottom);
+        GroupLayout jPanelBottomLayout = new GroupLayout(jPanelBottom);
         jPanelBottom.setLayout(jPanelBottomLayout);
-        jPanelBottomLayout.setHorizontalGroup(
-            jPanelBottomLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jPanelBottomLayout.setHorizontalGroup(jPanelBottomLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGap(0, 10, Short.MAX_VALUE)
         );
-        jPanelBottomLayout.setVerticalGroup(
-            jPanelBottomLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jPanelBottomLayout.setVerticalGroup(jPanelBottomLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGap(0, 10, Short.MAX_VALUE)
         );
 
@@ -239,13 +245,13 @@ public class AceQLConsole extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel jPanelBorderTop;
-    private javax.swing.JPanel jPanelBottom;
-    private javax.swing.JPanel jPanelHelp;
-    private javax.swing.JPanel jPanelHelpLeft;
-    private javax.swing.JPanel jPanelHelpMain;
-    private javax.swing.JPanel jPanelHelpRight;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextPane jTextPane1;
+    public JPanel jPanelBorderTop;
+    public JPanel jPanelBottom;
+    public JPanel jPanelHelp;
+    public JPanel jPanelHelpLeft;
+    public JPanel jPanelHelpMain;
+    public JPanel jPanelHelpRight;
+    public JScrollPane jScrollPane1;
+    public JTextPane jTextPane1;
     // End of variables declaration//GEN-END:variables
 }

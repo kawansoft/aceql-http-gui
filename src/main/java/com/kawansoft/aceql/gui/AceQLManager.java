@@ -56,11 +56,19 @@ import com.kawansoft.app.util.SystemPropDisplayer;
 import com.kawansoft.app.util.WindowSettingMgr;
 import com.kawansoft.app.util.table.FileDrop;
 import com.swing.util.SwingUtil;
+import java.awt.Color;
 import java.awt.Desktop;
 import java.awt.FileDialog;
+import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.Frame;
 import java.awt.HeadlessException;
+import java.awt.Insets;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.io.File;
 import java.io.FilenameFilter;
 import java.io.IOException;
@@ -73,13 +81,27 @@ import java.util.ArrayList;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.BoxLayout;
+import javax.swing.GroupLayout;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFileChooser;
+import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JPopupMenu;
+import javax.swing.JSeparator;
+import javax.swing.JTextField;
 import javax.swing.KeyStroke;
+import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
+import javax.swing.WindowConstants;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.text.AbstractDocument;
@@ -89,6 +111,7 @@ import javax.swing.text.DocumentFilter;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.SystemUtils;
+import org.jdesktop.swingx.JXTitledSeparator;
 import org.kawanfw.sql.api.server.web.WebServerApi;
 import org.kawanfw.sql.tomcat.TomcatStarterUtil;
 
@@ -1211,178 +1234,172 @@ public class AceQLManager extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanelMain = new javax.swing.JPanel();
-        jPanelLogo = new javax.swing.JPanel();
-        jPanelSepBlank11 = new javax.swing.JPanel();
-        jLabelLogo = new javax.swing.JLabel();
-        jPanelSepLine2New2 = new javax.swing.JPanel();
-        jPanel22 = new javax.swing.JPanel();
-        jSeparator4 = new javax.swing.JSeparator();
-        jPanel23 = new javax.swing.JPanel();
-        jPanelSepBlanc8spaces1 = new javax.swing.JPanel();
-        jPanelTitledSeparator6 = new javax.swing.JPanel();
-        jPaneBlanklLeft1 = new javax.swing.JPanel();
-        jXTitledSeparator20pixels2 = new org.jdesktop.swingx.JXTitledSeparator();
-        jPanelSep3x6 = new javax.swing.JPanel();
-        jXTitledSeparator6 = new org.jdesktop.swingx.JXTitledSeparator();
-        jPanelBlankRight1 = new javax.swing.JPanel();
-        jPanelSepBlanc8spaces3 = new javax.swing.JPanel();
-        jPanelProperties = new javax.swing.JPanel();
-        jPanelLeft16 = new javax.swing.JPanel();
-        jLabelPropertiesFile = new javax.swing.JLabel();
-        jPanelLeft13 = new javax.swing.JPanel();
-        jTextFieldPropertiesFile = new javax.swing.JTextField();
-        jPanelLeft14 = new javax.swing.JPanel();
-        jButtonBrowse = new javax.swing.JButton();
-        jPanelLeft15 = new javax.swing.JPanel();
-        jButtonEdit = new javax.swing.JButton();
-        jPanelEndField4 = new javax.swing.JPanel();
-        jPanelHost = new javax.swing.JPanel();
-        jPanelLeft22 = new javax.swing.JPanel();
-        jLabelHost = new javax.swing.JLabel();
-        jPanelLeft17 = new javax.swing.JPanel();
-        jTextFieldHost = new javax.swing.JTextField();
-        jPanelLeft18 = new javax.swing.JPanel();
-        jLabelHost1 = new javax.swing.JLabel();
-        jPanelLeft19 = new javax.swing.JPanel();
-        jTextFieldPort = new javax.swing.JTextField();
-        jPanelEndField6 = new javax.swing.JPanel();
-        jPanelClasspath = new javax.swing.JPanel();
-        jPanelLeft25 = new javax.swing.JPanel();
-        jLabelClasspath = new javax.swing.JLabel();
-        jPanelLeft21 = new javax.swing.JPanel();
-        jButtonDisplayClasspath = new javax.swing.JButton();
-        jPanelSepBlanc8spaces = new javax.swing.JPanel();
-        jPanelTitledSeparator5 = new javax.swing.JPanel();
-        jPaneBlanklLeft2 = new javax.swing.JPanel();
-        jXTitledSeparator20pixels1 = new org.jdesktop.swingx.JXTitledSeparator();
-        jPanelSep3x7 = new javax.swing.JPanel();
-        jXTitledSeparator5 = new org.jdesktop.swingx.JXTitledSeparator();
-        jPanelBlankRight2 = new javax.swing.JPanel();
-        jPanelSepBlanc8spaces5 = new javax.swing.JPanel();
-        jPanelURL = new javax.swing.JPanel();
-        jPanelLeft24 = new javax.swing.JPanel();
-        jLabelURL = new javax.swing.JLabel();
-        jPanelLeft20 = new javax.swing.JPanel();
-        jButtonURL = new javax.swing.JButton();
-        jPanelRadioStandard = new javax.swing.JPanel();
-        jPanelLeft23 = new javax.swing.JPanel();
-        jLabelStandardMode = new javax.swing.JLabel();
-        jLabelStandardStatus = new javax.swing.JLabel();
-        jLabeStandardStatusValue = new javax.swing.JLabel();
-        jPanelButtonStartStop = new javax.swing.JPanel();
-        jPanelButtonsStartStandard = new javax.swing.JPanel();
-        jPanelLeft31 = new javax.swing.JPanel();
-        jButtonStart = new javax.swing.JButton();
-        jButtonStop = new javax.swing.JButton();
-        jPaneSepInstallAndStart1 = new javax.swing.JPanel();
-        jButtonDisplayConsole = new javax.swing.JButton();
-        jPanelSepBlanc8spaces4 = new javax.swing.JPanel();
-        jPanelRadioService = new javax.swing.JPanel();
-        jPanelLeft26 = new javax.swing.JPanel();
-        jLabelWindowsServiceMode = new javax.swing.JLabel();
-        jLabelServiceStartModeValue = new javax.swing.JLabel();
-        jLabelServiceStatus = new javax.swing.JLabel();
-        jLabelServiceStatusValue = new javax.swing.JLabel();
-        jPanelButtonsStartService = new javax.swing.JPanel();
-        jPanelLeft33 = new javax.swing.JPanel();
-        jButtonStartService = new javax.swing.JButton();
-        jButtonStopService = new javax.swing.JButton();
-        jPaneSep2 = new javax.swing.JPanel();
-        jButtonDisplayLogs = new javax.swing.JButton();
-        jButtonServicesConsole = new javax.swing.JButton();
-        jPanelSepBlanc8spaces8 = new javax.swing.JPanel();
-        jPanelSepLine2New = new javax.swing.JPanel();
-        jPanel28 = new javax.swing.JPanel();
-        jSeparator2 = new javax.swing.JSeparator();
-        jPanel29 = new javax.swing.JPanel();
-        jPanelBottom = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
-        jPanelButtons = new javax.swing.JPanel();
-        jButtonOk = new javax.swing.JButton();
-        jButtonApply = new javax.swing.JButton();
-        jButtonHelp = new javax.swing.JButton();
-        jPanel1 = new javax.swing.JPanel();
-        jMenuBar1 = new javax.swing.JMenuBar();
-        jMenuFile = new javax.swing.JMenu();
-        jMenuItemServiceInstall = new javax.swing.JMenuItem();
-        jMenuItemClose = new javax.swing.JMenuItem();
-        jMenuItemQuit = new javax.swing.JMenuItem();
-        jMenuOptions = new javax.swing.JMenu();
-        jMenuCheckForUpdates = new javax.swing.JMenuItem();
-        jMenuItemResetWindows = new javax.swing.JMenuItem();
-        jMenuHelp = new javax.swing.JMenu();
-        jMenuItemHelp = new javax.swing.JMenuItem();
-        jMenuItemReleaseNotes = new javax.swing.JMenuItem();
-        jSeparator3 = new javax.swing.JPopupMenu.Separator();
-        jMenuItemSystemInfo = new javax.swing.JMenuItem();
-        jMenuItemAbout = new javax.swing.JMenuItem();
+        jPanelMain = new JPanel();
+        jPanelLogo = new JPanel();
+        jPanelSepBlank11 = new JPanel();
+        jLabelLogo = new JLabel();
+        jPanelSepLine2New2 = new JPanel();
+        jPanel22 = new JPanel();
+        jSeparator4 = new JSeparator();
+        jPanel23 = new JPanel();
+        jPanelSepBlanc8spaces1 = new JPanel();
+        jPanelTitledSeparator6 = new JPanel();
+        jPaneBlanklLeft1 = new JPanel();
+        jXTitledSeparator20pixels2 = new JXTitledSeparator();
+        jPanelSep3x6 = new JPanel();
+        jXTitledSeparator6 = new JXTitledSeparator();
+        jPanelBlankRight1 = new JPanel();
+        jPanelSepBlanc8spaces3 = new JPanel();
+        jPanelProperties = new JPanel();
+        jPanelLeft16 = new JPanel();
+        jLabelPropertiesFile = new JLabel();
+        jPanelLeft13 = new JPanel();
+        jTextFieldPropertiesFile = new JTextField();
+        jPanelLeft14 = new JPanel();
+        jButtonBrowse = new JButton();
+        jPanelLeft15 = new JPanel();
+        jButtonEdit = new JButton();
+        jPanelEndField4 = new JPanel();
+        jPanelHost = new JPanel();
+        jPanelLeft22 = new JPanel();
+        jLabelHost = new JLabel();
+        jPanelLeft17 = new JPanel();
+        jTextFieldHost = new JTextField();
+        jPanelLeft18 = new JPanel();
+        jLabelHost1 = new JLabel();
+        jPanelLeft19 = new JPanel();
+        jTextFieldPort = new JTextField();
+        jPanelEndField6 = new JPanel();
+        jPanelClasspath = new JPanel();
+        jPanelLeft25 = new JPanel();
+        jLabelClasspath = new JLabel();
+        jPanelLeft21 = new JPanel();
+        jButtonDisplayClasspath = new JButton();
+        jPanelSepBlanc8spaces = new JPanel();
+        jPanelTitledSeparator5 = new JPanel();
+        jPaneBlanklLeft2 = new JPanel();
+        jXTitledSeparator20pixels1 = new JXTitledSeparator();
+        jPanelSep3x7 = new JPanel();
+        jXTitledSeparator5 = new JXTitledSeparator();
+        jPanelBlankRight2 = new JPanel();
+        jPanelSepBlanc8spaces5 = new JPanel();
+        jPanelURL = new JPanel();
+        jPanelLeft24 = new JPanel();
+        jLabelURL = new JLabel();
+        jPanelLeft20 = new JPanel();
+        jButtonURL = new JButton();
+        jPanelRadioStandard = new JPanel();
+        jPanelLeft23 = new JPanel();
+        jLabelStandardMode = new JLabel();
+        jLabelStandardStatus = new JLabel();
+        jLabeStandardStatusValue = new JLabel();
+        jPanelButtonStartStop = new JPanel();
+        jPanelButtonsStartStandard = new JPanel();
+        jPanelLeft31 = new JPanel();
+        jButtonStart = new JButton();
+        jButtonStop = new JButton();
+        jPaneSepInstallAndStart1 = new JPanel();
+        jButtonDisplayConsole = new JButton();
+        jPanelSepBlanc8spaces4 = new JPanel();
+        jPanelRadioService = new JPanel();
+        jPanelLeft26 = new JPanel();
+        jLabelWindowsServiceMode = new JLabel();
+        jLabelServiceStartModeValue = new JLabel();
+        jLabelServiceStatus = new JLabel();
+        jLabelServiceStatusValue = new JLabel();
+        jPanelButtonsStartService = new JPanel();
+        jPanelLeft33 = new JPanel();
+        jButtonStartService = new JButton();
+        jButtonStopService = new JButton();
+        jPaneSep2 = new JPanel();
+        jButtonDisplayLogs = new JButton();
+        jButtonServicesConsole = new JButton();
+        jPanelSepBlanc8spaces8 = new JPanel();
+        jPanelSepLine2New = new JPanel();
+        jPanel28 = new JPanel();
+        jSeparator2 = new JSeparator();
+        jPanel29 = new JPanel();
+        jPanelBottom = new JPanel();
+        jPanel2 = new JPanel();
+        jPanelButtons = new JPanel();
+        jButtonOk = new JButton();
+        jButtonApply = new JButton();
+        jButtonHelp = new JButton();
+        jPanel1 = new JPanel();
+        jMenuBar1 = new JMenuBar();
+        jMenuFile = new JMenu();
+        jMenuItemServiceInstall = new JMenuItem();
+        jMenuItemClose = new JMenuItem();
+        jMenuItemQuit = new JMenuItem();
+        jMenuOptions = new JMenu();
+        jMenuCheckForUpdates = new JMenuItem();
+        jMenuItemResetWindows = new JMenuItem();
+        jMenuHelp = new JMenu();
+        jMenuItemHelp = new JMenuItem();
+        jMenuItemReleaseNotes = new JMenuItem();
+        jSeparator3 = new JPopupMenu.Separator();
+        jMenuItemSystemInfo = new JMenuItem();
+        jMenuItemAbout = new JMenuItem();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
-        getContentPane().setLayout(new javax.swing.BoxLayout(getContentPane(), javax.swing.BoxLayout.Y_AXIS));
+        setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
+        getContentPane().setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
 
-        jPanelMain.setLayout(new javax.swing.BoxLayout(jPanelMain, javax.swing.BoxLayout.Y_AXIS));
+        jPanelMain.setLayout(new BoxLayout(jPanelMain, BoxLayout.Y_AXIS));
 
-        jPanelLogo.setMaximumSize(new java.awt.Dimension(32767, 70));
-        jPanelLogo.setMinimumSize(new java.awt.Dimension(137, 70));
-        jPanelLogo.setPreferredSize(new java.awt.Dimension(431, 70));
-        jPanelLogo.setLayout(new javax.swing.BoxLayout(jPanelLogo, javax.swing.BoxLayout.LINE_AXIS));
+        jPanelLogo.setMaximumSize(new Dimension(32767, 70));
+        jPanelLogo.setMinimumSize(new Dimension(137, 70));
+        jPanelLogo.setPreferredSize(new Dimension(431, 70));
+        jPanelLogo.setLayout(new BoxLayout(jPanelLogo, BoxLayout.LINE_AXIS));
 
-        jPanelSepBlank11.setMaximumSize(new java.awt.Dimension(10, 10));
-        jPanelSepBlank11.setPreferredSize(new java.awt.Dimension(10, 11));
+        jPanelSepBlank11.setMaximumSize(new Dimension(10, 10));
+        jPanelSepBlank11.setPreferredSize(new Dimension(10, 11));
 
-        javax.swing.GroupLayout jPanelSepBlank11Layout = new javax.swing.GroupLayout(jPanelSepBlank11);
+        GroupLayout jPanelSepBlank11Layout = new GroupLayout(jPanelSepBlank11);
         jPanelSepBlank11.setLayout(jPanelSepBlank11Layout);
-        jPanelSepBlank11Layout.setHorizontalGroup(
-            jPanelSepBlank11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jPanelSepBlank11Layout.setHorizontalGroup(jPanelSepBlank11Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGap(0, 10, Short.MAX_VALUE)
         );
-        jPanelSepBlank11Layout.setVerticalGroup(
-            jPanelSepBlank11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jPanelSepBlank11Layout.setVerticalGroup(jPanelSepBlank11Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGap(0, 10, Short.MAX_VALUE)
         );
 
         jPanelLogo.add(jPanelSepBlank11);
 
-        jLabelLogo.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
-        jLabelLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/kawansoft/app/parms/images/logos/logo-AceQL_48.png"))); // NOI18N
+        jLabelLogo.setFont(new Font("Tahoma", 1, 13)); // NOI18N
+        jLabelLogo.setIcon(new ImageIcon(getClass().getResource("/com/kawansoft/app/parms/images/logos/logo-AceQL_48.png"))); // NOI18N
         jLabelLogo.setText("AceQL HTTP");
         jLabelLogo.setToolTipText("");
         jPanelLogo.add(jLabelLogo);
 
         jPanelMain.add(jPanelLogo);
 
-        jPanelSepLine2New2.setMaximumSize(new java.awt.Dimension(32787, 10));
-        jPanelSepLine2New2.setMinimumSize(new java.awt.Dimension(0, 10));
-        jPanelSepLine2New2.setPreferredSize(new java.awt.Dimension(20, 10));
-        jPanelSepLine2New2.setLayout(new javax.swing.BoxLayout(jPanelSepLine2New2, javax.swing.BoxLayout.LINE_AXIS));
+        jPanelSepLine2New2.setMaximumSize(new Dimension(32787, 10));
+        jPanelSepLine2New2.setMinimumSize(new Dimension(0, 10));
+        jPanelSepLine2New2.setPreferredSize(new Dimension(20, 10));
+        jPanelSepLine2New2.setLayout(new BoxLayout(jPanelSepLine2New2, BoxLayout.LINE_AXIS));
 
-        jPanel22.setMaximumSize(new java.awt.Dimension(10, 10));
+        jPanel22.setMaximumSize(new Dimension(10, 10));
 
-        javax.swing.GroupLayout jPanel22Layout = new javax.swing.GroupLayout(jPanel22);
+        GroupLayout jPanel22Layout = new GroupLayout(jPanel22);
         jPanel22.setLayout(jPanel22Layout);
-        jPanel22Layout.setHorizontalGroup(
-            jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jPanel22Layout.setHorizontalGroup(jPanel22Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGap(0, 10, Short.MAX_VALUE)
         );
-        jPanel22Layout.setVerticalGroup(
-            jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jPanel22Layout.setVerticalGroup(jPanel22Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGap(0, 5, Short.MAX_VALUE)
         );
 
         jPanelSepLine2New2.add(jPanel22);
         jPanelSepLine2New2.add(jSeparator4);
 
-        jPanel23.setMaximumSize(new java.awt.Dimension(10, 10));
+        jPanel23.setMaximumSize(new Dimension(10, 10));
 
-        javax.swing.GroupLayout jPanel23Layout = new javax.swing.GroupLayout(jPanel23);
+        GroupLayout jPanel23Layout = new GroupLayout(jPanel23);
         jPanel23.setLayout(jPanel23Layout);
-        jPanel23Layout.setHorizontalGroup(
-            jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jPanel23Layout.setHorizontalGroup(jPanel23Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGap(0, 10, Short.MAX_VALUE)
         );
-        jPanel23Layout.setVerticalGroup(
-            jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jPanel23Layout.setVerticalGroup(jPanel23Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGap(0, 5, Short.MAX_VALUE)
         );
 
@@ -1390,68 +1407,62 @@ public class AceQLManager extends javax.swing.JFrame {
 
         jPanelMain.add(jPanelSepLine2New2);
 
-        jPanelSepBlanc8spaces1.setMaximumSize(new java.awt.Dimension(32767, 8));
-        jPanelSepBlanc8spaces1.setMinimumSize(new java.awt.Dimension(10, 8));
-        jPanelSepBlanc8spaces1.setPreferredSize(new java.awt.Dimension(1000, 8));
+        jPanelSepBlanc8spaces1.setMaximumSize(new Dimension(32767, 8));
+        jPanelSepBlanc8spaces1.setMinimumSize(new Dimension(10, 8));
+        jPanelSepBlanc8spaces1.setPreferredSize(new Dimension(1000, 8));
         jPanelMain.add(jPanelSepBlanc8spaces1);
 
-        jPanelTitledSeparator6.setMinimumSize(new java.awt.Dimension(184, 24));
-        jPanelTitledSeparator6.setPreferredSize(new java.awt.Dimension(518, 24));
-        jPanelTitledSeparator6.setLayout(new javax.swing.BoxLayout(jPanelTitledSeparator6, javax.swing.BoxLayout.LINE_AXIS));
+        jPanelTitledSeparator6.setMinimumSize(new Dimension(184, 24));
+        jPanelTitledSeparator6.setPreferredSize(new Dimension(518, 24));
+        jPanelTitledSeparator6.setLayout(new BoxLayout(jPanelTitledSeparator6, BoxLayout.LINE_AXIS));
 
-        jPaneBlanklLeft1.setMaximumSize(new java.awt.Dimension(10, 10));
-        jPaneBlanklLeft1.setPreferredSize(new java.awt.Dimension(10, 11));
+        jPaneBlanklLeft1.setMaximumSize(new Dimension(10, 10));
+        jPaneBlanklLeft1.setPreferredSize(new Dimension(10, 11));
 
-        javax.swing.GroupLayout jPaneBlanklLeft1Layout = new javax.swing.GroupLayout(jPaneBlanklLeft1);
+        GroupLayout jPaneBlanklLeft1Layout = new GroupLayout(jPaneBlanklLeft1);
         jPaneBlanklLeft1.setLayout(jPaneBlanklLeft1Layout);
-        jPaneBlanklLeft1Layout.setHorizontalGroup(
-            jPaneBlanklLeft1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jPaneBlanklLeft1Layout.setHorizontalGroup(jPaneBlanklLeft1Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGap(0, 10, Short.MAX_VALUE)
         );
-        jPaneBlanklLeft1Layout.setVerticalGroup(
-            jPaneBlanklLeft1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jPaneBlanklLeft1Layout.setVerticalGroup(jPaneBlanklLeft1Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGap(0, 10, Short.MAX_VALUE)
         );
 
         jPanelTitledSeparator6.add(jPaneBlanklLeft1);
 
-        jXTitledSeparator20pixels2.setMaximumSize(new java.awt.Dimension(20, 16));
-        jXTitledSeparator20pixels2.setMinimumSize(new java.awt.Dimension(20, 16));
-        jXTitledSeparator20pixels2.setPreferredSize(new java.awt.Dimension(20, 16));
+        jXTitledSeparator20pixels2.setMaximumSize(new Dimension(20, 16));
+        jXTitledSeparator20pixels2.setMinimumSize(new Dimension(20, 16));
+        jXTitledSeparator20pixels2.setPreferredSize(new Dimension(20, 16));
         jXTitledSeparator20pixels2.setTitle("");
         jPanelTitledSeparator6.add(jXTitledSeparator20pixels2);
 
-        jPanelSep3x6.setMaximumSize(new java.awt.Dimension(3, 5));
-        jPanelSep3x6.setMinimumSize(new java.awt.Dimension(3, 5));
+        jPanelSep3x6.setMaximumSize(new Dimension(3, 5));
+        jPanelSep3x6.setMinimumSize(new Dimension(3, 5));
 
-        javax.swing.GroupLayout jPanelSep3x6Layout = new javax.swing.GroupLayout(jPanelSep3x6);
+        GroupLayout jPanelSep3x6Layout = new GroupLayout(jPanelSep3x6);
         jPanelSep3x6.setLayout(jPanelSep3x6Layout);
-        jPanelSep3x6Layout.setHorizontalGroup(
-            jPanelSep3x6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jPanelSep3x6Layout.setHorizontalGroup(jPanelSep3x6Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGap(0, 3, Short.MAX_VALUE)
         );
-        jPanelSep3x6Layout.setVerticalGroup(
-            jPanelSep3x6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jPanelSep3x6Layout.setVerticalGroup(jPanelSep3x6Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGap(0, 5, Short.MAX_VALUE)
         );
 
         jPanelTitledSeparator6.add(jPanelSep3x6);
 
-        jXTitledSeparator6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/kawansoft/app/parms/images/window_gear_24.png"))); // NOI18N
-        jXTitledSeparator6.setMaximumSize(new java.awt.Dimension(2147483647, 24));
+        jXTitledSeparator6.setIcon(new ImageIcon(getClass().getResource("/com/kawansoft/app/parms/images/window_gear_24.png"))); // NOI18N
+        jXTitledSeparator6.setMaximumSize(new Dimension(2147483647, 24));
         jXTitledSeparator6.setTitle("Configuration");
         jPanelTitledSeparator6.add(jXTitledSeparator6);
 
-        jPanelBlankRight1.setMaximumSize(new java.awt.Dimension(10, 10));
+        jPanelBlankRight1.setMaximumSize(new Dimension(10, 10));
 
-        javax.swing.GroupLayout jPanelBlankRight1Layout = new javax.swing.GroupLayout(jPanelBlankRight1);
+        GroupLayout jPanelBlankRight1Layout = new GroupLayout(jPanelBlankRight1);
         jPanelBlankRight1.setLayout(jPanelBlankRight1Layout);
-        jPanelBlankRight1Layout.setHorizontalGroup(
-            jPanelBlankRight1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jPanelBlankRight1Layout.setHorizontalGroup(jPanelBlankRight1Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGap(0, 10, Short.MAX_VALUE)
         );
-        jPanelBlankRight1Layout.setVerticalGroup(
-            jPanelBlankRight1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jPanelBlankRight1Layout.setVerticalGroup(jPanelBlankRight1Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGap(0, 10, Short.MAX_VALUE)
         );
 
@@ -1459,75 +1470,69 @@ public class AceQLManager extends javax.swing.JFrame {
 
         jPanelMain.add(jPanelTitledSeparator6);
 
-        jPanelSepBlanc8spaces3.setMaximumSize(new java.awt.Dimension(32767, 12));
-        jPanelSepBlanc8spaces3.setMinimumSize(new java.awt.Dimension(10, 12));
+        jPanelSepBlanc8spaces3.setMaximumSize(new Dimension(32767, 12));
+        jPanelSepBlanc8spaces3.setMinimumSize(new Dimension(10, 12));
         jPanelSepBlanc8spaces3.setName(""); // NOI18N
-        jPanelSepBlanc8spaces3.setPreferredSize(new java.awt.Dimension(1000, 12));
+        jPanelSepBlanc8spaces3.setPreferredSize(new Dimension(1000, 12));
         jPanelMain.add(jPanelSepBlanc8spaces3);
 
-        jPanelProperties.setMaximumSize(new java.awt.Dimension(2147483647, 32));
-        jPanelProperties.setMinimumSize(new java.awt.Dimension(91, 32));
-        jPanelProperties.setPreferredSize(new java.awt.Dimension(191, 32));
-        jPanelProperties.setLayout(new javax.swing.BoxLayout(jPanelProperties, javax.swing.BoxLayout.LINE_AXIS));
+        jPanelProperties.setMaximumSize(new Dimension(2147483647, 32));
+        jPanelProperties.setMinimumSize(new Dimension(91, 32));
+        jPanelProperties.setPreferredSize(new Dimension(191, 32));
+        jPanelProperties.setLayout(new BoxLayout(jPanelProperties, BoxLayout.LINE_AXIS));
 
-        jPanelLeft16.setMaximumSize(new java.awt.Dimension(10, 10));
+        jPanelLeft16.setMaximumSize(new Dimension(10, 10));
 
-        javax.swing.GroupLayout jPanelLeft16Layout = new javax.swing.GroupLayout(jPanelLeft16);
+        GroupLayout jPanelLeft16Layout = new GroupLayout(jPanelLeft16);
         jPanelLeft16.setLayout(jPanelLeft16Layout);
-        jPanelLeft16Layout.setHorizontalGroup(
-            jPanelLeft16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jPanelLeft16Layout.setHorizontalGroup(jPanelLeft16Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGap(0, 10, Short.MAX_VALUE)
         );
-        jPanelLeft16Layout.setVerticalGroup(
-            jPanelLeft16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jPanelLeft16Layout.setVerticalGroup(jPanelLeft16Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGap(0, 10, Short.MAX_VALUE)
         );
 
         jPanelProperties.add(jPanelLeft16);
 
-        jLabelPropertiesFile.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        jLabelPropertiesFile.setHorizontalAlignment(SwingConstants.TRAILING);
         jLabelPropertiesFile.setText("Properties File:");
-        jLabelPropertiesFile.setMaximumSize(new java.awt.Dimension(129, 16));
-        jLabelPropertiesFile.setMinimumSize(new java.awt.Dimension(129, 16));
+        jLabelPropertiesFile.setMaximumSize(new Dimension(129, 16));
+        jLabelPropertiesFile.setMinimumSize(new Dimension(129, 16));
         jLabelPropertiesFile.setName(""); // NOI18N
-        jLabelPropertiesFile.setPreferredSize(new java.awt.Dimension(129, 16));
+        jLabelPropertiesFile.setPreferredSize(new Dimension(129, 16));
         jPanelProperties.add(jLabelPropertiesFile);
 
-        jPanelLeft13.setMaximumSize(new java.awt.Dimension(5, 5));
-        jPanelLeft13.setMinimumSize(new java.awt.Dimension(5, 5));
+        jPanelLeft13.setMaximumSize(new Dimension(5, 5));
+        jPanelLeft13.setMinimumSize(new Dimension(5, 5));
 
-        javax.swing.GroupLayout jPanelLeft13Layout = new javax.swing.GroupLayout(jPanelLeft13);
+        GroupLayout jPanelLeft13Layout = new GroupLayout(jPanelLeft13);
         jPanelLeft13.setLayout(jPanelLeft13Layout);
-        jPanelLeft13Layout.setHorizontalGroup(
-            jPanelLeft13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jPanelLeft13Layout.setHorizontalGroup(jPanelLeft13Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGap(0, 5, Short.MAX_VALUE)
         );
-        jPanelLeft13Layout.setVerticalGroup(
-            jPanelLeft13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jPanelLeft13Layout.setVerticalGroup(jPanelLeft13Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGap(0, 5, Short.MAX_VALUE)
         );
 
         jPanelProperties.add(jPanelLeft13);
 
-        jTextFieldPropertiesFile.setMaximumSize(new java.awt.Dimension(2147483647, 22));
-        jTextFieldPropertiesFile.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jTextFieldPropertiesFile.setMaximumSize(new Dimension(2147483647, 22));
+        jTextFieldPropertiesFile.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 jTextFieldPropertiesFileActionPerformed(evt);
             }
         });
         jPanelProperties.add(jTextFieldPropertiesFile);
 
-        jPanelLeft14.setMaximumSize(new java.awt.Dimension(5, 5));
-        jPanelLeft14.setMinimumSize(new java.awt.Dimension(5, 5));
+        jPanelLeft14.setMaximumSize(new Dimension(5, 5));
+        jPanelLeft14.setMinimumSize(new Dimension(5, 5));
 
-        javax.swing.GroupLayout jPanelLeft14Layout = new javax.swing.GroupLayout(jPanelLeft14);
+        GroupLayout jPanelLeft14Layout = new GroupLayout(jPanelLeft14);
         jPanelLeft14.setLayout(jPanelLeft14Layout);
-        jPanelLeft14Layout.setHorizontalGroup(
-            jPanelLeft14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jPanelLeft14Layout.setHorizontalGroup(jPanelLeft14Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGap(0, 5, Short.MAX_VALUE)
         );
-        jPanelLeft14Layout.setVerticalGroup(
-            jPanelLeft14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jPanelLeft14Layout.setVerticalGroup(jPanelLeft14Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGap(0, 5, Short.MAX_VALUE)
         );
 
@@ -1535,24 +1540,22 @@ public class AceQLManager extends javax.swing.JFrame {
 
         jButtonBrowse.setText("Browse");
         jButtonBrowse.setToolTipText("");
-        jButtonBrowse.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jButtonBrowse.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 jButtonBrowseActionPerformed(evt);
             }
         });
         jPanelProperties.add(jButtonBrowse);
 
-        jPanelLeft15.setMaximumSize(new java.awt.Dimension(5, 5));
-        jPanelLeft15.setMinimumSize(new java.awt.Dimension(5, 5));
+        jPanelLeft15.setMaximumSize(new Dimension(5, 5));
+        jPanelLeft15.setMinimumSize(new Dimension(5, 5));
 
-        javax.swing.GroupLayout jPanelLeft15Layout = new javax.swing.GroupLayout(jPanelLeft15);
+        GroupLayout jPanelLeft15Layout = new GroupLayout(jPanelLeft15);
         jPanelLeft15.setLayout(jPanelLeft15Layout);
-        jPanelLeft15Layout.setHorizontalGroup(
-            jPanelLeft15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jPanelLeft15Layout.setHorizontalGroup(jPanelLeft15Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGap(0, 5, Short.MAX_VALUE)
         );
-        jPanelLeft15Layout.setVerticalGroup(
-            jPanelLeft15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jPanelLeft15Layout.setVerticalGroup(jPanelLeft15Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGap(0, 5, Short.MAX_VALUE)
         );
 
@@ -1560,24 +1563,22 @@ public class AceQLManager extends javax.swing.JFrame {
 
         jButtonEdit.setText("Edit");
         jButtonEdit.setToolTipText("");
-        jButtonEdit.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jButtonEdit.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 jButtonEditActionPerformed(evt);
             }
         });
         jPanelProperties.add(jButtonEdit);
 
-        jPanelEndField4.setMaximumSize(new java.awt.Dimension(50, 10));
-        jPanelEndField4.setMinimumSize(new java.awt.Dimension(50, 10));
+        jPanelEndField4.setMaximumSize(new Dimension(50, 10));
+        jPanelEndField4.setMinimumSize(new Dimension(50, 10));
 
-        javax.swing.GroupLayout jPanelEndField4Layout = new javax.swing.GroupLayout(jPanelEndField4);
+        GroupLayout jPanelEndField4Layout = new GroupLayout(jPanelEndField4);
         jPanelEndField4.setLayout(jPanelEndField4Layout);
-        jPanelEndField4Layout.setHorizontalGroup(
-            jPanelEndField4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jPanelEndField4Layout.setHorizontalGroup(jPanelEndField4Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGap(0, 50, Short.MAX_VALUE)
         );
-        jPanelEndField4Layout.setVerticalGroup(
-            jPanelEndField4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jPanelEndField4Layout.setVerticalGroup(jPanelEndField4Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGap(0, 10, Short.MAX_VALUE)
         );
 
@@ -1585,116 +1586,106 @@ public class AceQLManager extends javax.swing.JFrame {
 
         jPanelMain.add(jPanelProperties);
 
-        jPanelHost.setMaximumSize(new java.awt.Dimension(2147483647, 32));
-        jPanelHost.setMinimumSize(new java.awt.Dimension(91, 32));
-        jPanelHost.setPreferredSize(new java.awt.Dimension(191, 32));
-        jPanelHost.setLayout(new javax.swing.BoxLayout(jPanelHost, javax.swing.BoxLayout.LINE_AXIS));
+        jPanelHost.setMaximumSize(new Dimension(2147483647, 32));
+        jPanelHost.setMinimumSize(new Dimension(91, 32));
+        jPanelHost.setPreferredSize(new Dimension(191, 32));
+        jPanelHost.setLayout(new BoxLayout(jPanelHost, BoxLayout.LINE_AXIS));
 
-        jPanelLeft22.setMaximumSize(new java.awt.Dimension(10, 10));
+        jPanelLeft22.setMaximumSize(new Dimension(10, 10));
 
-        javax.swing.GroupLayout jPanelLeft22Layout = new javax.swing.GroupLayout(jPanelLeft22);
+        GroupLayout jPanelLeft22Layout = new GroupLayout(jPanelLeft22);
         jPanelLeft22.setLayout(jPanelLeft22Layout);
-        jPanelLeft22Layout.setHorizontalGroup(
-            jPanelLeft22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jPanelLeft22Layout.setHorizontalGroup(jPanelLeft22Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGap(0, 10, Short.MAX_VALUE)
         );
-        jPanelLeft22Layout.setVerticalGroup(
-            jPanelLeft22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jPanelLeft22Layout.setVerticalGroup(jPanelLeft22Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGap(0, 10, Short.MAX_VALUE)
         );
 
         jPanelHost.add(jPanelLeft22);
 
-        jLabelHost.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        jLabelHost.setHorizontalAlignment(SwingConstants.TRAILING);
         jLabelHost.setText("Host:");
-        jLabelHost.setMaximumSize(new java.awt.Dimension(129, 16));
-        jLabelHost.setMinimumSize(new java.awt.Dimension(129, 16));
+        jLabelHost.setMaximumSize(new Dimension(129, 16));
+        jLabelHost.setMinimumSize(new Dimension(129, 16));
         jLabelHost.setName(""); // NOI18N
-        jLabelHost.setPreferredSize(new java.awt.Dimension(129, 16));
+        jLabelHost.setPreferredSize(new Dimension(129, 16));
         jPanelHost.add(jLabelHost);
 
-        jPanelLeft17.setMaximumSize(new java.awt.Dimension(5, 5));
-        jPanelLeft17.setMinimumSize(new java.awt.Dimension(5, 5));
+        jPanelLeft17.setMaximumSize(new Dimension(5, 5));
+        jPanelLeft17.setMinimumSize(new Dimension(5, 5));
 
-        javax.swing.GroupLayout jPanelLeft17Layout = new javax.swing.GroupLayout(jPanelLeft17);
+        GroupLayout jPanelLeft17Layout = new GroupLayout(jPanelLeft17);
         jPanelLeft17.setLayout(jPanelLeft17Layout);
-        jPanelLeft17Layout.setHorizontalGroup(
-            jPanelLeft17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jPanelLeft17Layout.setHorizontalGroup(jPanelLeft17Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGap(0, 5, Short.MAX_VALUE)
         );
-        jPanelLeft17Layout.setVerticalGroup(
-            jPanelLeft17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jPanelLeft17Layout.setVerticalGroup(jPanelLeft17Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGap(0, 5, Short.MAX_VALUE)
         );
 
         jPanelHost.add(jPanelLeft17);
 
-        jTextFieldHost.setMaximumSize(new java.awt.Dimension(2147483647, 22));
-        jTextFieldHost.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jTextFieldHost.setMaximumSize(new Dimension(2147483647, 22));
+        jTextFieldHost.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 jTextFieldHostActionPerformed(evt);
             }
         });
         jPanelHost.add(jTextFieldHost);
 
-        jPanelLeft18.setMaximumSize(new java.awt.Dimension(5, 5));
-        jPanelLeft18.setMinimumSize(new java.awt.Dimension(5, 5));
+        jPanelLeft18.setMaximumSize(new Dimension(5, 5));
+        jPanelLeft18.setMinimumSize(new Dimension(5, 5));
 
-        javax.swing.GroupLayout jPanelLeft18Layout = new javax.swing.GroupLayout(jPanelLeft18);
+        GroupLayout jPanelLeft18Layout = new GroupLayout(jPanelLeft18);
         jPanelLeft18.setLayout(jPanelLeft18Layout);
-        jPanelLeft18Layout.setHorizontalGroup(
-            jPanelLeft18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jPanelLeft18Layout.setHorizontalGroup(jPanelLeft18Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGap(0, 5, Short.MAX_VALUE)
         );
-        jPanelLeft18Layout.setVerticalGroup(
-            jPanelLeft18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jPanelLeft18Layout.setVerticalGroup(jPanelLeft18Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGap(0, 5, Short.MAX_VALUE)
         );
 
         jPanelHost.add(jPanelLeft18);
 
-        jLabelHost1.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        jLabelHost1.setHorizontalAlignment(SwingConstants.TRAILING);
         jLabelHost1.setText("Port:");
         jLabelHost1.setName(""); // NOI18N
         jPanelHost.add(jLabelHost1);
 
-        jPanelLeft19.setMaximumSize(new java.awt.Dimension(5, 5));
-        jPanelLeft19.setMinimumSize(new java.awt.Dimension(5, 5));
+        jPanelLeft19.setMaximumSize(new Dimension(5, 5));
+        jPanelLeft19.setMinimumSize(new Dimension(5, 5));
 
-        javax.swing.GroupLayout jPanelLeft19Layout = new javax.swing.GroupLayout(jPanelLeft19);
+        GroupLayout jPanelLeft19Layout = new GroupLayout(jPanelLeft19);
         jPanelLeft19.setLayout(jPanelLeft19Layout);
-        jPanelLeft19Layout.setHorizontalGroup(
-            jPanelLeft19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jPanelLeft19Layout.setHorizontalGroup(jPanelLeft19Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGap(0, 5, Short.MAX_VALUE)
         );
-        jPanelLeft19Layout.setVerticalGroup(
-            jPanelLeft19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jPanelLeft19Layout.setVerticalGroup(jPanelLeft19Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGap(0, 5, Short.MAX_VALUE)
         );
 
         jPanelHost.add(jPanelLeft19);
 
-        jTextFieldPort.setMaximumSize(new java.awt.Dimension(100, 22));
-        jTextFieldPort.setMinimumSize(new java.awt.Dimension(100, 22));
-        jTextFieldPort.setPreferredSize(new java.awt.Dimension(50, 22));
-        jTextFieldPort.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jTextFieldPort.setMaximumSize(new Dimension(100, 22));
+        jTextFieldPort.setMinimumSize(new Dimension(100, 22));
+        jTextFieldPort.setPreferredSize(new Dimension(50, 22));
+        jTextFieldPort.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 jTextFieldPortActionPerformed(evt);
             }
         });
         jPanelHost.add(jTextFieldPort);
 
-        jPanelEndField6.setMaximumSize(new java.awt.Dimension(50, 10));
-        jPanelEndField6.setMinimumSize(new java.awt.Dimension(50, 10));
+        jPanelEndField6.setMaximumSize(new Dimension(50, 10));
+        jPanelEndField6.setMinimumSize(new Dimension(50, 10));
 
-        javax.swing.GroupLayout jPanelEndField6Layout = new javax.swing.GroupLayout(jPanelEndField6);
+        GroupLayout jPanelEndField6Layout = new GroupLayout(jPanelEndField6);
         jPanelEndField6.setLayout(jPanelEndField6Layout);
-        jPanelEndField6Layout.setHorizontalGroup(
-            jPanelEndField6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jPanelEndField6Layout.setHorizontalGroup(jPanelEndField6Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGap(0, 50, Short.MAX_VALUE)
         );
-        jPanelEndField6Layout.setVerticalGroup(
-            jPanelEndField6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jPanelEndField6Layout.setVerticalGroup(jPanelEndField6Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGap(0, 10, Short.MAX_VALUE)
         );
 
@@ -1702,44 +1693,40 @@ public class AceQLManager extends javax.swing.JFrame {
 
         jPanelMain.add(jPanelHost);
 
-        jPanelClasspath.setMaximumSize(new java.awt.Dimension(2147483647, 32));
-        jPanelClasspath.setMinimumSize(new java.awt.Dimension(91, 32));
-        jPanelClasspath.setPreferredSize(new java.awt.Dimension(191, 32));
-        jPanelClasspath.setLayout(new javax.swing.BoxLayout(jPanelClasspath, javax.swing.BoxLayout.LINE_AXIS));
+        jPanelClasspath.setMaximumSize(new Dimension(2147483647, 32));
+        jPanelClasspath.setMinimumSize(new Dimension(91, 32));
+        jPanelClasspath.setPreferredSize(new Dimension(191, 32));
+        jPanelClasspath.setLayout(new BoxLayout(jPanelClasspath, BoxLayout.LINE_AXIS));
 
-        jPanelLeft25.setMaximumSize(new java.awt.Dimension(10, 10));
+        jPanelLeft25.setMaximumSize(new Dimension(10, 10));
 
-        javax.swing.GroupLayout jPanelLeft25Layout = new javax.swing.GroupLayout(jPanelLeft25);
+        GroupLayout jPanelLeft25Layout = new GroupLayout(jPanelLeft25);
         jPanelLeft25.setLayout(jPanelLeft25Layout);
-        jPanelLeft25Layout.setHorizontalGroup(
-            jPanelLeft25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jPanelLeft25Layout.setHorizontalGroup(jPanelLeft25Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGap(0, 10, Short.MAX_VALUE)
         );
-        jPanelLeft25Layout.setVerticalGroup(
-            jPanelLeft25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jPanelLeft25Layout.setVerticalGroup(jPanelLeft25Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGap(0, 10, Short.MAX_VALUE)
         );
 
         jPanelClasspath.add(jPanelLeft25);
 
-        jLabelClasspath.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        jLabelClasspath.setMaximumSize(new java.awt.Dimension(129, 16));
-        jLabelClasspath.setMinimumSize(new java.awt.Dimension(129, 16));
+        jLabelClasspath.setHorizontalAlignment(SwingConstants.TRAILING);
+        jLabelClasspath.setMaximumSize(new Dimension(129, 16));
+        jLabelClasspath.setMinimumSize(new Dimension(129, 16));
         jLabelClasspath.setName(""); // NOI18N
-        jLabelClasspath.setPreferredSize(new java.awt.Dimension(129, 16));
+        jLabelClasspath.setPreferredSize(new Dimension(129, 16));
         jPanelClasspath.add(jLabelClasspath);
 
-        jPanelLeft21.setMaximumSize(new java.awt.Dimension(5, 5));
-        jPanelLeft21.setMinimumSize(new java.awt.Dimension(5, 5));
+        jPanelLeft21.setMaximumSize(new Dimension(5, 5));
+        jPanelLeft21.setMinimumSize(new Dimension(5, 5));
 
-        javax.swing.GroupLayout jPanelLeft21Layout = new javax.swing.GroupLayout(jPanelLeft21);
+        GroupLayout jPanelLeft21Layout = new GroupLayout(jPanelLeft21);
         jPanelLeft21.setLayout(jPanelLeft21Layout);
-        jPanelLeft21Layout.setHorizontalGroup(
-            jPanelLeft21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jPanelLeft21Layout.setHorizontalGroup(jPanelLeft21Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGap(0, 5, Short.MAX_VALUE)
         );
-        jPanelLeft21Layout.setVerticalGroup(
-            jPanelLeft21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jPanelLeft21Layout.setVerticalGroup(jPanelLeft21Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGap(0, 5, Short.MAX_VALUE)
         );
 
@@ -1747,8 +1734,8 @@ public class AceQLManager extends javax.swing.JFrame {
 
         jButtonDisplayClasspath.setText("Display CLASSPATH");
         jButtonDisplayClasspath.setToolTipText("");
-        jButtonDisplayClasspath.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jButtonDisplayClasspath.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 jButtonDisplayClasspathActionPerformed(evt);
             }
         });
@@ -1756,68 +1743,62 @@ public class AceQLManager extends javax.swing.JFrame {
 
         jPanelMain.add(jPanelClasspath);
 
-        jPanelSepBlanc8spaces.setMaximumSize(new java.awt.Dimension(32767, 8));
-        jPanelSepBlanc8spaces.setMinimumSize(new java.awt.Dimension(10, 8));
-        jPanelSepBlanc8spaces.setPreferredSize(new java.awt.Dimension(1000, 8));
+        jPanelSepBlanc8spaces.setMaximumSize(new Dimension(32767, 8));
+        jPanelSepBlanc8spaces.setMinimumSize(new Dimension(10, 8));
+        jPanelSepBlanc8spaces.setPreferredSize(new Dimension(1000, 8));
         jPanelMain.add(jPanelSepBlanc8spaces);
 
-        jPanelTitledSeparator5.setMinimumSize(new java.awt.Dimension(184, 24));
-        jPanelTitledSeparator5.setPreferredSize(new java.awt.Dimension(518, 24));
-        jPanelTitledSeparator5.setLayout(new javax.swing.BoxLayout(jPanelTitledSeparator5, javax.swing.BoxLayout.LINE_AXIS));
+        jPanelTitledSeparator5.setMinimumSize(new Dimension(184, 24));
+        jPanelTitledSeparator5.setPreferredSize(new Dimension(518, 24));
+        jPanelTitledSeparator5.setLayout(new BoxLayout(jPanelTitledSeparator5, BoxLayout.LINE_AXIS));
 
-        jPaneBlanklLeft2.setMaximumSize(new java.awt.Dimension(10, 10));
-        jPaneBlanklLeft2.setPreferredSize(new java.awt.Dimension(10, 11));
+        jPaneBlanklLeft2.setMaximumSize(new Dimension(10, 10));
+        jPaneBlanklLeft2.setPreferredSize(new Dimension(10, 11));
 
-        javax.swing.GroupLayout jPaneBlanklLeft2Layout = new javax.swing.GroupLayout(jPaneBlanklLeft2);
+        GroupLayout jPaneBlanklLeft2Layout = new GroupLayout(jPaneBlanklLeft2);
         jPaneBlanklLeft2.setLayout(jPaneBlanklLeft2Layout);
-        jPaneBlanklLeft2Layout.setHorizontalGroup(
-            jPaneBlanklLeft2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jPaneBlanklLeft2Layout.setHorizontalGroup(jPaneBlanklLeft2Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGap(0, 10, Short.MAX_VALUE)
         );
-        jPaneBlanklLeft2Layout.setVerticalGroup(
-            jPaneBlanklLeft2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jPaneBlanklLeft2Layout.setVerticalGroup(jPaneBlanklLeft2Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGap(0, 10, Short.MAX_VALUE)
         );
 
         jPanelTitledSeparator5.add(jPaneBlanklLeft2);
 
-        jXTitledSeparator20pixels1.setMaximumSize(new java.awt.Dimension(20, 16));
-        jXTitledSeparator20pixels1.setMinimumSize(new java.awt.Dimension(20, 16));
-        jXTitledSeparator20pixels1.setPreferredSize(new java.awt.Dimension(20, 16));
+        jXTitledSeparator20pixels1.setMaximumSize(new Dimension(20, 16));
+        jXTitledSeparator20pixels1.setMinimumSize(new Dimension(20, 16));
+        jXTitledSeparator20pixels1.setPreferredSize(new Dimension(20, 16));
         jXTitledSeparator20pixels1.setTitle("");
         jPanelTitledSeparator5.add(jXTitledSeparator20pixels1);
 
-        jPanelSep3x7.setMaximumSize(new java.awt.Dimension(3, 5));
-        jPanelSep3x7.setMinimumSize(new java.awt.Dimension(3, 5));
+        jPanelSep3x7.setMaximumSize(new Dimension(3, 5));
+        jPanelSep3x7.setMinimumSize(new Dimension(3, 5));
 
-        javax.swing.GroupLayout jPanelSep3x7Layout = new javax.swing.GroupLayout(jPanelSep3x7);
+        GroupLayout jPanelSep3x7Layout = new GroupLayout(jPanelSep3x7);
         jPanelSep3x7.setLayout(jPanelSep3x7Layout);
-        jPanelSep3x7Layout.setHorizontalGroup(
-            jPanelSep3x7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jPanelSep3x7Layout.setHorizontalGroup(jPanelSep3x7Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGap(0, 3, Short.MAX_VALUE)
         );
-        jPanelSep3x7Layout.setVerticalGroup(
-            jPanelSep3x7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jPanelSep3x7Layout.setVerticalGroup(jPanelSep3x7Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGap(0, 5, Short.MAX_VALUE)
         );
 
         jPanelTitledSeparator5.add(jPanelSep3x7);
 
-        jXTitledSeparator5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/kawansoft/app/parms/images/bullet_triangle_green.png"))); // NOI18N
-        jXTitledSeparator5.setMaximumSize(new java.awt.Dimension(2147483647, 24));
+        jXTitledSeparator5.setIcon(new ImageIcon(getClass().getResource("/com/kawansoft/app/parms/images/bullet_triangle_green.png"))); // NOI18N
+        jXTitledSeparator5.setMaximumSize(new Dimension(2147483647, 24));
         jXTitledSeparator5.setTitle("Server Start & Stop");
         jPanelTitledSeparator5.add(jXTitledSeparator5);
 
-        jPanelBlankRight2.setMaximumSize(new java.awt.Dimension(10, 10));
+        jPanelBlankRight2.setMaximumSize(new Dimension(10, 10));
 
-        javax.swing.GroupLayout jPanelBlankRight2Layout = new javax.swing.GroupLayout(jPanelBlankRight2);
+        GroupLayout jPanelBlankRight2Layout = new GroupLayout(jPanelBlankRight2);
         jPanelBlankRight2.setLayout(jPanelBlankRight2Layout);
-        jPanelBlankRight2Layout.setHorizontalGroup(
-            jPanelBlankRight2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jPanelBlankRight2Layout.setHorizontalGroup(jPanelBlankRight2Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGap(0, 10, Short.MAX_VALUE)
         );
-        jPanelBlankRight2Layout.setVerticalGroup(
-            jPanelBlankRight2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jPanelBlankRight2Layout.setVerticalGroup(jPanelBlankRight2Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGap(0, 10, Short.MAX_VALUE)
         );
 
@@ -1825,27 +1806,25 @@ public class AceQLManager extends javax.swing.JFrame {
 
         jPanelMain.add(jPanelTitledSeparator5);
 
-        jPanelSepBlanc8spaces5.setMaximumSize(new java.awt.Dimension(32767, 12));
-        jPanelSepBlanc8spaces5.setMinimumSize(new java.awt.Dimension(10, 12));
+        jPanelSepBlanc8spaces5.setMaximumSize(new Dimension(32767, 12));
+        jPanelSepBlanc8spaces5.setMinimumSize(new Dimension(10, 12));
         jPanelSepBlanc8spaces5.setName(""); // NOI18N
-        jPanelSepBlanc8spaces5.setPreferredSize(new java.awt.Dimension(1000, 12));
+        jPanelSepBlanc8spaces5.setPreferredSize(new Dimension(1000, 12));
         jPanelMain.add(jPanelSepBlanc8spaces5);
 
-        jPanelURL.setMaximumSize(new java.awt.Dimension(2147483647, 32));
-        jPanelURL.setMinimumSize(new java.awt.Dimension(91, 32));
-        jPanelURL.setPreferredSize(new java.awt.Dimension(191, 32));
-        jPanelURL.setLayout(new javax.swing.BoxLayout(jPanelURL, javax.swing.BoxLayout.LINE_AXIS));
+        jPanelURL.setMaximumSize(new Dimension(2147483647, 32));
+        jPanelURL.setMinimumSize(new Dimension(91, 32));
+        jPanelURL.setPreferredSize(new Dimension(191, 32));
+        jPanelURL.setLayout(new BoxLayout(jPanelURL, BoxLayout.LINE_AXIS));
 
-        jPanelLeft24.setMaximumSize(new java.awt.Dimension(10, 10));
+        jPanelLeft24.setMaximumSize(new Dimension(10, 10));
 
-        javax.swing.GroupLayout jPanelLeft24Layout = new javax.swing.GroupLayout(jPanelLeft24);
+        GroupLayout jPanelLeft24Layout = new GroupLayout(jPanelLeft24);
         jPanelLeft24.setLayout(jPanelLeft24Layout);
-        jPanelLeft24Layout.setHorizontalGroup(
-            jPanelLeft24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jPanelLeft24Layout.setHorizontalGroup(jPanelLeft24Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGap(0, 10, Short.MAX_VALUE)
         );
-        jPanelLeft24Layout.setVerticalGroup(
-            jPanelLeft24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jPanelLeft24Layout.setVerticalGroup(jPanelLeft24Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGap(0, 10, Short.MAX_VALUE)
         );
 
@@ -1855,40 +1834,38 @@ public class AceQLManager extends javax.swing.JFrame {
         jLabelURL.setName(""); // NOI18N
         jPanelURL.add(jLabelURL);
 
-        jPanelLeft20.setMaximumSize(new java.awt.Dimension(5, 5));
-        jPanelLeft20.setMinimumSize(new java.awt.Dimension(5, 5));
+        jPanelLeft20.setMaximumSize(new Dimension(5, 5));
+        jPanelLeft20.setMinimumSize(new Dimension(5, 5));
 
-        javax.swing.GroupLayout jPanelLeft20Layout = new javax.swing.GroupLayout(jPanelLeft20);
+        GroupLayout jPanelLeft20Layout = new GroupLayout(jPanelLeft20);
         jPanelLeft20.setLayout(jPanelLeft20Layout);
-        jPanelLeft20Layout.setHorizontalGroup(
-            jPanelLeft20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jPanelLeft20Layout.setHorizontalGroup(jPanelLeft20Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGap(0, 5, Short.MAX_VALUE)
         );
-        jPanelLeft20Layout.setVerticalGroup(
-            jPanelLeft20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jPanelLeft20Layout.setVerticalGroup(jPanelLeft20Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGap(0, 5, Short.MAX_VALUE)
         );
 
         jPanelURL.add(jPanelLeft20);
 
-        jButtonURL.setForeground(new java.awt.Color(0, 0, 255));
+        jButtonURL.setForeground(new Color(0, 0, 255));
         jButtonURL.setText("http://localhost:9090/aceql");
         jButtonURL.setToolTipText("");
         jButtonURL.setBorder(null);
         jButtonURL.setBorderPainted(false);
         jButtonURL.setContentAreaFilled(false);
         jButtonURL.setFocusPainted(false);
-        jButtonURL.setMargin(new java.awt.Insets(2, 0, 2, 0));
-        jButtonURL.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
+        jButtonURL.setMargin(new Insets(2, 0, 2, 0));
+        jButtonURL.addMouseListener(new MouseAdapter() {
+            public void mouseEntered(MouseEvent evt) {
                 jButtonURLMouseEntered(evt);
             }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
+            public void mouseExited(MouseEvent evt) {
                 jButtonURLMouseExited(evt);
             }
         });
-        jButtonURL.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jButtonURL.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 jButtonURLActionPerformed(evt);
             }
         });
@@ -1896,21 +1873,19 @@ public class AceQLManager extends javax.swing.JFrame {
 
         jPanelMain.add(jPanelURL);
 
-        jPanelRadioStandard.setMaximumSize(new java.awt.Dimension(2147483647, 32));
-        jPanelRadioStandard.setMinimumSize(new java.awt.Dimension(91, 32));
-        jPanelRadioStandard.setPreferredSize(new java.awt.Dimension(191, 32));
-        jPanelRadioStandard.setLayout(new javax.swing.BoxLayout(jPanelRadioStandard, javax.swing.BoxLayout.LINE_AXIS));
+        jPanelRadioStandard.setMaximumSize(new Dimension(2147483647, 32));
+        jPanelRadioStandard.setMinimumSize(new Dimension(91, 32));
+        jPanelRadioStandard.setPreferredSize(new Dimension(191, 32));
+        jPanelRadioStandard.setLayout(new BoxLayout(jPanelRadioStandard, BoxLayout.LINE_AXIS));
 
-        jPanelLeft23.setMaximumSize(new java.awt.Dimension(10, 10));
+        jPanelLeft23.setMaximumSize(new Dimension(10, 10));
 
-        javax.swing.GroupLayout jPanelLeft23Layout = new javax.swing.GroupLayout(jPanelLeft23);
+        GroupLayout jPanelLeft23Layout = new GroupLayout(jPanelLeft23);
         jPanelLeft23.setLayout(jPanelLeft23Layout);
-        jPanelLeft23Layout.setHorizontalGroup(
-            jPanelLeft23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jPanelLeft23Layout.setHorizontalGroup(jPanelLeft23Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGap(0, 0, Short.MAX_VALUE)
         );
-        jPanelLeft23Layout.setVerticalGroup(
-            jPanelLeft23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jPanelLeft23Layout.setVerticalGroup(jPanelLeft23Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGap(0, 10, Short.MAX_VALUE)
         );
 
@@ -1925,25 +1900,23 @@ public class AceQLManager extends javax.swing.JFrame {
 
         jPanelMain.add(jPanelRadioStandard);
 
-        jPanelButtonStartStop.setLayout(new javax.swing.BoxLayout(jPanelButtonStartStop, javax.swing.BoxLayout.Y_AXIS));
+        jPanelButtonStartStop.setLayout(new BoxLayout(jPanelButtonStartStop, BoxLayout.Y_AXIS));
 
-        jPanelButtonsStartStandard.setMaximumSize(new java.awt.Dimension(2147483647, 32));
-        jPanelButtonsStartStandard.setMinimumSize(new java.awt.Dimension(91, 32));
-        jPanelButtonsStartStandard.setPreferredSize(new java.awt.Dimension(191, 32));
-        jPanelButtonsStartStandard.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
+        jPanelButtonsStartStandard.setMaximumSize(new Dimension(2147483647, 32));
+        jPanelButtonsStartStandard.setMinimumSize(new Dimension(91, 32));
+        jPanelButtonsStartStandard.setPreferredSize(new Dimension(191, 32));
+        jPanelButtonsStartStandard.setLayout(new FlowLayout(FlowLayout.LEFT));
 
-        jPanelLeft31.setMaximumSize(new java.awt.Dimension(15, 10));
-        jPanelLeft31.setMinimumSize(new java.awt.Dimension(15, 10));
-        jPanelLeft31.setPreferredSize(new java.awt.Dimension(15, 10));
+        jPanelLeft31.setMaximumSize(new Dimension(15, 10));
+        jPanelLeft31.setMinimumSize(new Dimension(15, 10));
+        jPanelLeft31.setPreferredSize(new Dimension(15, 10));
 
-        javax.swing.GroupLayout jPanelLeft31Layout = new javax.swing.GroupLayout(jPanelLeft31);
+        GroupLayout jPanelLeft31Layout = new GroupLayout(jPanelLeft31);
         jPanelLeft31.setLayout(jPanelLeft31Layout);
-        jPanelLeft31Layout.setHorizontalGroup(
-            jPanelLeft31Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jPanelLeft31Layout.setHorizontalGroup(jPanelLeft31Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGap(0, 15, Short.MAX_VALUE)
         );
-        jPanelLeft31Layout.setVerticalGroup(
-            jPanelLeft31Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jPanelLeft31Layout.setVerticalGroup(jPanelLeft31Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGap(0, 10, Short.MAX_VALUE)
         );
 
@@ -1951,8 +1924,8 @@ public class AceQLManager extends javax.swing.JFrame {
 
         jButtonStart.setText("Start Server");
         jButtonStart.setToolTipText("");
-        jButtonStart.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jButtonStart.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 jButtonStartActionPerformed(evt);
             }
         });
@@ -1960,21 +1933,21 @@ public class AceQLManager extends javax.swing.JFrame {
 
         jButtonStop.setText("Stop Server");
         jButtonStop.setToolTipText("");
-        jButtonStop.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jButtonStop.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 jButtonStopActionPerformed(evt);
             }
         });
         jPanelButtonsStartStandard.add(jButtonStop);
 
-        jPaneSepInstallAndStart1.setMaximumSize(new java.awt.Dimension(10, 10));
-        jPaneSepInstallAndStart1.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
+        jPaneSepInstallAndStart1.setMaximumSize(new Dimension(10, 10));
+        jPaneSepInstallAndStart1.setLayout(new FlowLayout(FlowLayout.LEFT));
         jPanelButtonsStartStandard.add(jPaneSepInstallAndStart1);
 
         jButtonDisplayConsole.setText("Show Console");
         jButtonDisplayConsole.setToolTipText("");
-        jButtonDisplayConsole.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jButtonDisplayConsole.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 jButtonDisplayConsoleActionPerformed(evt);
             }
         });
@@ -1982,26 +1955,24 @@ public class AceQLManager extends javax.swing.JFrame {
 
         jPanelButtonStartStop.add(jPanelButtonsStartStandard);
 
-        jPanelSepBlanc8spaces4.setMaximumSize(new java.awt.Dimension(32767, 14));
-        jPanelSepBlanc8spaces4.setMinimumSize(new java.awt.Dimension(10, 14));
-        jPanelSepBlanc8spaces4.setPreferredSize(new java.awt.Dimension(1000, 14));
+        jPanelSepBlanc8spaces4.setMaximumSize(new Dimension(32767, 14));
+        jPanelSepBlanc8spaces4.setMinimumSize(new Dimension(10, 14));
+        jPanelSepBlanc8spaces4.setPreferredSize(new Dimension(1000, 14));
         jPanelButtonStartStop.add(jPanelSepBlanc8spaces4);
 
-        jPanelRadioService.setMaximumSize(new java.awt.Dimension(32767, 32));
-        jPanelRadioService.setMinimumSize(new java.awt.Dimension(91, 32));
-        jPanelRadioService.setPreferredSize(new java.awt.Dimension(191, 32));
-        jPanelRadioService.setLayout(new javax.swing.BoxLayout(jPanelRadioService, javax.swing.BoxLayout.LINE_AXIS));
+        jPanelRadioService.setMaximumSize(new Dimension(32767, 32));
+        jPanelRadioService.setMinimumSize(new Dimension(91, 32));
+        jPanelRadioService.setPreferredSize(new Dimension(191, 32));
+        jPanelRadioService.setLayout(new BoxLayout(jPanelRadioService, BoxLayout.LINE_AXIS));
 
-        jPanelLeft26.setMaximumSize(new java.awt.Dimension(10, 10));
+        jPanelLeft26.setMaximumSize(new Dimension(10, 10));
 
-        javax.swing.GroupLayout jPanelLeft26Layout = new javax.swing.GroupLayout(jPanelLeft26);
+        GroupLayout jPanelLeft26Layout = new GroupLayout(jPanelLeft26);
         jPanelLeft26.setLayout(jPanelLeft26Layout);
-        jPanelLeft26Layout.setHorizontalGroup(
-            jPanelLeft26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jPanelLeft26Layout.setHorizontalGroup(jPanelLeft26Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGap(0, 0, Short.MAX_VALUE)
         );
-        jPanelLeft26Layout.setVerticalGroup(
-            jPanelLeft26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jPanelLeft26Layout.setVerticalGroup(jPanelLeft26Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGap(0, 10, Short.MAX_VALUE)
         );
 
@@ -2017,23 +1988,21 @@ public class AceQLManager extends javax.swing.JFrame {
 
         jPanelButtonStartStop.add(jPanelRadioService);
 
-        jPanelButtonsStartService.setMaximumSize(new java.awt.Dimension(2147483647, 32));
-        jPanelButtonsStartService.setMinimumSize(new java.awt.Dimension(91, 32));
-        jPanelButtonsStartService.setPreferredSize(new java.awt.Dimension(191, 32));
-        jPanelButtonsStartService.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
+        jPanelButtonsStartService.setMaximumSize(new Dimension(2147483647, 32));
+        jPanelButtonsStartService.setMinimumSize(new Dimension(91, 32));
+        jPanelButtonsStartService.setPreferredSize(new Dimension(191, 32));
+        jPanelButtonsStartService.setLayout(new FlowLayout(FlowLayout.LEFT));
 
-        jPanelLeft33.setMaximumSize(new java.awt.Dimension(15, 10));
-        jPanelLeft33.setMinimumSize(new java.awt.Dimension(15, 10));
-        jPanelLeft33.setPreferredSize(new java.awt.Dimension(15, 10));
+        jPanelLeft33.setMaximumSize(new Dimension(15, 10));
+        jPanelLeft33.setMinimumSize(new Dimension(15, 10));
+        jPanelLeft33.setPreferredSize(new Dimension(15, 10));
 
-        javax.swing.GroupLayout jPanelLeft33Layout = new javax.swing.GroupLayout(jPanelLeft33);
+        GroupLayout jPanelLeft33Layout = new GroupLayout(jPanelLeft33);
         jPanelLeft33.setLayout(jPanelLeft33Layout);
-        jPanelLeft33Layout.setHorizontalGroup(
-            jPanelLeft33Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jPanelLeft33Layout.setHorizontalGroup(jPanelLeft33Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGap(0, 15, Short.MAX_VALUE)
         );
-        jPanelLeft33Layout.setVerticalGroup(
-            jPanelLeft33Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jPanelLeft33Layout.setVerticalGroup(jPanelLeft33Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGap(0, 10, Short.MAX_VALUE)
         );
 
@@ -2041,8 +2010,8 @@ public class AceQLManager extends javax.swing.JFrame {
 
         jButtonStartService.setText("Start Service");
         jButtonStartService.setToolTipText("");
-        jButtonStartService.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jButtonStartService.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 jButtonStartServiceActionPerformed(evt);
             }
         });
@@ -2050,29 +2019,29 @@ public class AceQLManager extends javax.swing.JFrame {
 
         jButtonStopService.setText("Stop Service");
         jButtonStopService.setToolTipText("");
-        jButtonStopService.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jButtonStopService.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 jButtonStopServiceActionPerformed(evt);
             }
         });
         jPanelButtonsStartService.add(jButtonStopService);
 
-        jPaneSep2.setMaximumSize(new java.awt.Dimension(10, 10));
-        jPaneSep2.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
+        jPaneSep2.setMaximumSize(new Dimension(10, 10));
+        jPaneSep2.setLayout(new FlowLayout(FlowLayout.LEFT));
         jPanelButtonsStartService.add(jPaneSep2);
 
         jButtonDisplayLogs.setText("Service Logs");
         jButtonDisplayLogs.setToolTipText("");
-        jButtonDisplayLogs.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jButtonDisplayLogs.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 jButtonDisplayLogsActionPerformed(evt);
             }
         });
         jPanelButtonsStartService.add(jButtonDisplayLogs);
 
         jButtonServicesConsole.setText("Services Console");
-        jButtonServicesConsole.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jButtonServicesConsole.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 jButtonServicesConsoleActionPerformed(evt);
             }
         });
@@ -2082,45 +2051,41 @@ public class AceQLManager extends javax.swing.JFrame {
 
         jPanelMain.add(jPanelButtonStartStop);
 
-        jPanelSepBlanc8spaces8.setMaximumSize(new java.awt.Dimension(32767, 42));
-        jPanelSepBlanc8spaces8.setMinimumSize(new java.awt.Dimension(10, 42));
-        jPanelSepBlanc8spaces8.setPreferredSize(new java.awt.Dimension(1000, 42));
+        jPanelSepBlanc8spaces8.setMaximumSize(new Dimension(32767, 42));
+        jPanelSepBlanc8spaces8.setMinimumSize(new Dimension(10, 42));
+        jPanelSepBlanc8spaces8.setPreferredSize(new Dimension(1000, 42));
         jPanelMain.add(jPanelSepBlanc8spaces8);
 
-        jPanelSepLine2New.setMaximumSize(new java.awt.Dimension(32787, 10));
-        jPanelSepLine2New.setMinimumSize(new java.awt.Dimension(0, 10));
-        jPanelSepLine2New.setPreferredSize(new java.awt.Dimension(20, 10));
-        jPanelSepLine2New.setLayout(new javax.swing.BoxLayout(jPanelSepLine2New, javax.swing.BoxLayout.LINE_AXIS));
+        jPanelSepLine2New.setMaximumSize(new Dimension(32787, 10));
+        jPanelSepLine2New.setMinimumSize(new Dimension(0, 10));
+        jPanelSepLine2New.setPreferredSize(new Dimension(20, 10));
+        jPanelSepLine2New.setLayout(new BoxLayout(jPanelSepLine2New, BoxLayout.LINE_AXIS));
 
-        jPanel28.setMaximumSize(new java.awt.Dimension(10, 5));
-        jPanel28.setMinimumSize(new java.awt.Dimension(10, 5));
-        jPanel28.setPreferredSize(new java.awt.Dimension(10, 5));
+        jPanel28.setMaximumSize(new Dimension(10, 5));
+        jPanel28.setMinimumSize(new Dimension(10, 5));
+        jPanel28.setPreferredSize(new Dimension(10, 5));
 
-        javax.swing.GroupLayout jPanel28Layout = new javax.swing.GroupLayout(jPanel28);
+        GroupLayout jPanel28Layout = new GroupLayout(jPanel28);
         jPanel28.setLayout(jPanel28Layout);
-        jPanel28Layout.setHorizontalGroup(
-            jPanel28Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jPanel28Layout.setHorizontalGroup(jPanel28Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGap(0, 10, Short.MAX_VALUE)
         );
-        jPanel28Layout.setVerticalGroup(
-            jPanel28Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jPanel28Layout.setVerticalGroup(jPanel28Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGap(0, 5, Short.MAX_VALUE)
         );
 
         jPanelSepLine2New.add(jPanel28);
         jPanelSepLine2New.add(jSeparator2);
 
-        jPanel29.setMaximumSize(new java.awt.Dimension(10, 5));
-        jPanel29.setMinimumSize(new java.awt.Dimension(10, 5));
+        jPanel29.setMaximumSize(new Dimension(10, 5));
+        jPanel29.setMinimumSize(new Dimension(10, 5));
 
-        javax.swing.GroupLayout jPanel29Layout = new javax.swing.GroupLayout(jPanel29);
+        GroupLayout jPanel29Layout = new GroupLayout(jPanel29);
         jPanel29.setLayout(jPanel29Layout);
-        jPanel29Layout.setHorizontalGroup(
-            jPanel29Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jPanel29Layout.setHorizontalGroup(jPanel29Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGap(0, 10, Short.MAX_VALUE)
         );
-        jPanel29Layout.setVerticalGroup(
-            jPanel29Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jPanel29Layout.setVerticalGroup(jPanel29Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGap(0, 5, Short.MAX_VALUE)
         );
 
@@ -2128,53 +2093,51 @@ public class AceQLManager extends javax.swing.JFrame {
 
         jPanelMain.add(jPanelSepLine2New);
 
-        jPanelBottom.setMaximumSize(new java.awt.Dimension(65544, 45));
-        jPanelBottom.setLayout(new javax.swing.BoxLayout(jPanelBottom, javax.swing.BoxLayout.LINE_AXIS));
+        jPanelBottom.setMaximumSize(new Dimension(65544, 45));
+        jPanelBottom.setLayout(new BoxLayout(jPanelBottom, BoxLayout.LINE_AXIS));
 
-        jPanel2.setMaximumSize(new java.awt.Dimension(10, 10));
-        jPanel2.setMinimumSize(new java.awt.Dimension(10, 11));
-        jPanel2.setPreferredSize(new java.awt.Dimension(10, 11));
-        jPanel2.setLayout(new javax.swing.BoxLayout(jPanel2, javax.swing.BoxLayout.LINE_AXIS));
+        jPanel2.setMaximumSize(new Dimension(10, 10));
+        jPanel2.setMinimumSize(new Dimension(10, 11));
+        jPanel2.setPreferredSize(new Dimension(10, 11));
+        jPanel2.setLayout(new BoxLayout(jPanel2, BoxLayout.LINE_AXIS));
         jPanelBottom.add(jPanel2);
 
-        jPanelButtons.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT));
+        jPanelButtons.setLayout(new FlowLayout(FlowLayout.RIGHT));
 
         jButtonOk.setText("OK");
-        jButtonOk.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jButtonOk.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 jButtonOkActionPerformed(evt);
             }
         });
         jPanelButtons.add(jButtonOk);
 
         jButtonApply.setText("Apply");
-        jButtonApply.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jButtonApply.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 jButtonApplyActionPerformed(evt);
             }
         });
         jPanelButtons.add(jButtonApply);
 
         jButtonHelp.setText("Help");
-        jButtonHelp.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jButtonHelp.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 jButtonHelpActionPerformed(evt);
             }
         });
         jPanelButtons.add(jButtonHelp);
 
-        jPanel1.setMaximumSize(new java.awt.Dimension(1, 1));
-        jPanel1.setMinimumSize(new java.awt.Dimension(1, 1));
-        jPanel1.setPreferredSize(new java.awt.Dimension(0, 0));
+        jPanel1.setMaximumSize(new Dimension(1, 1));
+        jPanel1.setMinimumSize(new Dimension(1, 1));
+        jPanel1.setPreferredSize(new Dimension(0, 0));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        GroupLayout jPanel1Layout = new GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jPanel1Layout.setHorizontalGroup(jPanel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGap(0, 1, Short.MAX_VALUE)
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jPanel1Layout.setVerticalGroup(jPanel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGap(0, 1, Short.MAX_VALUE)
         );
 
@@ -2189,24 +2152,24 @@ public class AceQLManager extends javax.swing.JFrame {
         jMenuFile.setText("File");
 
         jMenuItemServiceInstall.setText("Service Installation");
-        jMenuItemServiceInstall.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jMenuItemServiceInstall.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 jMenuItemServiceInstallActionPerformed(evt);
             }
         });
         jMenuFile.add(jMenuItemServiceInstall);
 
         jMenuItemClose.setText("Close");
-        jMenuItemClose.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jMenuItemClose.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 jMenuItemCloseActionPerformed(evt);
             }
         });
         jMenuFile.add(jMenuItemClose);
 
         jMenuItemQuit.setText("Quit");
-        jMenuItemQuit.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jMenuItemQuit.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 jMenuItemQuitActionPerformed(evt);
             }
         });
@@ -2216,19 +2179,19 @@ public class AceQLManager extends javax.swing.JFrame {
 
         jMenuOptions.setText("Options");
 
-        jMenuCheckForUpdates.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F5, 0));
+        jMenuCheckForUpdates.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F5, 0));
         jMenuCheckForUpdates.setText("Check for updates (new version)");
-        jMenuCheckForUpdates.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jMenuCheckForUpdates.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 jMenuCheckForUpdatesActionPerformed(evt);
             }
         });
         jMenuOptions.add(jMenuCheckForUpdates);
 
-        jMenuItemResetWindows.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F6, 0));
+        jMenuItemResetWindows.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F6, 0));
         jMenuItemResetWindows.setText("Reset Windows");
-        jMenuItemResetWindows.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jMenuItemResetWindows.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 jMenuItemResetWindowsActionPerformed(evt);
             }
         });
@@ -2238,39 +2201,39 @@ public class AceQLManager extends javax.swing.JFrame {
 
         jMenuHelp.setText("Help");
 
-        jMenuItemHelp.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F1, 0));
-        jMenuItemHelp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/kawansoft/app/parms/images/symbol_questionmark_16.png"))); // NOI18N
+        jMenuItemHelp.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F1, 0));
+        jMenuItemHelp.setIcon(new ImageIcon(getClass().getResource("/com/kawansoft/app/parms/images/symbol_questionmark_16.png"))); // NOI18N
         jMenuItemHelp.setText("Main Help");
-        jMenuItemHelp.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jMenuItemHelp.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 jMenuItemHelpActionPerformed(evt);
             }
         });
         jMenuHelp.add(jMenuItemHelp);
 
         jMenuItemReleaseNotes.setText("Release Notes");
-        jMenuItemReleaseNotes.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jMenuItemReleaseNotes.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 jMenuItemReleaseNotesActionPerformed(evt);
             }
         });
         jMenuHelp.add(jMenuItemReleaseNotes);
         jMenuHelp.add(jSeparator3);
 
-        jMenuItemSystemInfo.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F11, 0));
-        jMenuItemSystemInfo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/kawansoft/app/parms/images/about_16.png"))); // NOI18N
+        jMenuItemSystemInfo.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F11, 0));
+        jMenuItemSystemInfo.setIcon(new ImageIcon(getClass().getResource("/com/kawansoft/app/parms/images/about_16.png"))); // NOI18N
         jMenuItemSystemInfo.setText("System Info");
-        jMenuItemSystemInfo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jMenuItemSystemInfo.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 jMenuItemSystemInfoActionPerformed(evt);
             }
         });
         jMenuHelp.add(jMenuItemSystemInfo);
 
-        jMenuItemAbout.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F12, 0));
+        jMenuItemAbout.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F12, 0));
         jMenuItemAbout.setText("About");
-        jMenuItemAbout.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jMenuItemAbout.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 jMenuItemAboutActionPerformed(evt);
             }
         });
@@ -2283,11 +2246,11 @@ public class AceQLManager extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButtonOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOkActionPerformed
+    private void jButtonOkActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jButtonOkActionPerformed
         actionOk();
     }//GEN-LAST:event_jButtonOkActionPerformed
 
-    private void jButtonHelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonHelpActionPerformed
+    private void jButtonHelpActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jButtonHelpActionPerformed
         help();
     }//GEN-LAST:event_jButtonHelpActionPerformed
 
@@ -2299,32 +2262,32 @@ public class AceQLManager extends javax.swing.JFrame {
         help = new Help(this, "help_aceql_manager");
     }
 
-    private void jButtonApplyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonApplyActionPerformed
+    private void jButtonApplyActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jButtonApplyActionPerformed
         actionApply();
 
     }//GEN-LAST:event_jButtonApplyActionPerformed
 
-    private void jTextFieldPropertiesFileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldPropertiesFileActionPerformed
+    private void jTextFieldPropertiesFileActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jTextFieldPropertiesFileActionPerformed
         // TODO addDropedFiles your handling code here:
     }//GEN-LAST:event_jTextFieldPropertiesFileActionPerformed
 
-    private void jTextFieldHostActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldHostActionPerformed
+    private void jTextFieldHostActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jTextFieldHostActionPerformed
         // TODO addDropedFiles your handling code here:
     }//GEN-LAST:event_jTextFieldHostActionPerformed
 
-    private void jTextFieldPortActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldPortActionPerformed
+    private void jTextFieldPortActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jTextFieldPortActionPerformed
         // TODO addDropedFiles your handling code here:
     }//GEN-LAST:event_jTextFieldPortActionPerformed
 
-    private void jButtonURLMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonURLMouseEntered
+    private void jButtonURLMouseEntered(MouseEvent evt) {//GEN-FIRST:event_jButtonURLMouseEntered
         this.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
     }//GEN-LAST:event_jButtonURLMouseEntered
 
-    private void jButtonURLMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonURLMouseExited
+    private void jButtonURLMouseExited(MouseEvent evt) {//GEN-FIRST:event_jButtonURLMouseExited
         this.setCursor(Cursor.getDefaultCursor());
     }//GEN-LAST:event_jButtonURLMouseExited
 
-    private void jButtonURLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonURLActionPerformed
+    private void jButtonURLActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jButtonURLActionPerformed
         try {
 
             Desktop.getDesktop().browse(new URI(jButtonURL.getText()));
@@ -2336,7 +2299,7 @@ public class AceQLManager extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButtonURLActionPerformed
 
-    private void jButtonBrowseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBrowseActionPerformed
+    private void jButtonBrowseActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jButtonBrowseActionPerformed
 
         jButtonApply.setEnabled(true);
 
@@ -2352,7 +2315,7 @@ public class AceQLManager extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButtonBrowseActionPerformed
 
-    private void jButtonEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditActionPerformed
+    private void jButtonEditActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jButtonEditActionPerformed
         try {
 
             jButtonApply.setEnabled(true);
@@ -2391,15 +2354,15 @@ public class AceQLManager extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButtonEditActionPerformed
 
-    private void jButtonStartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonStartActionPerformed
+    private void jButtonStartActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jButtonStartActionPerformed
         startStandard();
     }//GEN-LAST:event_jButtonStartActionPerformed
 
-    private void jButtonStopActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonStopActionPerformed
+    private void jButtonStopActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jButtonStopActionPerformed
         stopStandardThreadStart();
     }//GEN-LAST:event_jButtonStopActionPerformed
 
-    private void jButtonDisplayConsoleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDisplayConsoleActionPerformed
+    private void jButtonDisplayConsoleActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jButtonDisplayConsoleActionPerformed
         if (aceQLConsole == null) {
             aceQLConsole = new AceQLConsole(this);
         } else {
@@ -2408,19 +2371,19 @@ public class AceQLManager extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButtonDisplayConsoleActionPerformed
 
-    private void jMenuItemCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemCloseActionPerformed
+    private void jMenuItemCloseActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jMenuItemCloseActionPerformed
         closeOnExit();
     }//GEN-LAST:event_jMenuItemCloseActionPerformed
 
-    private void jMenuItemQuitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemQuitActionPerformed
+    private void jMenuItemQuitActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jMenuItemQuitActionPerformed
         doSystemExit();
     }//GEN-LAST:event_jMenuItemQuitActionPerformed
 
-    private void jMenuItemHelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemHelpActionPerformed
+    private void jMenuItemHelpActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jMenuItemHelpActionPerformed
         help();
     }//GEN-LAST:event_jMenuItemHelpActionPerformed
 
-    private void jMenuItemSystemInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemSystemInfoActionPerformed
+    private void jMenuItemSystemInfoActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jMenuItemSystemInfoActionPerformed
         if (systemPropDisplayer != null) {
             systemPropDisplayer.dispose();
         }
@@ -2428,7 +2391,7 @@ public class AceQLManager extends javax.swing.JFrame {
         systemPropDisplayer = new SystemPropDisplayer(this);
     }//GEN-LAST:event_jMenuItemSystemInfoActionPerformed
 
-    private void jMenuItemAboutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemAboutActionPerformed
+    private void jMenuItemAboutActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jMenuItemAboutActionPerformed
 
         if (aboutFrame != null) {
             aboutFrame.dispose();
@@ -2437,7 +2400,7 @@ public class AceQLManager extends javax.swing.JFrame {
         aboutFrame = new AboutFrame(this);
     }//GEN-LAST:event_jMenuItemAboutActionPerformed
 
-    private void jMenuCheckForUpdatesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuCheckForUpdatesActionPerformed
+    private void jMenuCheckForUpdatesActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jMenuCheckForUpdatesActionPerformed
 
         try {
             String currentVersion = com.kawansoft.app.version.GuiVersionConstants.VERSION;
@@ -2454,31 +2417,31 @@ public class AceQLManager extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jMenuCheckForUpdatesActionPerformed
 
-    private void jButtonStartServiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonStartServiceActionPerformed
+    private void jButtonStartServiceActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jButtonStartServiceActionPerformed
         startService();
     }//GEN-LAST:event_jButtonStartServiceActionPerformed
 
-    private void jButtonStopServiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonStopServiceActionPerformed
+    private void jButtonStopServiceActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jButtonStopServiceActionPerformed
         stopService();
     }//GEN-LAST:event_jButtonStopServiceActionPerformed
 
-    private void jButtonDisplayLogsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDisplayLogsActionPerformed
+    private void jButtonDisplayLogsActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jButtonDisplayLogsActionPerformed
         displayLogs();
     }//GEN-LAST:event_jButtonDisplayLogsActionPerformed
 
-    private void jButtonServicesConsoleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonServicesConsoleActionPerformed
+    private void jButtonServicesConsoleActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jButtonServicesConsoleActionPerformed
         windowsServiceManagementConsole();
     }//GEN-LAST:event_jButtonServicesConsoleActionPerformed
 
-    private void jMenuItemServiceInstallActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemServiceInstallActionPerformed
+    private void jMenuItemServiceInstallActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jMenuItemServiceInstallActionPerformed
         serviceInstall();
     }//GEN-LAST:event_jMenuItemServiceInstallActionPerformed
 
-    private void jMenuItemResetWindowsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemResetWindowsActionPerformed
+    private void jMenuItemResetWindowsActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jMenuItemResetWindowsActionPerformed
         actionResetWindows();
     }//GEN-LAST:event_jMenuItemResetWindowsActionPerformed
 
-    private void jMenuItemReleaseNotesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemReleaseNotesActionPerformed
+    private void jMenuItemReleaseNotesActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jMenuItemReleaseNotesActionPerformed
         try {
 
             String version = org.kawanfw.sql.version.VersionValues.VERSION;
@@ -2493,7 +2456,7 @@ public class AceQLManager extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jMenuItemReleaseNotesActionPerformed
 
-    private void jButtonDisplayClasspathActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDisplayClasspathActionPerformed
+    private void jButtonDisplayClasspathActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jButtonDisplayClasspathActionPerformed
         displayClasspath();
     }//GEN-LAST:event_jButtonDisplayClasspathActionPerformed
 
@@ -2544,112 +2507,112 @@ public class AceQLManager extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButtonApply;
-    private javax.swing.JButton jButtonBrowse;
-    private javax.swing.JButton jButtonDisplayClasspath;
-    private javax.swing.JButton jButtonDisplayConsole;
-    private javax.swing.JButton jButtonDisplayLogs;
-    private javax.swing.JButton jButtonEdit;
-    private javax.swing.JButton jButtonHelp;
-    private javax.swing.JButton jButtonOk;
-    private javax.swing.JButton jButtonServicesConsole;
-    private javax.swing.JButton jButtonStart;
-    private javax.swing.JButton jButtonStartService;
-    private javax.swing.JButton jButtonStop;
-    private javax.swing.JButton jButtonStopService;
-    private javax.swing.JButton jButtonURL;
-    private javax.swing.JLabel jLabeStandardStatusValue;
-    private javax.swing.JLabel jLabelClasspath;
-    private javax.swing.JLabel jLabelHost;
-    private javax.swing.JLabel jLabelHost1;
-    private javax.swing.JLabel jLabelLogo;
-    private javax.swing.JLabel jLabelPropertiesFile;
-    private javax.swing.JLabel jLabelServiceStartModeValue;
-    private javax.swing.JLabel jLabelServiceStatus;
-    private javax.swing.JLabel jLabelServiceStatusValue;
-    private javax.swing.JLabel jLabelStandardMode;
-    private javax.swing.JLabel jLabelStandardStatus;
-    private javax.swing.JLabel jLabelURL;
-    private javax.swing.JLabel jLabelWindowsServiceMode;
-    private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuCheckForUpdates;
-    private javax.swing.JMenu jMenuFile;
-    private javax.swing.JMenu jMenuHelp;
-    private javax.swing.JMenuItem jMenuItemAbout;
-    private javax.swing.JMenuItem jMenuItemClose;
-    private javax.swing.JMenuItem jMenuItemHelp;
-    private javax.swing.JMenuItem jMenuItemQuit;
-    private javax.swing.JMenuItem jMenuItemReleaseNotes;
-    private javax.swing.JMenuItem jMenuItemResetWindows;
-    private javax.swing.JMenuItem jMenuItemServiceInstall;
-    private javax.swing.JMenuItem jMenuItemSystemInfo;
-    private javax.swing.JMenu jMenuOptions;
-    private javax.swing.JPanel jPaneBlanklLeft1;
-    private javax.swing.JPanel jPaneBlanklLeft2;
-    private javax.swing.JPanel jPaneSep2;
-    private javax.swing.JPanel jPaneSepInstallAndStart1;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel22;
-    private javax.swing.JPanel jPanel23;
-    private javax.swing.JPanel jPanel28;
-    private javax.swing.JPanel jPanel29;
-    private javax.swing.JPanel jPanelBlankRight1;
-    private javax.swing.JPanel jPanelBlankRight2;
-    private javax.swing.JPanel jPanelBottom;
-    private javax.swing.JPanel jPanelButtonStartStop;
-    private javax.swing.JPanel jPanelButtons;
-    private javax.swing.JPanel jPanelButtonsStartService;
-    private javax.swing.JPanel jPanelButtonsStartStandard;
-    private javax.swing.JPanel jPanelClasspath;
-    private javax.swing.JPanel jPanelEndField4;
-    private javax.swing.JPanel jPanelEndField6;
-    private javax.swing.JPanel jPanelHost;
-    private javax.swing.JPanel jPanelLeft13;
-    private javax.swing.JPanel jPanelLeft14;
-    private javax.swing.JPanel jPanelLeft15;
-    private javax.swing.JPanel jPanelLeft16;
-    private javax.swing.JPanel jPanelLeft17;
-    private javax.swing.JPanel jPanelLeft18;
-    private javax.swing.JPanel jPanelLeft19;
-    private javax.swing.JPanel jPanelLeft20;
-    private javax.swing.JPanel jPanelLeft21;
-    private javax.swing.JPanel jPanelLeft22;
-    private javax.swing.JPanel jPanelLeft23;
-    private javax.swing.JPanel jPanelLeft24;
-    private javax.swing.JPanel jPanelLeft25;
-    private javax.swing.JPanel jPanelLeft26;
-    private javax.swing.JPanel jPanelLeft31;
-    private javax.swing.JPanel jPanelLeft33;
-    private javax.swing.JPanel jPanelLogo;
-    private javax.swing.JPanel jPanelMain;
-    private javax.swing.JPanel jPanelProperties;
-    private javax.swing.JPanel jPanelRadioService;
-    private javax.swing.JPanel jPanelRadioStandard;
-    private javax.swing.JPanel jPanelSep3x6;
-    private javax.swing.JPanel jPanelSep3x7;
-    private javax.swing.JPanel jPanelSepBlanc8spaces;
-    private javax.swing.JPanel jPanelSepBlanc8spaces1;
-    private javax.swing.JPanel jPanelSepBlanc8spaces3;
-    private javax.swing.JPanel jPanelSepBlanc8spaces4;
-    private javax.swing.JPanel jPanelSepBlanc8spaces5;
-    private javax.swing.JPanel jPanelSepBlanc8spaces8;
-    private javax.swing.JPanel jPanelSepBlank11;
-    private javax.swing.JPanel jPanelSepLine2New;
-    private javax.swing.JPanel jPanelSepLine2New2;
-    private javax.swing.JPanel jPanelTitledSeparator5;
-    private javax.swing.JPanel jPanelTitledSeparator6;
-    private javax.swing.JPanel jPanelURL;
-    private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JPopupMenu.Separator jSeparator3;
-    private javax.swing.JSeparator jSeparator4;
-    private javax.swing.JTextField jTextFieldHost;
-    private javax.swing.JTextField jTextFieldPort;
-    private javax.swing.JTextField jTextFieldPropertiesFile;
-    private org.jdesktop.swingx.JXTitledSeparator jXTitledSeparator20pixels1;
-    private org.jdesktop.swingx.JXTitledSeparator jXTitledSeparator20pixels2;
-    private org.jdesktop.swingx.JXTitledSeparator jXTitledSeparator5;
-    private org.jdesktop.swingx.JXTitledSeparator jXTitledSeparator6;
+    public JButton jButtonApply;
+    public JButton jButtonBrowse;
+    public JButton jButtonDisplayClasspath;
+    public JButton jButtonDisplayConsole;
+    public JButton jButtonDisplayLogs;
+    public JButton jButtonEdit;
+    public JButton jButtonHelp;
+    public JButton jButtonOk;
+    public JButton jButtonServicesConsole;
+    public JButton jButtonStart;
+    public JButton jButtonStartService;
+    public JButton jButtonStop;
+    public JButton jButtonStopService;
+    public JButton jButtonURL;
+    public JLabel jLabeStandardStatusValue;
+    public JLabel jLabelClasspath;
+    public JLabel jLabelHost;
+    public JLabel jLabelHost1;
+    public JLabel jLabelLogo;
+    public JLabel jLabelPropertiesFile;
+    public JLabel jLabelServiceStartModeValue;
+    public JLabel jLabelServiceStatus;
+    public JLabel jLabelServiceStatusValue;
+    public JLabel jLabelStandardMode;
+    public JLabel jLabelStandardStatus;
+    public JLabel jLabelURL;
+    public JLabel jLabelWindowsServiceMode;
+    public JMenuBar jMenuBar1;
+    public JMenuItem jMenuCheckForUpdates;
+    public JMenu jMenuFile;
+    public JMenu jMenuHelp;
+    public JMenuItem jMenuItemAbout;
+    public JMenuItem jMenuItemClose;
+    public JMenuItem jMenuItemHelp;
+    public JMenuItem jMenuItemQuit;
+    public JMenuItem jMenuItemReleaseNotes;
+    public JMenuItem jMenuItemResetWindows;
+    public JMenuItem jMenuItemServiceInstall;
+    public JMenuItem jMenuItemSystemInfo;
+    public JMenu jMenuOptions;
+    public JPanel jPaneBlanklLeft1;
+    public JPanel jPaneBlanklLeft2;
+    public JPanel jPaneSep2;
+    public JPanel jPaneSepInstallAndStart1;
+    public JPanel jPanel1;
+    public JPanel jPanel2;
+    public JPanel jPanel22;
+    public JPanel jPanel23;
+    public JPanel jPanel28;
+    public JPanel jPanel29;
+    public JPanel jPanelBlankRight1;
+    public JPanel jPanelBlankRight2;
+    public JPanel jPanelBottom;
+    public JPanel jPanelButtonStartStop;
+    public JPanel jPanelButtons;
+    public JPanel jPanelButtonsStartService;
+    public JPanel jPanelButtonsStartStandard;
+    public JPanel jPanelClasspath;
+    public JPanel jPanelEndField4;
+    public JPanel jPanelEndField6;
+    public JPanel jPanelHost;
+    public JPanel jPanelLeft13;
+    public JPanel jPanelLeft14;
+    public JPanel jPanelLeft15;
+    public JPanel jPanelLeft16;
+    public JPanel jPanelLeft17;
+    public JPanel jPanelLeft18;
+    public JPanel jPanelLeft19;
+    public JPanel jPanelLeft20;
+    public JPanel jPanelLeft21;
+    public JPanel jPanelLeft22;
+    public JPanel jPanelLeft23;
+    public JPanel jPanelLeft24;
+    public JPanel jPanelLeft25;
+    public JPanel jPanelLeft26;
+    public JPanel jPanelLeft31;
+    public JPanel jPanelLeft33;
+    public JPanel jPanelLogo;
+    public JPanel jPanelMain;
+    public JPanel jPanelProperties;
+    public JPanel jPanelRadioService;
+    public JPanel jPanelRadioStandard;
+    public JPanel jPanelSep3x6;
+    public JPanel jPanelSep3x7;
+    public JPanel jPanelSepBlanc8spaces;
+    public JPanel jPanelSepBlanc8spaces1;
+    public JPanel jPanelSepBlanc8spaces3;
+    public JPanel jPanelSepBlanc8spaces4;
+    public JPanel jPanelSepBlanc8spaces5;
+    public JPanel jPanelSepBlanc8spaces8;
+    public JPanel jPanelSepBlank11;
+    public JPanel jPanelSepLine2New;
+    public JPanel jPanelSepLine2New2;
+    public JPanel jPanelTitledSeparator5;
+    public JPanel jPanelTitledSeparator6;
+    public JPanel jPanelURL;
+    public JSeparator jSeparator2;
+    public JPopupMenu.Separator jSeparator3;
+    public JSeparator jSeparator4;
+    public JTextField jTextFieldHost;
+    public JTextField jTextFieldPort;
+    public JTextField jTextFieldPropertiesFile;
+    public JXTitledSeparator jXTitledSeparator20pixels1;
+    public JXTitledSeparator jXTitledSeparator20pixels2;
+    public JXTitledSeparator jXTitledSeparator5;
+    public JXTitledSeparator jXTitledSeparator6;
     // End of variables declaration//GEN-END:variables
 
 }

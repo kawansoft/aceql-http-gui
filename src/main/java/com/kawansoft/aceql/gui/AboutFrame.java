@@ -53,6 +53,22 @@ import javax.swing.UIManager;
 
 import org.apache.commons.lang3.SystemUtils;
 import com.kawansoft.app.version.GuiVersion;
+import java.awt.Color;
+import java.awt.FlowLayout;
+import java.awt.Font;
+import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import javax.swing.BorderFactory;
+import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.SwingConstants;
+import javax.swing.WindowConstants;
 
 /** 
  *
@@ -233,268 +249,268 @@ public class AboutFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanelLogos = new javax.swing.JPanel();
-        jLabelLogo = new javax.swing.JLabel();
-        jPanelBorderLeft1 = new javax.swing.JPanel();
-        jPanelTop1 = new javax.swing.JPanel();
-        jPanelMain = new javax.swing.JPanel();
-        jPanelBorderLeft = new javax.swing.JPanel();
-        jPanelCenter = new javax.swing.JPanel();
-        jPanelTop = new javax.swing.JPanel();
-        jPanelName = new javax.swing.JPanel();
-        jLabelVersion = new javax.swing.JLabel();
-        jPanelNameGui = new javax.swing.JPanel();
-        jLabelVersionGui = new javax.swing.JLabel();
-        jPanelCopyRight = new javax.swing.JPanel();
-        jLabelCopyright = new javax.swing.JLabel();
-        jPanelUrl = new javax.swing.JPanel();
-        jButtonUrl = new javax.swing.JButton();
-        jPanelUrlTrail = new javax.swing.JPanel();
-        jPanelBugReport = new javax.swing.JPanel();
-        jLabelSupport = new javax.swing.JLabel();
-        jPanelSep5 = new javax.swing.JPanel();
-        jButtonEmailSupport = new javax.swing.JButton();
-        jPanelBugReportTrail = new javax.swing.JPanel();
-        jPanelCredits = new javax.swing.JPanel();
-        jButtonCredits = new javax.swing.JButton();
-        jPanelCreditsTrail = new javax.swing.JPanel();
-        jPanelKawanSoft = new javax.swing.JPanel();
-        jButtonDeveloppedBy = new javax.swing.JButton();
-        jPanelKawanSoftTrail = new javax.swing.JPanel();
-        jPanelBorderRight = new javax.swing.JPanel();
-        jPanelButtons = new javax.swing.JPanel();
-        jButtonSystemInfo = new javax.swing.JButton();
-        jButtonClose = new javax.swing.JButton();
-        jPanel4 = new javax.swing.JPanel();
+        jPanelLogos = new JPanel();
+        jLabelLogo = new JLabel();
+        jPanelBorderLeft1 = new JPanel();
+        jPanelTop1 = new JPanel();
+        jPanelMain = new JPanel();
+        jPanelBorderLeft = new JPanel();
+        jPanelCenter = new JPanel();
+        jPanelTop = new JPanel();
+        jPanelName = new JPanel();
+        jLabelVersion = new JLabel();
+        jPanelNameGui = new JPanel();
+        jLabelVersionGui = new JLabel();
+        jPanelCopyRight = new JPanel();
+        jLabelCopyright = new JLabel();
+        jPanelUrl = new JPanel();
+        jButtonUrl = new JButton();
+        jPanelUrlTrail = new JPanel();
+        jPanelBugReport = new JPanel();
+        jLabelSupport = new JLabel();
+        jPanelSep5 = new JPanel();
+        jButtonEmailSupport = new JButton();
+        jPanelBugReportTrail = new JPanel();
+        jPanelCredits = new JPanel();
+        jButtonCredits = new JButton();
+        jPanelCreditsTrail = new JPanel();
+        jPanelKawanSoft = new JPanel();
+        jButtonDeveloppedBy = new JButton();
+        jPanelKawanSoftTrail = new JPanel();
+        jPanelBorderRight = new JPanel();
+        jPanelButtons = new JPanel();
+        jButtonSystemInfo = new JButton();
+        jButtonClose = new JButton();
+        jPanel4 = new JPanel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
-        getContentPane().setLayout(new javax.swing.BoxLayout(getContentPane(), javax.swing.BoxLayout.Y_AXIS));
+        setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
+        getContentPane().setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
 
-        jPanelLogos.setMaximumSize(new java.awt.Dimension(32767, 55));
-        jPanelLogos.setMinimumSize(new java.awt.Dimension(213, 54));
-        jPanelLogos.setPreferredSize(new java.awt.Dimension(213, 54));
-        jPanelLogos.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.TRAILING, 0, 10));
+        jPanelLogos.setMaximumSize(new Dimension(32767, 55));
+        jPanelLogos.setMinimumSize(new Dimension(213, 54));
+        jPanelLogos.setPreferredSize(new Dimension(213, 54));
+        jPanelLogos.setLayout(new FlowLayout(FlowLayout.TRAILING, 0, 10));
 
-        jLabelLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/kawansoft/app/parms/images/logos/logo-AceQL_48.png"))); // NOI18N
+        jLabelLogo.setIcon(new ImageIcon(getClass().getResource("/com/kawansoft/app/parms/images/logos/logo-AceQL_48.png"))); // NOI18N
         jPanelLogos.add(jLabelLogo);
 
-        jPanelBorderLeft1.setMaximumSize(new java.awt.Dimension(10, 10));
+        jPanelBorderLeft1.setMaximumSize(new Dimension(10, 10));
         jPanelLogos.add(jPanelBorderLeft1);
 
         getContentPane().add(jPanelLogos);
 
-        jPanelTop1.setMaximumSize(new java.awt.Dimension(10, 10));
-        jPanelTop1.setLayout(new javax.swing.BoxLayout(jPanelTop1, javax.swing.BoxLayout.LINE_AXIS));
+        jPanelTop1.setMaximumSize(new Dimension(10, 10));
+        jPanelTop1.setLayout(new BoxLayout(jPanelTop1, BoxLayout.LINE_AXIS));
         getContentPane().add(jPanelTop1);
 
-        jPanelMain.setLayout(new javax.swing.BoxLayout(jPanelMain, javax.swing.BoxLayout.X_AXIS));
+        jPanelMain.setLayout(new BoxLayout(jPanelMain, BoxLayout.X_AXIS));
 
-        jPanelBorderLeft.setMaximumSize(new java.awt.Dimension(10, 10));
+        jPanelBorderLeft.setMaximumSize(new Dimension(10, 10));
         jPanelMain.add(jPanelBorderLeft);
 
-        jPanelCenter.setBorder(javax.swing.BorderFactory.createTitledBorder("A Propos"));
-        jPanelCenter.setMaximumSize(new java.awt.Dimension(32783, 600));
-        jPanelCenter.setMinimumSize(new java.awt.Dimension(290, 600));
-        jPanelCenter.setLayout(new javax.swing.BoxLayout(jPanelCenter, javax.swing.BoxLayout.Y_AXIS));
+        jPanelCenter.setBorder(BorderFactory.createTitledBorder("A Propos"));
+        jPanelCenter.setMaximumSize(new Dimension(32783, 600));
+        jPanelCenter.setMinimumSize(new Dimension(290, 600));
+        jPanelCenter.setLayout(new BoxLayout(jPanelCenter, BoxLayout.Y_AXIS));
 
-        jPanelTop.setMaximumSize(new java.awt.Dimension(10, 10));
-        jPanelTop.setLayout(new javax.swing.BoxLayout(jPanelTop, javax.swing.BoxLayout.LINE_AXIS));
+        jPanelTop.setMaximumSize(new Dimension(10, 10));
+        jPanelTop.setLayout(new BoxLayout(jPanelTop, BoxLayout.LINE_AXIS));
         jPanelCenter.add(jPanelTop);
 
-        jPanelName.setMaximumSize(new java.awt.Dimension(32767, 24));
-        jPanelName.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT));
+        jPanelName.setMaximumSize(new Dimension(32767, 24));
+        jPanelName.setLayout(new FlowLayout(FlowLayout.RIGHT));
 
-        jLabelVersion.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabelVersion.setFont(new Font("Tahoma", 1, 11)); // NOI18N
         jLabelVersion.setText("TheApp v1.00 - 12/02/16");
         jPanelName.add(jLabelVersion);
 
         jPanelCenter.add(jPanelName);
 
-        jPanelNameGui.setMaximumSize(new java.awt.Dimension(32767, 24));
-        jPanelNameGui.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT));
+        jPanelNameGui.setMaximumSize(new Dimension(32767, 24));
+        jPanelNameGui.setLayout(new FlowLayout(FlowLayout.RIGHT));
 
-        jLabelVersionGui.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabelVersionGui.setFont(new Font("Tahoma", 1, 11)); // NOI18N
         jLabelVersionGui.setText("TheApp v1.00 - 12/02/16");
         jPanelNameGui.add(jLabelVersionGui);
 
         jPanelCenter.add(jPanelNameGui);
 
-        jPanelCopyRight.setMaximumSize(new java.awt.Dimension(32767, 24));
-        jPanelCopyRight.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT));
+        jPanelCopyRight.setMaximumSize(new Dimension(32767, 24));
+        jPanelCopyRight.setLayout(new FlowLayout(FlowLayout.RIGHT));
 
-        jLabelCopyright.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabelCopyright.setFont(new Font("Tahoma", 1, 11)); // NOI18N
         jLabelCopyright.setText("Copyright  2016");
         jPanelCopyRight.add(jLabelCopyright);
 
         jPanelCenter.add(jPanelCopyRight);
 
-        jPanelUrl.setMaximumSize(new java.awt.Dimension(32767, 24));
-        jPanelUrl.setPreferredSize(new java.awt.Dimension(89, 24));
-        jPanelUrl.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT, 0, 5));
+        jPanelUrl.setMaximumSize(new Dimension(32767, 24));
+        jPanelUrl.setPreferredSize(new Dimension(89, 24));
+        jPanelUrl.setLayout(new FlowLayout(FlowLayout.RIGHT, 0, 5));
 
-        jButtonUrl.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jButtonUrl.setForeground(new java.awt.Color(51, 0, 255));
+        jButtonUrl.setFont(new Font("Tahoma", 1, 11)); // NOI18N
+        jButtonUrl.setForeground(new Color(51, 0, 255));
         jButtonUrl.setToolTipText("");
         jButtonUrl.setBorderPainted(false);
         jButtonUrl.setContentAreaFilled(false);
         jButtonUrl.setFocusPainted(false);
         jButtonUrl.setIconTextGap(0);
-        jButtonUrl.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        jButtonUrl.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
+        jButtonUrl.setMargin(new Insets(0, 0, 0, 0));
+        jButtonUrl.addMouseListener(new MouseAdapter() {
+            public void mouseEntered(MouseEvent evt) {
                 jButtonUrlMouseEntered(evt);
             }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
+            public void mouseExited(MouseEvent evt) {
                 jButtonUrlMouseExited(evt);
             }
         });
-        jButtonUrl.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jButtonUrl.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 jButtonUrlActionPerformed(evt);
             }
         });
         jPanelUrl.add(jButtonUrl);
 
-        jPanelUrlTrail.setPreferredSize(new java.awt.Dimension(3, 10));
+        jPanelUrlTrail.setPreferredSize(new Dimension(3, 10));
         jPanelUrl.add(jPanelUrlTrail);
 
         jPanelCenter.add(jPanelUrl);
 
-        jPanelBugReport.setMaximumSize(new java.awt.Dimension(32767, 24));
-        jPanelBugReport.setPreferredSize(new java.awt.Dimension(242, 24));
-        jPanelBugReport.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT, 0, 5));
+        jPanelBugReport.setMaximumSize(new Dimension(32767, 24));
+        jPanelBugReport.setPreferredSize(new Dimension(242, 24));
+        jPanelBugReport.setLayout(new FlowLayout(FlowLayout.RIGHT, 0, 5));
 
-        jLabelSupport.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabelSupport.setFont(new Font("Tahoma", 1, 11)); // NOI18N
         jLabelSupport.setText("Support / Signaler un bug :");
         jPanelBugReport.add(jLabelSupport);
 
-        jPanelSep5.setMaximumSize(new java.awt.Dimension(5, 5));
-        jPanelSep5.setMinimumSize(new java.awt.Dimension(5, 5));
-        jPanelSep5.setPreferredSize(new java.awt.Dimension(5, 5));
+        jPanelSep5.setMaximumSize(new Dimension(5, 5));
+        jPanelSep5.setMinimumSize(new Dimension(5, 5));
+        jPanelSep5.setPreferredSize(new Dimension(5, 5));
         jPanelBugReport.add(jPanelSep5);
 
-        jButtonEmailSupport.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jButtonEmailSupport.setForeground(new java.awt.Color(51, 0, 255));
+        jButtonEmailSupport.setFont(new Font("Tahoma", 1, 11)); // NOI18N
+        jButtonEmailSupport.setForeground(new Color(51, 0, 255));
         jButtonEmailSupport.setBorderPainted(false);
         jButtonEmailSupport.setContentAreaFilled(false);
         jButtonEmailSupport.setFocusPainted(false);
         jButtonEmailSupport.setIconTextGap(0);
-        jButtonEmailSupport.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        jButtonEmailSupport.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
+        jButtonEmailSupport.setMargin(new Insets(0, 0, 0, 0));
+        jButtonEmailSupport.addMouseListener(new MouseAdapter() {
+            public void mouseEntered(MouseEvent evt) {
                 jButtonEmailSupportMouseEntered(evt);
             }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
+            public void mouseExited(MouseEvent evt) {
                 jButtonEmailSupportMouseExited(evt);
             }
         });
-        jButtonEmailSupport.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jButtonEmailSupport.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 jButtonEmailSupportActionPerformed(evt);
             }
         });
         jPanelBugReport.add(jButtonEmailSupport);
 
-        jPanelBugReportTrail.setPreferredSize(new java.awt.Dimension(3, 10));
+        jPanelBugReportTrail.setPreferredSize(new Dimension(3, 10));
         jPanelBugReport.add(jPanelBugReportTrail);
 
         jPanelCenter.add(jPanelBugReport);
 
-        jPanelCredits.setMaximumSize(new java.awt.Dimension(32767, 24));
-        jPanelCredits.setPreferredSize(new java.awt.Dimension(242, 24));
-        jPanelCredits.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT, 0, 5));
+        jPanelCredits.setMaximumSize(new Dimension(32767, 24));
+        jPanelCredits.setPreferredSize(new Dimension(242, 24));
+        jPanelCredits.setLayout(new FlowLayout(FlowLayout.RIGHT, 0, 5));
 
-        jButtonCredits.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jButtonCredits.setForeground(new java.awt.Color(51, 0, 255));
+        jButtonCredits.setFont(new Font("Tahoma", 0, 12)); // NOI18N
+        jButtonCredits.setForeground(new Color(51, 0, 255));
         jButtonCredits.setText("Autres Logiciels");
         jButtonCredits.setBorderPainted(false);
         jButtonCredits.setContentAreaFilled(false);
         jButtonCredits.setFocusPainted(false);
         jButtonCredits.setIconTextGap(0);
-        jButtonCredits.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        jButtonCredits.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
+        jButtonCredits.setMargin(new Insets(0, 0, 0, 0));
+        jButtonCredits.addMouseListener(new MouseAdapter() {
+            public void mouseEntered(MouseEvent evt) {
                 jButtonCreditsMouseEntered(evt);
             }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
+            public void mouseExited(MouseEvent evt) {
                 jButtonCreditsMouseExited(evt);
             }
         });
-        jButtonCredits.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jButtonCredits.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 jButtonCreditsActionPerformed(evt);
             }
         });
         jPanelCredits.add(jButtonCredits);
 
-        jPanelCreditsTrail.setPreferredSize(new java.awt.Dimension(3, 10));
+        jPanelCreditsTrail.setPreferredSize(new Dimension(3, 10));
         jPanelCredits.add(jPanelCreditsTrail);
 
         jPanelCenter.add(jPanelCredits);
 
-        jPanelKawanSoft.setMaximumSize(new java.awt.Dimension(32767, 24));
-        jPanelKawanSoft.setPreferredSize(new java.awt.Dimension(242, 24));
-        jPanelKawanSoft.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT, 0, 5));
+        jPanelKawanSoft.setMaximumSize(new Dimension(32767, 24));
+        jPanelKawanSoft.setPreferredSize(new Dimension(242, 24));
+        jPanelKawanSoft.setLayout(new FlowLayout(FlowLayout.RIGHT, 0, 5));
 
-        jButtonDeveloppedBy.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
-        jButtonDeveloppedBy.setForeground(new java.awt.Color(51, 0, 255));
+        jButtonDeveloppedBy.setFont(new Font("Tahoma", 2, 12)); // NOI18N
+        jButtonDeveloppedBy.setForeground(new Color(51, 0, 255));
         jButtonDeveloppedBy.setText("Logiciel développé par KawanSoft");
         jButtonDeveloppedBy.setBorderPainted(false);
         jButtonDeveloppedBy.setContentAreaFilled(false);
         jButtonDeveloppedBy.setFocusPainted(false);
-        jButtonDeveloppedBy.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jButtonDeveloppedBy.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+        jButtonDeveloppedBy.setHorizontalAlignment(SwingConstants.LEFT);
+        jButtonDeveloppedBy.setHorizontalTextPosition(SwingConstants.LEFT);
         jButtonDeveloppedBy.setIconTextGap(0);
-        jButtonDeveloppedBy.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        jButtonDeveloppedBy.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
+        jButtonDeveloppedBy.setMargin(new Insets(0, 0, 0, 0));
+        jButtonDeveloppedBy.addMouseListener(new MouseAdapter() {
+            public void mouseEntered(MouseEvent evt) {
                 jButtonDeveloppedByMouseEntered(evt);
             }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
+            public void mouseExited(MouseEvent evt) {
                 jButtonDeveloppedByMouseExited(evt);
             }
         });
-        jButtonDeveloppedBy.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jButtonDeveloppedBy.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 jButtonDeveloppedByActionPerformed(evt);
             }
         });
         jPanelKawanSoft.add(jButtonDeveloppedBy);
 
-        jPanelKawanSoftTrail.setPreferredSize(new java.awt.Dimension(3, 10));
+        jPanelKawanSoftTrail.setPreferredSize(new Dimension(3, 10));
         jPanelKawanSoft.add(jPanelKawanSoftTrail);
 
         jPanelCenter.add(jPanelKawanSoft);
 
         jPanelMain.add(jPanelCenter);
 
-        jPanelBorderRight.setMaximumSize(new java.awt.Dimension(10, 10));
+        jPanelBorderRight.setMaximumSize(new Dimension(10, 10));
         jPanelMain.add(jPanelBorderRight);
 
         getContentPane().add(jPanelMain);
 
-        jPanelButtons.setMaximumSize(new java.awt.Dimension(32767, 65));
-        jPanelButtons.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT, 5, 10));
+        jPanelButtons.setMaximumSize(new Dimension(32767, 65));
+        jPanelButtons.setLayout(new FlowLayout(FlowLayout.RIGHT, 5, 10));
 
         jButtonSystemInfo.setText("Infos Système");
-        jButtonSystemInfo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jButtonSystemInfo.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 jButtonSystemInfoActionPerformed(evt);
             }
         });
         jPanelButtons.add(jButtonSystemInfo);
 
         jButtonClose.setText("Fermer");
-        jButtonClose.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jButtonClose.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 jButtonCloseActionPerformed(evt);
             }
         });
         jPanelButtons.add(jButtonClose);
 
-        jPanel4.setMaximumSize(new java.awt.Dimension(0, 0));
-        jPanel4.setMinimumSize(new java.awt.Dimension(0, 0));
-        jPanel4.setPreferredSize(new java.awt.Dimension(0, 0));
+        jPanel4.setMaximumSize(new Dimension(0, 0));
+        jPanel4.setMinimumSize(new Dimension(0, 0));
+        jPanel4.setPreferredSize(new Dimension(0, 0));
         jPanelButtons.add(jPanel4);
 
         getContentPane().add(jPanelButtons);
@@ -502,31 +518,31 @@ public class AboutFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-private void jButtonSystemInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSystemInfoActionPerformed
+private void jButtonSystemInfoActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jButtonSystemInfoActionPerformed
     callSystemInfo();
 }//GEN-LAST:event_jButtonSystemInfoActionPerformed
 
-private void jButtonCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCloseActionPerformed
+private void jButtonCloseActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jButtonCloseActionPerformed
     closeOnExit();
 }//GEN-LAST:event_jButtonCloseActionPerformed
 
-private void jButtonUrlMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonUrlMouseEntered
+private void jButtonUrlMouseEntered(MouseEvent evt) {//GEN-FIRST:event_jButtonUrlMouseEntered
     this.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 }//GEN-LAST:event_jButtonUrlMouseEntered
 
-private void jButtonUrlMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonUrlMouseExited
+private void jButtonUrlMouseExited(MouseEvent evt) {//GEN-FIRST:event_jButtonUrlMouseExited
     this.setCursor(Cursor.getDefaultCursor());
 }//GEN-LAST:event_jButtonUrlMouseExited
 
-private void jButtonEmailSupportMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonEmailSupportMouseEntered
+private void jButtonEmailSupportMouseEntered(MouseEvent evt) {//GEN-FIRST:event_jButtonEmailSupportMouseEntered
     this.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 }//GEN-LAST:event_jButtonEmailSupportMouseEntered
 
-private void jButtonEmailSupportMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonEmailSupportMouseExited
+private void jButtonEmailSupportMouseExited(MouseEvent evt) {//GEN-FIRST:event_jButtonEmailSupportMouseExited
     this.setCursor(Cursor.getDefaultCursor());
 }//GEN-LAST:event_jButtonEmailSupportMouseExited
 
-private void jButtonUrlActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonUrlActionPerformed
+private void jButtonUrlActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jButtonUrlActionPerformed
     Desktop desktop = Desktop.getDesktop();
     String url = "http://" + Parms.ABOUT_WEB_SITE;
 
@@ -539,7 +555,7 @@ private void jButtonUrlActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
     }
 }//GEN-LAST:event_jButtonUrlActionPerformed
 
-private void jButtonEmailSupportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEmailSupportActionPerformed
+private void jButtonEmailSupportActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jButtonEmailSupportActionPerformed
     Desktop desktop = Desktop.getDesktop();
     String email = "mailto:" + Parms.ABOUT_EMAIL_SUPPORT;
 
@@ -552,15 +568,15 @@ private void jButtonEmailSupportActionPerformed(java.awt.event.ActionEvent evt) 
     }
 }//GEN-LAST:event_jButtonEmailSupportActionPerformed
 
-private void jButtonDeveloppedByMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonDeveloppedByMouseEntered
+private void jButtonDeveloppedByMouseEntered(MouseEvent evt) {//GEN-FIRST:event_jButtonDeveloppedByMouseEntered
     this.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 }//GEN-LAST:event_jButtonDeveloppedByMouseEntered
 
-private void jButtonDeveloppedByMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonDeveloppedByMouseExited
+private void jButtonDeveloppedByMouseExited(MouseEvent evt) {//GEN-FIRST:event_jButtonDeveloppedByMouseExited
     this.setCursor(Cursor.getDefaultCursor());
 }//GEN-LAST:event_jButtonDeveloppedByMouseExited
 
-private void jButtonDeveloppedByActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDeveloppedByActionPerformed
+private void jButtonDeveloppedByActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jButtonDeveloppedByActionPerformed
     Desktop desktop = Desktop.getDesktop();
     String url = "http://www.kawansoft.com";
 
@@ -573,15 +589,15 @@ private void jButtonDeveloppedByActionPerformed(java.awt.event.ActionEvent evt) 
     }
 }//GEN-LAST:event_jButtonDeveloppedByActionPerformed
 
-    private void jButtonCreditsMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonCreditsMouseEntered
+    private void jButtonCreditsMouseEntered(MouseEvent evt) {//GEN-FIRST:event_jButtonCreditsMouseEntered
         this.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
     }//GEN-LAST:event_jButtonCreditsMouseEntered
 
-    private void jButtonCreditsMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonCreditsMouseExited
+    private void jButtonCreditsMouseExited(MouseEvent evt) {//GEN-FIRST:event_jButtonCreditsMouseExited
         this.setCursor(Cursor.getDefaultCursor());
     }//GEN-LAST:event_jButtonCreditsMouseExited
 
-    private void jButtonCreditsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCreditsActionPerformed
+    private void jButtonCreditsActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jButtonCreditsActionPerformed
         if (creditsFrame != null) {
             creditsFrame.dispose();
         }
@@ -611,39 +627,39 @@ private void jButtonDeveloppedByActionPerformed(java.awt.event.ActionEvent evt) 
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButtonClose;
-    private javax.swing.JButton jButtonCredits;
-    private javax.swing.JButton jButtonDeveloppedBy;
-    private javax.swing.JButton jButtonEmailSupport;
-    private javax.swing.JButton jButtonSystemInfo;
-    private javax.swing.JButton jButtonUrl;
-    private javax.swing.JLabel jLabelCopyright;
-    private javax.swing.JLabel jLabelLogo;
-    private javax.swing.JLabel jLabelSupport;
-    private javax.swing.JLabel jLabelVersion;
-    private javax.swing.JLabel jLabelVersionGui;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanelBorderLeft;
-    private javax.swing.JPanel jPanelBorderLeft1;
-    private javax.swing.JPanel jPanelBorderRight;
-    private javax.swing.JPanel jPanelBugReport;
-    private javax.swing.JPanel jPanelBugReportTrail;
-    private javax.swing.JPanel jPanelButtons;
-    private javax.swing.JPanel jPanelCenter;
-    private javax.swing.JPanel jPanelCopyRight;
-    private javax.swing.JPanel jPanelCredits;
-    private javax.swing.JPanel jPanelCreditsTrail;
-    private javax.swing.JPanel jPanelKawanSoft;
-    private javax.swing.JPanel jPanelKawanSoftTrail;
-    private javax.swing.JPanel jPanelLogos;
-    private javax.swing.JPanel jPanelMain;
-    private javax.swing.JPanel jPanelName;
-    private javax.swing.JPanel jPanelNameGui;
-    private javax.swing.JPanel jPanelSep5;
-    private javax.swing.JPanel jPanelTop;
-    private javax.swing.JPanel jPanelTop1;
-    private javax.swing.JPanel jPanelUrl;
-    private javax.swing.JPanel jPanelUrlTrail;
+    public JButton jButtonClose;
+    public JButton jButtonCredits;
+    public JButton jButtonDeveloppedBy;
+    public JButton jButtonEmailSupport;
+    public JButton jButtonSystemInfo;
+    public JButton jButtonUrl;
+    public JLabel jLabelCopyright;
+    public JLabel jLabelLogo;
+    public JLabel jLabelSupport;
+    public JLabel jLabelVersion;
+    public JLabel jLabelVersionGui;
+    public JPanel jPanel4;
+    public JPanel jPanelBorderLeft;
+    public JPanel jPanelBorderLeft1;
+    public JPanel jPanelBorderRight;
+    public JPanel jPanelBugReport;
+    public JPanel jPanelBugReportTrail;
+    public JPanel jPanelButtons;
+    public JPanel jPanelCenter;
+    public JPanel jPanelCopyRight;
+    public JPanel jPanelCredits;
+    public JPanel jPanelCreditsTrail;
+    public JPanel jPanelKawanSoft;
+    public JPanel jPanelKawanSoftTrail;
+    public JPanel jPanelLogos;
+    public JPanel jPanelMain;
+    public JPanel jPanelName;
+    public JPanel jPanelNameGui;
+    public JPanel jPanelSep5;
+    public JPanel jPanelTop;
+    public JPanel jPanelTop1;
+    public JPanel jPanelUrl;
+    public JPanel jPanelUrlTrail;
     // End of variables declaration//GEN-END:variables
 
 }

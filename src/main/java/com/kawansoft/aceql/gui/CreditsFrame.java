@@ -31,7 +31,10 @@ import com.swing.util.SwingUtil;
 
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.Window;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.awt.event.KeyAdapter;
@@ -41,10 +44,18 @@ import java.awt.event.WindowEvent;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.BorderFactory;
+import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
 
 import javax.swing.JDialog;
+import javax.swing.JEditorPane;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.UIManager;
+import javax.swing.WindowConstants;
 import javax.swing.border.TitledBorder;
 import javax.swing.event.HyperlinkEvent;
 import javax.swing.event.HyperlinkListener;
@@ -225,65 +236,65 @@ public class CreditsFrame extends JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanelLogos = new javax.swing.JPanel();
-        jLabelLogo = new javax.swing.JLabel();
-        jPanelBorderLeft1 = new javax.swing.JPanel();
-        jPanelMain = new javax.swing.JPanel();
-        jPanelBorderLeft = new javax.swing.JPanel();
-        jPanelCredits = new javax.swing.JPanel();
-        jEditorPaneCredits = new javax.swing.JEditorPane();
-        jPanelBorderRight = new javax.swing.JPanel();
-        jPanelButtons = new javax.swing.JPanel();
-        jButtonClose = new javax.swing.JButton();
-        jPanel4 = new javax.swing.JPanel();
+        jPanelLogos = new JPanel();
+        jLabelLogo = new JLabel();
+        jPanelBorderLeft1 = new JPanel();
+        jPanelMain = new JPanel();
+        jPanelBorderLeft = new JPanel();
+        jPanelCredits = new JPanel();
+        jEditorPaneCredits = new JEditorPane();
+        jPanelBorderRight = new JPanel();
+        jPanelButtons = new JPanel();
+        jButtonClose = new JButton();
+        jPanel4 = new JPanel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        getContentPane().setLayout(new javax.swing.BoxLayout(getContentPane(), javax.swing.BoxLayout.Y_AXIS));
+        setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+        getContentPane().setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
 
-        jPanelLogos.setMaximumSize(new java.awt.Dimension(32767, 54));
-        jPanelLogos.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.TRAILING, 0, 10));
+        jPanelLogos.setMaximumSize(new Dimension(32767, 54));
+        jPanelLogos.setLayout(new FlowLayout(FlowLayout.TRAILING, 0, 10));
 
-        jLabelLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/kawansoft/app/parms/images/logos/logo-AceQL_48.png"))); // NOI18N
+        jLabelLogo.setIcon(new ImageIcon(getClass().getResource("/com/kawansoft/app/parms/images/logos/logo-AceQL_48.png"))); // NOI18N
         jPanelLogos.add(jLabelLogo);
 
-        jPanelBorderLeft1.setMaximumSize(new java.awt.Dimension(10, 10));
+        jPanelBorderLeft1.setMaximumSize(new Dimension(10, 10));
         jPanelLogos.add(jPanelBorderLeft1);
 
         getContentPane().add(jPanelLogos);
 
-        jPanelMain.setLayout(new javax.swing.BoxLayout(jPanelMain, javax.swing.BoxLayout.X_AXIS));
+        jPanelMain.setLayout(new BoxLayout(jPanelMain, BoxLayout.X_AXIS));
 
-        jPanelBorderLeft.setMaximumSize(new java.awt.Dimension(10, 10));
+        jPanelBorderLeft.setMaximumSize(new Dimension(10, 10));
         jPanelMain.add(jPanelBorderLeft);
 
-        jPanelCredits.setBorder(javax.swing.BorderFactory.createTitledBorder("Autres Logiciels"));
-        jPanelCredits.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.TRAILING));
+        jPanelCredits.setBorder(BorderFactory.createTitledBorder("Autres Logiciels"));
+        jPanelCredits.setLayout(new FlowLayout(FlowLayout.TRAILING));
 
         jEditorPaneCredits.setEditable(false);
-        jEditorPaneCredits.setMinimumSize(new java.awt.Dimension(106, 80));
+        jEditorPaneCredits.setMinimumSize(new Dimension(106, 80));
         jPanelCredits.add(jEditorPaneCredits);
 
         jPanelMain.add(jPanelCredits);
 
-        jPanelBorderRight.setMaximumSize(new java.awt.Dimension(10, 10));
+        jPanelBorderRight.setMaximumSize(new Dimension(10, 10));
         jPanelMain.add(jPanelBorderRight);
 
         getContentPane().add(jPanelMain);
 
-        jPanelButtons.setMaximumSize(new java.awt.Dimension(32767, 65));
-        jPanelButtons.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT, 5, 10));
+        jPanelButtons.setMaximumSize(new Dimension(32767, 65));
+        jPanelButtons.setLayout(new FlowLayout(FlowLayout.RIGHT, 5, 10));
 
         jButtonClose.setText("OK");
-        jButtonClose.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jButtonClose.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 jButtonCloseActionPerformed(evt);
             }
         });
         jPanelButtons.add(jButtonClose);
 
-        jPanel4.setMaximumSize(new java.awt.Dimension(0, 0));
-        jPanel4.setMinimumSize(new java.awt.Dimension(0, 0));
-        jPanel4.setPreferredSize(new java.awt.Dimension(0, 0));
+        jPanel4.setMaximumSize(new Dimension(0, 0));
+        jPanel4.setMinimumSize(new Dimension(0, 0));
+        jPanel4.setPreferredSize(new Dimension(0, 0));
         jPanelButtons.add(jPanel4);
 
         getContentPane().add(jPanelButtons);
@@ -291,7 +302,7 @@ public class CreditsFrame extends JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-private void jButtonCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCloseActionPerformed
+private void jButtonCloseActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jButtonCloseActionPerformed
     closeOnExit();
 }//GEN-LAST:event_jButtonCloseActionPerformed
 
@@ -319,17 +330,17 @@ private void jButtonCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButtonClose;
-    private javax.swing.JEditorPane jEditorPaneCredits;
-    private javax.swing.JLabel jLabelLogo;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanelBorderLeft;
-    private javax.swing.JPanel jPanelBorderLeft1;
-    private javax.swing.JPanel jPanelBorderRight;
-    private javax.swing.JPanel jPanelButtons;
-    private javax.swing.JPanel jPanelCredits;
-    private javax.swing.JPanel jPanelLogos;
-    private javax.swing.JPanel jPanelMain;
+    public JButton jButtonClose;
+    public JEditorPane jEditorPaneCredits;
+    public JLabel jLabelLogo;
+    public JPanel jPanel4;
+    public JPanel jPanelBorderLeft;
+    public JPanel jPanelBorderLeft1;
+    public JPanel jPanelBorderRight;
+    public JPanel jPanelButtons;
+    public JPanel jPanelCredits;
+    public JPanel jPanelLogos;
+    public JPanel jPanelMain;
     // End of variables declaration//GEN-END:variables
 
 }

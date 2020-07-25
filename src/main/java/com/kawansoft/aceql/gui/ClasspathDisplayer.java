@@ -32,6 +32,8 @@ import com.kawansoft.app.util.classpath.ClasspathUtil;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.Insets;
 import java.awt.Window;
 import java.awt.event.ComponentAdapter;
@@ -47,10 +49,18 @@ import java.util.Collections;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.BoxLayout;
+import javax.swing.ButtonGroup;
+import javax.swing.GroupLayout;
+import javax.swing.JCheckBox;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTextPane;
 import javax.swing.ScrollPaneConstants;
+import javax.swing.SwingConstants;
+import javax.swing.WindowConstants;
 import org.apache.commons.lang3.StringUtils;
 
 /**
@@ -330,85 +340,81 @@ public class ClasspathDisplayer extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        buttonGroup1 = new javax.swing.ButtonGroup();
-        jPanelBorderTop = new javax.swing.JPanel();
-        jPanelOptions1 = new javax.swing.JPanel();
-        jLabelTitle = new javax.swing.JLabel();
-        jPanelOptionsMain = new javax.swing.JPanel();
-        jPanelOptions = new javax.swing.JPanel();
-        jPanelLeft22 = new javax.swing.JPanel();
-        jCheckBoxShowPath = new javax.swing.JCheckBox();
-        jPanelLeft23 = new javax.swing.JPanel();
-        jLabelDisplay = new javax.swing.JLabel();
-        jRadioButtonOriginalOrder = new javax.swing.JRadioButton();
-        jRadioButtonSort = new javax.swing.JRadioButton();
-        jPanelMessage = new javax.swing.JPanel();
-        jLabelMessage = new javax.swing.JLabel();
-        jPanelSep = new javax.swing.JPanel();
-        jPanelHelp = new javax.swing.JPanel();
-        jPanelHelpLeft = new javax.swing.JPanel();
-        jPanelHelpMain = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTextPane1 = new javax.swing.JTextPane();
-        jPanelHelpRight = new javax.swing.JPanel();
-        jPanelBottom = new javax.swing.JPanel();
+        buttonGroup1 = new ButtonGroup();
+        jPanelBorderTop = new JPanel();
+        jPanelOptions1 = new JPanel();
+        jLabelTitle = new JLabel();
+        jPanelOptionsMain = new JPanel();
+        jPanelOptions = new JPanel();
+        jPanelLeft22 = new JPanel();
+        jCheckBoxShowPath = new JCheckBox();
+        jPanelLeft23 = new JPanel();
+        jLabelDisplay = new JLabel();
+        jRadioButtonOriginalOrder = new JRadioButton();
+        jRadioButtonSort = new JRadioButton();
+        jPanelMessage = new JPanel();
+        jLabelMessage = new JLabel();
+        jPanelSep = new JPanel();
+        jPanelHelp = new JPanel();
+        jPanelHelpLeft = new JPanel();
+        jPanelHelpMain = new JPanel();
+        jScrollPane1 = new JScrollPane();
+        jTextPane1 = new JTextPane();
+        jPanelHelpRight = new JPanel();
+        jPanelBottom = new JPanel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Aide");
-        getContentPane().setLayout(new javax.swing.BoxLayout(getContentPane(), javax.swing.BoxLayout.Y_AXIS));
+        getContentPane().setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
 
-        jPanelBorderTop.setMaximumSize(new java.awt.Dimension(32767, 10));
-        jPanelBorderTop.setPreferredSize(new java.awt.Dimension(20, 10));
-        jPanelBorderTop.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 10, 10));
+        jPanelBorderTop.setMaximumSize(new Dimension(32767, 10));
+        jPanelBorderTop.setPreferredSize(new Dimension(20, 10));
+        jPanelBorderTop.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
         getContentPane().add(jPanelBorderTop);
 
-        jPanelOptions1.setMaximumSize(new java.awt.Dimension(2147483647, 32));
-        jPanelOptions1.setMinimumSize(new java.awt.Dimension(91, 32));
-        jPanelOptions1.setPreferredSize(new java.awt.Dimension(191, 32));
-        jPanelOptions1.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 10, 5));
+        jPanelOptions1.setMaximumSize(new Dimension(2147483647, 32));
+        jPanelOptions1.setMinimumSize(new Dimension(91, 32));
+        jPanelOptions1.setPreferredSize(new Dimension(191, 32));
+        jPanelOptions1.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 5));
 
         jLabelTitle.setText("Display CLASSPATH");
         jPanelOptions1.add(jLabelTitle);
 
         getContentPane().add(jPanelOptions1);
 
-        jPanelOptionsMain.setMaximumSize(new java.awt.Dimension(2147483647, 32));
-        jPanelOptionsMain.setLayout(new javax.swing.BoxLayout(jPanelOptionsMain, javax.swing.BoxLayout.LINE_AXIS));
+        jPanelOptionsMain.setMaximumSize(new Dimension(2147483647, 32));
+        jPanelOptionsMain.setLayout(new BoxLayout(jPanelOptionsMain, BoxLayout.LINE_AXIS));
 
-        jPanelOptions.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
+        jPanelOptions.setLayout(new FlowLayout(FlowLayout.LEFT));
 
-        jPanelLeft22.setMaximumSize(new java.awt.Dimension(0, 0));
-        jPanelLeft22.setPreferredSize(new java.awt.Dimension(0, 0));
+        jPanelLeft22.setMaximumSize(new Dimension(0, 0));
+        jPanelLeft22.setPreferredSize(new Dimension(0, 0));
 
-        javax.swing.GroupLayout jPanelLeft22Layout = new javax.swing.GroupLayout(jPanelLeft22);
+        GroupLayout jPanelLeft22Layout = new GroupLayout(jPanelLeft22);
         jPanelLeft22.setLayout(jPanelLeft22Layout);
-        jPanelLeft22Layout.setHorizontalGroup(
-            jPanelLeft22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jPanelLeft22Layout.setHorizontalGroup(jPanelLeft22Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGap(0, 0, Short.MAX_VALUE)
         );
-        jPanelLeft22Layout.setVerticalGroup(
-            jPanelLeft22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jPanelLeft22Layout.setVerticalGroup(jPanelLeft22Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
         jPanelOptions.add(jPanelLeft22);
 
         jCheckBoxShowPath.setText("Show Full Path:");
-        jCheckBoxShowPath.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+        jCheckBoxShowPath.setHorizontalTextPosition(SwingConstants.LEADING);
         jPanelOptions.add(jCheckBoxShowPath);
 
-        jPanelLeft23.setMaximumSize(new java.awt.Dimension(5, 5));
-        jPanelLeft23.setMinimumSize(new java.awt.Dimension(5, 5));
-        jPanelLeft23.setPreferredSize(new java.awt.Dimension(5, 5));
+        jPanelLeft23.setMaximumSize(new Dimension(5, 5));
+        jPanelLeft23.setMinimumSize(new Dimension(5, 5));
+        jPanelLeft23.setPreferredSize(new Dimension(5, 5));
 
-        javax.swing.GroupLayout jPanelLeft23Layout = new javax.swing.GroupLayout(jPanelLeft23);
+        GroupLayout jPanelLeft23Layout = new GroupLayout(jPanelLeft23);
         jPanelLeft23.setLayout(jPanelLeft23Layout);
-        jPanelLeft23Layout.setHorizontalGroup(
-            jPanelLeft23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jPanelLeft23Layout.setHorizontalGroup(jPanelLeft23Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGap(0, 5, Short.MAX_VALUE)
         );
-        jPanelLeft23Layout.setVerticalGroup(
-            jPanelLeft23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jPanelLeft23Layout.setVerticalGroup(jPanelLeft23Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGap(0, 5, Short.MAX_VALUE)
         );
 
@@ -426,9 +432,9 @@ public class ClasspathDisplayer extends javax.swing.JFrame {
 
         jPanelOptionsMain.add(jPanelOptions);
 
-        jPanelMessage.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.TRAILING, 10, 9));
+        jPanelMessage.setLayout(new FlowLayout(FlowLayout.TRAILING, 10, 9));
 
-        jLabelMessage.setFont(new java.awt.Font("Tahoma", 2, 13)); // NOI18N
+        jLabelMessage.setFont(new Font("Tahoma", 2, 13)); // NOI18N
         jLabelMessage.setText("Found JDBC Drivers are displayed in blue.");
         jPanelMessage.add(jLabelMessage);
 
@@ -436,31 +442,29 @@ public class ClasspathDisplayer extends javax.swing.JFrame {
 
         getContentPane().add(jPanelOptionsMain);
 
-        jPanelSep.setMaximumSize(new java.awt.Dimension(32767, 5));
-        jPanelSep.setMinimumSize(new java.awt.Dimension(0, 5));
+        jPanelSep.setMaximumSize(new Dimension(32767, 5));
+        jPanelSep.setMinimumSize(new Dimension(0, 5));
         jPanelSep.setName(""); // NOI18N
-        jPanelSep.setPreferredSize(new java.awt.Dimension(671, 5));
+        jPanelSep.setPreferredSize(new Dimension(671, 5));
 
-        javax.swing.GroupLayout jPanelSepLayout = new javax.swing.GroupLayout(jPanelSep);
+        GroupLayout jPanelSepLayout = new GroupLayout(jPanelSep);
         jPanelSep.setLayout(jPanelSepLayout);
-        jPanelSepLayout.setHorizontalGroup(
-            jPanelSepLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jPanelSepLayout.setHorizontalGroup(jPanelSepLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGap(0, 705, Short.MAX_VALUE)
         );
-        jPanelSepLayout.setVerticalGroup(
-            jPanelSepLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jPanelSepLayout.setVerticalGroup(jPanelSepLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGap(0, 5, Short.MAX_VALUE)
         );
 
         getContentPane().add(jPanelSep);
 
-        jPanelHelp.setLayout(new javax.swing.BoxLayout(jPanelHelp, javax.swing.BoxLayout.LINE_AXIS));
+        jPanelHelp.setLayout(new BoxLayout(jPanelHelp, BoxLayout.LINE_AXIS));
 
-        jPanelHelpLeft.setMaximumSize(new java.awt.Dimension(10, 10));
+        jPanelHelpLeft.setMaximumSize(new Dimension(10, 10));
         jPanelHelp.add(jPanelHelpLeft);
 
-        jPanelHelpMain.setPreferredSize(new java.awt.Dimension(319, 180));
-        jPanelHelpMain.setLayout(new javax.swing.BoxLayout(jPanelHelpMain, javax.swing.BoxLayout.LINE_AXIS));
+        jPanelHelpMain.setPreferredSize(new Dimension(319, 180));
+        jPanelHelpMain.setLayout(new BoxLayout(jPanelHelpMain, BoxLayout.LINE_AXIS));
 
         jScrollPane1.setViewportView(jTextPane1);
 
@@ -468,21 +472,19 @@ public class ClasspathDisplayer extends javax.swing.JFrame {
 
         jPanelHelp.add(jPanelHelpMain);
 
-        jPanelHelpRight.setMaximumSize(new java.awt.Dimension(10, 10));
+        jPanelHelpRight.setMaximumSize(new Dimension(10, 10));
         jPanelHelp.add(jPanelHelpRight);
 
         getContentPane().add(jPanelHelp);
 
-        jPanelBottom.setMaximumSize(new java.awt.Dimension(10, 10));
+        jPanelBottom.setMaximumSize(new Dimension(10, 10));
 
-        javax.swing.GroupLayout jPanelBottomLayout = new javax.swing.GroupLayout(jPanelBottom);
+        GroupLayout jPanelBottomLayout = new GroupLayout(jPanelBottom);
         jPanelBottom.setLayout(jPanelBottomLayout);
-        jPanelBottomLayout.setHorizontalGroup(
-            jPanelBottomLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jPanelBottomLayout.setHorizontalGroup(jPanelBottomLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGap(0, 10, Short.MAX_VALUE)
         );
-        jPanelBottomLayout.setVerticalGroup(
-            jPanelBottomLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jPanelBottomLayout.setVerticalGroup(jPanelBottomLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGap(0, 10, Short.MAX_VALUE)
         );
 
@@ -503,27 +505,27 @@ public class ClasspathDisplayer extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.JCheckBox jCheckBoxShowPath;
-    private javax.swing.JLabel jLabelDisplay;
-    private javax.swing.JLabel jLabelMessage;
-    private javax.swing.JLabel jLabelTitle;
-    private javax.swing.JPanel jPanelBorderTop;
-    private javax.swing.JPanel jPanelBottom;
-    private javax.swing.JPanel jPanelHelp;
-    private javax.swing.JPanel jPanelHelpLeft;
-    private javax.swing.JPanel jPanelHelpMain;
-    private javax.swing.JPanel jPanelHelpRight;
-    private javax.swing.JPanel jPanelLeft22;
-    private javax.swing.JPanel jPanelLeft23;
-    private javax.swing.JPanel jPanelMessage;
-    private javax.swing.JPanel jPanelOptions;
-    private javax.swing.JPanel jPanelOptions1;
-    private javax.swing.JPanel jPanelOptionsMain;
-    private javax.swing.JPanel jPanelSep;
-    private javax.swing.JRadioButton jRadioButtonOriginalOrder;
-    private javax.swing.JRadioButton jRadioButtonSort;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextPane jTextPane1;
+    public ButtonGroup buttonGroup1;
+    public JCheckBox jCheckBoxShowPath;
+    public JLabel jLabelDisplay;
+    public JLabel jLabelMessage;
+    public JLabel jLabelTitle;
+    public JPanel jPanelBorderTop;
+    public JPanel jPanelBottom;
+    public JPanel jPanelHelp;
+    public JPanel jPanelHelpLeft;
+    public JPanel jPanelHelpMain;
+    public JPanel jPanelHelpRight;
+    public JPanel jPanelLeft22;
+    public JPanel jPanelLeft23;
+    public JPanel jPanelMessage;
+    public JPanel jPanelOptions;
+    public JPanel jPanelOptions1;
+    public JPanel jPanelOptionsMain;
+    public JPanel jPanelSep;
+    public JRadioButton jRadioButtonOriginalOrder;
+    public JRadioButton jRadioButtonSort;
+    public JScrollPane jScrollPane1;
+    public JTextPane jTextPane1;
     // End of variables declaration//GEN-END:variables
 }

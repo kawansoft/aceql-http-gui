@@ -50,10 +50,20 @@ import javax.swing.event.HyperlinkListener;
 
 import com.kawansoft.app.parms.util.ImageParmsUtil;
 import com.swing.util.SwingUtil;
+import java.awt.FlowLayout;
+import java.awt.Insets;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.ByteArrayOutputStream;
+import javax.swing.BorderFactory;
+import javax.swing.BoxLayout;
+import javax.swing.GroupLayout;
+import javax.swing.JButton;
+import javax.swing.JEditorPane;
+import javax.swing.JScrollPane;
+import javax.swing.WindowConstants;
 import org.apache.commons.io.IOUtils;
-
 
 /**
  *
@@ -326,78 +336,76 @@ public class Help extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanelBorderTop = new javax.swing.JPanel();
-        jPanelHelp = new javax.swing.JPanel();
-        jPanelHelpLeft = new javax.swing.JPanel();
-        jPanelHelpMain = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jEditorPane1 = new javax.swing.JEditorPane();
-        jPanelHelpRight = new javax.swing.JPanel();
-        jPanelBottom = new javax.swing.JPanel();
-        jPanelButtons = new javax.swing.JPanel();
-        jButtonClose = new javax.swing.JButton();
-        jPanel4 = new javax.swing.JPanel();
+        jPanelBorderTop = new JPanel();
+        jPanelHelp = new JPanel();
+        jPanelHelpLeft = new JPanel();
+        jPanelHelpMain = new JPanel();
+        jScrollPane1 = new JScrollPane();
+        jEditorPane1 = new JEditorPane();
+        jPanelHelpRight = new JPanel();
+        jPanelBottom = new JPanel();
+        jPanelButtons = new JPanel();
+        jButtonClose = new JButton();
+        jPanel4 = new JPanel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Aide");
-        getContentPane().setLayout(new javax.swing.BoxLayout(getContentPane(), javax.swing.BoxLayout.Y_AXIS));
+        getContentPane().setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
 
-        jPanelBorderTop.setMaximumSize(new java.awt.Dimension(32767, 10));
-        jPanelBorderTop.setPreferredSize(new java.awt.Dimension(20, 10));
-        jPanelBorderTop.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 10, 10));
+        jPanelBorderTop.setMaximumSize(new Dimension(32767, 10));
+        jPanelBorderTop.setPreferredSize(new Dimension(20, 10));
+        jPanelBorderTop.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
         getContentPane().add(jPanelBorderTop);
 
-        jPanelHelp.setLayout(new javax.swing.BoxLayout(jPanelHelp, javax.swing.BoxLayout.LINE_AXIS));
+        jPanelHelp.setLayout(new BoxLayout(jPanelHelp, BoxLayout.LINE_AXIS));
 
-        jPanelHelpLeft.setMaximumSize(new java.awt.Dimension(10, 10));
+        jPanelHelpLeft.setMaximumSize(new Dimension(10, 10));
         jPanelHelp.add(jPanelHelpLeft);
 
-        jPanelHelpMain.setPreferredSize(new java.awt.Dimension(319, 180));
-        jPanelHelpMain.setLayout(new javax.swing.BoxLayout(jPanelHelpMain, javax.swing.BoxLayout.LINE_AXIS));
+        jPanelHelpMain.setPreferredSize(new Dimension(319, 180));
+        jPanelHelpMain.setLayout(new BoxLayout(jPanelHelpMain, BoxLayout.LINE_AXIS));
 
-        jEditorPane1.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5));
-        jEditorPane1.setMargin(new java.awt.Insets(5, 5, 5, 5));
+        jEditorPane1.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
+        jEditorPane1.setMargin(new Insets(5, 5, 5, 5));
         jScrollPane1.setViewportView(jEditorPane1);
 
         jPanelHelpMain.add(jScrollPane1);
 
         jPanelHelp.add(jPanelHelpMain);
 
-        jPanelHelpRight.setMaximumSize(new java.awt.Dimension(10, 10));
+        jPanelHelpRight.setMaximumSize(new Dimension(10, 10));
         jPanelHelp.add(jPanelHelpRight);
 
         getContentPane().add(jPanelHelp);
 
-        jPanelBottom.setMaximumSize(new java.awt.Dimension(32767, 5));
-        jPanelBottom.setPreferredSize(new java.awt.Dimension(100, 5));
+        jPanelBottom.setMaximumSize(new Dimension(32767, 5));
+        jPanelBottom.setPreferredSize(new Dimension(100, 5));
 
-        javax.swing.GroupLayout jPanelBottomLayout = new javax.swing.GroupLayout(jPanelBottom);
+        GroupLayout jPanelBottomLayout = new GroupLayout(jPanelBottom);
         jPanelBottom.setLayout(jPanelBottomLayout);
-        jPanelBottomLayout.setHorizontalGroup(
-            jPanelBottomLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jPanelBottomLayout.setHorizontalGroup(jPanelBottomLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGap(0, 446, Short.MAX_VALUE)
         );
-        jPanelBottomLayout.setVerticalGroup(
-            jPanelBottomLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jPanelBottomLayout.setVerticalGroup(jPanelBottomLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGap(0, 5, Short.MAX_VALUE)
         );
 
         getContentPane().add(jPanelBottom);
 
-        jPanelButtons.setMaximumSize(new java.awt.Dimension(32767, 33));
-        jPanelButtons.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT, 5, 10));
+        jPanelButtons.setMaximumSize(new Dimension(32767, 33));
+        jPanelButtons.setLayout(new FlowLayout(FlowLayout.RIGHT, 5, 10));
 
         jButtonClose.setText("Fermer");
-        jButtonClose.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jButtonClose.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 jButtonCloseActionPerformed(evt);
             }
         });
         jPanelButtons.add(jButtonClose);
 
-        jPanel4.setMaximumSize(new java.awt.Dimension(0, 0));
-        jPanel4.setMinimumSize(new java.awt.Dimension(0, 0));
-        jPanel4.setPreferredSize(new java.awt.Dimension(0, 0));
+        jPanel4.setMaximumSize(new Dimension(0, 0));
+        jPanel4.setMinimumSize(new Dimension(0, 0));
+        jPanel4.setPreferredSize(new Dimension(0, 0));
         jPanelButtons.add(jPanel4);
 
         getContentPane().add(jPanelButtons);
@@ -405,7 +413,7 @@ public class Help extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButtonCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCloseActionPerformed
+    private void jButtonCloseActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jButtonCloseActionPerformed
         this.dispose();
     }//GEN-LAST:event_jButtonCloseActionPerformed
 
@@ -420,17 +428,17 @@ public class Help extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButtonClose;
-    private javax.swing.JEditorPane jEditorPane1;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanelBorderTop;
-    private javax.swing.JPanel jPanelBottom;
-    private javax.swing.JPanel jPanelButtons;
-    private javax.swing.JPanel jPanelHelp;
-    private javax.swing.JPanel jPanelHelpLeft;
-    private javax.swing.JPanel jPanelHelpMain;
-    private javax.swing.JPanel jPanelHelpRight;
-    private javax.swing.JScrollPane jScrollPane1;
+    public JButton jButtonClose;
+    public JEditorPane jEditorPane1;
+    public JPanel jPanel4;
+    public JPanel jPanelBorderTop;
+    public JPanel jPanelBottom;
+    public JPanel jPanelButtons;
+    public JPanel jPanelHelp;
+    public JPanel jPanelHelpLeft;
+    public JPanel jPanelHelpMain;
+    public JPanel jPanelHelpRight;
+    public JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 
 

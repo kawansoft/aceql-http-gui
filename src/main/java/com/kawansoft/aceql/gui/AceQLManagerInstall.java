@@ -34,7 +34,11 @@ import com.kawansoft.app.util.WindowSettingMgr;
 import com.swing.util.SwingUtil;
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.Window;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.awt.event.KeyAdapter;
@@ -45,8 +49,16 @@ import java.io.IOException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.BoxLayout;
+import javax.swing.GroupLayout;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JSeparator;
+import javax.swing.WindowConstants;
 import org.apache.commons.lang3.SystemUtils;
 
 
@@ -360,99 +372,93 @@ public class AceQLManagerInstall extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanelMain = new javax.swing.JPanel();
-        jPanelLogo = new javax.swing.JPanel();
-        jPanelSepBlank11 = new javax.swing.JPanel();
-        jLabelLogo = new javax.swing.JLabel();
-        jPanelSepLine2New2 = new javax.swing.JPanel();
-        jPanel22 = new javax.swing.JPanel();
-        jSeparator4 = new javax.swing.JSeparator();
-        jPanel23 = new javax.swing.JPanel();
-        jPanelSepBlanc8spaces1 = new javax.swing.JPanel();
-        jPanelRadioService = new javax.swing.JPanel();
-        jPanelLeft25 = new javax.swing.JPanel();
-        jLabelWindowsServiceMode = new javax.swing.JLabel();
-        jLabelServiceStatus = new javax.swing.JLabel();
-        jLabelServiceStatusValue = new javax.swing.JLabel();
-        jPaneServiceInstall = new javax.swing.JPanel();
-        jPanelLeft33 = new javax.swing.JPanel();
-        jButtonInstallService = new javax.swing.JButton();
-        jButtonUninstallService = new javax.swing.JButton();
-        jPanelSepBlanc8spaces8 = new javax.swing.JPanel();
-        jPanelSepLine2New = new javax.swing.JPanel();
-        jPanel28 = new javax.swing.JPanel();
-        jSeparator2 = new javax.swing.JSeparator();
-        jPanel29 = new javax.swing.JPanel();
-        jPanelButtons = new javax.swing.JPanel();
-        jButtonOk = new javax.swing.JButton();
-        jButtonHelp = new javax.swing.JButton();
-        jPanel1 = new javax.swing.JPanel();
+        jPanelMain = new JPanel();
+        jPanelLogo = new JPanel();
+        jPanelSepBlank11 = new JPanel();
+        jLabelLogo = new JLabel();
+        jPanelSepLine2New2 = new JPanel();
+        jPanel22 = new JPanel();
+        jSeparator4 = new JSeparator();
+        jPanel23 = new JPanel();
+        jPanelSepBlanc8spaces1 = new JPanel();
+        jPanelRadioService = new JPanel();
+        jPanelLeft25 = new JPanel();
+        jLabelWindowsServiceMode = new JLabel();
+        jLabelServiceStatus = new JLabel();
+        jLabelServiceStatusValue = new JLabel();
+        jPaneServiceInstall = new JPanel();
+        jPanelLeft33 = new JPanel();
+        jButtonInstallService = new JButton();
+        jButtonUninstallService = new JButton();
+        jPanelSepBlanc8spaces8 = new JPanel();
+        jPanelSepLine2New = new JPanel();
+        jPanel28 = new JPanel();
+        jSeparator2 = new JSeparator();
+        jPanel29 = new JPanel();
+        jPanelButtons = new JPanel();
+        jButtonOk = new JButton();
+        jButtonHelp = new JButton();
+        jPanel1 = new JPanel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        getContentPane().setLayout(new javax.swing.BoxLayout(getContentPane(), javax.swing.BoxLayout.LINE_AXIS));
+        setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+        getContentPane().setLayout(new BoxLayout(getContentPane(), BoxLayout.LINE_AXIS));
 
-        jPanelMain.setLayout(new javax.swing.BoxLayout(jPanelMain, javax.swing.BoxLayout.Y_AXIS));
+        jPanelMain.setLayout(new BoxLayout(jPanelMain, BoxLayout.Y_AXIS));
 
-        jPanelLogo.setMaximumSize(new java.awt.Dimension(32767, 70));
-        jPanelLogo.setMinimumSize(new java.awt.Dimension(137, 70));
-        jPanelLogo.setPreferredSize(new java.awt.Dimension(431, 70));
-        jPanelLogo.setLayout(new javax.swing.BoxLayout(jPanelLogo, javax.swing.BoxLayout.LINE_AXIS));
+        jPanelLogo.setMaximumSize(new Dimension(32767, 70));
+        jPanelLogo.setMinimumSize(new Dimension(137, 70));
+        jPanelLogo.setPreferredSize(new Dimension(431, 70));
+        jPanelLogo.setLayout(new BoxLayout(jPanelLogo, BoxLayout.LINE_AXIS));
 
-        jPanelSepBlank11.setMaximumSize(new java.awt.Dimension(10, 10));
-        jPanelSepBlank11.setPreferredSize(new java.awt.Dimension(10, 11));
+        jPanelSepBlank11.setMaximumSize(new Dimension(10, 10));
+        jPanelSepBlank11.setPreferredSize(new Dimension(10, 11));
 
-        javax.swing.GroupLayout jPanelSepBlank11Layout = new javax.swing.GroupLayout(jPanelSepBlank11);
+        GroupLayout jPanelSepBlank11Layout = new GroupLayout(jPanelSepBlank11);
         jPanelSepBlank11.setLayout(jPanelSepBlank11Layout);
-        jPanelSepBlank11Layout.setHorizontalGroup(
-            jPanelSepBlank11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jPanelSepBlank11Layout.setHorizontalGroup(jPanelSepBlank11Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGap(0, 10, Short.MAX_VALUE)
         );
-        jPanelSepBlank11Layout.setVerticalGroup(
-            jPanelSepBlank11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jPanelSepBlank11Layout.setVerticalGroup(jPanelSepBlank11Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGap(0, 10, Short.MAX_VALUE)
         );
 
         jPanelLogo.add(jPanelSepBlank11);
 
-        jLabelLogo.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
-        jLabelLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/kawansoft/app/parms/images/logos/logo-AceQL_48.png"))); // NOI18N
+        jLabelLogo.setFont(new Font("Tahoma", 1, 13)); // NOI18N
+        jLabelLogo.setIcon(new ImageIcon(getClass().getResource("/com/kawansoft/app/parms/images/logos/logo-AceQL_48.png"))); // NOI18N
         jLabelLogo.setText("AceQL HTTP");
         jLabelLogo.setToolTipText("");
         jPanelLogo.add(jLabelLogo);
 
         jPanelMain.add(jPanelLogo);
 
-        jPanelSepLine2New2.setMaximumSize(new java.awt.Dimension(32787, 10));
-        jPanelSepLine2New2.setMinimumSize(new java.awt.Dimension(0, 10));
-        jPanelSepLine2New2.setPreferredSize(new java.awt.Dimension(20, 10));
-        jPanelSepLine2New2.setLayout(new javax.swing.BoxLayout(jPanelSepLine2New2, javax.swing.BoxLayout.LINE_AXIS));
+        jPanelSepLine2New2.setMaximumSize(new Dimension(32787, 10));
+        jPanelSepLine2New2.setMinimumSize(new Dimension(0, 10));
+        jPanelSepLine2New2.setPreferredSize(new Dimension(20, 10));
+        jPanelSepLine2New2.setLayout(new BoxLayout(jPanelSepLine2New2, BoxLayout.LINE_AXIS));
 
-        jPanel22.setMaximumSize(new java.awt.Dimension(10, 10));
+        jPanel22.setMaximumSize(new Dimension(10, 10));
 
-        javax.swing.GroupLayout jPanel22Layout = new javax.swing.GroupLayout(jPanel22);
+        GroupLayout jPanel22Layout = new GroupLayout(jPanel22);
         jPanel22.setLayout(jPanel22Layout);
-        jPanel22Layout.setHorizontalGroup(
-            jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jPanel22Layout.setHorizontalGroup(jPanel22Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGap(0, 10, Short.MAX_VALUE)
         );
-        jPanel22Layout.setVerticalGroup(
-            jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jPanel22Layout.setVerticalGroup(jPanel22Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGap(0, 5, Short.MAX_VALUE)
         );
 
         jPanelSepLine2New2.add(jPanel22);
         jPanelSepLine2New2.add(jSeparator4);
 
-        jPanel23.setMaximumSize(new java.awt.Dimension(10, 10));
+        jPanel23.setMaximumSize(new Dimension(10, 10));
 
-        javax.swing.GroupLayout jPanel23Layout = new javax.swing.GroupLayout(jPanel23);
+        GroupLayout jPanel23Layout = new GroupLayout(jPanel23);
         jPanel23.setLayout(jPanel23Layout);
-        jPanel23Layout.setHorizontalGroup(
-            jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jPanel23Layout.setHorizontalGroup(jPanel23Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGap(0, 10, Short.MAX_VALUE)
         );
-        jPanel23Layout.setVerticalGroup(
-            jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jPanel23Layout.setVerticalGroup(jPanel23Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGap(0, 5, Short.MAX_VALUE)
         );
 
@@ -460,26 +466,24 @@ public class AceQLManagerInstall extends javax.swing.JFrame {
 
         jPanelMain.add(jPanelSepLine2New2);
 
-        jPanelSepBlanc8spaces1.setMaximumSize(new java.awt.Dimension(32767, 8));
-        jPanelSepBlanc8spaces1.setMinimumSize(new java.awt.Dimension(10, 8));
-        jPanelSepBlanc8spaces1.setPreferredSize(new java.awt.Dimension(1000, 8));
+        jPanelSepBlanc8spaces1.setMaximumSize(new Dimension(32767, 8));
+        jPanelSepBlanc8spaces1.setMinimumSize(new Dimension(10, 8));
+        jPanelSepBlanc8spaces1.setPreferredSize(new Dimension(1000, 8));
         jPanelMain.add(jPanelSepBlanc8spaces1);
 
-        jPanelRadioService.setMaximumSize(new java.awt.Dimension(2147483647, 32));
-        jPanelRadioService.setMinimumSize(new java.awt.Dimension(91, 32));
-        jPanelRadioService.setPreferredSize(new java.awt.Dimension(191, 32));
-        jPanelRadioService.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
+        jPanelRadioService.setMaximumSize(new Dimension(2147483647, 32));
+        jPanelRadioService.setMinimumSize(new Dimension(91, 32));
+        jPanelRadioService.setPreferredSize(new Dimension(191, 32));
+        jPanelRadioService.setLayout(new FlowLayout(FlowLayout.LEFT));
 
-        jPanelLeft25.setMaximumSize(new java.awt.Dimension(0, 0));
+        jPanelLeft25.setMaximumSize(new Dimension(0, 0));
 
-        javax.swing.GroupLayout jPanelLeft25Layout = new javax.swing.GroupLayout(jPanelLeft25);
+        GroupLayout jPanelLeft25Layout = new GroupLayout(jPanelLeft25);
         jPanelLeft25.setLayout(jPanelLeft25Layout);
-        jPanelLeft25Layout.setHorizontalGroup(
-            jPanelLeft25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jPanelLeft25Layout.setHorizontalGroup(jPanelLeft25Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGap(0, 0, Short.MAX_VALUE)
         );
-        jPanelLeft25Layout.setVerticalGroup(
-            jPanelLeft25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jPanelLeft25Layout.setVerticalGroup(jPanelLeft25Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
@@ -494,22 +498,20 @@ public class AceQLManagerInstall extends javax.swing.JFrame {
 
         jPanelMain.add(jPanelRadioService);
 
-        jPaneServiceInstall.setMaximumSize(new java.awt.Dimension(2147483647, 32));
-        jPaneServiceInstall.setMinimumSize(new java.awt.Dimension(91, 32));
-        jPaneServiceInstall.setPreferredSize(new java.awt.Dimension(191, 32));
-        jPaneServiceInstall.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
+        jPaneServiceInstall.setMaximumSize(new Dimension(2147483647, 32));
+        jPaneServiceInstall.setMinimumSize(new Dimension(91, 32));
+        jPaneServiceInstall.setPreferredSize(new Dimension(191, 32));
+        jPaneServiceInstall.setLayout(new FlowLayout(FlowLayout.LEFT));
 
-        jPanelLeft33.setMaximumSize(new java.awt.Dimension(15, 10));
-        jPanelLeft33.setMinimumSize(new java.awt.Dimension(15, 10));
+        jPanelLeft33.setMaximumSize(new Dimension(15, 10));
+        jPanelLeft33.setMinimumSize(new Dimension(15, 10));
 
-        javax.swing.GroupLayout jPanelLeft33Layout = new javax.swing.GroupLayout(jPanelLeft33);
+        GroupLayout jPanelLeft33Layout = new GroupLayout(jPanelLeft33);
         jPanelLeft33.setLayout(jPanelLeft33Layout);
-        jPanelLeft33Layout.setHorizontalGroup(
-            jPanelLeft33Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jPanelLeft33Layout.setHorizontalGroup(jPanelLeft33Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGap(0, 15, Short.MAX_VALUE)
         );
-        jPanelLeft33Layout.setVerticalGroup(
-            jPanelLeft33Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jPanelLeft33Layout.setVerticalGroup(jPanelLeft33Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGap(0, 10, Short.MAX_VALUE)
         );
 
@@ -517,8 +519,8 @@ public class AceQLManagerInstall extends javax.swing.JFrame {
 
         jButtonInstallService.setText("Install Service ");
         jButtonInstallService.setToolTipText("");
-        jButtonInstallService.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jButtonInstallService.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 jButtonInstallServiceActionPerformed(evt);
             }
         });
@@ -526,8 +528,8 @@ public class AceQLManagerInstall extends javax.swing.JFrame {
 
         jButtonUninstallService.setText("Uninstall Service");
         jButtonUninstallService.setToolTipText("");
-        jButtonUninstallService.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jButtonUninstallService.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 jButtonUninstallServiceActionPerformed(evt);
             }
         });
@@ -535,44 +537,40 @@ public class AceQLManagerInstall extends javax.swing.JFrame {
 
         jPanelMain.add(jPaneServiceInstall);
 
-        jPanelSepBlanc8spaces8.setMaximumSize(new java.awt.Dimension(32767, 34));
-        jPanelSepBlanc8spaces8.setMinimumSize(new java.awt.Dimension(10, 34));
-        jPanelSepBlanc8spaces8.setPreferredSize(new java.awt.Dimension(1000, 34));
+        jPanelSepBlanc8spaces8.setMaximumSize(new Dimension(32767, 34));
+        jPanelSepBlanc8spaces8.setMinimumSize(new Dimension(10, 34));
+        jPanelSepBlanc8spaces8.setPreferredSize(new Dimension(1000, 34));
         jPanelMain.add(jPanelSepBlanc8spaces8);
 
-        jPanelSepLine2New.setMaximumSize(new java.awt.Dimension(32787, 10));
-        jPanelSepLine2New.setMinimumSize(new java.awt.Dimension(0, 10));
-        jPanelSepLine2New.setPreferredSize(new java.awt.Dimension(20, 10));
-        jPanelSepLine2New.setLayout(new javax.swing.BoxLayout(jPanelSepLine2New, javax.swing.BoxLayout.LINE_AXIS));
+        jPanelSepLine2New.setMaximumSize(new Dimension(32787, 10));
+        jPanelSepLine2New.setMinimumSize(new Dimension(0, 10));
+        jPanelSepLine2New.setPreferredSize(new Dimension(20, 10));
+        jPanelSepLine2New.setLayout(new BoxLayout(jPanelSepLine2New, BoxLayout.LINE_AXIS));
 
-        jPanel28.setMaximumSize(new java.awt.Dimension(10, 5));
-        jPanel28.setMinimumSize(new java.awt.Dimension(10, 5));
+        jPanel28.setMaximumSize(new Dimension(10, 5));
+        jPanel28.setMinimumSize(new Dimension(10, 5));
 
-        javax.swing.GroupLayout jPanel28Layout = new javax.swing.GroupLayout(jPanel28);
+        GroupLayout jPanel28Layout = new GroupLayout(jPanel28);
         jPanel28.setLayout(jPanel28Layout);
-        jPanel28Layout.setHorizontalGroup(
-            jPanel28Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jPanel28Layout.setHorizontalGroup(jPanel28Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGap(0, 10, Short.MAX_VALUE)
         );
-        jPanel28Layout.setVerticalGroup(
-            jPanel28Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jPanel28Layout.setVerticalGroup(jPanel28Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGap(0, 5, Short.MAX_VALUE)
         );
 
         jPanelSepLine2New.add(jPanel28);
         jPanelSepLine2New.add(jSeparator2);
 
-        jPanel29.setMaximumSize(new java.awt.Dimension(10, 5));
-        jPanel29.setMinimumSize(new java.awt.Dimension(10, 5));
+        jPanel29.setMaximumSize(new Dimension(10, 5));
+        jPanel29.setMinimumSize(new Dimension(10, 5));
 
-        javax.swing.GroupLayout jPanel29Layout = new javax.swing.GroupLayout(jPanel29);
+        GroupLayout jPanel29Layout = new GroupLayout(jPanel29);
         jPanel29.setLayout(jPanel29Layout);
-        jPanel29Layout.setHorizontalGroup(
-            jPanel29Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jPanel29Layout.setHorizontalGroup(jPanel29Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGap(0, 10, Short.MAX_VALUE)
         );
-        jPanel29Layout.setVerticalGroup(
-            jPanel29Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jPanel29Layout.setVerticalGroup(jPanel29Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGap(0, 5, Short.MAX_VALUE)
         );
 
@@ -580,36 +578,34 @@ public class AceQLManagerInstall extends javax.swing.JFrame {
 
         jPanelMain.add(jPanelSepLine2New);
 
-        jPanelButtons.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT));
+        jPanelButtons.setLayout(new FlowLayout(FlowLayout.RIGHT));
 
         jButtonOk.setText("OK");
-        jButtonOk.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jButtonOk.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 jButtonOkActionPerformed(evt);
             }
         });
         jPanelButtons.add(jButtonOk);
 
         jButtonHelp.setText("Help");
-        jButtonHelp.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jButtonHelp.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 jButtonHelpActionPerformed(evt);
             }
         });
         jPanelButtons.add(jButtonHelp);
 
-        jPanel1.setMaximumSize(new java.awt.Dimension(1, 1));
-        jPanel1.setMinimumSize(new java.awt.Dimension(1, 1));
-        jPanel1.setPreferredSize(new java.awt.Dimension(0, 0));
+        jPanel1.setMaximumSize(new Dimension(1, 1));
+        jPanel1.setMinimumSize(new Dimension(1, 1));
+        jPanel1.setPreferredSize(new Dimension(0, 0));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        GroupLayout jPanel1Layout = new GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jPanel1Layout.setHorizontalGroup(jPanel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGap(0, 1, Short.MAX_VALUE)
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jPanel1Layout.setVerticalGroup(jPanel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGap(0, 1, Short.MAX_VALUE)
         );
 
@@ -622,19 +618,19 @@ public class AceQLManagerInstall extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButtonInstallServiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonInstallServiceActionPerformed
+    private void jButtonInstallServiceActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jButtonInstallServiceActionPerformed
         installService();
     }//GEN-LAST:event_jButtonInstallServiceActionPerformed
 
-    private void jButtonUninstallServiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonUninstallServiceActionPerformed
+    private void jButtonUninstallServiceActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jButtonUninstallServiceActionPerformed
         uninstallService();
     }//GEN-LAST:event_jButtonUninstallServiceActionPerformed
 
-    private void jButtonOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOkActionPerformed
+    private void jButtonOkActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jButtonOkActionPerformed
         actionOk();
     }//GEN-LAST:event_jButtonOkActionPerformed
 
-    private void jButtonHelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonHelpActionPerformed
+    private void jButtonHelpActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jButtonHelpActionPerformed
         help();
     }//GEN-LAST:event_jButtonHelpActionPerformed
 
@@ -674,33 +670,33 @@ public class AceQLManagerInstall extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButtonHelp;
-    private javax.swing.JButton jButtonInstallService;
-    private javax.swing.JButton jButtonOk;
-    private javax.swing.JButton jButtonUninstallService;
-    private javax.swing.JLabel jLabelLogo;
-    private javax.swing.JLabel jLabelServiceStatus;
-    private javax.swing.JLabel jLabelServiceStatusValue;
-    private javax.swing.JLabel jLabelWindowsServiceMode;
-    private javax.swing.JPanel jPaneServiceInstall;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel22;
-    private javax.swing.JPanel jPanel23;
-    private javax.swing.JPanel jPanel28;
-    private javax.swing.JPanel jPanel29;
-    private javax.swing.JPanel jPanelButtons;
-    private javax.swing.JPanel jPanelLeft25;
-    private javax.swing.JPanel jPanelLeft33;
-    private javax.swing.JPanel jPanelLogo;
-    private javax.swing.JPanel jPanelMain;
-    private javax.swing.JPanel jPanelRadioService;
-    private javax.swing.JPanel jPanelSepBlanc8spaces1;
-    private javax.swing.JPanel jPanelSepBlanc8spaces8;
-    private javax.swing.JPanel jPanelSepBlank11;
-    private javax.swing.JPanel jPanelSepLine2New;
-    private javax.swing.JPanel jPanelSepLine2New2;
-    private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JSeparator jSeparator4;
+    public JButton jButtonHelp;
+    public JButton jButtonInstallService;
+    public JButton jButtonOk;
+    public JButton jButtonUninstallService;
+    public JLabel jLabelLogo;
+    public JLabel jLabelServiceStatus;
+    public JLabel jLabelServiceStatusValue;
+    public JLabel jLabelWindowsServiceMode;
+    public JPanel jPaneServiceInstall;
+    public JPanel jPanel1;
+    public JPanel jPanel22;
+    public JPanel jPanel23;
+    public JPanel jPanel28;
+    public JPanel jPanel29;
+    public JPanel jPanelButtons;
+    public JPanel jPanelLeft25;
+    public JPanel jPanelLeft33;
+    public JPanel jPanelLogo;
+    public JPanel jPanelMain;
+    public JPanel jPanelRadioService;
+    public JPanel jPanelSepBlanc8spaces1;
+    public JPanel jPanelSepBlanc8spaces8;
+    public JPanel jPanelSepBlank11;
+    public JPanel jPanelSepLine2New;
+    public JPanel jPanelSepLine2New2;
+    public JSeparator jSeparator2;
+    public JSeparator jSeparator4;
     // End of variables declaration//GEN-END:variables
 
 }
