@@ -106,7 +106,7 @@ public class CreditsFrame extends JFrame {
             e1.printStackTrace();
         }
 
-        jPanelCredits.setBorder(javax.swing.BorderFactory.createTitledBorder(MessagesManager.get("credits")));
+        jPanelCredits.setBorder(BorderFactory.createTitledBorder(MessagesManager.get("credits")));
                 
         jEditorPaneCredits.setContentType("text/html");
         jEditorPaneCredits.setEditable(false);

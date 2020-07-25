@@ -33,7 +33,6 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Insets;
-import java.awt.Window;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.awt.event.KeyAdapter;
@@ -246,13 +245,13 @@ public class AceQLConsole extends JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    JPanel jPanelBorderTop;
-    JPanel jPanelBottom;
-    JPanel jPanelHelp;
-    JPanel jPanelHelpLeft;
-    JPanel jPanelHelpMain;
-    JPanel jPanelHelpRight;
-    JScrollPane jScrollPane1;
-    JTextPane jTextPane1;
+    public JPanel jPanelBorderTop;
+    public JPanel jPanelBottom;
+    public JPanel jPanelHelp;
+    public JPanel jPanelHelpLeft;
+    public JPanel jPanelHelpMain;
+    public JPanel jPanelHelpRight;
+    public JScrollPane jScrollPane1;
+    public JTextPane jTextPane1;
     // End of variables declaration//GEN-END:variables
 }

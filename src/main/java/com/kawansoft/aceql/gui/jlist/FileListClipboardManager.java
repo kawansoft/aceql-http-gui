@@ -392,10 +392,6 @@ public class FileListClipboardManager
                            "Impossible to read the file: " + ex + "\n(" + ex.toString() + ")" );
                }                                      
             }        
-            else
-            {
-                // Nothing
-            }
         }
         else if ( e.getActionCommand().equals(delete))
         {            

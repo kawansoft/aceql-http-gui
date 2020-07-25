@@ -75,7 +75,7 @@ public class ClasspathDisplayer extends javax.swing.JFrame {
      * Add a clipboard manager for content management
      */
     private ClipboardManager clipboard = null;
-    private java.awt.Window parent = null;
+    private Window parent = null;
     private Color light_red = new Color(255, 58, 58);
 
     public ClasspathDisplayer(Window parent) {
