@@ -5,8 +5,6 @@
  */
 package com.kawansoft.aceql.gui.util;
 
-import java.awt.event.InputEvent;
-
 /**
  *
  * @author Nicolas de Pomereu
