@@ -438,10 +438,12 @@ public class DialogProxyAuth extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonOkActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jButtonOkActionPerformed
+        AceQLManagerUtil.printEvent(evt);
         doIt();
     }//GEN-LAST:event_jButtonOkActionPerformed
 
     private void jButtonCancelActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jButtonCancelActionPerformed
+        AceQLManagerUtil.printEvent(evt);
         this.dispose();
     }//GEN-LAST:event_jButtonCancelActionPerformed
 

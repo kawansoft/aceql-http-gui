@@ -62,6 +62,7 @@ import com.kawansoft.app.parms.ParmsConstants;
 import com.kawansoft.app.parms.util.ImageParmsUtil;
 import com.kawansoft.app.parms.util.ParmsUtil;
 import com.kawansoft.app.util.FileUtil;
+import java.awt.Desktop;
 
 /**
  * Clipboard Manager allows to add right click pop up menu to JTable with the
@@ -314,7 +315,7 @@ public class FileTableClipboardManager {
                //Desktop desktop = Desktop.getDesktop();
                 try {
                     parent.setAlwaysOnTop(false);
-                    java.awt.Desktop dekstop = java.awt.Desktop.getDesktop();
+                    Desktop dekstop = Desktop.getDesktop();
                     dekstop.open(file);
                     parent.setVisible(false);
                     parent.setVisible(true);

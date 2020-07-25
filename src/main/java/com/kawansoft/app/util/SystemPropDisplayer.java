@@ -27,6 +27,7 @@
  */ 
 package com.kawansoft.app.util;
 
+import com.kawansoft.aceql.gui.util.AceQLManagerUtil;
 import com.kawansoft.app.util.table.TableClipboardManager;
 import com.kawansoft.app.parms.util.ImageParmsUtil;
 import java.awt.Color;
@@ -407,10 +408,12 @@ public class SystemPropDisplayer extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
 private void jButtonCloseActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jButtonCloseActionPerformed
+    AceQLManagerUtil.printEvent(evt);
     dispose();
 }//GEN-LAST:event_jButtonCloseActionPerformed
 
     private void copyToClipboardActionPerformed(ActionEvent evt) {//GEN-FIRST:event_copyToClipboardActionPerformed
+        AceQLManagerUtil.printEvent(evt);
         jTable1.selectAll();
 
         // Put the content of the table in a JTextField
@@ -459,14 +462,17 @@ private void jButtonCloseActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jBu
     }//GEN-LAST:event_copyToClipboardActionPerformed
 
     private void jButtonUrlMouseEntered(MouseEvent evt) {//GEN-FIRST:event_jButtonUrlMouseEntered
+        AceQLManagerUtil.printEvent(evt);
         this.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
     }//GEN-LAST:event_jButtonUrlMouseEntered
 
     private void jButtonUrlMouseExited(MouseEvent evt) {//GEN-FIRST:event_jButtonUrlMouseExited
+        AceQLManagerUtil.printEvent(evt);
         this.setCursor(Cursor.getDefaultCursor());
     }//GEN-LAST:event_jButtonUrlMouseExited
 
     private void jButtonUrlActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jButtonUrlActionPerformed
+        AceQLManagerUtil.printEvent(evt);
         Desktop desktop = Desktop.getDesktop();
         String url = jButtonUrl.getText();
 

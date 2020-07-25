@@ -28,6 +28,7 @@ import com.kawansoft.app.parms.MessagesManager;
 import com.kawansoft.app.parms.ParmsConstants;
 import com.kawansoft.app.parms.util.ImageParmsUtil;
 import com.kawansoft.app.parms.util.ParmsUtil;
+import java.awt.Desktop;
 import java.awt.Toolkit;
 import java.awt.Window;
 import java.awt.datatransfer.Clipboard;
@@ -410,7 +411,7 @@ public class FileTableClipboardManagerGroupFile
                try
                {
                    parent.setAlwaysOnTop(false);
-                   java.awt.Desktop dekstop = java.awt.Desktop.getDesktop();
+                   Desktop dekstop = Desktop.getDesktop();
                    dekstop.open(file); 
                    parent.setVisible(false);
                    parent.setVisible(true);

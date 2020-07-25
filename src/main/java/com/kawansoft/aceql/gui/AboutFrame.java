@@ -75,7 +75,7 @@ import javax.swing.WindowConstants;
  *
  * @author Nicolas de Pomereu
  */
-public class AboutFrame extends javax.swing.JFrame {
+public class AboutFrame extends JFrame {
 
     public static final String CR_LF = System.getProperty("line.separator");
 
@@ -538,15 +538,17 @@ private void jButtonUrlMouseEntered(MouseEvent evt) {//GEN-FIRST:event_jButtonUr
 }//GEN-LAST:event_jButtonUrlMouseEntered
 
 private void jButtonUrlMouseExited(MouseEvent evt) {//GEN-FIRST:event_jButtonUrlMouseExited
+    AceQLManagerUtil.printEvent(evt);
     this.setCursor(Cursor.getDefaultCursor());
 }//GEN-LAST:event_jButtonUrlMouseExited
 
 private void jButtonEmailSupportMouseEntered(MouseEvent evt) {//GEN-FIRST:event_jButtonEmailSupportMouseEntered
-    
+    AceQLManagerUtil.printEvent(evt);
     this.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 }//GEN-LAST:event_jButtonEmailSupportMouseEntered
 
 private void jButtonEmailSupportMouseExited(MouseEvent evt) {//GEN-FIRST:event_jButtonEmailSupportMouseExited
+    AceQLManagerUtil.printEvent(evt);
     this.setCursor(Cursor.getDefaultCursor());
 }//GEN-LAST:event_jButtonEmailSupportMouseExited
 
@@ -565,6 +567,7 @@ private void jButtonUrlActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jButt
 }//GEN-LAST:event_jButtonUrlActionPerformed
 
 private void jButtonEmailSupportActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jButtonEmailSupportActionPerformed
+    AceQLManagerUtil.printEvent(evt);
     Desktop desktop = Desktop.getDesktop();
     String email = "mailto:" + ParmsConstants.ABOUT_EMAIL_SUPPORT;
 
@@ -578,10 +581,12 @@ private void jButtonEmailSupportActionPerformed(ActionEvent evt) {//GEN-FIRST:ev
 }//GEN-LAST:event_jButtonEmailSupportActionPerformed
 
 private void jButtonDeveloppedByMouseEntered(MouseEvent evt) {//GEN-FIRST:event_jButtonDeveloppedByMouseEntered
+    AceQLManagerUtil.printEvent(evt);
     this.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 }//GEN-LAST:event_jButtonDeveloppedByMouseEntered
 
 private void jButtonDeveloppedByMouseExited(MouseEvent evt) {//GEN-FIRST:event_jButtonDeveloppedByMouseExited
+    AceQLManagerUtil.printEvent(evt);
     this.setCursor(Cursor.getDefaultCursor());
 }//GEN-LAST:event_jButtonDeveloppedByMouseExited
 
@@ -600,10 +605,12 @@ private void jButtonDeveloppedByActionPerformed(ActionEvent evt) {//GEN-FIRST:ev
 }//GEN-LAST:event_jButtonDeveloppedByActionPerformed
 
     private void jButtonCreditsMouseEntered(MouseEvent evt) {//GEN-FIRST:event_jButtonCreditsMouseEntered
+        AceQLManagerUtil.printEvent(evt);
         this.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
     }//GEN-LAST:event_jButtonCreditsMouseEntered
 
     private void jButtonCreditsMouseExited(MouseEvent evt) {//GEN-FIRST:event_jButtonCreditsMouseExited
+        AceQLManagerUtil.printEvent(evt);
         this.setCursor(Cursor.getDefaultCursor());
     }//GEN-LAST:event_jButtonCreditsMouseExited
 
@@ -612,7 +619,6 @@ private void jButtonDeveloppedByActionPerformed(ActionEvent evt) {//GEN-FIRST:ev
         if (creditsFrame != null) {
             creditsFrame.dispose();
         }
-
         creditsFrame = new CreditsFrame(this, ParmsConstants.APP_NAME);
     }//GEN-LAST:event_jButtonCreditsActionPerformed
 

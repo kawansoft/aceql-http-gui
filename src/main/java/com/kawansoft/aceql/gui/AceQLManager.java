@@ -119,7 +119,7 @@ import org.kawanfw.sql.tomcat.TomcatStarterUtil;
  *
  * @author Nicolas de Pomereu
  */
-public class AceQLManager extends javax.swing.JFrame {
+public class AceQLManager extends JFrame {
 
     public static final String CR_LF = System.getProperty("line.separator");
 
@@ -2345,7 +2345,7 @@ public class AceQLManager extends javax.swing.JFrame {
                 pb.start();
 
             } else {
-                java.awt.Desktop dekstop = java.awt.Desktop.getDesktop();
+                Desktop dekstop = Desktop.getDesktop();
                 dekstop.edit(file);
             }
 
@@ -2412,6 +2412,7 @@ public class AceQLManager extends javax.swing.JFrame {
     private void jMenuCheckForUpdatesActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jMenuCheckForUpdatesActionPerformed
 
         try {
+            AceQLManagerUtil.printEvent(evt);
             String currentVersion = com.kawansoft.app.version.GuiVersionConstants.VERSION;
 
             String productType = org.kawanfw.sql.version.Version.PRODUCT.TYPE;

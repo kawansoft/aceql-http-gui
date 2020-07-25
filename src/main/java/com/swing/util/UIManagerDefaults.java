@@ -486,7 +486,7 @@ public class UIManagerDefaults implements ActionListener, ItemListener {
                 try {
                     wrappee.paintIcon(c, g, x, y);
                 } catch (ClassCastException e) {
-                    createStandIn(e, x, y);
+                    createStandIn(e);
                     standIn.paintIcon(c, g, x, y);
                 }
             }
@@ -495,7 +495,7 @@ public class UIManagerDefaults implements ActionListener, ItemListener {
         /**
          * @param e
          */
-        private void createStandIn(ClassCastException e, int x, int y) {
+        private void createStandIn(ClassCastException e) {
             try {
                 Class<?> clazz = getClass(e);
                 JComponent standInComponent = getSubstitute(clazz);

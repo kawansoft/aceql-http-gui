@@ -31,6 +31,7 @@ import com.kawansoft.app.util.WindowSettingMgr;
 import com.swing.util.SwingUtil;
 
 import java.awt.Component;
+import java.awt.Desktop;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Window;
@@ -134,7 +135,7 @@ public class CreditsFrame extends JFrame {
 
             public void hyperlinkUpdate(HyperlinkEvent r) {
                 if (r.getEventType() == HyperlinkEvent.EventType.ACTIVATED) {
-                    java.awt.Desktop dekstop = java.awt.Desktop.getDesktop();
+                    Desktop dekstop = Desktop.getDesktop();
                     try {
                         dekstop.browse(r.getURL().toURI());
                     } catch (Exception ex) {
