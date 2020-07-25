@@ -24,7 +24,6 @@
  */
 package com.kawansoft.aceql.gui.jlist;
 
-import com.kawansoft.aceql.gui.AceQLManager;
 import com.kawansoft.app.parms.MessagesManager;
 import com.kawansoft.app.parms.Parms;
 import com.kawansoft.app.parms.util.ImageParmsUtil;
@@ -43,7 +42,6 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Vector;
 
@@ -58,10 +56,7 @@ import javax.swing.ListModel;
 import javax.swing.border.BevelBorder;
 import javax.swing.text.DefaultEditorKit;
 import javax.swing.undo.UndoManager;
-import static com.kawansoft.aceql.gui.AceQLManager.getInstalledJdbcDrivers;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import org.apache.commons.io.FileUtils;
 
 

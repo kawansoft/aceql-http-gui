@@ -54,7 +54,6 @@ import com.kawansoft.app.util.Help;
 import com.kawansoft.app.util.JFileChooserMemory;
 import com.kawansoft.app.util.SystemPropDisplayer;
 import com.kawansoft.app.util.WindowSettingMgr;
-import com.kawansoft.app.util.registry.RegistryReader;
 import com.kawansoft.app.util.table.FileDrop;
 import com.swing.util.SwingUtil;
 import java.awt.Desktop;
@@ -92,7 +91,6 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.SystemUtils;
 import org.kawanfw.sql.api.server.web.WebServerApi;
 import org.kawanfw.sql.tomcat.TomcatStarterUtil;
-import org.kawanfw.sql.version.Version;
 
 /**
  *

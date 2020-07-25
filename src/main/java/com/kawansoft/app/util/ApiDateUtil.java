@@ -61,7 +61,7 @@ public class ApiDateUtil {
      * @return the date as "yyyy-mm-dd"
      */
     public static String getDateReverse() {
-        String sDate = new String();
+        String sDate;
 
         int nDay = new GregorianCalendar().get(Calendar.DAY_OF_MONTH);
         int nMonth = new GregorianCalendar().get(Calendar.MONTH) + 1;

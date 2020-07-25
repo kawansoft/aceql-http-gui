@@ -53,10 +53,6 @@ public class ConfigurationUtil {
     private String host = null;
     private int port = 0;
 
-    public ConfigurationUtil() {
-
-    }
-
     public static File getConfirurationPropertiesFile() {
         File confDir = new File(ParmsUtil.getBaseDir() + File.separator + "conf");
         if (!confDir.exists()) {

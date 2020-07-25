@@ -65,13 +65,6 @@ public class FileUtil {
     private List<File> m_fileList = new Vector<File>();
 
     /**
-     * Constructor
-     */
-    public FileUtil() {
-        super();
-    }
-
-    /**
      * Return true if the fils exists, is readable and is not locked by another
      * process
      * <br>

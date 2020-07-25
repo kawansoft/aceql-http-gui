@@ -49,13 +49,6 @@ import java.util.concurrent.Executor;
  */
 public class DummyConnection implements Connection {
 
-    /**
-     * 
-     */
-    public DummyConnection() {
-	// TODO Auto-generated constructor stub
-    }
-
     /* (non-Javadoc)
      * @see java.sql.Wrapper#isWrapperFor(java.lang.Class)
      */

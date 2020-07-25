@@ -30,9 +30,6 @@ import com.kawansoft.app.util.ClientLogger;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.Properties;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 
 /**
@@ -43,12 +40,6 @@ public class AceQLServiceControler {
 
     public static final String CR_LF = System.getProperty("line.separator");
 
-    /**
-     * Constructor
-     */
-    public AceQLServiceControler() {
-
-    }
     
     public static void start(String arg[]) {
 

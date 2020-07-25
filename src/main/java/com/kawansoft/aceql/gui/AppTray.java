@@ -94,15 +94,7 @@ public class AppTray {
     private AceQLManager aceQLManager = null;
 
     AboutFrame aboutFrame = null;
-                    
-    /**
-     * Constructor.
-     *
-     * Will launch Https AceQL HTTP Server Manager Main Window and the Tray
-     */
-    public AppTray() {
-    }
-
+                   
     private void setVisibleAndOnTopOneSecond() throws SecurityException {
         aceQLManager.setState(Frame.NORMAL);
         aceQLManager.setVisible(true);

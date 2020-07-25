@@ -26,8 +26,6 @@ package com.kawansoft.aceql.gui;
 
 import com.kawansoft.app.parms.MessagesManager;
 import com.kawansoft.app.parms.util.ImageParmsUtil;
-import com.kawansoft.app.util.ButtonResizer;
-import com.kawansoft.app.util.SystemPropDisplayer;
 import com.kawansoft.app.util.WindowSettingMgr;
 import com.swing.util.SwingUtil;
 

@@ -30,10 +30,6 @@ import java.util.Date;
 
 public class DateTimeUtil {
 
-    public DateTimeUtil() {
-
-    }
-
     /**
      * Format a clean date/hour for a file
      *

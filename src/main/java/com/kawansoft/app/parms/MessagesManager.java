@@ -45,14 +45,6 @@ public class MessagesManager
         
     /** Resource Bundle instance */
     private static ResourceBundle RESOURCE_BUNDLE = null;
-    
-    /**
-     * Constructor
-     */
-    public MessagesManager()
-    {
-        
-    }
         
     public void loadResourcesBundle() {
         Locale locale = null;

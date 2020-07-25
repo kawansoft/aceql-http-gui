@@ -36,15 +36,6 @@ import java.io.File;
  */
 public class FileCreationUtil
 {
-
-    /**
-     * Constructor
-     */
-    public FileCreationUtil()
-    {
-        
-    }
-
     /**
      * Create a temporary file (delete on exit) using the filename
      * <br>
