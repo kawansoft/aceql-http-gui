@@ -24,6 +24,7 @@
  */
 package com.kawansoft.app.util.table;
 
+import com.kawansoft.aceql.gui.util.AceQLManagerUtil;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.datatransfer.DataFlavor;
@@ -435,6 +436,7 @@ public class FileDrop {
             boolean support = false;
             try {
                 Class arbitraryDndClass = Class.forName("java.awt.dnd.DnDConstants");
+                AceQLManagerUtil.debugEvent(arbitraryDndClass);
                 support = true;
             } // end try
             catch (Exception e) {

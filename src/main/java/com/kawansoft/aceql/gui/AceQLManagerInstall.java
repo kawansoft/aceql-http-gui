@@ -75,12 +75,7 @@ public class AceQLManagerInstall extends JFrame {
 
     private Help help = null;
     private JFrame thisOne = this;
-
-    /**
-     * Windows Service Status
-     */
-    private int serviceStatus = ServiceUtil.NOT_INSTALLED;
-
+    
     /**
      * Creates new form AceQLManagerInstall
      */
@@ -254,7 +249,7 @@ public class AceQLManagerInstall extends JFrame {
                         Level.SEVERE, null, ex);
             }
 
-            serviceStatus = ServiceUtil
+            int serviceStatus = ServiceUtil
                     .getServiceStatus(ServiceUtil.ACEQL_HTTP_SERVICE);
             String startupTypeLabel = ServiceUtil
                     .getServiceStartupTypeLabel(ServiceUtil.ACEQL_HTTP_SERVICE);

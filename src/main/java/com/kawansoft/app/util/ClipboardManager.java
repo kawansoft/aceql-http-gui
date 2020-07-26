@@ -79,7 +79,6 @@ public class ClipboardManager
     private JPopupMenu popupMenu;
 
     // Clipboard lines
-    private JMenuItem menuItemCancel = null;
     private JMenuItem menuItemCut = null;
     private JMenuItem menuItemCopy = null;
     private JMenuItem menuItemPaste = null;
@@ -133,7 +132,7 @@ public class ClipboardManager
         this.container = container1;
         popupMenu = new JPopupMenu();
         popupMenu.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED));
-        menuItemCancel = new JMenuItem(cancel);
+        JMenuItem menuItemCancel =  new JMenuItem(cancel);
         menuItemCancel.setEnabled(false);
         popupMenu.add(menuItemCancel);
         popupMenu.addSeparator();

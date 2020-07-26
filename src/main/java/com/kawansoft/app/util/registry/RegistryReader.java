@@ -48,14 +48,14 @@ public class RegistryReader
     public static final int KEY_ALL_ACCESS = 0xf003f;
     
     // RegistryReader functions to load using java reflection
-    public static Method openKey;
-    public static Method closeKey;
-    public static Method winwRegCreateKeyEx;
-    public static Method winRegQueryValue;
-    public static Method winRegEnumValue;
-    public static Method winRegQueryInfo;
-    public static Method WindowsRegSetValueEx;
-    public static Class<? extends Preferences> clz;
+    public Method openKey;
+    public Method closeKey;
+    public Method winwRegCreateKeyEx;
+    public Method winRegQueryValue;
+    public Method winRegEnumValue;
+    public Method winRegQueryInfo;
+    public Method WindowsRegSetValueEx;
+    public Class<? extends Preferences> clz;
     public Preferences userRoot;
     public Preferences systemRoot;
     

@@ -139,11 +139,6 @@ public class AceQLManager extends JFrame {
      */
     public static int STANDARD_STATUS = STANDARD_STOPPED;
 
-    /**
-     * Windows Service Status
-     */
-    private int serviceStatus = ServiceUtil.NOT_INSTALLED;
-
     private JFrame thisOne = this;
 
     private Help help = null;
@@ -646,7 +641,7 @@ public class AceQLManager extends JFrame {
                         Level.SEVERE, null, ex);
             }
 
-            serviceStatus = ServiceUtil
+            int serviceStatus = ServiceUtil
                     .getServiceStatus(ServiceUtil.ACEQL_HTTP_SERVICE);
             String startModeLabel = ServiceUtil
                     .getServiceStartupTypeLabel(ServiceUtil.ACEQL_HTTP_SERVICE);

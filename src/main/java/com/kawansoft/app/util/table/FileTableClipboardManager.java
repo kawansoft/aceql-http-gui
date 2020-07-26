@@ -87,9 +87,7 @@ public class FileTableClipboardManager {
 
     // Clipboard lines
     private JMenuItem menuItemOpen = null;
-    private JMenuItem menuItemPaste = null;
     private JMenuItem menuItemDelete = null;
-    private JMenuItem menuItemSelectAll = null;
 
     // Futur usage
     protected UndoManager undo = new UndoManager();
@@ -184,7 +182,7 @@ public class FileTableClipboardManager {
         }));
         popupMenu.add(menuItemOpen);
 
-        menuItemPaste = new JMenuItem(paste);
+        JMenuItem menuItemPaste = new JMenuItem(paste);
         menuItemPaste.addActionListener((new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 jTableClipboardActionPerformed(e);
@@ -209,7 +207,7 @@ public class FileTableClipboardManager {
 
         popupMenu.addSeparator();
 
-        menuItemSelectAll = new JMenuItem(select_all);
+        JMenuItem menuItemSelectAll = new JMenuItem(select_all);
         menuItemSelectAll.setText(select_all);
         menuItemSelectAll.addActionListener((new ActionListener() {
             public void actionPerformed(ActionEvent e) {
