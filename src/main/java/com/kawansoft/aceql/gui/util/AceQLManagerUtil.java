@@ -15,7 +15,7 @@ public class AceQLManagerUtil {
         System.exit(0);
     }
 
-    public static void printEvent(Object obj) {
+    public static void debugEvent(Object obj) {
         boolean print = false;
         if (print) {
             System.out.println(obj);

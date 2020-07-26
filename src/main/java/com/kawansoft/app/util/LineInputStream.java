@@ -136,14 +136,14 @@ public class LineInputStream
     //Rule 9: Make your classes nonserializeable
     private final void writeObject(ObjectOutputStream out)
             throws IOException {
-        AceQLManagerUtil.printEvent(out);
+        AceQLManagerUtil.debugEvent(out);
         throw new IOException("Object cannot be serialized");
     }
 
     //Rule 10: Make your classes nondeserializeable
     private final void readObject(ObjectInputStream in)
             throws IOException {
-        AceQLManagerUtil.printEvent(in);
+        AceQLManagerUtil.debugEvent(in);
         throw new IOException("Class cannot be deserialized");
     }
 }

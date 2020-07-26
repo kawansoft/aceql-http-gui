@@ -81,7 +81,7 @@ public class DialogProxyAuth extends javax.swing.JDialog {
     /** The proxy password */
     private String proxyPassword = null;
 
-    private ClipboardManager clipboardManager;
+    public ClipboardManager clipboardManager;
     private final AppPreferencesManager appUserPreference;
     
         /** Creates new form JDialogProxyAuth
@@ -438,12 +438,12 @@ public class DialogProxyAuth extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonOkActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jButtonOkActionPerformed
-        AceQLManagerUtil.printEvent(evt);
+        AceQLManagerUtil.debugEvent(evt);
         doIt();
     }//GEN-LAST:event_jButtonOkActionPerformed
 
     private void jButtonCancelActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jButtonCancelActionPerformed
-        AceQLManagerUtil.printEvent(evt);
+        AceQLManagerUtil.debugEvent(evt);
         this.dispose();
     }//GEN-LAST:event_jButtonCancelActionPerformed
 

@@ -132,15 +132,19 @@ public class AceQLTask extends Thread implements Runnable {
                     + e.getMessage());
             e.printStackTrace();
             System.err.println();
-        } catch (IOException e) {
-
-            if (e instanceof UnknownHostException) {
-                System.err.println(SqlTag.SQL_PRODUCT_START_FAILURE + " "
-                        + "Unknow host: " + e.getMessage());
+        } catch (UnknownHostException e) {
+            System.err.println(SqlTag.SQL_PRODUCT_START_FAILURE + " "
+                    + "Unknow host: " + e.getMessage());
+            if (e.getCause() == null) {
+                e.printStackTrace();
             } else {
-                System.err.println(SqlTag.SQL_PRODUCT_START_FAILURE + " "
-                        + e.getMessage());
+                e.getCause().printStackTrace();
             }
+
+            System.err.println();
+        } catch (IOException e) {
+            System.err.println(SqlTag.SQL_PRODUCT_START_FAILURE + " "
+                    + e.getMessage());
 
             if (e.getCause() == null) {
                 e.printStackTrace();

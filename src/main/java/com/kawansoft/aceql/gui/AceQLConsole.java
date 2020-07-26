@@ -24,6 +24,7 @@
  */
 package com.kawansoft.aceql.gui;
 
+import com.kawansoft.aceql.gui.util.AceQLManagerUtil;
 import com.kawansoft.app.parms.util.ImageParmsUtil;
 import com.kawansoft.app.util.ClipboardManager;
 import com.kawansoft.app.util.WindowSettingMgr;
@@ -91,6 +92,7 @@ public class AceQLConsole extends JFrame {
 
         // Add a Clipboard Manager
         ClipboardManager clipboard  = new ClipboardManager(this.getContentPane());
+        AceQLManagerUtil.debugEvent(clipboard);
 
         jTextPane1.setEditable(false);
         

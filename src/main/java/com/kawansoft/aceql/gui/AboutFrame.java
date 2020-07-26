@@ -151,13 +151,13 @@ public class AboutFrame extends JFrame {
         this.addComponentListener(new ComponentAdapter() {
             @Override
             public void componentMoved(ComponentEvent e) {
-                AceQLManagerUtil.printEvent(e);
+                AceQLManagerUtil.debugEvent(e);
                 saveSettings();
             }
 
             @Override
             public void componentResized(ComponentEvent e) {
-                AceQLManagerUtil.printEvent(e);
+                AceQLManagerUtil.debugEvent(e);
                 saveSettings();
             }
         });
@@ -167,7 +167,7 @@ public class AboutFrame extends JFrame {
         this.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
-                AceQLManagerUtil.printEvent(e);
+                AceQLManagerUtil.debugEvent(e);
                 closeOnExit();
             }
         });
@@ -523,37 +523,37 @@ public class AboutFrame extends JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
 private void jButtonSystemInfoActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jButtonSystemInfoActionPerformed
-    AceQLManagerUtil.printEvent(evt);
+    AceQLManagerUtil.debugEvent(evt);
     callSystemInfo();
 }//GEN-LAST:event_jButtonSystemInfoActionPerformed
 
 private void jButtonCloseActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jButtonCloseActionPerformed
-    AceQLManagerUtil.printEvent(evt);
+    AceQLManagerUtil.debugEvent(evt);
     closeOnExit();
 }//GEN-LAST:event_jButtonCloseActionPerformed
 
 private void jButtonUrlMouseEntered(MouseEvent evt) {//GEN-FIRST:event_jButtonUrlMouseEntered
-    AceQLManagerUtil.printEvent(evt);
+    AceQLManagerUtil.debugEvent(evt);
     this.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 }//GEN-LAST:event_jButtonUrlMouseEntered
 
 private void jButtonUrlMouseExited(MouseEvent evt) {//GEN-FIRST:event_jButtonUrlMouseExited
-    AceQLManagerUtil.printEvent(evt);
+    AceQLManagerUtil.debugEvent(evt);
     this.setCursor(Cursor.getDefaultCursor());
 }//GEN-LAST:event_jButtonUrlMouseExited
 
 private void jButtonEmailSupportMouseEntered(MouseEvent evt) {//GEN-FIRST:event_jButtonEmailSupportMouseEntered
-    AceQLManagerUtil.printEvent(evt);
+    AceQLManagerUtil.debugEvent(evt);
     this.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 }//GEN-LAST:event_jButtonEmailSupportMouseEntered
 
 private void jButtonEmailSupportMouseExited(MouseEvent evt) {//GEN-FIRST:event_jButtonEmailSupportMouseExited
-    AceQLManagerUtil.printEvent(evt);
+    AceQLManagerUtil.debugEvent(evt);
     this.setCursor(Cursor.getDefaultCursor());
 }//GEN-LAST:event_jButtonEmailSupportMouseExited
 
 private void jButtonUrlActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jButtonUrlActionPerformed
-    AceQLManagerUtil.printEvent(evt);
+    AceQLManagerUtil.debugEvent(evt);
     Desktop desktop = Desktop.getDesktop();
     String url = "http://" + ParmsConstants.ABOUT_WEB_SITE;
 
@@ -567,7 +567,7 @@ private void jButtonUrlActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jButt
 }//GEN-LAST:event_jButtonUrlActionPerformed
 
 private void jButtonEmailSupportActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jButtonEmailSupportActionPerformed
-    AceQLManagerUtil.printEvent(evt);
+    AceQLManagerUtil.debugEvent(evt);
     Desktop desktop = Desktop.getDesktop();
     String email = "mailto:" + ParmsConstants.ABOUT_EMAIL_SUPPORT;
 
@@ -581,17 +581,17 @@ private void jButtonEmailSupportActionPerformed(ActionEvent evt) {//GEN-FIRST:ev
 }//GEN-LAST:event_jButtonEmailSupportActionPerformed
 
 private void jButtonDeveloppedByMouseEntered(MouseEvent evt) {//GEN-FIRST:event_jButtonDeveloppedByMouseEntered
-    AceQLManagerUtil.printEvent(evt);
+    AceQLManagerUtil.debugEvent(evt);
     this.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 }//GEN-LAST:event_jButtonDeveloppedByMouseEntered
 
 private void jButtonDeveloppedByMouseExited(MouseEvent evt) {//GEN-FIRST:event_jButtonDeveloppedByMouseExited
-    AceQLManagerUtil.printEvent(evt);
+    AceQLManagerUtil.debugEvent(evt);
     this.setCursor(Cursor.getDefaultCursor());
 }//GEN-LAST:event_jButtonDeveloppedByMouseExited
 
 private void jButtonDeveloppedByActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jButtonDeveloppedByActionPerformed
-    AceQLManagerUtil.printEvent(evt);
+    AceQLManagerUtil.debugEvent(evt);
     Desktop desktop = Desktop.getDesktop();
     String url = "http://www.kawansoft.com";
 
@@ -605,17 +605,17 @@ private void jButtonDeveloppedByActionPerformed(ActionEvent evt) {//GEN-FIRST:ev
 }//GEN-LAST:event_jButtonDeveloppedByActionPerformed
 
     private void jButtonCreditsMouseEntered(MouseEvent evt) {//GEN-FIRST:event_jButtonCreditsMouseEntered
-        AceQLManagerUtil.printEvent(evt);
+        AceQLManagerUtil.debugEvent(evt);
         this.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
     }//GEN-LAST:event_jButtonCreditsMouseEntered
 
     private void jButtonCreditsMouseExited(MouseEvent evt) {//GEN-FIRST:event_jButtonCreditsMouseExited
-        AceQLManagerUtil.printEvent(evt);
+        AceQLManagerUtil.debugEvent(evt);
         this.setCursor(Cursor.getDefaultCursor());
     }//GEN-LAST:event_jButtonCreditsMouseExited
 
     private void jButtonCreditsActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jButtonCreditsActionPerformed
-        AceQLManagerUtil.printEvent(evt);        
+        AceQLManagerUtil.debugEvent(evt);        
         if (creditsFrame != null) {
             creditsFrame.dispose();
         }

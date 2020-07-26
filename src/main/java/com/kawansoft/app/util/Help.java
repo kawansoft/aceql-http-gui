@@ -78,7 +78,7 @@ public class Help extends javax.swing.JFrame {
     /**
      * Add a clipboard manager for content management
      */
-    private ClipboardManager clipboard = null;
+    public ClipboardManager clipboard = null;
     private Window parent = null;
 
     /**
@@ -415,7 +415,7 @@ public class Help extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonCloseActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jButtonCloseActionPerformed
-        AceQLManagerUtil.printEvent(evt);
+        AceQLManagerUtil.debugEvent(evt);
         this.dispose();
     }//GEN-LAST:event_jButtonCloseActionPerformed
 

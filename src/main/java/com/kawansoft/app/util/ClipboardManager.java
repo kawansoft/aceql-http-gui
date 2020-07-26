@@ -256,7 +256,7 @@ public class ClipboardManager
                         new AbstractAction("Undo") {
                     @Override
                     public void actionPerformed(ActionEvent evt) {
-                        AceQLManagerUtil.printEvent(evt);
+                        AceQLManagerUtil.debugEvent(evt);
                         try {
                             if (undo.canUndo()) {
                                 undo.undo();
@@ -275,7 +275,7 @@ public class ClipboardManager
                     @Override
                     public void actionPerformed(ActionEvent evt) {
                         try {
-                            AceQLManagerUtil.printEvent(evt);
+                            AceQLManagerUtil.debugEvent(evt);
                             if (undo.canRedo()) {
                                 undo.redo();
                             }

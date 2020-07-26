@@ -305,7 +305,7 @@ public class CreditsFrame extends JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
 private void jButtonCloseActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jButtonCloseActionPerformed
-    AceQLManagerUtil.printEvent(evt);
+    AceQLManagerUtil.debugEvent(evt);
     closeOnExit();
 }//GEN-LAST:event_jButtonCloseActionPerformed
 
