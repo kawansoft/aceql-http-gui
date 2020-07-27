@@ -24,12 +24,10 @@
  */
 package com.kawansoft.app.util;
 
-import com.swing.util.ComponentsText;
 import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.Toolkit;
 import java.awt.Window;
-import java.io.IOException;
 import java.util.prefs.BackingStoreException;
 import java.util.prefs.Preferences;
 
@@ -101,17 +99,17 @@ public class WindowSettingMgr
      */
     public static void load(Window window, Point defaultPoint)
     {        
-        try {
-            ComponentsText.writeComponentsInPropertiesFile(window);
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
-
-        try {
-            ComponentsText.setComponentsTextFromPropertiesFile(window);
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
+//        try {
+//            ComponentsText.writeComponentsInPropertiesFile(window);
+//        } catch (IOException ex) {
+//            ex.printStackTrace();
+//        }
+//
+//        try {
+//            ComponentsText.setComponentsTextFromPropertiesFile(window);
+//        } catch (IOException ex) {
+//            ex.printStackTrace();
+//        }
         
         window.setLocation(defaultPoint);
         
