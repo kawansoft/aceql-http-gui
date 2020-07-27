@@ -64,6 +64,7 @@ import org.apache.commons.lang3.SystemUtils;
 import com.kawansoft.app.parms.ParmsConstants;
 import com.kawansoft.app.parms.util.ImageParmsUtil;
 import com.kawansoft.app.util.ProcessUtil;
+import java.awt.HeadlessException;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -136,62 +137,10 @@ public class AppTray {
             AceQLManagerUtil.systemExitWrapper();
         }
         
-        PopupMenu menu;
-        MenuItem menuItem;
-
-        
         System.out.println(System.getProperty("java.version"));
         System.setProperty("javax.swing.adjustPopupLocationToFit", "false");
         
-        
-        /*
-         Main Window
-         Exit
-         ____________
-         About
-         */
-        menu = new PopupMenu(ParmsConstants.APP_NAME);
-
-        // JMenuItems
-        menuItem = new MenuItem("Show " + ParmsConstants.APP_NAME );
-
-        menuItem.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-               setVisibleAndOnTopOneSecond();
-            }
-        });
-
-        menu.add(menuItem);
-
-        //Font font = menuItem.getFont().deriveFont(Font.BOLD);
-        //menuItem.setFont(font);
-
-        // "Exit" menu item
-        menuItem = new MenuItem("Quit");
-        menuItem.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                AceQLManagerUtil.systemExitWrapper();
-            }
-        });
-        menu.add(menuItem);
-        
-        menu.addSeparator();
-                
-        menuItem = new MenuItem("About");
-        menuItem.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
-                if (aboutFrame != null) {
-                    aboutFrame.dispose();
-                }
-
-                aboutFrame = new AboutFrame(null);
-            }
-        });
-        menu.add(menuItem);
+        PopupMenu menu = buildMenu();
                
         ImageIcon i = new ImageIcon(ImageParmsUtil.getTrayIcon());
 
@@ -228,6 +177,54 @@ public class AppTray {
         });
         
 
+    }
+
+    private PopupMenu buildMenu() throws HeadlessException {
+        PopupMenu menu;
+        MenuItem menuItem;
+        /*
+        Main Window
+        Exit
+        ____________
+        About
+        */
+        menu = new PopupMenu(ParmsConstants.APP_NAME);
+        // JMenuItems
+        menuItem = new MenuItem("Show " + ParmsConstants.APP_NAME );
+        menuItem.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                setVisibleAndOnTopOneSecond();
+            }
+        });
+        menu.add(menuItem);
+        //Font font = menuItem.getFont().deriveFont(Font.BOLD);
+        //menuItem.setFont(font);
+        
+        // "Exit" menu item
+        menuItem = new MenuItem("Quit");
+        menuItem.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                AceQLManagerUtil.systemExitWrapper();
+            }
+        });
+        menu.add(menuItem);
+        menu.addSeparator();
+        menuItem = new MenuItem("About");
+        menuItem.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                
+                if (aboutFrame != null) {
+                    aboutFrame.dispose();
+                }
+                
+                aboutFrame = new AboutFrame(null);
+            }
+        });
+        menu.add(menuItem);
+        return menu;
     }
 
 

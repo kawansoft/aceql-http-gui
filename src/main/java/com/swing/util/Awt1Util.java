@@ -37,7 +37,7 @@ import java.lang.reflect.Field;
  * 
  * @author http://javajon.blogspot.com/2013/07/java-awtswing-getcomponentbynamewindow.html
  */
-public class Awt1 {
+public class Awt1Util {
 
     /**
      * attempts to retrieve a component from a JFrame or JDialog using the name

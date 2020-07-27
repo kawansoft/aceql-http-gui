@@ -216,7 +216,7 @@ public class FileDrop {
      */
     public FileDrop(
             final Component c,
-            final javax.swing.border.Border dragBorder,
+            final Border dragBorder,
             final Listener listener) {
         this(
                 null, // Logging stream
@@ -241,7 +241,7 @@ public class FileDrop {
      */
     public FileDrop(
             final Component c,
-            final javax.swing.border.Border dragBorder,
+            final Border dragBorder,
             final boolean recursive,
             final Listener listener) {
         this(

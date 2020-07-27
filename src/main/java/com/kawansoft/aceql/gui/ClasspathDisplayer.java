@@ -97,62 +97,47 @@ public class ClasspathDisplayer extends javax.swing.JFrame {
 
     public void initializeIt() {
 
+        initStart1();
+        initStart2();
+    }
+
+    private void initStart1() {
         Dimension dim = new Dimension(933, 524);
         this.setPreferredSize(dim);
         this.setSize(dim);
-
+        
         try {
             this.setIconImage(ImageParmsUtil.getAppIcon());
         } catch (RuntimeException e1) {
             e1.printStackTrace();
         }
-
+        
         // Toolkit.getDefaultToolkit().setDynamicLayout(true);
         jCheckBoxShowPath.setSelected(true);
-
+        
         buttonGroup1.add(jRadioButtonOriginalOrder);
         buttonGroup1.add(jRadioButtonSort);
-
+        
         jRadioButtonOriginalOrder.setSelected(true);
-
+        
         jPanelHelpMain.remove(jScrollPane1);
-
-        /*
-        jTextPane1 = new JTextPane() {
-            @Override
-            public boolean getScrollableTracksViewportWidth() {
-                return getUI().getPreferredSize(this).width
-                        <= getParent().getSize().width;
-            }
-        };
-
-        jScrollPane1.setViewportView(jTextPane1);
-        jPanelHelpMain.add(jScrollPane1);
-         */
         
         jtextPane2 = new JTextPane();
         JPanel noWrapPanel = new JPanel(new BorderLayout());
         noWrapPanel.add(jtextPane2);
         JScrollPane jScrollPane2 = new JScrollPane(noWrapPanel);
         jPanelHelpMain.add(jScrollPane2);
-
+        
         jtextPane2.setContentType("text/html");
         jtextPane2.setEditable(false);
         jtextPane2.setFont(new Font("Lucida Console", 0, 16)); // NOI18N
         jScrollPane2.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-
+        
         // Add a Clipboard Manager
         clipboard = new ClipboardManager(this.getContentPane());
-
-        /*
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                setClasspath(jCheckBoxShowPath.isSelected(), jRadioButtonSort.isSelected());
-            }
-        });
-        */
-        
+    }
+    
+        private void initStart2() {
         Thread thread = new Thread() {
             @Override
             public void run() {
@@ -162,14 +147,14 @@ public class ClasspathDisplayer extends javax.swing.JFrame {
 
         thread.start();
         
-       jCheckBoxShowPath.addItemListener(new java.awt.event.ItemListener() {
+        jCheckBoxShowPath.addItemListener(new java.awt.event.ItemListener() {
             @Override
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 setClasspath(jCheckBoxShowPath.isSelected(), jRadioButtonSort.isSelected());
             }
         });
-       
-         jRadioButtonOriginalOrder.addItemListener(new java.awt.event.ItemListener() {
+        
+        jRadioButtonOriginalOrder.addItemListener(new java.awt.event.ItemListener() {
             @Override
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 setClasspath(jCheckBoxShowPath.isSelected(), jRadioButtonSort.isSelected());
@@ -227,8 +212,8 @@ public class ClasspathDisplayer extends javax.swing.JFrame {
 
         this.pack();
         this.setVisible(true);
-
     }
+
 
     public void setClasspath(boolean displayDirectories, boolean sort) {
         

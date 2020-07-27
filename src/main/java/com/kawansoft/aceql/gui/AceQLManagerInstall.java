@@ -652,13 +652,13 @@ public class AceQLManagerInstall extends JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(AceQLManagerInstall.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            Logger.getLogger(AceQLManagerInstall.class.getName()).log(Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            Logger.getLogger(AceQLManagerInstall.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            Logger.getLogger(AceQLManagerInstall.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            Logger.getLogger(AceQLManagerInstall.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            Logger.getLogger(AceQLManagerInstall.class.getName()).log(Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-           Logger.getLogger(AceQLManagerInstall.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+           Logger.getLogger(AceQLManagerInstall.class.getName()).log(Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
