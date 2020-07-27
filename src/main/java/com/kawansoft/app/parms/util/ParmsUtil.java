@@ -62,9 +62,9 @@ public class ParmsUtil {
     // To display a different look & feel
     public static String LOOK_AND_FEEL_TXT = ParmsUtil.getDebugDir() + File.separator + "lookAndFeel.txt";
     
-    public static String fillAppNameAndLanguage(String template,
+    public static String fillAppNameAndLanguage(final String templateFinal,
 	    String appName, String language) {
-	template = template.replace("{0}", appName);
+        String template = templateFinal.replace("{0}", appName);
 	template = template.replace("{1}", language);
 	return template;
     }

@@ -67,6 +67,7 @@ import java.awt.Insets;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.InputEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
@@ -170,68 +171,7 @@ public class AceQLManager extends JFrame {
      */
     public void initializeIt() {
 
-        Dimension dim = new Dimension(604, 604);
-        this.setPreferredSize(dim);
-        this.setSize(dim);
-
-        String appName = ParmsConstants.APP_NAME;
-
-        if (ParmsUtil.isAceQLPro()) {
-            appName += " Pro";
-        }
-
-        this.jLabelLogo.setText(appName);
-
-        try {
-            this.setIconImage(ImageParmsUtil.getAppIcon());
-        } catch (RuntimeException e1) {
-            e1.printStackTrace();
-        }
-
-        // Add a Clipboard Manager
-        clipboard = new ClipboardManager(jPanelMain);
-
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                installService();
-            }
-        });
-
-        loadConfiguration();
-        updateStandardStatusThreadStart();
-
-        if (SystemUtils.IS_OS_WINDOWS) {
-            updateServiceStatusThreadStart();
-            jMenuItemServiceInstall.setVisible(false); // Futur usage if any problem
-        } else {
-            jLabelServiceStatusValue.setText("Not installed");
-            jLabelServiceStatusValue
-                    .setIcon(ImageParmsUtil.createImageIcon(ParmsUtil.IMAGES_BULLET_BALL_GREY_PNG));
-
-            jButtonStartService.setEnabled(false);
-            jButtonStopService.setEnabled(false);
-            jButtonDisplayLogs.setEnabled(false);
-            jButtonServicesConsole.setEnabled(false);
-
-            jMenuItemServiceInstall.setVisible(false);
-        }
-
-        ((AbstractDocument) this.jTextFieldPort.getDocument()).setDocumentFilter(new AceQLManager.MyDocumentFilter());
-
-        jTextFieldPropertiesFile.requestFocusInWindow();
-
-        if (SystemUtils.IS_OS_MAC_OSX) {
-            jMenuItemQuit.setVisible(false); // Quit is already in default left menu
-            jMenuItemClose.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_W,
-                    Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
-        } else {
-            jMenuItemQuit.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Q,
-                    Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
-            jMenuItemClose.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F4, java.awt.event.InputEvent.ALT_MASK));
-        }
-
-        SwingUtil.resizeJComponentsForNimbusAndMacOsX(rootPane);
+        initStart();
 
         this.addComponentListener(new ComponentAdapter() {
             @Override
@@ -308,6 +248,71 @@ public class AceQLManager extends JFrame {
         //update(getGraphics());
     }
 
+    private void initStart() throws HeadlessException {
+        Dimension dim = new Dimension(604, 604);
+        this.setPreferredSize(dim);
+        this.setSize(dim);
+
+        String appName = ParmsConstants.APP_NAME;
+
+        if (ParmsUtil.isAceQLPro()) {
+            appName += " Pro";
+        }
+
+        this.jLabelLogo.setText(appName);
+
+        try {
+            this.setIconImage(ImageParmsUtil.getAppIcon());
+        } catch (RuntimeException e1) {
+            e1.printStackTrace();
+        }
+
+        // Add a Clipboard Manager
+        clipboard = new ClipboardManager(jPanelMain);
+
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                installService();
+            }
+        });
+
+        loadConfiguration();
+        updateStandardStatusThreadStart();
+
+        if (SystemUtils.IS_OS_WINDOWS) {
+            updateServiceStatusThreadStart();
+            jMenuItemServiceInstall.setVisible(false); // Futur usage if any problem
+        } else {
+            jLabelServiceStatusValue.setText("Not installed");
+            jLabelServiceStatusValue
+                    .setIcon(ImageParmsUtil.createImageIcon(ParmsUtil.IMAGES_BULLET_BALL_GREY_PNG));
+
+            jButtonStartService.setEnabled(false);
+            jButtonStopService.setEnabled(false);
+            jButtonDisplayLogs.setEnabled(false);
+            jButtonServicesConsole.setEnabled(false);
+
+            jMenuItemServiceInstall.setVisible(false);
+        }
+
+        ((AbstractDocument) this.jTextFieldPort.getDocument()).setDocumentFilter(new AceQLManager.MyDocumentFilter());
+
+        jTextFieldPropertiesFile.requestFocusInWindow();
+
+        if (SystemUtils.IS_OS_MAC_OSX) {
+            jMenuItemQuit.setVisible(false); // Quit is already in default left menu
+            jMenuItemClose.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_W,
+                    Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
+        } else {
+            jMenuItemQuit.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Q,
+                    Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
+            jMenuItemClose.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F4, InputEvent.ALT_MASK));
+        }
+
+        SwingUtil.resizeJComponentsForNimbusAndMacOsX(rootPane);
+    }
+
     /*
     class MyListDataListener implements ListDataListener {
 
@@ -378,21 +383,38 @@ public class AceQLManager extends JFrame {
         jTextFieldHost.setText(host);
         jTextFieldPort.setText("" + port);
 
+        if (checkFileExists(aceqlProperties)) {
+            return;
+        }
+
+        try {
+            setAceQLServerURL(host, port, new File(jTextFieldPropertiesFile.getText()));
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this,
+                    "Can not load the Property File. Reason: " + ex.getMessage(), ParmsConstants.APP_NAME,
+                    JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        // Store the properties if they did not exists
+        if (!ConfigurationUtil.getConfirurationPropertiesFile().exists()) {
+            storeConfiguration();
+        }
+    }
+
+    private boolean checkFileExists(String aceqlProperties) throws HeadlessException {
         if (aceqlProperties == null || aceqlProperties.isEmpty()) {
             File fileIn = new File(ParmsUtil.getInstallAceQLDir() + File.separator + "conf" + File.separator + "aceql-server.properties");
-
             if (!fileIn.exists()) {
                 JOptionPane
                         .showMessageDialog(this,
                                 "Missing base configuration file. Please reinstall AceQL HTTP.",
                                 ParmsConstants.APP_NAME, JOptionPane.ERROR_MESSAGE);
-                return;
+                return true;
             }
-
             // Copy the file to ParmsUtil.fileOut()/conf because it won't be possible to edit directly it in c:\Program (Windows Security)
             File confDir = new File(ParmsUtil.getBaseDir() + File.separator + "conf");
             File fileOut = new File(confDir.toString() + File.separator + "aceql-server.properties");
-
             if (!fileOut.exists()) {
                 try {
                     FileUtils.copyFile(fileIn, fileOut);
@@ -409,20 +431,7 @@ public class AceQLManager extends JFrame {
         } else {
             jTextFieldPropertiesFile.setText(aceqlProperties);
         }
-
-        try {
-            setAceQLServerURL(host, port, new File(jTextFieldPropertiesFile.getText()));
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this,
-                    "Can not load the Property File. Reason: " + ex.getMessage(), ParmsConstants.APP_NAME,
-                    JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-
-        // Store the properties if they did not exists
-        if (!ConfigurationUtil.getConfirurationPropertiesFile().exists()) {
-            storeConfiguration();
-        }
+        return false;
     }
 
     private void startStandard() {
@@ -511,11 +520,10 @@ public class AceQLManager extends JFrame {
             System.out.println("SQL Web server running on port " + port
                     + " successfully stopped!");
             System.out.println();
-        } 
-//        catch (ConnectException e) {
-//            STANDARD_STATUS = STANDARD_RUNNING;
-//             System.err.println(e.getMessage());
-//        } 
+        } //        catch (ConnectException e) {
+        //            STANDARD_STATUS = STANDARD_RUNNING;
+        //             System.err.println(e.getMessage());
+        //        } 
         catch (IOException e) {
 
             STANDARD_STATUS = STANDARD_RUNNING;
@@ -832,20 +840,6 @@ public class AceQLManager extends JFrame {
         }
     }
 
-    /*
-    private boolean existsOpenKeyForProperties() throws Exception {
-        String subKey = "Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\FileExts\\.properties\\UserChoice";
-
-        RegistryReader registryReader = new RegistryReader();
-        String useValue = registryReader.getCurrentUserKeyValue(subKey, "ProgId");
-
-        if (useValue != null) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-     */
     private void windowsServiceManagementConsole() {
 
         try {

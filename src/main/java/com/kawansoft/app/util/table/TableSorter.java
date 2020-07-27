@@ -434,13 +434,14 @@ public class TableSorter extends AbstractTableModel {
             this.priority = priority;
         }
 
-        public void paintIcon(Component c, Graphics g, int x, int y) {
+        public void paintIcon(Component c, Graphics g, int x, final int yFinal) {
             Color color = c == null ? Color.GRAY : c.getBackground();
             // In a compound sort, make each succesive triangle 20% 
             // smaller than the previous one. 
             int dx = (int) (size / 2 * Math.pow(0.8, priority));
             int dy = descending ? dx : -dx;
             // Align icon (roughly) with font baseline. 
+            int y = yFinal;
             y = y + 5 * size / 6 + (descending ? -dy : 0);
             int shift = descending ? 1 : -1;
             g.translate(x, y);

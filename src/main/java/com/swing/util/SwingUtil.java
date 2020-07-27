@@ -60,12 +60,13 @@ public class SwingUtil
      * @param content   the html content to format 
      * @return the formated html content
      */
-    public static String formatHtmlContentForSyntheticaAndNimbus(String content) {
+    public static String formatHtmlContentForSyntheticaAndNimbus(final String content) {
+        String contentNew = content;
         if (UiUtilsConstants.isSynthetica() || UiUtilsConstants.isNimbus() ) {
-            content = content.replaceAll("size=4", "size=5");
-            content = content.replaceAll("size=6", "size=7");
+            contentNew = contentNew.replaceAll("size=4", "size=5");
+            contentNew = contentNew.replaceAll("size=6", "size=7");
         }
-        return content;
+        return contentNew;
     }
     
     /**
@@ -106,7 +107,7 @@ public class SwingUtil
      * @param color the color 
      */
     public static void setBackgroundColor(Window window, Color color, boolean includeJTextField) {
-        java.util.List<Component> components = SwingUtil.getAllComponants(window);
+        List<Component> components = SwingUtil.getAllComponants(window);
 
         for (int i = 0; i < components.size(); i++) {
             Component comp = components.get(i);

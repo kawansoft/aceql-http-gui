@@ -65,7 +65,7 @@ import javax.swing.WindowConstants;
  *
  * @author Alexandre Becquereau
  */
-public class DialogProxyAuth extends javax.swing.JDialog {
+public class DialogProxyAuth extends JDialog {
 
     /**
      * 
@@ -112,16 +112,6 @@ public class DialogProxyAuth extends javax.swing.JDialog {
 
     private void initCompany(){
         clipboardManager = new ClipboardManager(rootPane);
-        
-        /*
-        this.jLabelTitle.setText(messages.getMessage("proxy_authentification"));
-        this.jLabelMessage.setText(messages.getMessage("proxy_requires_authentification"));
-        this.jLabelUsername.setText(messages.getMessage("username"));
-        this.jLabelPassword.setText(messages.getMessage("password_2"));
-        this.jCheckBoxRememberInfo.setText(messages.getMessage("remember_information"));
-        this.jButtonCancel.setText(messages.getMessage("cancel"));
-        this.jButtonOk.setText(messages.getMessage("ok"));
-        */
         
         boolean rememberInfo = appUserPreference.getBooleanPreference(AppPreferencesManager.PROXY_AUTH_REMEMBER_INFO);
         
@@ -466,7 +456,7 @@ public class DialogProxyAuth extends javax.swing.JDialog {
             
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                DialogProxyAuth dialog = new DialogProxyAuth(new javax.swing.JFrame());
+                DialogProxyAuth dialog = new DialogProxyAuth(new JFrame());
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     public void windowClosing(java.awt.event.WindowEvent e) {
                         AceQLManagerUtil.systemExitWrapper();

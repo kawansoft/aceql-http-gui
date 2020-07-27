@@ -86,7 +86,7 @@ public class MessagesManager
      * 
      * @return                  the message value in the desired language
      */
-    public static String get(String messageParam)
+    public static String get(final String messageParam)
     {
         if (messageParam == null)
         {
@@ -99,20 +99,20 @@ public class MessagesManager
         }
         
         // Always ask for the Lower case parameter
-        messageParam = messageParam.toLowerCase();
-        messageParam = messageParam.trim();
+        String messageParamNew = messageParam.toLowerCase();
+        messageParamNew = messageParam.trim();
                 
         String messageValue = null;    
                 
         try
         {
-            messageValue = RESOURCE_BUNDLE.getString(messageParam);            
+            messageValue = RESOURCE_BUNDLE.getString(messageParamNew);            
             return messageValue;
         }
         catch (Exception e)
         {
             // We choose to quietly send back the messageParam as messageValue
-            return messageParam;
+            return messageParamNew;
         }
                 
     }    

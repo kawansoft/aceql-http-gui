@@ -109,44 +109,8 @@ public class AboutFrame extends JFrame {
      */
     public void initializeIt() {
 
-        Dimension dimBase = new Dimension(388, 388);
-        this.setPreferredSize(dimBase);
-        //this.setSize(dim);
-
-        try {
-            this.setIconImage(ImageParmsUtil.getAppIcon());
-        } catch (RuntimeException e1) {
-            e1.printStackTrace();
-        }
-        
-        jPanelCenter.setBorder(javax.swing.BorderFactory.createTitledBorder(MessagesManager.get("about")));
-        
-        jLabelVersion.setText(org.kawanfw.sql.version.Version.getVersion());
-        this.jLabelVersionGui.setText(GuiVersion.getVersion());
-        this.jLabelCopyright .setText("<html>" + GuiVersion.VENDOR.COPYRIGHT + "</html>");
-
-        jLabelLogo.setIcon(ImageParmsUtil.getSmallLogo());
-        jButtonUrl.setText(ParmsConstants.ABOUT_WEB_SITE);
-        jButtonEmailSupport.setText(ParmsConstants.ABOUT_EMAIL_SUPPORT);
-                
-        ButtonResizer buttonResizer = new ButtonResizer(jPanelButtons);
-        buttonResizer.setWidthToMax();
-
-        SwingUtil.resizeJComponentsForNimbusAndMacOsX(rootPane);
-
-        // For Mac OS X behavior (rounded default buttons)
-        jButtonUrl.putClientProperty("JButton.buttonType", "square");
-        jButtonEmailSupport.putClientProperty("JButton.buttonType", "square");
-        jButtonCredits.putClientProperty("JButton.buttonType", "square");
-        jButtonDeveloppedBy.putClientProperty("JButton.buttonType", "square");
-
-        // Because URL buttons are wider on MAC OS X 
-        if (SystemUtils.IS_OS_MAC_OSX) {
-            jPanelUrlTrail.setPreferredSize(new Dimension(0, 10));
-            jPanelBugReportTrail.setPreferredSize(new Dimension(0, 10));
-            jPanelCreditsTrail.setPreferredSize(new Dimension(0, 10));
-            jPanelKawanSoftTrail.setPreferredSize(new Dimension(0, 10));
-        }
+        // Do first part of init to avoid long method
+        initStart();
 
         this.addComponentListener(new ComponentAdapter() {
             @Override
@@ -187,6 +151,47 @@ public class AboutFrame extends JFrame {
         WindowSettingMgr.load(this);
         
         pack();
+    }
+
+    private void initStart() {
+        Dimension dimBase = new Dimension(388, 388);
+        this.setPreferredSize(dimBase);
+        //this.setSize(dim);
+        
+        try {
+            this.setIconImage(ImageParmsUtil.getAppIcon());
+        } catch (RuntimeException e1) {
+            e1.printStackTrace();
+        }
+        
+        jPanelCenter.setBorder(BorderFactory.createTitledBorder(MessagesManager.get("about")));
+        
+        jLabelVersion.setText(org.kawanfw.sql.version.Version.getVersion());
+        this.jLabelVersionGui.setText(GuiVersion.getVersion());
+        this.jLabelCopyright .setText("<html>" + GuiVersion.VENDOR.COPYRIGHT + "</html>");
+        
+        jLabelLogo.setIcon(ImageParmsUtil.getSmallLogo());
+        jButtonUrl.setText(ParmsConstants.ABOUT_WEB_SITE);
+        jButtonEmailSupport.setText(ParmsConstants.ABOUT_EMAIL_SUPPORT);
+        
+        ButtonResizer buttonResizer = new ButtonResizer(jPanelButtons);
+        buttonResizer.setWidthToMax();
+        
+        SwingUtil.resizeJComponentsForNimbusAndMacOsX(rootPane);
+        
+        // For Mac OS X behavior (rounded default buttons)
+        jButtonUrl.putClientProperty("JButton.buttonType", "square");
+        jButtonEmailSupport.putClientProperty("JButton.buttonType", "square");
+        jButtonCredits.putClientProperty("JButton.buttonType", "square");
+        jButtonDeveloppedBy.putClientProperty("JButton.buttonType", "square");
+        
+        // Because URL buttons are wider on MAC OS X
+        if (SystemUtils.IS_OS_MAC_OSX) {
+            jPanelUrlTrail.setPreferredSize(new Dimension(0, 10));
+            jPanelBugReportTrail.setPreferredSize(new Dimension(0, 10));
+            jPanelCreditsTrail.setPreferredSize(new Dimension(0, 10));
+            jPanelKawanSoftTrail.setPreferredSize(new Dimension(0, 10));
+        }
     }
 
 

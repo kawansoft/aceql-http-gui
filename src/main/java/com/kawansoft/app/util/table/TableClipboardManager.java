@@ -86,13 +86,13 @@ public class TableClipboardManager {
     protected UndoManager undo = new UndoManager();
 
     // Clipboard actions 
-    private String cancel       = MessagesManager.get("system_cancel");
-    private String cut          = MessagesManager.get("system_cut");
-    private String copy         = MessagesManager.get("system_copy");
-    private String paste        = MessagesManager.get("system_paste");
-    private String select_all   = MessagesManager.get("system_select_all");
-    private String delete       = MessagesManager.get("system_delete");
-    
+    private String cancel = MessagesManager.get("system_cancel");
+    private String cut = MessagesManager.get("system_cut");
+    private String copy = MessagesManager.get("system_copy");
+    private String paste = MessagesManager.get("system_paste");
+    private String select_all = MessagesManager.get("system_select_all");
+    private String delete = MessagesManager.get("system_delete");
+
     // Clipboard actions 
 //    protected String cancel = "Annuler";
 //    private String cut = "Couper";
@@ -100,13 +100,12 @@ public class TableClipboardManager {
 //    protected String paste = "Coller";
 //    protected String select_all = "Tout Sélectionner";
 //    protected String delete = "Supprimer";
-
     /**
      * The JTable to add a contextual pop menu
      */
     protected JTable jTable = null;
     protected final Window parent;
-    
+
     /**
      * Constructor
      *
@@ -115,10 +114,16 @@ public class TableClipboardManager {
      * @param isEditable if true, jTable is editable
      */
     public TableClipboardManager(Window parent, JTable jTable, boolean isEditable) {
-        
+
         this.parent = parent;
         this.jTable = jTable;
 
+        init1();
+        init2(isEditable, jTable);
+
+    }
+
+        private void init1() {
         popupMenu = new JPopupMenu();
         popupMenu.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED));
 
@@ -147,6 +152,7 @@ public class TableClipboardManager {
                 jTableClipboardActionPerformed(e);
             }
         }));
+
         menuItemCopy.setIcon(ImageParmsUtil.createImageIcon(ParmsUtil.COPY_ICON));
         //menuItemCopy.setAccelerator(KeyStroke.getKeyStroke(
         //KeyEvent.VK_C, ActionEvent.CTRL_MASK));
@@ -159,11 +165,14 @@ public class TableClipboardManager {
                 jTableClipboardActionPerformed(e);
             }
         }));
-        menuItemPaste.setIcon(ImageParmsUtil.createImageIcon(ParmsUtil.PASTE_ICON));        
+        menuItemPaste.setIcon(ImageParmsUtil.createImageIcon(ParmsUtil.PASTE_ICON));
         //menuItemPaste.setAccelerator(KeyStroke.getKeyStroke(
         //KeyEvent.VK_V, ActionEvent.CTRL_MASK));
         popupMenu.add(menuItemPaste);
 
+    }
+        
+    private void init2(boolean isEditable, JTable jTable1) {
         if (isEditable) {
             menuItemDelete = new JMenuItem(delete);
             menuItemDelete.addActionListener((new ActionListener() {
@@ -176,9 +185,7 @@ public class TableClipboardManager {
             menuItemDelete.setIcon(ImageParmsUtil.createImageIcon(ParmsUtil.DELETE_ICON));
             popupMenu.add(menuItemDelete);
         }
-
         popupMenu.addSeparator();
-
         menuItemSelectAll = new JMenuItem(select_all);
         menuItemSelectAll.setText(select_all);
         menuItemSelectAll.addActionListener((new ActionListener() {
@@ -187,9 +194,8 @@ public class TableClipboardManager {
             }
         }));
         popupMenu.add(menuItemSelectAll);
-
-        jTable.addMouseListener(new MouseAdapter() {
-
+        jTable1.addMouseListener(new MouseAdapter() {
+            
             public void mousePressed(MouseEvent e) {
                 jTableMouseReleased(e);
             }
@@ -199,9 +205,8 @@ public class TableClipboardManager {
             }
 
         });
-
         if (isEditable) {
-            jTable.addKeyListener(new KeyAdapter() {
+            jTable1.addKeyListener(new KeyAdapter() {
                 public void keyReleased(KeyEvent e) {
                     int id = e.getID();
                     if (id == KeyEvent.KEY_RELEASED) {
@@ -214,8 +219,9 @@ public class TableClipboardManager {
                 }
             });
         }
-
     }
+
+
 
     /**
      * When the Mouse is released, clipboard action is done
@@ -228,9 +234,8 @@ public class TableClipboardManager {
         menuItemPaste.setEnabled(false);
         menuItemCut.setEnabled(false);
         menuItemCopy.setEnabled(false);
-        
-        //menuItemDelete.setEnabled(true);
 
+        //menuItemDelete.setEnabled(true);
         int[] selRows = jTable.getSelectedRows();
 
         if (selRows.length == 0) {
@@ -264,7 +269,7 @@ public class TableClipboardManager {
                 for (int i = 0; i < selRows.length; i++) {
                     listRows.add(jTable.convertRowIndexToModel(selRows[i]));
                 }
-        
+
                 for (int i = 0; i < listRows.size(); i++) {
                     // get Table data
                     TableModel tm = jTable.getModel();
@@ -298,24 +303,24 @@ public class TableClipboardManager {
      * Delete the files
      */
     private void delete() {
-        
+
         int[] selRows = jTable.getSelectedRows();
 
         if (selRows.length == 0) {
             return;
         }
-        String text = MessagesManager.get("are_you_sure_to_delete_these_elements"); 
+        String text = MessagesManager.get("are_you_sure_to_delete_these_elements");
         String title = MessagesManager.get("warning"); // "Attention";
 
         int result = JOptionPane.showConfirmDialog(parent, text, title, JOptionPane.YES_NO_OPTION);
-        
+
         if (result == JOptionPane.NO_OPTION) {
             return;
         }
-            
+
         parent.setCursor(Cursor
                 .getPredefinedCursor(Cursor.WAIT_CURSOR));
-                
+
         List<Integer> listRows = new ArrayList<>();
 
         for (int i = 0; i < selRows.length; i++) {
@@ -327,7 +332,7 @@ public class TableClipboardManager {
 
         // For values row be sorted in asc
         Collections.sort(listRows);
-        
+
         // Remove the row(s)
         for (int i = listRows.size() - 1; i >= 0; i--) {
             Integer rowIndex = listRows.get(i);
@@ -335,7 +340,7 @@ public class TableClipboardManager {
         }
 
         jTable.setModel(tm);
-  
+
         parent.setCursor(Cursor
                 .getDefaultCursor());
     }

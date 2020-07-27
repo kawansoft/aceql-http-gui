@@ -126,7 +126,7 @@ public class ProxyDetector
         {
            for (Iterator<Proxy> iter = listProxy.iterator(); iter.hasNext();) 
            {
-              java.net.Proxy proxy = (java.net.Proxy) iter.next();
+              Proxy proxy = (Proxy) iter.next();
                                                        
               Type type = proxy.type();
               debug("");

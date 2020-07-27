@@ -89,30 +89,7 @@ public class AceQLManagerInstall extends JFrame {
      */
     public void initializeIt() {
 
-        Dimension dim = new Dimension(577, 283);
-        this.setPreferredSize(dim);
-        this.setSize(dim);
-
-        this.jLabelLogo.setText("Windows Service Installation");
-
-        try {
-            this.setIconImage(ImageParmsUtil.getAppIcon());
-        } catch (RuntimeException e1) {
-            e1.printStackTrace();
-        }
-
-        if (SystemUtils.IS_OS_WINDOWS) {
-            updateServiceStatusThreadStart();
-        } else {
-            jLabelServiceStatusValue.setText("Not installed");
-            jLabelServiceStatusValue
-                    .setIcon(ImageParmsUtil.createImageIcon(ParmsUtil.IMAGES_BULLET_BALL_GREY_PNG));
-
-            jButtonInstallService.setEnabled(false);
-            jButtonUninstallService.setEnabled(false);
-        }
-
-        SwingUtil.resizeJComponentsForNimbusAndMacOsX(rootPane);
+        initStart();
 
         this.addComponentListener(new ComponentAdapter() {
             @Override
@@ -148,6 +125,33 @@ public class AceQLManagerInstall extends JFrame {
         WindowSettingMgr.load(this);
 
         pack();
+    }
+
+    private void initStart() {
+        Dimension dim = new Dimension(577, 283);
+        this.setPreferredSize(dim);
+        this.setSize(dim);
+        
+        this.jLabelLogo.setText("Windows Service Installation");
+        
+        try {
+            this.setIconImage(ImageParmsUtil.getAppIcon());
+        } catch (RuntimeException e1) {
+            e1.printStackTrace();
+        }
+        
+        if (SystemUtils.IS_OS_WINDOWS) {
+            updateServiceStatusThreadStart();
+        } else {
+            jLabelServiceStatusValue.setText("Not installed");
+            jLabelServiceStatusValue
+                    .setIcon(ImageParmsUtil.createImageIcon(ParmsUtil.IMAGES_BULLET_BALL_GREY_PNG));
+            
+            jButtonInstallService.setEnabled(false);
+            jButtonUninstallService.setEnabled(false);
+        }
+        
+        SwingUtil.resizeJComponentsForNimbusAndMacOsX(rootPane);
     }
 
         /**
@@ -648,13 +652,13 @@ public class AceQLManagerInstall extends JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AceQLManagerInstall.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            Logger.getLogger(AceQLManagerInstall.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AceQLManagerInstall.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            Logger.getLogger(AceQLManagerInstall.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AceQLManagerInstall.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            Logger.getLogger(AceQLManagerInstall.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AceQLManagerInstall.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+           Logger.getLogger(AceQLManagerInstall.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
