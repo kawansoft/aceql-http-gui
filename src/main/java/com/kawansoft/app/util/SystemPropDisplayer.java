@@ -275,7 +275,7 @@ public class SystemPropDisplayer extends javax.swing.JFrame {
 
         jLabelMiniIcon.setFont(new Font("Tahoma", 1, 11)); // NOI18N
         jLabelMiniIcon.setIcon(new ImageIcon(getClass().getResource("/com/kawansoft/app/parms/images/about.png"))); // NOI18N
-        jLabelMiniIcon.setText("Infos Système");
+        jLabelMiniIcon.setText("System Info");
         jLabelMiniIcon.setToolTipText("");
         jPanelIcon.add(jLabelMiniIcon);
 
@@ -371,7 +371,7 @@ public class SystemPropDisplayer extends javax.swing.JFrame {
 
         jPanelButtons.setLayout(new FlowLayout(FlowLayout.TRAILING, 10, 10));
 
-        copyToClipboard.setText("Copier dans le Presse-Papier");
+        copyToClipboard.setText("Copy to Clipboard");
         copyToClipboard.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 copyToClipboardActionPerformed(evt);
@@ -379,7 +379,7 @@ public class SystemPropDisplayer extends javax.swing.JFrame {
         });
         jPanelButtons.add(copyToClipboard);
 
-        jButtonClose.setText("Fermer");
+        jButtonClose.setText("Close");
         jButtonClose.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 jButtonCloseActionPerformed(evt);

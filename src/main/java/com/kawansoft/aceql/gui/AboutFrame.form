@@ -246,7 +246,7 @@
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Tahoma" size="11" style="1"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="Support / Signaler un bug :"/>
+                    <Property name="text" type="java.lang.String" value="Support / Report a Bug :"/>
                   </Properties>
                 </Component>
                 <Container class="javax.swing.JPanel" name="jPanelSep5">
@@ -320,7 +320,7 @@
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ff" green="0" red="33" type="rgb"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="Autres Logiciels"/>
+                    <Property name="text" type="java.lang.String" value="Other Software"/>
                     <Property name="borderPainted" type="boolean" value="false"/>
                     <Property name="contentAreaFilled" type="boolean" value="false"/>
                     <Property name="focusPainted" type="boolean" value="false"/>
@@ -369,7 +369,7 @@
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ff" green="0" red="33" type="rgb"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="Logiciel d&#xe9;velopp&#xe9; par KawanSoft"/>
+                    <Property name="text" type="java.lang.String" value="Software Developed by KawanSoft"/>
                     <Property name="borderPainted" type="boolean" value="false"/>
                     <Property name="contentAreaFilled" type="boolean" value="false"/>
                     <Property name="focusPainted" type="boolean" value="false"/>
@@ -424,7 +424,7 @@
       <SubComponents>
         <Component class="javax.swing.JButton" name="jButtonSystemInfo">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Infos Syst&#xe8;me"/>
+            <Property name="text" type="java.lang.String" value="System Info"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonSystemInfoActionPerformed"/>
@@ -435,7 +435,7 @@
         </Component>
         <Component class="javax.swing.JButton" name="jButtonClose">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Fermer"/>
+            <Property name="text" type="java.lang.String" value="Close"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonCloseActionPerformed"/>

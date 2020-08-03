@@ -53,7 +53,7 @@
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/com/kawansoft/app/parms/images/about.png"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Infos Syst&#xe8;me"/>
+                <Property name="text" type="java.lang.String" value="System Info"/>
                 <Property name="toolTipText" type="java.lang.String" value=""/>
               </Properties>
             </Component>
@@ -232,7 +232,7 @@
           <SubComponents>
             <Component class="javax.swing.JButton" name="copyToClipboard">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Copier dans le Presse-Papier"/>
+                <Property name="text" type="java.lang.String" value="Copy to Clipboard"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="copyToClipboardActionPerformed"/>
@@ -240,7 +240,7 @@
             </Component>
             <Component class="javax.swing.JButton" name="jButtonClose">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Fermer"/>
+                <Property name="text" type="java.lang.String" value="Close"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonCloseActionPerformed"/>

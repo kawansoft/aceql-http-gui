@@ -138,7 +138,7 @@ public class AboutFrame extends JFrame {
 
         this.keyListenerAdder();
 
-        this.setTitle(MessagesManager.get("about_from"));
+        this.setTitle("About");
 
         // Load and activate previous windows settings
         this.setLocationRelativeTo(parent);
@@ -164,7 +164,7 @@ public class AboutFrame extends JFrame {
             e1.printStackTrace();
         }
         
-        jPanelCenter.setBorder(BorderFactory.createTitledBorder(MessagesManager.get("about")));
+        jPanelCenter.setBorder(BorderFactory.createTitledBorder("About"));
         
         jLabelVersion.setText(org.kawanfw.sql.version.Version.getVersion());
         this.jLabelVersionGui.setText(GuiVersion.getVersion());
@@ -390,7 +390,7 @@ public class AboutFrame extends JFrame {
         jPanelBugReport.setLayout(new FlowLayout(FlowLayout.RIGHT, 0, 5));
 
         jLabelSupport.setFont(new Font("Tahoma", 1, 11)); // NOI18N
-        jLabelSupport.setText("Support / Signaler un bug :");
+        jLabelSupport.setText("Support / Report a Bug :");
         jPanelBugReport.add(jLabelSupport);
 
         jPanelSep5.setMaximumSize(new Dimension(5, 5));
@@ -431,7 +431,7 @@ public class AboutFrame extends JFrame {
 
         jButtonCredits.setFont(new Font("Tahoma", 0, 12)); // NOI18N
         jButtonCredits.setForeground(new Color(51, 0, 255));
-        jButtonCredits.setText("Autres Logiciels");
+        jButtonCredits.setText("Other Software");
         jButtonCredits.setBorderPainted(false);
         jButtonCredits.setContentAreaFilled(false);
         jButtonCredits.setFocusPainted(false);
@@ -463,7 +463,7 @@ public class AboutFrame extends JFrame {
 
         jButtonDeveloppedBy.setFont(new Font("Tahoma", 2, 12)); // NOI18N
         jButtonDeveloppedBy.setForeground(new Color(51, 0, 255));
-        jButtonDeveloppedBy.setText("Logiciel développé par KawanSoft");
+        jButtonDeveloppedBy.setText("Software Developed by KawanSoft");
         jButtonDeveloppedBy.setBorderPainted(false);
         jButtonDeveloppedBy.setContentAreaFilled(false);
         jButtonDeveloppedBy.setFocusPainted(false);
@@ -501,7 +501,7 @@ public class AboutFrame extends JFrame {
         jPanelButtons.setMaximumSize(new Dimension(32767, 65));
         jPanelButtons.setLayout(new FlowLayout(FlowLayout.RIGHT, 5, 10));
 
-        jButtonSystemInfo.setText("Infos Système");
+        jButtonSystemInfo.setText("System Info");
         jButtonSystemInfo.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 jButtonSystemInfoActionPerformed(evt);
@@ -509,7 +509,7 @@ public class AboutFrame extends JFrame {
         });
         jPanelButtons.add(jButtonSystemInfo);
 
-        jButtonClose.setText("Fermer");
+        jButtonClose.setText("Close");
         jButtonClose.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 jButtonCloseActionPerformed(evt);
