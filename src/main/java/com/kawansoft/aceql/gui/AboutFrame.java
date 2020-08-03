@@ -25,7 +25,6 @@
 package com.kawansoft.aceql.gui;
 
 import com.kawansoft.aceql.gui.util.AceQLManagerUtil;
-import com.kawansoft.app.parms.MessagesManager;
 import com.kawansoft.app.parms.ParmsConstants;
 import com.kawansoft.app.parms.util.ImageParmsUtil;
 import com.kawansoft.app.util.ButtonResizer;
