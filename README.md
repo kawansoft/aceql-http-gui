@@ -2,7 +2,6 @@
 ![GitHub](https://img.shields.io/github/license/kawansoft/aceql-http-gui)
 ![GitHub commit activity](https://img.shields.io/github/commit-activity/y/kawansoft/aceql-http-gui) ![GitHub last commit (branch)](https://img.shields.io/github/last-commit/kawansoft/aceql-http-gui/master)
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/631f2f73363a44969e1deee7d1ae394c)](https://www.codacy.com/gh/kawansoft/aceql-http-gui?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=kawansoft/aceql-http-gui&amp;utm_campaign=Badge_Grade)
-[![Codacy Badge](https://app.codacy.com/project/badge/Grade/631f2f73363a44969e1deee7d1ae394c)](https://www.codacy.com/gh/kawansoft/aceql-http-gui?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=kawansoft/aceql-http-gui&amp;utm_campaign=Badge_Grade)
 ![GitHub contributors](https://img.shields.io/github/contributors/kawansoft/aceql-http-gui)
 
 # aceql-http-gui
