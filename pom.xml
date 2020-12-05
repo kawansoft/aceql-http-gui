@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.aceql</groupId>
     <artifactId>aceql-http-gui</artifactId>
-    <version>6.1</version>
+    <version>6.2</version>
     <packaging>jar</packaging>
     <dependencies>
         <dependency>
@@ -83,7 +83,7 @@
     <dependency>
         <groupId>com.aceql</groupId>
         <artifactId>aceql-http</artifactId>
-        <version>6.1</version>
+        <version>6.2</version>
     </dependency>
     </dependencies>
   
