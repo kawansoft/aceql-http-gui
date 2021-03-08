@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.aceql</groupId>
     <artifactId>aceql-http-gui</artifactId>
-    <version>6.4</version>
+    <version>7.0</version>
     <packaging>jar</packaging>
     <dependencies>
         <dependency>
@@ -85,6 +85,13 @@
         <artifactId>aceql-http</artifactId>
         <version>6.4</version>
     </dependency>
+    
+    <dependency>
+    <groupId>com.formdev</groupId>
+    <artifactId>flatlaf</artifactId>
+    <version>1.0</version>
+    </dependency>
+
     </dependencies>
   
   <build>

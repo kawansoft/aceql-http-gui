@@ -105,39 +105,39 @@ public class ClasspathDisplayer extends javax.swing.JFrame {
         Dimension dim = new Dimension(933, 524);
         this.setPreferredSize(dim);
         this.setSize(dim);
-        
+
         try {
             this.setIconImage(ImageParmsUtil.getAppIcon());
         } catch (RuntimeException e1) {
             e1.printStackTrace();
         }
-        
+
         // Toolkit.getDefaultToolkit().setDynamicLayout(true);
         jCheckBoxShowPath.setSelected(true);
-        
+
         buttonGroup1.add(jRadioButtonOriginalOrder);
         buttonGroup1.add(jRadioButtonSort);
-        
+
         jRadioButtonOriginalOrder.setSelected(true);
-        
+
         jPanelHelpMain.remove(jScrollPane1);
-        
+
         jtextPane2 = new JTextPane();
         JPanel noWrapPanel = new JPanel(new BorderLayout());
         noWrapPanel.add(jtextPane2);
         JScrollPane jScrollPane2 = new JScrollPane(noWrapPanel);
         jPanelHelpMain.add(jScrollPane2);
-        
+
         jtextPane2.setContentType("text/html");
         jtextPane2.setEditable(false);
         jtextPane2.setFont(new Font("Lucida Console", 0, 16)); // NOI18N
         jScrollPane2.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-        
+
         // Add a Clipboard Manager
         clipboard = new ClipboardManager(this.getContentPane());
     }
-    
-        private void initStart2() {
+
+    private void initStart2() {
         Thread thread = new Thread() {
             @Override
             public void run() {
@@ -146,28 +146,28 @@ public class ClasspathDisplayer extends javax.swing.JFrame {
         };
 
         thread.start();
-        
+
         jCheckBoxShowPath.addItemListener(new java.awt.event.ItemListener() {
             @Override
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 setClasspath(jCheckBoxShowPath.isSelected(), jRadioButtonSort.isSelected());
             }
         });
-        
+
         jRadioButtonOriginalOrder.addItemListener(new java.awt.event.ItemListener() {
             @Override
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 setClasspath(jCheckBoxShowPath.isSelected(), jRadioButtonSort.isSelected());
             }
         });
-         
+
         jRadioButtonSort.addItemListener(new java.awt.event.ItemListener() {
             @Override
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 setClasspath(jCheckBoxShowPath.isSelected(), jRadioButtonSort.isSelected());
             }
-        });     
-        
+        });
+
         //System.out.println(jEditorPane.getMargin());
         jtextPane2.setMargin(new Insets(3, 10, 3, 10));
 
@@ -214,68 +214,74 @@ public class ClasspathDisplayer extends javax.swing.JFrame {
         this.setVisible(true);
     }
 
+    private String getFontColor() {
+
+        if (ThemeUtil.isFlatLight()) {
+            return "blue";
+        } else {
+            return "red";
+        }
+    }
 
     public void setClasspath(boolean displayDirectories, boolean sort) {
-        
+
         boolean jdbcDriverFound = false;
-        
+
         List<String> classpath = ClasspathUtil.getClasspath();
 
         List<String> finalClasspath = new ArrayList<>();
 
         for (String line : classpath) {
             if (displayDirectories) {
-                    if (!new File(line).isDirectory()) {
-                        
-                        boolean isJdbcDriver = false;
-                        
-                        try {
-                            isJdbcDriver = JdbcUtil.isJdbcDriver(line);
-                        } catch (IOException ex) {
-                            Logger.getLogger(ClasspathDisplayer.class.getName()).log(Level.SEVERE, null, ex);
-                        }
-                        
-                        if (isJdbcDriver) {
-                            line = "<font color=blue>" + line + "</font>";
-                            jdbcDriverFound = true;
-                        }
+                if (!new File(line).isDirectory()) {
+
+                    boolean isJdbcDriver = false;
+
+                    try {
+                        isJdbcDriver = JdbcUtil.isJdbcDriver(line);
+                    } catch (IOException ex) {
+                        Logger.getLogger(ClasspathDisplayer.class.getName()).log(Level.SEVERE, null, ex);
                     }
 
-                    finalClasspath.add("<font face=arial>" + line + "</font>");
+                    if (isJdbcDriver) {
+                        line = "<font color=" + getFontColor() + ">" + line + "</font>";
+                        jdbcDriverFound = true;
+                    }
+                }
+
+                finalClasspath.add("<font face=arial>" + line + "</font>");
             } else {
 
-                    String element = StringUtils.substringAfterLast(line, File.separator);
-                    
-                    if (element == null || element.trim().isEmpty()) {
-                        element = line;
+                String element = StringUtils.substringAfterLast(line, File.separator);
+
+                if (element == null || element.trim().isEmpty()) {
+                    element = line;
+                }
+
+                if (!new File(line).isDirectory()) {
+                    boolean isJdbcDriver = false;
+
+                    try {
+                        isJdbcDriver = JdbcUtil.isJdbcDriver(line);
+                    } catch (IOException ex) {
+                        Logger.getLogger(ClasspathDisplayer.class.getName()).log(Level.SEVERE, null, ex);
                     }
 
-                    if (!new File(line).isDirectory()) {
-                        boolean isJdbcDriver = false;
-                        
-                        try {
-                            isJdbcDriver = JdbcUtil.isJdbcDriver(line);
-                        } catch (IOException ex) {
-                            Logger.getLogger(ClasspathDisplayer.class.getName()).log(Level.SEVERE, null, ex);
-                        }
-                        
-                        if (isJdbcDriver) {
-                            element = "<font color=blue>" + element + " </font>";
-                            jdbcDriverFound = true;
-                        }
+                    if (isJdbcDriver) {
+                        element = "<font color=" + getFontColor() + ">" + element + " </font>";
+                        jdbcDriverFound = true;
                     }
+                }
 
-                    finalClasspath.add("<font face=arial>" + element + "</font>");
-
+                finalClasspath.add("<font face=arial>" + element + "</font>");
             }
-            
+
             if (jdbcDriverFound) {
-                jLabelMessage.setText("<html>Found JDBC Drivers are displayed in <font color=blue>blue</font>.</html");
-            }
-            else {
+                jLabelMessage.setText("<html>Found JDBC Drivers are displayed in <font color=" + getFontColor() + ">" + getFontColor() + "</font>.</html");
+            } else {
                 jLabelMessage.setText(null);
             }
-            
+
         }
 
         // Security to be sure not to reuse old list
@@ -513,4 +519,5 @@ public class ClasspathDisplayer extends javax.swing.JFrame {
     public JScrollPane jScrollPane1;
     public JTextPane jTextPane1;
     // End of variables declaration//GEN-END:variables
+
 }

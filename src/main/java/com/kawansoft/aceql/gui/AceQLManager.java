@@ -24,6 +24,8 @@
  */
 package com.kawansoft.aceql.gui;
 
+import com.formdev.flatlaf.FlatDarculaLaf;
+import com.formdev.flatlaf.FlatIntelliJLaf;
 import com.kawansoft.aceql.gui.service.ServiceInstaller;
 import com.kawansoft.aceql.gui.service.ServiceUtil;
 import com.kawansoft.aceql.gui.task.AceQLTask;
@@ -68,6 +70,8 @@ import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.InputEvent;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
@@ -76,12 +80,12 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URL;
-import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.BoxLayout;
+import javax.swing.ButtonGroup;
 import javax.swing.GroupLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -94,12 +98,12 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
+import javax.swing.JRadioButtonMenuItem;
 import javax.swing.JSeparator;
 import javax.swing.JTextField;
 import javax.swing.KeyStroke;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
-import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.WindowConstants;
 import javax.swing.event.DocumentEvent;
@@ -139,7 +143,13 @@ public class AceQLManager extends JFrame {
      * Standard Status
      */
     public static int STANDARD_STATUS = STANDARD_STOPPED;
+    public static String LOOK_AND_FEEL_TO_USE = "look_and_feel_to_use";
 
+    public static final String LOOK_AND_FEEL_FLAT_INTELLIJ = "com.formdev.flatlaf.FlatIntelliJLaf";
+    public static final String LOOK_AND_FEEL_FLAT_DARCULA = "com.formdev.flatlaf.FlatDarculaLaf";
+
+
+    
     private JFrame thisOne = this;
 
     private Help help = null;
@@ -172,6 +182,9 @@ public class AceQLManager extends JFrame {
     public void initializeIt() {
 
         initStart();
+
+        this.jButtonURL.setForeground(ThemeUtil.getHyperLinkColor());
+        setSelectedThemeRadioButton();
 
         this.addComponentListener(new ComponentAdapter() {
             @Override
@@ -249,7 +262,7 @@ public class AceQLManager extends JFrame {
     }
 
     private void initStart() throws HeadlessException {
-        Dimension dim = new Dimension(604, 604);
+        Dimension dim = new Dimension(590, 590);
         this.setPreferredSize(dim);
         this.setSize(dim);
 
@@ -299,6 +312,7 @@ public class AceQLManager extends JFrame {
         ((AbstractDocument) this.jTextFieldPort.getDocument()).setDocumentFilter(new AceQLManager.MyDocumentFilter());
 
         jTextFieldPropertiesFile.requestFocusInWindow();
+        jTextFieldPropertiesFile.setCaretPosition(0);
 
         if (SystemUtils.IS_OS_MAC_OSX) {
             jMenuItemQuit.setVisible(false); // Quit is already in default left menu
@@ -310,7 +324,7 @@ public class AceQLManager extends JFrame {
             jMenuItemClose.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F4, InputEvent.ALT_MASK));
         }
 
-        SwingUtil.resizeJComponentsForNimbusAndMacOsX(rootPane);
+        //SwingUtil.resizeJComponentsForNimbusAndMacOsX(rootPane);
     }
 
     /*
@@ -886,6 +900,15 @@ public class AceQLManager extends JFrame {
 
     }
 
+    private void setSelectedThemeRadioButton() {        
+        if (ThemeUtil.isFlatLight()) {
+            this.jRadioButtonMenuItemLight.setSelected(true);
+        }
+        else {
+            this.jRadioButtonMenuItemDark.setSelected(true);
+        }
+    }
+
     // See http://stackoverflow.com/questions/14058505/jtextfield-accept-only-alphabet-and-white-space/14060047#14060047
     class MyDocumentFilter extends DocumentFilter {
 
@@ -1217,6 +1240,7 @@ public class AceQLManager extends JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroupApperance = new ButtonGroup();
         jPanelMain = new JPanel();
         jPanelLogo = new JPanel();
         jPanelSepBlank11 = new JPanel();
@@ -1317,6 +1341,9 @@ public class AceQLManager extends JFrame {
         jMenuOptions = new JMenu();
         jMenuCheckForUpdates = new JMenuItem();
         jMenuItemResetWindows = new JMenuItem();
+        jMenuApperance = new JMenu();
+        jRadioButtonMenuItemLight = new JRadioButtonMenuItem();
+        jRadioButtonMenuItemDark = new JRadioButtonMenuItem();
         jMenuHelp = new JMenu();
         jMenuItemHelp = new JMenuItem();
         jMenuItemReleaseNotes = new JMenuItem();
@@ -1831,7 +1858,7 @@ public class AceQLManager extends JFrame {
 
         jPanelURL.add(jPanelLeft20);
 
-        jButtonURL.setForeground(new Color(0, 0, 255));
+        jButtonURL.setForeground(new Color(75, 110, 175));
         jButtonURL.setText("http://localhost:9090/aceql");
         jButtonURL.setToolTipText("");
         jButtonURL.setBorder(null);
@@ -2180,6 +2207,28 @@ public class AceQLManager extends JFrame {
         });
         jMenuOptions.add(jMenuItemResetWindows);
 
+        jMenuApperance.setText("Appearance");
+
+        buttonGroupApperance.add(jRadioButtonMenuItemLight);
+        jRadioButtonMenuItemLight.setText("Light");
+        jRadioButtonMenuItemLight.addItemListener(new ItemListener() {
+            public void itemStateChanged(ItemEvent evt) {
+                jRadioButtonMenuItemLightItemStateChanged(evt);
+            }
+        });
+        jMenuApperance.add(jRadioButtonMenuItemLight);
+
+        buttonGroupApperance.add(jRadioButtonMenuItemDark);
+        jRadioButtonMenuItemDark.setText("Dark");
+        jRadioButtonMenuItemDark.addItemListener(new ItemListener() {
+            public void itemStateChanged(ItemEvent evt) {
+                jRadioButtonMenuItemDarkItemStateChanged(evt);
+            }
+        });
+        jMenuApperance.add(jRadioButtonMenuItemDark);
+
+        jMenuOptions.add(jMenuApperance);
+
         jMenuBar1.add(jMenuOptions);
 
         jMenuHelp.setText("Help");
@@ -2464,31 +2513,49 @@ public class AceQLManager extends JFrame {
         displayClasspath();
     }//GEN-LAST:event_jButtonDisplayClasspathActionPerformed
 
-    public static void setLookAndFeel() throws IOException, ClassNotFoundException, InstantiationException, IllegalAccessException, UnsupportedLookAndFeelException {
-        JFrame.setDefaultLookAndFeelDecorated(true);
-        JDialog.setDefaultLookAndFeelDecorated(true);
+    private void jRadioButtonMenuItemLightItemStateChanged(ItemEvent evt) {//GEN-FIRST:event_jRadioButtonMenuItemLightItemStateChanged
+        updateLookAndFeel();
+    }//GEN-LAST:event_jRadioButtonMenuItemLightItemStateChanged
 
-        File lookAndFeelFile = new File(ParmsUtil.LOOK_AND_FEEL_TXT);
-        if (lookAndFeelFile.exists()) {
-            String lookAndFeel = FileUtils.readFileToString(lookAndFeelFile, Charset.defaultCharset());
-            if (lookAndFeel != null && !lookAndFeel.isEmpty()) {
-                for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
-                    if (lookAndFeel.equalsIgnoreCase(info.getName())) {
-                        UIManager.setLookAndFeel(info.getClassName());
-                        return;
-                    }
-                }
-            }
-        } else // Case Windows
-        if (SystemUtils.IS_OS_WINDOWS) {
-            try {
-                UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
-            } catch (Exception ex) {
-                System.out.println("Failed loading L&F: ");
-                System.out.println(ex);
-            }
+    private void jRadioButtonMenuItemDarkItemStateChanged(ItemEvent evt) {//GEN-FIRST:event_jRadioButtonMenuItemDarkItemStateChanged
+        updateLookAndFeel();
+    }//GEN-LAST:event_jRadioButtonMenuItemDarkItemStateChanged
+
+
+    private void updateLookAndFeel() {
+        boolean isFlatLight = true;
+
+        if (jRadioButtonMenuItemLight.isSelected()) {
+            isFlatLight = true;
+        } else if (jRadioButtonMenuItemDark.isSelected()) {
+            isFlatLight = false;
+        }
+
+        if (isFlatLight) {
+            FlatIntelliJLaf.install();
+            ThemeUtil.storeFlatLight();
+        } else {
+            FlatDarculaLaf.install();
+            ThemeUtil.storeDarkLight();
+        }
+
+        SwingUtilities.updateComponentTreeUI(this);
+        this.pack();
+
+        this.jButtonURL.setForeground(ThemeUtil.getHyperLinkColor());
+    }
+
+    public static void setLookAndFeel() throws IOException, ClassNotFoundException, InstantiationException, IllegalAccessException, UnsupportedLookAndFeelException {
+       JFrame.setDefaultLookAndFeelDecorated(true);
+       JDialog.setDefaultLookAndFeelDecorated(true);
+       
+        if (ThemeUtil.isFlatDark()) {
+            FlatIntelliJLaf.install();
+        } else {
+            FlatDarculaLaf.install();
         }
     }
+
 
     /**
      * @param args the command line arguments
@@ -2511,6 +2578,7 @@ public class AceQLManager extends JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public ButtonGroup buttonGroupApperance;
     public JButton jButtonApply;
     public JButton jButtonBrowse;
     public JButton jButtonDisplayClasspath;
@@ -2538,6 +2606,7 @@ public class AceQLManager extends JFrame {
     public JLabel jLabelStandardStatus;
     public JLabel jLabelURL;
     public JLabel jLabelWindowsServiceMode;
+    public JMenu jMenuApperance;
     public JMenuBar jMenuBar1;
     public JMenuItem jMenuCheckForUpdates;
     public JMenu jMenuFile;
@@ -2607,6 +2676,8 @@ public class AceQLManager extends JFrame {
     public JPanel jPanelTitledSeparator5;
     public JPanel jPanelTitledSeparator6;
     public JPanel jPanelURL;
+    public JRadioButtonMenuItem jRadioButtonMenuItemDark;
+    public JRadioButtonMenuItem jRadioButtonMenuItemLight;
     public JSeparator jSeparator2;
     public JPopupMenu.Separator jSeparator3;
     public JSeparator jSeparator4;

@@ -184,6 +184,12 @@ public class AboutFrame extends JFrame {
         jButtonCredits.putClientProperty("JButton.buttonType", "square");
         jButtonDeveloppedBy.putClientProperty("JButton.buttonType", "square");
         
+        this.jButtonUrl.setForeground(ThemeUtil.getHyperLinkColor());
+        this.jButtonEmailSupport.setForeground(ThemeUtil.getHyperLinkColor());
+        
+        this.jButtonCredits.setForeground(ThemeUtil.getHyperLinkColor());
+        this.jButtonDeveloppedBy.setForeground(ThemeUtil.getHyperLinkColor());
+                
         // Because URL buttons are wider on MAC OS X
         if (SystemUtils.IS_OS_MAC_OSX) {
             jPanelUrlTrail.setPreferredSize(new Dimension(0, 10));
