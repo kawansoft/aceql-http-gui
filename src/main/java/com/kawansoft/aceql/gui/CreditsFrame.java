@@ -328,7 +328,7 @@ private void jButtonCloseActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jBu
                     System.out.println(ex);
                 }
 
-                new CreditsFrame(null, "KawanDoc");
+                new CreditsFrame(null, "AceQL");
             }
         });
     }
