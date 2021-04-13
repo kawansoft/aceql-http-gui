@@ -8,6 +8,8 @@
 
 <img src="https://www.aceql.com/favicon.png" alt=""/>
 
+<img src="https://www.aceql.com/img/AceQL-Schema-min.jpg" alt="AceQL Draw"/>
+
 <a href="https://www.aceql.com">AceQL HTTP</a> Windows Manager.
 
 The Windows Manager is Java Swing NetBeans project packaged with <a href="http://www.advancedinstaller.com/">Advanced Installer</a>.
