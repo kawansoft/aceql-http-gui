@@ -231,7 +231,7 @@ public class AceQLManager extends JFrame {
 
         this.keyListenerAdder();
 
-        this.setTitle(jLabelLogo.getText());
+        this.setTitle(getAppName());
 
         // Button Apply is not enabled
         jButtonApply.setEnabled(false);
@@ -265,14 +265,6 @@ public class AceQLManager extends JFrame {
         Dimension dim = new Dimension(590, 590);
         this.setPreferredSize(dim);
         this.setSize(dim);
-
-        String appName = ParmsConstants.APP_NAME;
-
-        if (ParmsUtil.isAceQLPro()) {
-            appName += " Pro";
-        }
-
-        this.jLabelLogo.setText(appName);
 
         try {
             this.setIconImage(ImageParmsUtil.getAppIcon());
@@ -325,6 +317,16 @@ public class AceQLManager extends JFrame {
         }
 
         //SwingUtil.resizeJComponentsForNimbusAndMacOsX(rootPane);
+    }
+
+    private String getAppName() {
+        String appName = ParmsConstants.APP_NAME;
+        
+        if (ParmsUtil.isAceQLPro()) {
+            appName += " Pro";
+        }
+        
+        return appName;
     }
 
     /*
@@ -1377,7 +1379,6 @@ public class AceQLManager extends JFrame {
 
         jLabelLogo.setFont(new Font("Tahoma", 1, 13)); // NOI18N
         jLabelLogo.setIcon(new ImageIcon(getClass().getResource("/com/kawansoft/app/parms/images/logos/logo-AceQL_48.png"))); // NOI18N
-        jLabelLogo.setText("AceQL HTTP");
         jLabelLogo.setToolTipText("");
         jPanelLogo.add(jLabelLogo);
 
