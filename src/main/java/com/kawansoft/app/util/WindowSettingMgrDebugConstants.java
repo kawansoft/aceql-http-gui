@@ -31,6 +31,6 @@ package com.kawansoft.app.util;
 public class WindowSettingMgrDebugConstants {
     
     /** The DEBUG flag */
-    public static boolean DEBUG = true;
+    public static boolean DEBUG = false;
     
 }
