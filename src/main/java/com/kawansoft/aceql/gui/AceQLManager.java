@@ -1488,10 +1488,10 @@ public class AceQLManager extends JFrame {
 
         jPanelMain.add(jPanelTitledSeparator6);
 
-        jPanelSepBlanc8spaces3.setMaximumSize(new Dimension(32767, 10));
-        jPanelSepBlanc8spaces3.setMinimumSize(new Dimension(10, 120));
+        jPanelSepBlanc8spaces3.setMaximumSize(new Dimension(32767, 8));
+        jPanelSepBlanc8spaces3.setMinimumSize(new Dimension(10, 8));
         jPanelSepBlanc8spaces3.setName(""); // NOI18N
-        jPanelSepBlanc8spaces3.setPreferredSize(new Dimension(1000, 10));
+        jPanelSepBlanc8spaces3.setPreferredSize(new Dimension(1000, 8));
         jPanelMain.add(jPanelSepBlanc8spaces3);
 
         jPanelProperties.setMaximumSize(new Dimension(2147483647, 40));
@@ -1661,9 +1661,9 @@ public class AceQLManager extends JFrame {
 
         jPanelMain.add(jPanelProperties1);
 
-        jPanelSepBlanc8spaces2.setMaximumSize(new Dimension(32767, 8));
-        jPanelSepBlanc8spaces2.setMinimumSize(new Dimension(10, 8));
-        jPanelSepBlanc8spaces2.setPreferredSize(new Dimension(1000, 8));
+        jPanelSepBlanc8spaces2.setMaximumSize(new Dimension(32767, 4));
+        jPanelSepBlanc8spaces2.setMinimumSize(new Dimension(10, 4));
+        jPanelSepBlanc8spaces2.setPreferredSize(new Dimension(1000, 4));
         jPanelMain.add(jPanelSepBlanc8spaces2);
 
         jPanelHost.setMaximumSize(new Dimension(2147483647, 40));
@@ -1825,9 +1825,8 @@ public class AceQLManager extends JFrame {
 
         jPanelMain.add(jPanelClasspath);
 
-        jPanelSepBlanc8spaces.setMaximumSize(new Dimension(32767, 8));
-        jPanelSepBlanc8spaces.setMinimumSize(new Dimension(10, 8));
-        jPanelSepBlanc8spaces.setPreferredSize(new Dimension(1000, 8));
+        jPanelSepBlanc8spaces.setMaximumSize(new Dimension(32767, 10));
+        jPanelSepBlanc8spaces.setPreferredSize(new Dimension(1000, 10));
         jPanelMain.add(jPanelSepBlanc8spaces);
 
         jPanelTitledSeparator5.setMinimumSize(new Dimension(184, 24));
@@ -1888,9 +1887,10 @@ public class AceQLManager extends JFrame {
 
         jPanelMain.add(jPanelTitledSeparator5);
 
-        jPanelSepBlanc8spaces5.setMaximumSize(new Dimension(32767, 10));
+        jPanelSepBlanc8spaces5.setMaximumSize(new Dimension(32767, 8));
+        jPanelSepBlanc8spaces5.setMinimumSize(new Dimension(10, 8));
         jPanelSepBlanc8spaces5.setName(""); // NOI18N
-        jPanelSepBlanc8spaces5.setPreferredSize(new Dimension(1000, 10));
+        jPanelSepBlanc8spaces5.setPreferredSize(new Dimension(1000, 8));
         jPanelMain.add(jPanelSepBlanc8spaces5);
 
         jPanelURL.setMaximumSize(new Dimension(2147483647, 32));
