@@ -36,6 +36,7 @@ import java.util.Objects;
 import java.util.Properties;
 import java.util.TreeSet;
 import org.kawanfw.sql.tomcat.TomcatStarterUtil;
+import org.kawanfw.sql.tomcat.TomcatStarterUtilProperties;
 
 /**
  *
@@ -71,7 +72,7 @@ public class ConfigurationUtil {
             return;
         }
 
-        Properties properties = TomcatStarterUtil.getProperties(configurationProperties);
+        Properties properties = TomcatStarterUtilProperties.getProperties(configurationProperties);
 
         aceqlProperties = properties.getProperty(ACEQL_PROPERTIES);
         host = properties.getProperty(HOST);
