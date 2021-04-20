@@ -1,7 +1,7 @@
 /*
  * This file is part of AceQL HTTP.
  * AceQL HTTP: SQL Over HTTP                                     
- * Copyright (C) 2017,  KawanSoft SAS
+ * Copyright (C) 2021,  KawanSoft SAS
  * (http://www.kawansoft.com). All rights reserved.                                
  *                                                                               
  * AceQL HTTP is free software; you can redistribute it and/or                 
@@ -24,6 +24,8 @@
  */
 package com.kawansoft.aceql.gui;
 
+import com.formdev.flatlaf.FlatDarculaLaf;
+import com.formdev.flatlaf.FlatIntelliJLaf;
 import com.kawansoft.aceql.gui.service.ServiceInstaller;
 import com.kawansoft.aceql.gui.service.ServiceUtil;
 import com.kawansoft.aceql.gui.task.AceQLTask;
@@ -68,6 +70,8 @@ import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.InputEvent;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
@@ -76,12 +80,12 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URL;
-import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.BoxLayout;
+import javax.swing.ButtonGroup;
 import javax.swing.GroupLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -94,12 +98,12 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
+import javax.swing.JRadioButtonMenuItem;
 import javax.swing.JSeparator;
 import javax.swing.JTextField;
 import javax.swing.KeyStroke;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
-import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.WindowConstants;
 import javax.swing.event.DocumentEvent;
@@ -113,7 +117,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.SystemUtils;
 import org.jdesktop.swingx.JXTitledSeparator;
 import org.kawanfw.sql.api.server.web.WebServerApi;
-import org.kawanfw.sql.tomcat.TomcatStarterUtil;
+import org.kawanfw.sql.tomcat.TomcatStarterUtilProperties;
 
 /**
  *
@@ -139,7 +143,13 @@ public class AceQLManager extends JFrame {
      * Standard Status
      */
     public static int STANDARD_STATUS = STANDARD_STOPPED;
+    public static String LOOK_AND_FEEL_TO_USE = "look_and_feel_to_use";
 
+    public static final String LOOK_AND_FEEL_FLAT_INTELLIJ = "com.formdev.flatlaf.FlatIntelliJLaf";
+    public static final String LOOK_AND_FEEL_FLAT_DARCULA = "com.formdev.flatlaf.FlatDarculaLaf";
+
+
+    
     private JFrame thisOne = this;
 
     private Help help = null;
@@ -172,6 +182,9 @@ public class AceQLManager extends JFrame {
     public void initializeIt() {
 
         initStart();
+
+        this.jButtonURL.setForeground(ThemeUtil.getHyperLinkColor());
+        setSelectedThemeRadioButton();
 
         this.addComponentListener(new ComponentAdapter() {
             @Override
@@ -218,7 +231,7 @@ public class AceQLManager extends JFrame {
 
         this.keyListenerAdder();
 
-        this.setTitle(jLabelLogo.getText());
+        this.setTitle(getAppName());
 
         // Button Apply is not enabled
         jButtonApply.setEnabled(false);
@@ -249,17 +262,9 @@ public class AceQLManager extends JFrame {
     }
 
     private void initStart() throws HeadlessException {
-        Dimension dim = new Dimension(604, 604);
+        Dimension dim = new Dimension(615, 615);
         this.setPreferredSize(dim);
         this.setSize(dim);
-
-        String appName = ParmsConstants.APP_NAME;
-
-        if (ParmsUtil.isAceQLPro()) {
-            appName += " Pro";
-        }
-
-        this.jLabelLogo.setText(appName);
 
         try {
             this.setIconImage(ImageParmsUtil.getAppIcon());
@@ -299,6 +304,7 @@ public class AceQLManager extends JFrame {
         ((AbstractDocument) this.jTextFieldPort.getDocument()).setDocumentFilter(new AceQLManager.MyDocumentFilter());
 
         jTextFieldPropertiesFile.requestFocusInWindow();
+        jTextFieldPropertiesFile.setCaretPosition(0);
 
         if (SystemUtils.IS_OS_MAC_OSX) {
             jMenuItemQuit.setVisible(false); // Quit is already in default left menu
@@ -310,7 +316,17 @@ public class AceQLManager extends JFrame {
             jMenuItemClose.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F4, InputEvent.ALT_MASK));
         }
 
-        SwingUtil.resizeJComponentsForNimbusAndMacOsX(rootPane);
+        //SwingUtil.resizeJComponentsForNimbusAndMacOsX(rootPane);
+    }
+
+    private String getAppName() {
+        String appName = ParmsConstants.APP_NAME;
+        
+        if (ParmsUtil.isAceQLPro()) {
+            appName += " Pro";
+        }
+        
+        return appName;
     }
 
     /*
@@ -886,6 +902,15 @@ public class AceQLManager extends JFrame {
 
     }
 
+    private void setSelectedThemeRadioButton() {        
+        if (ThemeUtil.isFlatLight()) {
+            this.jRadioButtonMenuItemLight.setSelected(true);
+        }
+        else {
+            this.jRadioButtonMenuItemDark.setSelected(true);
+        }
+    }
+
     // See http://stackoverflow.com/questions/14058505/jtextfield-accept-only-alphabet-and-white-space/14060047#14060047
     class MyDocumentFilter extends DocumentFilter {
 
@@ -1094,7 +1119,7 @@ public class AceQLManager extends JFrame {
             return;
         }
 
-        Properties properties = TomcatStarterUtil.getProperties(propertiesFile);
+        Properties properties = TomcatStarterUtilProperties.getProperties(propertiesFile);
         String aceqlServer = "";
         aceqlServer = properties.getProperty("aceQLManagerServletCallName");
         String scheme = "http";
@@ -1217,6 +1242,7 @@ public class AceQLManager extends JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroupApperance = new ButtonGroup();
         jPanelMain = new JPanel();
         jPanelLogo = new JPanel();
         jPanelSepBlank11 = new JPanel();
@@ -1238,11 +1264,17 @@ public class AceQLManager extends JFrame {
         jLabelPropertiesFile = new JLabel();
         jPanelLeft13 = new JPanel();
         jTextFieldPropertiesFile = new JTextField();
-        jPanelLeft14 = new JPanel();
-        jButtonBrowse = new JButton();
-        jPanelLeft15 = new JPanel();
-        jButtonEdit = new JButton();
         jPanelEndField4 = new JPanel();
+        jPanelProperties1 = new JPanel();
+        jPanelLeft27 = new JPanel();
+        jLabelPropertiesFile1 = new JLabel();
+        jPanelLeft28 = new JPanel();
+        jButtonBrowse = new JButton();
+        jPanelLeft29 = new JPanel();
+        jButtonEdit = new JButton();
+        jPanelLeft30 = new JPanel();
+        jPanelEndField5 = new JPanel();
+        jPanelSepBlanc8spaces2 = new JPanel();
         jPanelHost = new JPanel();
         jPanelLeft22 = new JPanel();
         jLabelHost = new JLabel();
@@ -1283,7 +1315,8 @@ public class AceQLManager extends JFrame {
         jButtonStop = new JButton();
         jPaneSepInstallAndStart1 = new JPanel();
         jButtonDisplayConsole = new JButton();
-        jPanelSepBlanc8spaces4 = new JPanel();
+        jPanelSepBlanc8spaces9 = new JPanel();
+        jPanelSepBlanc8spaces6 = new JPanel();
         jPanelRadioService = new JPanel();
         jPanelLeft26 = new JPanel();
         jLabelWindowsServiceMode = new JLabel();
@@ -1317,6 +1350,9 @@ public class AceQLManager extends JFrame {
         jMenuOptions = new JMenu();
         jMenuCheckForUpdates = new JMenuItem();
         jMenuItemResetWindows = new JMenuItem();
+        jMenuApperance = new JMenu();
+        jRadioButtonMenuItemLight = new JRadioButtonMenuItem();
+        jRadioButtonMenuItemDark = new JRadioButtonMenuItem();
         jMenuHelp = new JMenu();
         jMenuItemHelp = new JMenuItem();
         jMenuItemReleaseNotes = new JMenuItem();
@@ -1350,7 +1386,6 @@ public class AceQLManager extends JFrame {
 
         jLabelLogo.setFont(new Font("Tahoma", 1, 13)); // NOI18N
         jLabelLogo.setIcon(new ImageIcon(getClass().getResource("/com/kawansoft/app/parms/images/logos/logo-AceQL_48.png"))); // NOI18N
-        jLabelLogo.setText("AceQL HTTP");
         jLabelLogo.setToolTipText("");
         jPanelLogo.add(jLabelLogo);
 
@@ -1453,15 +1488,15 @@ public class AceQLManager extends JFrame {
 
         jPanelMain.add(jPanelTitledSeparator6);
 
-        jPanelSepBlanc8spaces3.setMaximumSize(new Dimension(32767, 12));
-        jPanelSepBlanc8spaces3.setMinimumSize(new Dimension(10, 12));
+        jPanelSepBlanc8spaces3.setMaximumSize(new Dimension(32767, 8));
+        jPanelSepBlanc8spaces3.setMinimumSize(new Dimension(10, 8));
         jPanelSepBlanc8spaces3.setName(""); // NOI18N
-        jPanelSepBlanc8spaces3.setPreferredSize(new Dimension(1000, 12));
+        jPanelSepBlanc8spaces3.setPreferredSize(new Dimension(1000, 8));
         jPanelMain.add(jPanelSepBlanc8spaces3);
 
-        jPanelProperties.setMaximumSize(new Dimension(2147483647, 32));
-        jPanelProperties.setMinimumSize(new Dimension(91, 32));
-        jPanelProperties.setPreferredSize(new Dimension(191, 32));
+        jPanelProperties.setMaximumSize(new Dimension(2147483647, 40));
+        jPanelProperties.setMinimumSize(new Dimension(91, 40));
+        jPanelProperties.setPreferredSize(new Dimension(191, 40));
         jPanelProperties.setLayout(new BoxLayout(jPanelProperties, BoxLayout.LINE_AXIS));
 
         jPanelLeft16.setMaximumSize(new Dimension(10, 10));
@@ -1479,10 +1514,10 @@ public class AceQLManager extends JFrame {
 
         jLabelPropertiesFile.setHorizontalAlignment(SwingConstants.TRAILING);
         jLabelPropertiesFile.setText("Properties File:");
-        jLabelPropertiesFile.setMaximumSize(new Dimension(129, 16));
-        jLabelPropertiesFile.setMinimumSize(new Dimension(129, 16));
+        jLabelPropertiesFile.setMaximumSize(new Dimension(109, 16));
+        jLabelPropertiesFile.setMinimumSize(new Dimension(109, 16));
         jLabelPropertiesFile.setName(""); // NOI18N
-        jLabelPropertiesFile.setPreferredSize(new Dimension(129, 16));
+        jLabelPropertiesFile.setPreferredSize(new Dimension(109, 16));
         jPanelProperties.add(jLabelPropertiesFile);
 
         jPanelLeft13.setMaximumSize(new Dimension(5, 5));
@@ -1499,59 +1534,15 @@ public class AceQLManager extends JFrame {
 
         jPanelProperties.add(jPanelLeft13);
 
-        jTextFieldPropertiesFile.setMaximumSize(new Dimension(2147483647, 22));
+        jTextFieldPropertiesFile.setMaximumSize(new Dimension(2147483647, 28));
+        jTextFieldPropertiesFile.setMinimumSize(new Dimension(6, 28));
+        jTextFieldPropertiesFile.setPreferredSize(new Dimension(6, 28));
         jTextFieldPropertiesFile.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 jTextFieldPropertiesFileActionPerformed(evt);
             }
         });
         jPanelProperties.add(jTextFieldPropertiesFile);
-
-        jPanelLeft14.setMaximumSize(new Dimension(5, 5));
-        jPanelLeft14.setMinimumSize(new Dimension(5, 5));
-
-        GroupLayout jPanelLeft14Layout = new GroupLayout(jPanelLeft14);
-        jPanelLeft14.setLayout(jPanelLeft14Layout);
-        jPanelLeft14Layout.setHorizontalGroup(jPanelLeft14Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-            .addGap(0, 5, Short.MAX_VALUE)
-        );
-        jPanelLeft14Layout.setVerticalGroup(jPanelLeft14Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-            .addGap(0, 5, Short.MAX_VALUE)
-        );
-
-        jPanelProperties.add(jPanelLeft14);
-
-        jButtonBrowse.setText("Browse");
-        jButtonBrowse.setToolTipText("");
-        jButtonBrowse.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                jButtonBrowseActionPerformed(evt);
-            }
-        });
-        jPanelProperties.add(jButtonBrowse);
-
-        jPanelLeft15.setMaximumSize(new Dimension(5, 5));
-        jPanelLeft15.setMinimumSize(new Dimension(5, 5));
-
-        GroupLayout jPanelLeft15Layout = new GroupLayout(jPanelLeft15);
-        jPanelLeft15.setLayout(jPanelLeft15Layout);
-        jPanelLeft15Layout.setHorizontalGroup(jPanelLeft15Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-            .addGap(0, 5, Short.MAX_VALUE)
-        );
-        jPanelLeft15Layout.setVerticalGroup(jPanelLeft15Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-            .addGap(0, 5, Short.MAX_VALUE)
-        );
-
-        jPanelProperties.add(jPanelLeft15);
-
-        jButtonEdit.setText("Edit");
-        jButtonEdit.setToolTipText("");
-        jButtonEdit.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                jButtonEditActionPerformed(evt);
-            }
-        });
-        jPanelProperties.add(jButtonEdit);
 
         jPanelEndField4.setMaximumSize(new Dimension(50, 10));
         jPanelEndField4.setMinimumSize(new Dimension(50, 10));
@@ -1569,9 +1560,115 @@ public class AceQLManager extends JFrame {
 
         jPanelMain.add(jPanelProperties);
 
-        jPanelHost.setMaximumSize(new Dimension(2147483647, 32));
-        jPanelHost.setMinimumSize(new Dimension(91, 32));
-        jPanelHost.setPreferredSize(new Dimension(191, 32));
+        jPanelProperties1.setMaximumSize(new Dimension(2147483647, 32));
+        jPanelProperties1.setMinimumSize(new Dimension(91, 32));
+        jPanelProperties1.setPreferredSize(new Dimension(191, 32));
+        jPanelProperties1.setLayout(new BoxLayout(jPanelProperties1, BoxLayout.LINE_AXIS));
+
+        jPanelLeft27.setMaximumSize(new Dimension(10, 10));
+
+        GroupLayout jPanelLeft27Layout = new GroupLayout(jPanelLeft27);
+        jPanelLeft27.setLayout(jPanelLeft27Layout);
+        jPanelLeft27Layout.setHorizontalGroup(jPanelLeft27Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            .addGap(0, 10, Short.MAX_VALUE)
+        );
+        jPanelLeft27Layout.setVerticalGroup(jPanelLeft27Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            .addGap(0, 10, Short.MAX_VALUE)
+        );
+
+        jPanelProperties1.add(jPanelLeft27);
+
+        jLabelPropertiesFile1.setHorizontalAlignment(SwingConstants.TRAILING);
+        jLabelPropertiesFile1.setMaximumSize(new Dimension(109, 16));
+        jLabelPropertiesFile1.setMinimumSize(new Dimension(109, 16));
+        jLabelPropertiesFile1.setName(""); // NOI18N
+        jLabelPropertiesFile1.setPreferredSize(new Dimension(109, 16));
+        jPanelProperties1.add(jLabelPropertiesFile1);
+
+        jPanelLeft28.setMaximumSize(new Dimension(5, 5));
+        jPanelLeft28.setMinimumSize(new Dimension(5, 5));
+
+        GroupLayout jPanelLeft28Layout = new GroupLayout(jPanelLeft28);
+        jPanelLeft28.setLayout(jPanelLeft28Layout);
+        jPanelLeft28Layout.setHorizontalGroup(jPanelLeft28Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            .addGap(0, 5, Short.MAX_VALUE)
+        );
+        jPanelLeft28Layout.setVerticalGroup(jPanelLeft28Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            .addGap(0, 5, Short.MAX_VALUE)
+        );
+
+        jPanelProperties1.add(jPanelLeft28);
+
+        jButtonBrowse.setText("Browse");
+        jButtonBrowse.setToolTipText("");
+        jButtonBrowse.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                jButtonBrowseActionPerformed(evt);
+            }
+        });
+        jPanelProperties1.add(jButtonBrowse);
+
+        jPanelLeft29.setMaximumSize(new Dimension(5, 5));
+        jPanelLeft29.setMinimumSize(new Dimension(5, 5));
+
+        GroupLayout jPanelLeft29Layout = new GroupLayout(jPanelLeft29);
+        jPanelLeft29.setLayout(jPanelLeft29Layout);
+        jPanelLeft29Layout.setHorizontalGroup(jPanelLeft29Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            .addGap(0, 5, Short.MAX_VALUE)
+        );
+        jPanelLeft29Layout.setVerticalGroup(jPanelLeft29Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            .addGap(0, 5, Short.MAX_VALUE)
+        );
+
+        jPanelProperties1.add(jPanelLeft29);
+
+        jButtonEdit.setText("Edit");
+        jButtonEdit.setToolTipText("");
+        jButtonEdit.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                jButtonEditActionPerformed(evt);
+            }
+        });
+        jPanelProperties1.add(jButtonEdit);
+
+        jPanelLeft30.setMaximumSize(new Dimension(5, 5));
+        jPanelLeft30.setMinimumSize(new Dimension(5, 5));
+
+        GroupLayout jPanelLeft30Layout = new GroupLayout(jPanelLeft30);
+        jPanelLeft30.setLayout(jPanelLeft30Layout);
+        jPanelLeft30Layout.setHorizontalGroup(jPanelLeft30Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            .addGap(0, 5, Short.MAX_VALUE)
+        );
+        jPanelLeft30Layout.setVerticalGroup(jPanelLeft30Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            .addGap(0, 5, Short.MAX_VALUE)
+        );
+
+        jPanelProperties1.add(jPanelLeft30);
+
+        jPanelEndField5.setMaximumSize(new Dimension(50, 10));
+        jPanelEndField5.setMinimumSize(new Dimension(50, 10));
+
+        GroupLayout jPanelEndField5Layout = new GroupLayout(jPanelEndField5);
+        jPanelEndField5.setLayout(jPanelEndField5Layout);
+        jPanelEndField5Layout.setHorizontalGroup(jPanelEndField5Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            .addGap(0, 50, Short.MAX_VALUE)
+        );
+        jPanelEndField5Layout.setVerticalGroup(jPanelEndField5Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            .addGap(0, 10, Short.MAX_VALUE)
+        );
+
+        jPanelProperties1.add(jPanelEndField5);
+
+        jPanelMain.add(jPanelProperties1);
+
+        jPanelSepBlanc8spaces2.setMaximumSize(new Dimension(32767, 4));
+        jPanelSepBlanc8spaces2.setMinimumSize(new Dimension(10, 4));
+        jPanelSepBlanc8spaces2.setPreferredSize(new Dimension(1000, 4));
+        jPanelMain.add(jPanelSepBlanc8spaces2);
+
+        jPanelHost.setMaximumSize(new Dimension(2147483647, 40));
+        jPanelHost.setMinimumSize(new Dimension(91, 40));
+        jPanelHost.setPreferredSize(new Dimension(191, 40));
         jPanelHost.setLayout(new BoxLayout(jPanelHost, BoxLayout.LINE_AXIS));
 
         jPanelLeft22.setMaximumSize(new Dimension(10, 10));
@@ -1589,10 +1686,10 @@ public class AceQLManager extends JFrame {
 
         jLabelHost.setHorizontalAlignment(SwingConstants.TRAILING);
         jLabelHost.setText("Host:");
-        jLabelHost.setMaximumSize(new Dimension(129, 16));
-        jLabelHost.setMinimumSize(new Dimension(129, 16));
+        jLabelHost.setMaximumSize(new Dimension(109, 16));
+        jLabelHost.setMinimumSize(new Dimension(109, 16));
         jLabelHost.setName(""); // NOI18N
-        jLabelHost.setPreferredSize(new Dimension(129, 16));
+        jLabelHost.setPreferredSize(new Dimension(109, 16));
         jPanelHost.add(jLabelHost);
 
         jPanelLeft17.setMaximumSize(new Dimension(5, 5));
@@ -1609,7 +1706,9 @@ public class AceQLManager extends JFrame {
 
         jPanelHost.add(jPanelLeft17);
 
-        jTextFieldHost.setMaximumSize(new Dimension(2147483647, 22));
+        jTextFieldHost.setMaximumSize(new Dimension(2147483647, 28));
+        jTextFieldHost.setMinimumSize(new Dimension(6, 28));
+        jTextFieldHost.setPreferredSize(new Dimension(6, 28));
         jTextFieldHost.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 jTextFieldHostActionPerformed(evt);
@@ -1650,9 +1749,9 @@ public class AceQLManager extends JFrame {
 
         jPanelHost.add(jPanelLeft19);
 
-        jTextFieldPort.setMaximumSize(new Dimension(100, 22));
-        jTextFieldPort.setMinimumSize(new Dimension(100, 22));
-        jTextFieldPort.setPreferredSize(new Dimension(50, 22));
+        jTextFieldPort.setMaximumSize(new Dimension(70, 28));
+        jTextFieldPort.setMinimumSize(new Dimension(70, 28));
+        jTextFieldPort.setPreferredSize(new Dimension(70, 28));
         jTextFieldPort.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 jTextFieldPortActionPerformed(evt);
@@ -1695,10 +1794,10 @@ public class AceQLManager extends JFrame {
         jPanelClasspath.add(jPanelLeft25);
 
         jLabelClasspath.setHorizontalAlignment(SwingConstants.TRAILING);
-        jLabelClasspath.setMaximumSize(new Dimension(129, 16));
-        jLabelClasspath.setMinimumSize(new Dimension(129, 16));
+        jLabelClasspath.setMaximumSize(new Dimension(109, 16));
+        jLabelClasspath.setMinimumSize(new Dimension(109, 16));
         jLabelClasspath.setName(""); // NOI18N
-        jLabelClasspath.setPreferredSize(new Dimension(129, 16));
+        jLabelClasspath.setPreferredSize(new Dimension(109, 16));
         jPanelClasspath.add(jLabelClasspath);
 
         jPanelLeft21.setMaximumSize(new Dimension(5, 5));
@@ -1726,9 +1825,8 @@ public class AceQLManager extends JFrame {
 
         jPanelMain.add(jPanelClasspath);
 
-        jPanelSepBlanc8spaces.setMaximumSize(new Dimension(32767, 8));
-        jPanelSepBlanc8spaces.setMinimumSize(new Dimension(10, 8));
-        jPanelSepBlanc8spaces.setPreferredSize(new Dimension(1000, 8));
+        jPanelSepBlanc8spaces.setMaximumSize(new Dimension(32767, 10));
+        jPanelSepBlanc8spaces.setPreferredSize(new Dimension(1000, 10));
         jPanelMain.add(jPanelSepBlanc8spaces);
 
         jPanelTitledSeparator5.setMinimumSize(new Dimension(184, 24));
@@ -1789,10 +1887,10 @@ public class AceQLManager extends JFrame {
 
         jPanelMain.add(jPanelTitledSeparator5);
 
-        jPanelSepBlanc8spaces5.setMaximumSize(new Dimension(32767, 12));
-        jPanelSepBlanc8spaces5.setMinimumSize(new Dimension(10, 12));
+        jPanelSepBlanc8spaces5.setMaximumSize(new Dimension(32767, 8));
+        jPanelSepBlanc8spaces5.setMinimumSize(new Dimension(10, 8));
         jPanelSepBlanc8spaces5.setName(""); // NOI18N
-        jPanelSepBlanc8spaces5.setPreferredSize(new Dimension(1000, 12));
+        jPanelSepBlanc8spaces5.setPreferredSize(new Dimension(1000, 8));
         jPanelMain.add(jPanelSepBlanc8spaces5);
 
         jPanelURL.setMaximumSize(new Dimension(2147483647, 32));
@@ -1831,7 +1929,7 @@ public class AceQLManager extends JFrame {
 
         jPanelURL.add(jPanelLeft20);
 
-        jButtonURL.setForeground(new Color(0, 0, 255));
+        jButtonURL.setForeground(new Color(75, 110, 175));
         jButtonURL.setText("http://localhost:9090/aceql");
         jButtonURL.setToolTipText("");
         jButtonURL.setBorder(null);
@@ -1885,9 +1983,9 @@ public class AceQLManager extends JFrame {
 
         jPanelButtonStartStop.setLayout(new BoxLayout(jPanelButtonStartStop, BoxLayout.Y_AXIS));
 
-        jPanelButtonsStartStandard.setMaximumSize(new Dimension(2147483647, 32));
-        jPanelButtonsStartStandard.setMinimumSize(new Dimension(91, 32));
-        jPanelButtonsStartStandard.setPreferredSize(new Dimension(191, 32));
+        jPanelButtonsStartStandard.setMaximumSize(new Dimension(2147483647, 40));
+        jPanelButtonsStartStandard.setMinimumSize(new Dimension(91, 40));
+        jPanelButtonsStartStandard.setPreferredSize(new Dimension(191, 40));
         jPanelButtonsStartStandard.setLayout(new FlowLayout(FlowLayout.LEFT));
 
         jPanelLeft31.setMaximumSize(new Dimension(15, 10));
@@ -1938,10 +2036,16 @@ public class AceQLManager extends JFrame {
 
         jPanelButtonStartStop.add(jPanelButtonsStartStandard);
 
-        jPanelSepBlanc8spaces4.setMaximumSize(new Dimension(32767, 14));
-        jPanelSepBlanc8spaces4.setMinimumSize(new Dimension(10, 14));
-        jPanelSepBlanc8spaces4.setPreferredSize(new Dimension(1000, 14));
-        jPanelButtonStartStop.add(jPanelSepBlanc8spaces4);
+        jPanelSepBlanc8spaces9.setMaximumSize(new Dimension(32767, 2));
+        jPanelSepBlanc8spaces9.setMinimumSize(new Dimension(10, 2));
+        jPanelSepBlanc8spaces9.setName(""); // NOI18N
+        jPanelSepBlanc8spaces9.setPreferredSize(new Dimension(1000, 2));
+        jPanelButtonStartStop.add(jPanelSepBlanc8spaces9);
+
+        jPanelSepBlanc8spaces6.setMaximumSize(new Dimension(32767, 10));
+        jPanelSepBlanc8spaces6.setName(""); // NOI18N
+        jPanelSepBlanc8spaces6.setPreferredSize(new Dimension(1000, 10));
+        jPanelButtonStartStop.add(jPanelSepBlanc8spaces6);
 
         jPanelRadioService.setMaximumSize(new Dimension(32767, 32));
         jPanelRadioService.setMinimumSize(new Dimension(91, 32));
@@ -1971,9 +2075,10 @@ public class AceQLManager extends JFrame {
 
         jPanelButtonStartStop.add(jPanelRadioService);
 
-        jPanelButtonsStartService.setMaximumSize(new Dimension(2147483647, 32));
-        jPanelButtonsStartService.setMinimumSize(new Dimension(91, 32));
-        jPanelButtonsStartService.setPreferredSize(new Dimension(191, 32));
+        jPanelButtonsStartService.setMaximumSize(new Dimension(2147483647, 40));
+        jPanelButtonsStartService.setMinimumSize(new Dimension(91, 40));
+        jPanelButtonsStartService.setPreferredSize(new Dimension(191, 40));
+        jPanelButtonsStartService.setRequestFocusEnabled(false);
         jPanelButtonsStartService.setLayout(new FlowLayout(FlowLayout.LEFT));
 
         jPanelLeft33.setMaximumSize(new Dimension(15, 10));
@@ -2034,9 +2139,9 @@ public class AceQLManager extends JFrame {
 
         jPanelMain.add(jPanelButtonStartStop);
 
-        jPanelSepBlanc8spaces8.setMaximumSize(new Dimension(32767, 42));
-        jPanelSepBlanc8spaces8.setMinimumSize(new Dimension(10, 42));
-        jPanelSepBlanc8spaces8.setPreferredSize(new Dimension(1000, 42));
+        jPanelSepBlanc8spaces8.setMaximumSize(new Dimension(32767, 12));
+        jPanelSepBlanc8spaces8.setMinimumSize(new Dimension(10, 12));
+        jPanelSepBlanc8spaces8.setPreferredSize(new Dimension(1000, 12));
         jPanelMain.add(jPanelSepBlanc8spaces8);
 
         jPanelSepLine2New.setMaximumSize(new Dimension(32787, 10));
@@ -2179,6 +2284,28 @@ public class AceQLManager extends JFrame {
             }
         });
         jMenuOptions.add(jMenuItemResetWindows);
+
+        jMenuApperance.setText("Appearance");
+
+        buttonGroupApperance.add(jRadioButtonMenuItemLight);
+        jRadioButtonMenuItemLight.setText("Light");
+        jRadioButtonMenuItemLight.addItemListener(new ItemListener() {
+            public void itemStateChanged(ItemEvent evt) {
+                jRadioButtonMenuItemLightItemStateChanged(evt);
+            }
+        });
+        jMenuApperance.add(jRadioButtonMenuItemLight);
+
+        buttonGroupApperance.add(jRadioButtonMenuItemDark);
+        jRadioButtonMenuItemDark.setText("Dark");
+        jRadioButtonMenuItemDark.addItemListener(new ItemListener() {
+            public void itemStateChanged(ItemEvent evt) {
+                jRadioButtonMenuItemDarkItemStateChanged(evt);
+            }
+        });
+        jMenuApperance.add(jRadioButtonMenuItemDark);
+
+        jMenuOptions.add(jMenuApperance);
 
         jMenuBar1.add(jMenuOptions);
 
@@ -2464,31 +2591,49 @@ public class AceQLManager extends JFrame {
         displayClasspath();
     }//GEN-LAST:event_jButtonDisplayClasspathActionPerformed
 
-    public static void setLookAndFeel() throws IOException, ClassNotFoundException, InstantiationException, IllegalAccessException, UnsupportedLookAndFeelException {
-        JFrame.setDefaultLookAndFeelDecorated(true);
-        JDialog.setDefaultLookAndFeelDecorated(true);
+    private void jRadioButtonMenuItemLightItemStateChanged(ItemEvent evt) {//GEN-FIRST:event_jRadioButtonMenuItemLightItemStateChanged
+        updateLookAndFeel();
+    }//GEN-LAST:event_jRadioButtonMenuItemLightItemStateChanged
 
-        File lookAndFeelFile = new File(ParmsUtil.LOOK_AND_FEEL_TXT);
-        if (lookAndFeelFile.exists()) {
-            String lookAndFeel = FileUtils.readFileToString(lookAndFeelFile, Charset.defaultCharset());
-            if (lookAndFeel != null && !lookAndFeel.isEmpty()) {
-                for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
-                    if (lookAndFeel.equalsIgnoreCase(info.getName())) {
-                        UIManager.setLookAndFeel(info.getClassName());
-                        return;
-                    }
-                }
-            }
-        } else // Case Windows
-        if (SystemUtils.IS_OS_WINDOWS) {
-            try {
-                UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
-            } catch (Exception ex) {
-                System.out.println("Failed loading L&F: ");
-                System.out.println(ex);
-            }
+    private void jRadioButtonMenuItemDarkItemStateChanged(ItemEvent evt) {//GEN-FIRST:event_jRadioButtonMenuItemDarkItemStateChanged
+        updateLookAndFeel();
+    }//GEN-LAST:event_jRadioButtonMenuItemDarkItemStateChanged
+
+
+    private void updateLookAndFeel() {
+        boolean isFlatLight = true;
+
+        if (jRadioButtonMenuItemLight.isSelected()) {
+            isFlatLight = true;
+        } else if (jRadioButtonMenuItemDark.isSelected()) {
+            isFlatLight = false;
+        }
+
+        if (isFlatLight) {
+            FlatIntelliJLaf.install();
+            ThemeUtil.storeFlatLight();
+        } else {
+            FlatDarculaLaf.install();
+            ThemeUtil.storeDarkLight();
+        }
+
+        SwingUtilities.updateComponentTreeUI(this);
+        this.pack();
+
+        this.jButtonURL.setForeground(ThemeUtil.getHyperLinkColor());
+    }
+
+    public static void setLookAndFeel() throws IOException, ClassNotFoundException, InstantiationException, IllegalAccessException, UnsupportedLookAndFeelException {
+       JFrame.setDefaultLookAndFeelDecorated(true);
+       JDialog.setDefaultLookAndFeelDecorated(true);
+       
+        if (ThemeUtil.isFlatDark()) {
+            FlatIntelliJLaf.install();
+        } else {
+            FlatDarculaLaf.install();
         }
     }
+
 
     /**
      * @param args the command line arguments
@@ -2511,6 +2656,7 @@ public class AceQLManager extends JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public ButtonGroup buttonGroupApperance;
     public JButton jButtonApply;
     public JButton jButtonBrowse;
     public JButton jButtonDisplayClasspath;
@@ -2531,6 +2677,7 @@ public class AceQLManager extends JFrame {
     public JLabel jLabelHost1;
     public JLabel jLabelLogo;
     public JLabel jLabelPropertiesFile;
+    public JLabel jLabelPropertiesFile1;
     public JLabel jLabelServiceStartModeValue;
     public JLabel jLabelServiceStatus;
     public JLabel jLabelServiceStatusValue;
@@ -2538,6 +2685,7 @@ public class AceQLManager extends JFrame {
     public JLabel jLabelStandardStatus;
     public JLabel jLabelURL;
     public JLabel jLabelWindowsServiceMode;
+    public JMenu jMenuApperance;
     public JMenuBar jMenuBar1;
     public JMenuItem jMenuCheckForUpdates;
     public JMenu jMenuFile;
@@ -2570,11 +2718,10 @@ public class AceQLManager extends JFrame {
     public JPanel jPanelButtonsStartStandard;
     public JPanel jPanelClasspath;
     public JPanel jPanelEndField4;
+    public JPanel jPanelEndField5;
     public JPanel jPanelEndField6;
     public JPanel jPanelHost;
     public JPanel jPanelLeft13;
-    public JPanel jPanelLeft14;
-    public JPanel jPanelLeft15;
     public JPanel jPanelLeft16;
     public JPanel jPanelLeft17;
     public JPanel jPanelLeft18;
@@ -2586,27 +2733,36 @@ public class AceQLManager extends JFrame {
     public JPanel jPanelLeft24;
     public JPanel jPanelLeft25;
     public JPanel jPanelLeft26;
+    public JPanel jPanelLeft27;
+    public JPanel jPanelLeft28;
+    public JPanel jPanelLeft29;
+    public JPanel jPanelLeft30;
     public JPanel jPanelLeft31;
     public JPanel jPanelLeft33;
     public JPanel jPanelLogo;
     public JPanel jPanelMain;
     public JPanel jPanelProperties;
+    public JPanel jPanelProperties1;
     public JPanel jPanelRadioService;
     public JPanel jPanelRadioStandard;
     public JPanel jPanelSep3x6;
     public JPanel jPanelSep3x7;
     public JPanel jPanelSepBlanc8spaces;
     public JPanel jPanelSepBlanc8spaces1;
+    public JPanel jPanelSepBlanc8spaces2;
     public JPanel jPanelSepBlanc8spaces3;
-    public JPanel jPanelSepBlanc8spaces4;
     public JPanel jPanelSepBlanc8spaces5;
+    public JPanel jPanelSepBlanc8spaces6;
     public JPanel jPanelSepBlanc8spaces8;
+    public JPanel jPanelSepBlanc8spaces9;
     public JPanel jPanelSepBlank11;
     public JPanel jPanelSepLine2New;
     public JPanel jPanelSepLine2New2;
     public JPanel jPanelTitledSeparator5;
     public JPanel jPanelTitledSeparator6;
     public JPanel jPanelURL;
+    public JRadioButtonMenuItem jRadioButtonMenuItemDark;
+    public JRadioButtonMenuItem jRadioButtonMenuItemLight;
     public JSeparator jSeparator2;
     public JPopupMenu.Separator jSeparator3;
     public JSeparator jSeparator4;

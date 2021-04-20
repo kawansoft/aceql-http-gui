@@ -1,7 +1,7 @@
 /*
  * This file is part of AceQL HTTP.
  * AceQL HTTP: SQL Over HTTP                                     
- * Copyright (C) 2017,  KawanSoft SAS
+ * Copyright (C) 2021,  KawanSoft SAS
  * (http://www.kawansoft.com). All rights reserved.                                
  *                                                                               
  * AceQL HTTP is free software; you can redistribute it and/or                 
@@ -28,8 +28,8 @@ package com.kawansoft.app.version;
  */
 
 public class GuiVersionConstants {
-    public static final String VERSION = "v6.4";
-    public static final String DATE = "16-Feb-2021"; 
+    public static final String VERSION = "v7.0";
+    public static final String DATE = "20-Apr-2021"; 
 }
 
 // End

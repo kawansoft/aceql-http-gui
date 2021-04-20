@@ -1,7 +1,7 @@
 /*
  * This file is part of AceQL HTTP.
  * AceQL HTTP: SQL Over HTTP                                     
- * Copyright (C) 2017,  KawanSoft SAS
+ * Copyright (C) 2021,  KawanSoft SAS
  * (http://www.kawansoft.com). All rights reserved.                                
  *                                                                               
  * AceQL HTTP is free software; you can redistribute it and/or                 
@@ -328,7 +328,7 @@ private void jButtonCloseActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jBu
                     System.out.println(ex);
                 }
 
-                new CreditsFrame(null, "KawanDoc");
+                new CreditsFrame(null, "AceQL");
             }
         });
     }

@@ -1,7 +1,7 @@
 /*
  * This file is part of AceQL HTTP.
  * AceQL HTTP: SQL Over HTTP                                     
- * Copyright (C) 2017,  KawanSoft SAS
+ * Copyright (C) 2021,  KawanSoft SAS
  * (http://www.kawansoft.com). All rights reserved.                                
  *                                                                               
  * AceQL HTTP is free software; you can redistribute it and/or                 
@@ -184,6 +184,12 @@ public class AboutFrame extends JFrame {
         jButtonCredits.putClientProperty("JButton.buttonType", "square");
         jButtonDeveloppedBy.putClientProperty("JButton.buttonType", "square");
         
+        this.jButtonUrl.setForeground(ThemeUtil.getHyperLinkColor());
+        this.jButtonEmailSupport.setForeground(ThemeUtil.getHyperLinkColor());
+        
+        this.jButtonCredits.setForeground(ThemeUtil.getHyperLinkColor());
+        this.jButtonDeveloppedBy.setForeground(ThemeUtil.getHyperLinkColor());
+                
         // Because URL buttons are wider on MAC OS X
         if (SystemUtils.IS_OS_MAC_OSX) {
             jPanelUrlTrail.setPreferredSize(new Dimension(0, 10));
@@ -347,7 +353,7 @@ public class AboutFrame extends JFrame {
         jPanelCopyRight.setLayout(new FlowLayout(FlowLayout.RIGHT));
 
         jLabelCopyright.setFont(new Font("Tahoma", 1, 11)); // NOI18N
-        jLabelCopyright.setText("Copyright  2016");
+        jLabelCopyright.setText("Copyright  2021");
         jPanelCopyRight.add(jLabelCopyright);
 
         jPanelCenter.add(jPanelCopyRight);
