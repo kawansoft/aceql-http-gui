@@ -19,8 +19,10 @@ The Netbeans project is a Maven project.
 
 It wraps <a href="https://github.com/kawansoft/aceql-http">aceql-http</a> core and allows to control all AceQL HTTP operations with a single window on Microsoft Windows. (Especially, it allows to run and stop the AceQL Web Server as a Windows service).
 
-<img src="https://www.aceql.com/img/AceQL-Schema-min.jpg" alt="AceQL Home"/>
+
 
 <img src="https://www.aceql.com/img/main_normal.png" alt="AceQL Home"/>
+
+
 
 <img src="https://www.aceql.com/img/main_dark_mode.png" alt="AceQL Home"/>
