@@ -35,9 +35,10 @@ import java.awt.Color;
  * @author ndepo
  */
 public class ThemeUtil {
-    
+        
     public static Color HYPERLINK_LIGHT =  new Color(38, 117, 191);
-    public static Color HYPERLINK_DARK =  new Color(75, 110, 175);
+    public static Color HYPERLINK_DARK_MODE =  new Color(88, 157, 246);
+    
         
     public static Color getHyperLinkColor() {
         UserPreferencesManager userPreferencesManager = new UserPreferencesManager();
@@ -51,7 +52,7 @@ public class ThemeUtil {
         if (lookAndFeelToUse.equals(LOOK_AND_FEEL_FLAT_INTELLIJ)) {
             return HYPERLINK_LIGHT;
         } else {
-            return HYPERLINK_DARK;
+            return HYPERLINK_DARK_MODE;
         }
     }
     
