@@ -257,6 +257,9 @@ public class AceQLManager extends JFrame {
         // Load and activate previous windows settings
         WindowSettingMgr.load(this);
 
+        jTextFieldPropertiesFile.moveCaretPosition(0);
+        jTextFieldPropertiesFile.setSelectionEnd(0);
+        
         pack();
         //update(getGraphics());
     }
