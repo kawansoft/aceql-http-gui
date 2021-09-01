@@ -22,6 +22,7 @@
  * Any modifications to this file must keep this entire header
  * intact.
  */
+
 package com.kawansoft.app.version;
 /**
  * Contains the package Version info
