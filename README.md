@@ -4,9 +4,9 @@
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/631f2f73363a44969e1deee7d1ae394c)](https://www.codacy.com/gh/kawansoft/aceql-http-gui?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=kawansoft/aceql-http-gui&amp;utm_campaign=Badge_Grade)
 ![GitHub contributors](https://img.shields.io/github/contributors/kawansoft/aceql-http-gui)
 
-# aceql-http-gui v7.2
+# aceql-http-gui v8.0
 
-# June 15, 2021
+# September 1, 2021
 
 <img src="https://www.aceql.com/favicon.png" alt=""/>
 
