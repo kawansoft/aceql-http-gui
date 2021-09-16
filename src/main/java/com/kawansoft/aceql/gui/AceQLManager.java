@@ -2536,6 +2536,9 @@ public class AceQLManager extends JFrame {
             productType = StringUtils.substringBefore(productType, " ");
             URL url = new URL("https://www.aceql.com/CheckForUpdates?version=" + currentVersion + "&edition=" + productType);
 
+            System.out.println("url:");
+            System.out.println(url);
+                        
             Desktop desktop = Desktop.getDesktop();
             desktop.browse(url.toURI());
         } catch (Exception e) {

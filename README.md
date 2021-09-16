@@ -8,9 +8,9 @@
 
 # September 1, 2021
 
-<img src="https://www.aceql.com/favicon.png" alt=""/>
+<img src="https://download.aceql.com/favicon.png" alt=""/>
 
-<img src="https://www.aceql.com/img/AceQL-Schema-min.jpg" alt="AceQL Draw"/>
+<img src="https://download.aceql.com/img/AceQL-Schema-min.jpg" alt="AceQL Draw"/>
 
 <a href="https://www.aceql.com">AceQL HTTP</a> Windows Manager.
 
@@ -21,8 +21,8 @@ It wraps <a href="https://github.com/kawansoft/aceql-http">aceql-http</a> core a
 
 
 
-<img src="https://www.aceql.com/img/main_normal.png" alt="AceQL Home"/>
+<img src="https://download.aceql.com/img/main_normal.png" alt="AceQL Home"/>
 
 
 
-<img src="https://www.aceql.com/img/main_dark_mode.png" alt="AceQL Home"/>
+<img src="https://download.aceql.com/img/main_dark_mode.png" alt="AceQL Home"/>
