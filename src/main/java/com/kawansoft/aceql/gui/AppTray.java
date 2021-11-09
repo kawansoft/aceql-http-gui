@@ -68,6 +68,7 @@ import java.awt.HeadlessException;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFrame;
 
 
 /**
@@ -131,9 +132,17 @@ public class AppTray {
     public void startAsTray(String[] args) throws IOException {
 
         if (SystemUtils.IS_OS_WINDOWS && ProcessUtil.countWindowsInstanceRunning(ParmsConstants.EXE_NAME) > 1) {
+            
+            JFrame jFrame = new JFrame();
+            try {
+                jFrame.setIconImage(ImageParmsUtil.getAppIcon());
+            } catch (RuntimeException e1) {
+                e1.printStackTrace();
+            }
+                    
             MessagesManager messagesManager = new MessagesManager();
             String message = messagesManager.get("aceql_already_running_use_task_bar");
-            JOptionPane.showMessageDialog(null, message, ParmsConstants.APP_NAME, JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(jFrame, message, ParmsConstants.APP_NAME, JOptionPane.INFORMATION_MESSAGE);
             AceQLManagerUtil.systemExitWrapper();
         }
         
