@@ -117,7 +117,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.SystemUtils;
 import org.jdesktop.swingx.JXTitledSeparator;
 import org.kawanfw.sql.api.server.web.WebServerApi;
-import org.kawanfw.sql.tomcat.TomcatStarterUtilProperties;
+import org.kawanfw.sql.servlet.injection.properties.PropertiesFileUtil;
 
 /**
  *
@@ -1122,7 +1122,7 @@ public class AceQLManager extends JFrame {
             return;
         }
 
-        Properties properties = TomcatStarterUtilProperties.getProperties(propertiesFile);
+        Properties properties = PropertiesFileUtil.getProperties(propertiesFile);
         String aceqlServer = "";
         aceqlServer = properties.getProperty("aceQLManagerServletCallName");
         String scheme = "http";

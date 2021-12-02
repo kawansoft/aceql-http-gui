@@ -90,7 +90,7 @@
     <dependency>
         <groupId>com.aceql</groupId>
         <artifactId>aceql-http</artifactId>
-        <version>8.2</version>
+        <version>9.0</version>
     </dependency>
     
     <dependency>
