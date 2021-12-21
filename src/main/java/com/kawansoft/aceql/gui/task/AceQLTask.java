@@ -117,7 +117,7 @@ public class AceQLTask extends Thread implements Runnable {
 
         } catch (IllegalArgumentException e) {
             System.err.println(SqlTag.SQL_PRODUCT_START_FAILURE + " "
-                    + SqlTag.USER_CONFIGURATION_FAILURE + " "
+                    + SqlTag.USER_CONFIGURATION + " "
                     + e.getMessage());
 
             if (e.getCause() == null) {
