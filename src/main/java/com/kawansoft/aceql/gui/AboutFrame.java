@@ -353,7 +353,7 @@ public class AboutFrame extends JFrame {
         jPanelCopyRight.setLayout(new FlowLayout(FlowLayout.RIGHT));
 
         jLabelCopyright.setFont(new Font("Tahoma", 1, 11)); // NOI18N
-        jLabelCopyright.setText("Copyright  2021");
+        jLabelCopyright.setText("Copyright  2022");
         jPanelCopyRight.add(jLabelCopyright);
 
         jPanelCenter.add(jPanelCopyRight);
