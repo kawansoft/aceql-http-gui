@@ -35,6 +35,7 @@ import java.util.Enumeration;
 import java.util.Objects;
 import java.util.Properties;
 import java.util.TreeSet;
+import org.kawanfw.sql.servlet.injection.properties.DefaultPropertiesBuilder;
 import org.kawanfw.sql.servlet.injection.properties.PropertiesFileUtil;
 import org.kawanfw.sql.tomcat.TomcatStarterUtilProperties;
 
@@ -72,8 +73,10 @@ public class ConfigurationUtil {
             return;
         }
 
-        Properties properties = PropertiesFileUtil.getProperties(configurationProperties);
-
+        // Hack 1
+        //Properties properties = PropertiesFileUtil.getProperties(configurationProperties)
+        Properties properties = DefaultPropertiesBuilder.commonsGetProperties(configurationProperties);
+        
         aceqlProperties = properties.getProperty(ACEQL_PROPERTIES);
         host = properties.getProperty(HOST);
         String portStr = properties.getProperty(PORT);

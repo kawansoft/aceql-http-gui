@@ -90,9 +90,15 @@
     <dependency>
         <groupId>com.aceql</groupId>
         <artifactId>aceql-http</artifactId>
-        <version>10.2</version>
+        <version>11.0</version>
     </dependency>
-    
+ 
+        <dependency>
+        <groupId>com.aceql</groupId>
+        <artifactId>aceql-http-pro</artifactId>
+        <version>11.0</version>
+    </dependency>
+       
     <dependency>
     <groupId>com.formdev</groupId>
     <artifactId>flatlaf</artifactId>

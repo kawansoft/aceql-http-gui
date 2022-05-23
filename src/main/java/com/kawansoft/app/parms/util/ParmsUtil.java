@@ -69,21 +69,14 @@ public class ParmsUtil {
 	return template;
     }
         
-    public static boolean isAceQLPro() {
-        return org.kawanfw.sql.version.Version.PRODUCT.TYPE.equals(org.kawanfw.sql.version.Version.PRODUCT.TYPE_ENTERPRISE);
-    }
+//    public static boolean isAceQLPro() {
+//        //return org.kawanfw.sql.version.Version.PRODUCT.TYPE.equals(org.kawanfw.sql.version.Version.PRODUCT.TYPE_ENTERPRISE);
+//        return true;
+//    }
     
     
     public static String getInstallAceQLDir() {
-
-        String subDir = null;
-        if (isAceQLPro()) {
-            subDir = "AceQLPro";
-        } else {
-            subDir = "AceQL";
-        }
-
-        return SystemUtils.USER_DIR + File.separator + subDir;
+        return SystemUtils.USER_DIR + File.separator + "AceQL";
     }
 
     

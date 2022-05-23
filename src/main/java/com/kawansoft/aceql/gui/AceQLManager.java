@@ -75,6 +75,7 @@ import java.awt.event.ItemListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FilenameFilter;
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -117,7 +118,11 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.SystemUtils;
 import org.jdesktop.swingx.JXTitledSeparator;
 import org.kawanfw.sql.api.server.web.WebServerApi;
+import org.kawanfw.sql.servlet.injection.properties.PropertiesFileStore;
 import org.kawanfw.sql.servlet.injection.properties.PropertiesFileUtil;
+import org.kawanfw.sql.version.DefaultVersion;
+import org.kawanfw.sql.version.EditionUtil;
+import org.kawanfw.sql.version.VersionWrapper;
 
 /**
  *
@@ -325,8 +330,11 @@ public class AceQLManager extends JFrame {
     private String getAppName() {
         String appName = ParmsConstants.APP_NAME;
         
-        if (ParmsUtil.isAceQLPro()) {
-            appName += " Pro";
+        if (EditionUtil.isCommunityEdition()){
+            appName += new DefaultVersion().getType();
+        }
+        else {
+             appName += " Enterprise";     
         }
         
         return appName;
@@ -379,6 +387,7 @@ public class AceQLManager extends JFrame {
             try {
                 configurationUtil.load();
             } catch (Exception ex) {
+                ex.printStackTrace();
                 JOptionPane
                         .showMessageDialog(this,
                                 "Unable to read properties file " + configurationProperties + ": " + ex.toString(),
@@ -404,6 +413,16 @@ public class AceQLManager extends JFrame {
 
         if (checkFileExists(aceqlProperties)) {
             return;
+        }
+        
+        File file = new File(jTextFieldPropertiesFile.getText());
+        try {
+            PropertiesFileStore.set(file);
+        } catch (FileNotFoundException fileNotFoundException) {
+              JOptionPane.showMessageDialog(this,
+                    "This properties file does not exist: " + file, ParmsConstants.APP_NAME,
+                    JOptionPane.ERROR_MESSAGE);
+            return;          
         }
 
         try {
@@ -2532,7 +2551,7 @@ public class AceQLManager extends JFrame {
             AceQLManagerUtil.debugEvent(evt);
             String currentVersion = com.kawansoft.app.version.GuiVersionConstants.VERSION;
 
-            String productType = org.kawanfw.sql.version.Version.PRODUCT.TYPE;
+            String productType = VersionWrapper.getType();
             productType = StringUtils.substringBefore(productType, " ");
             URL url = new URL("https://www.aceql.com/CheckForUpdates?version=" + currentVersion + "&edition=" + productType);
 
@@ -2580,8 +2599,9 @@ public class AceQLManager extends JFrame {
     private void jMenuItemReleaseNotesActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jMenuItemReleaseNotesActionPerformed
         try {
             AceQLManagerUtil.debugEvent(evt);
-            String version = org.kawanfw.sql.version.VersionValues.VERSION;
-            version = version.substring(1);
+            String version = VersionWrapper.getServerVersion();
+            version = StringUtils.substringBetween(version, "v", "-");
+            version = version.trim();
             URL url = new URL("https://www.aceql.com/rest/soft/" + version + "/RELEASE-NOTES.txt");
 
             Desktop desktop = Desktop.getDesktop();

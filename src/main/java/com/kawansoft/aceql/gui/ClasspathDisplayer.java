@@ -28,7 +28,6 @@ import com.kawansoft.aceql.gui.util.JdbcUtil;
 import com.kawansoft.app.parms.util.ImageParmsUtil;
 import com.kawansoft.app.util.ClipboardManager;
 import com.kawansoft.app.util.WindowSettingMgr;
-import com.kawansoft.app.util.classpath.ClasspathUtil;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -62,6 +61,7 @@ import javax.swing.ScrollPaneConstants;
 import javax.swing.SwingConstants;
 import javax.swing.WindowConstants;
 import org.apache.commons.lang3.StringUtils;
+import org.kawanfw.sql.util.ClasspathUtil;
 
 /**
  * Displays the orderd CLASSPATH with one element per line

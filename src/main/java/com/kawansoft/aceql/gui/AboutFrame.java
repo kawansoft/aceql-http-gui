@@ -69,6 +69,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.WindowConstants;
+import org.kawanfw.sql.version.VersionWrapper;
 
 /** 
  *
@@ -165,7 +166,7 @@ public class AboutFrame extends JFrame {
         
         jPanelCenter.setBorder(BorderFactory.createTitledBorder("About"));
         
-        jLabelVersion.setText(org.kawanfw.sql.version.Version.getVersion());
+        jLabelVersion.setText(VersionWrapper.getServerVersion());
         this.jLabelVersionGui.setText(GuiVersion.getVersion());
         this.jLabelCopyright .setText("<html>" + GuiVersion.VENDOR.COPYRIGHT + "</html>");
         

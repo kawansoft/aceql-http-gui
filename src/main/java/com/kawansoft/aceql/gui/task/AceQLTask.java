@@ -27,7 +27,6 @@ package com.kawansoft.aceql.gui.task;
 import com.kawansoft.aceql.gui.AceQLManager;
 import static com.kawansoft.aceql.gui.AceQLManager.CR_LF;
 import com.kawansoft.app.util.ClientLogger;
-import com.kawansoft.app.util.classpath.ClasspathUtil;
 import java.io.File;
 import java.io.IOException;
 import java.net.ConnectException;
@@ -36,7 +35,8 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import org.apache.commons.lang3.SystemUtils;
-import org.kawanfw.sql.api.server.web.WebServerApi;
+import org.kawanfw.sql.api.util.webserver.WebServerApiWrapper;
+import org.kawanfw.sql.util.ClasspathUtil;
 import org.kawanfw.sql.util.SqlTag;
 
 /**
@@ -111,7 +111,7 @@ public class AceQLTask extends Thread implements Runnable {
                 System.out.println(ClientLogger.formatLogMsg(null, "CLASSPATH        : " + CR_LF + classpathCrLf));
             }
             // Start Server
-            WebServerApi webServerApi = new WebServerApi();
+            WebServerApiWrapper webServerApi = new WebServerApiWrapper();
             setStandardStartedStatus();
             webServerApi.startServer(host, port, new File(propertiesFile));
 
