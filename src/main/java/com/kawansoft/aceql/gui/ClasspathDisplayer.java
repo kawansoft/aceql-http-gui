@@ -61,7 +61,7 @@ import javax.swing.ScrollPaneConstants;
 import javax.swing.SwingConstants;
 import javax.swing.WindowConstants;
 import org.apache.commons.lang3.StringUtils;
-import org.kawanfw.sql.util.ClasspathUtil;
+
 
 /**
  * Displays the orderd CLASSPATH with one element per line
@@ -227,7 +227,7 @@ public class ClasspathDisplayer extends javax.swing.JFrame {
 
         boolean jdbcDriverFound = false;
 
-        List<String> classpath = ClasspathUtil.getClasspath();
+        List<String> classpath = org.kawanfw.sql.util.ClasspathUtil.getClasspath();
 
         List<String> finalClasspath = new ArrayList<>();
 

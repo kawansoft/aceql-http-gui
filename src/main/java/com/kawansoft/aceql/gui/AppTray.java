@@ -65,10 +65,12 @@ import com.kawansoft.app.parms.ParmsConstants;
 import com.kawansoft.app.parms.util.ImageParmsUtil;
 import com.kawansoft.app.util.ProcessUtil;
 import java.awt.HeadlessException;
+import java.io.File;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
+import org.kawanfw.sql.servlet.AceQLLicenseFileLoader;
 
 
 /**
@@ -180,6 +182,12 @@ public class AppTray {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
+                
+                //Set licenseFile
+                File licenseFile = AceQLLicenseFileLoader.getLicenseFileFromClassPath();
+                System.err.println("licenseFile: " + licenseFile);
+                AceQLLicenseFileLoader.setAceqlLicenseFile(licenseFile);
+                
                 aceQLManager = new AceQLManager();
                 aceQLManager.setVisible(true);
             }

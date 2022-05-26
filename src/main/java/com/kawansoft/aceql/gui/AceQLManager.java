@@ -117,7 +117,7 @@ import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.SystemUtils;
 import org.jdesktop.swingx.JXTitledSeparator;
-import org.kawanfw.sql.api.server.web.WebServerApi;
+import org.kawanfw.sql.api.util.webserver.WebServerApiWrapper;
 import org.kawanfw.sql.servlet.injection.properties.PropertiesFileStore;
 import org.kawanfw.sql.servlet.injection.properties.PropertiesFileUtil;
 import org.kawanfw.sql.version.DefaultVersion;
@@ -187,7 +187,7 @@ public class AceQLManager extends JFrame {
     public void initializeIt() {
 
         initStart();
-
+        
         this.jButtonURL.setForeground(ThemeUtil.getHyperLinkColor());
         setSelectedThemeRadioButton();
 
@@ -539,11 +539,11 @@ public class AceQLManager extends JFrame {
     }
 
     private void stopStandard(int port) {
-        WebServerApi webServerApi = new WebServerApi();
+        WebServerApiWrapper webServerApiWrapper = new WebServerApiWrapper();
         try {
 
             STANDARD_STATUS = STANDARD_STOPPING;
-            webServerApi.stopServer(port);
+            webServerApiWrapper.stopServer(port);
 
             try {
                 // Give One second to be sure release bound port
@@ -562,7 +562,7 @@ public class AceQLManager extends JFrame {
         //            STANDARD_STATUS = STANDARD_RUNNING;
         //             System.err.println(e.getMessage());
         //        } 
-        catch (IOException e) {
+        catch (Exception e) {
 
             STANDARD_STATUS = STANDARD_RUNNING;
             System.err
@@ -1140,7 +1140,10 @@ public class AceQLManager extends JFrame {
         if (propertiesFile == null || !propertiesFile.exists()) {
             return;
         }
-
+        
+        // We must firt store the properties file
+        PropertiesFileStore.set(propertiesFile);
+        
         Properties properties = PropertiesFileUtil.getProperties(propertiesFile);
         String aceqlServer = "";
         aceqlServer = properties.getProperty("aceQLManagerServletCallName");
