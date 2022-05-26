@@ -120,6 +120,7 @@ import org.jdesktop.swingx.JXTitledSeparator;
 import org.kawanfw.sql.api.util.webserver.WebServerApiWrapper;
 import org.kawanfw.sql.servlet.injection.properties.PropertiesFileStore;
 import org.kawanfw.sql.servlet.injection.properties.PropertiesFileUtil;
+import org.kawanfw.sql.tomcat.TomcatSqlModeStore;
 import org.kawanfw.sql.version.DefaultVersion;
 import org.kawanfw.sql.version.EditionUtil;
 import org.kawanfw.sql.version.VersionWrapper;
@@ -290,6 +291,9 @@ public class AceQLManager extends JFrame {
             }
         });
 
+        // Says to server that we are in a standalone mode:
+	TomcatSqlModeStore.setTomcatEmbedded(true);
+        
         loadConfiguration();
         updateStandardStatusThreadStart();
 
@@ -331,7 +335,7 @@ public class AceQLManager extends JFrame {
         String appName = ParmsConstants.APP_NAME;
         
         if (EditionUtil.isCommunityEdition()){
-            appName += new DefaultVersion().getType();
+            appName += " " + new DefaultVersion().getType();
         }
         else {
              appName += " Enterprise";     
