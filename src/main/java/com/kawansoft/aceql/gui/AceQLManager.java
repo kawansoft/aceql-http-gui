@@ -121,7 +121,6 @@ import org.kawanfw.sql.api.util.webserver.WebServerApiWrapper;
 import org.kawanfw.sql.servlet.injection.properties.PropertiesFileStore;
 import org.kawanfw.sql.servlet.injection.properties.PropertiesFileUtil;
 import org.kawanfw.sql.tomcat.TomcatSqlModeStore;
-import org.kawanfw.sql.version.DefaultVersion;
 import org.kawanfw.sql.version.EditionUtil;
 import org.kawanfw.sql.version.VersionWrapper;
 
@@ -332,16 +331,8 @@ public class AceQLManager extends JFrame {
     }
 
     private String getAppName() {
-        String appName = ParmsConstants.APP_NAME;
-        
-        if (EditionUtil.isCommunityEdition()){
-            appName += " " + new DefaultVersion().getType();
-        }
-        else {
-             appName += " Enterprise";     
-        }
-        
-        return appName;
+        String appName = ParmsConstants.APP_NAME;        
+        return appName + " " + VersionWrapper.getEdition();
     }
 
     /*
@@ -2558,7 +2549,7 @@ public class AceQLManager extends JFrame {
             AceQLManagerUtil.debugEvent(evt);
             String currentVersion = com.kawansoft.app.version.GuiVersionConstants.VERSION;
 
-            String productType = VersionWrapper.getType();
+            String productType = VersionWrapper.getEdition();
             productType = StringUtils.substringBefore(productType, " ");
             URL url = new URL("https://www.aceql.com/CheckForUpdates?version=" + currentVersion + "&edition=" + productType);
 
