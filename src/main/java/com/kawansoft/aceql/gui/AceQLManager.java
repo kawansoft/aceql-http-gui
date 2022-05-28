@@ -270,7 +270,7 @@ public class AceQLManager extends JFrame {
     }
 
     private void initStart() throws HeadlessException {
-        Dimension dim = new Dimension(615, 615);
+        Dimension dim = new Dimension(630, 630);
         this.setPreferredSize(dim);
         this.setSize(dim);
 

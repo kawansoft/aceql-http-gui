@@ -229,6 +229,7 @@
     <ROW File="ucp11.2.0.4.jar_1" Component_="aceqlhttp11.0.jar_1" FileName="UCP-11~1.JAR|ucp-11.2.0.4.jar" Attributes="0" SourcePath="AceQL\webapp\WEB-INF\lib\ucp-11.2.0.4.jar" SelfReg="false"/>
     <ROW File="validationapi1.1.0.Final.jar_1" Component_="aceqlhttp11.0.jar_1" FileName="VALIDA~1.JAR|validation-api-1.1.0.Final.jar" Attributes="0" SourcePath="AceQL\webapp\WEB-INF\lib\validation-api-1.1.0.Final.jar" SelfReg="false"/>
     <ROW File="wafflejna3.1.1.jar_1" Component_="aceqlhttp11.0.jar_1" FileName="WAFFLE~1.JAR|waffle-jna-3.1.1.jar" Attributes="0" SourcePath="AceQL\webapp\WEB-INF\lib\waffle-jna-3.1.1.jar" SelfReg="false"/>
+    <ROW File="jdbc_password_encryptor.bat" Component_="aceqlserver.bat" FileName="JDBC_P~1.BAT|jdbc_password_encryptor.bat" Attributes="0" SourcePath="AceQL\bin\jdbc_password_encryptor.bat" SelfReg="false"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.BuildComponent">
     <ROW BuildKey="DefaultBuild" BuildName="DefaultBuild" BuildOrder="1" BuildType="0" PackageFolder="C:\MacOsX" Languages="en" InstallationType="2" CabsLocation="1" CompressCabs="false" UseLzma="true" LzmaMethod="2" LzmaCompressionLevel="2" PackageType="1" FilesInsideExe="true" ExeIconPath="AceQL\img\data_up_128_sRU_icon.ico" ExtractionFolder="[AppDataFolder][|Manufacturer]\[|ProductName] [|ProductVersion]\install" Options="8" UseLargeSchema="true" MsiPackageType="x64" UACExecutionLevel="2"/>
