@@ -332,7 +332,7 @@ public class AceQLManager extends JFrame {
 
     private String getAppName() {
         String appName = ParmsConstants.APP_NAME;        
-        return appName + " " + VersionWrapper.getEdition();
+        return appName + " " + VersionWrapper.getEdition() + " " + VersionWrapper.getVersionNumber();
     }
 
     /*
