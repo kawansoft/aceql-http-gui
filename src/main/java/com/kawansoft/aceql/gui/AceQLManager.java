@@ -468,8 +468,6 @@ public class AceQLManager extends JFrame {
     }
 
     private void startStandard() {
-
-        AceQLLicenseFileFinder.reset();
                 
         if (aceQLConsole != null) {
             aceQLConsole.dispose();
@@ -492,6 +490,8 @@ public class AceQLManager extends JFrame {
             return;
         }
 
+        AceQLLicenseFileFinder.reset();
+                
         boolean verifyOk = verifyConfigValues();
 
         if (!verifyOk) {
