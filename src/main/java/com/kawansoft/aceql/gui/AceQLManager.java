@@ -469,6 +469,8 @@ public class AceQLManager extends JFrame {
 
     private void startStandard() {
 
+        AceQLLicenseFileFinder.reset();
+                
         if (aceQLConsole != null) {
             aceQLConsole.dispose();
         }
@@ -499,8 +501,6 @@ public class AceQLManager extends JFrame {
         int port = Integer.parseInt(jTextFieldPort.getText());
 
         aceQLConsole = new AceQLConsole();
-
-        AceQLLicenseFileFinder.reset();
         
         AceQLTask aceQLTask = new AceQLTask(AceQLTask.STANDARD_MODE, jTextFieldPropertiesFile.getText(), jTextFieldHost.getText(), port);
         aceQLTask.start();
