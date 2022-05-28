@@ -31,6 +31,7 @@ import com.kawansoft.app.util.ClientLogger;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import org.kawanfw.sql.servlet.AceQLLicenseFileFinder;
 
 
 /**
@@ -44,6 +45,7 @@ public class AceQLServiceControler {
     
     public static void start(String arg[]) {
 
+        AceQLLicenseFileFinder.reset();
         System.out.println(ClientLogger.formatLogMsg(AceQLServiceControler.class, "Starting " + AceQLTask.class.getSimpleName() + "..."));
         
         String aceqlProperties = null;

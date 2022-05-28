@@ -118,10 +118,10 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.SystemUtils;
 import org.jdesktop.swingx.JXTitledSeparator;
 import org.kawanfw.sql.api.util.webserver.WebServerApiWrapper;
+import org.kawanfw.sql.servlet.AceQLLicenseFileFinder;
 import org.kawanfw.sql.servlet.injection.properties.PropertiesFileStore;
 import org.kawanfw.sql.servlet.injection.properties.PropertiesFileUtil;
 import org.kawanfw.sql.tomcat.TomcatSqlModeStore;
-import org.kawanfw.sql.version.EditionUtil;
 import org.kawanfw.sql.version.VersionWrapper;
 
 /**
@@ -500,6 +500,8 @@ public class AceQLManager extends JFrame {
 
         aceQLConsole = new AceQLConsole();
 
+        AceQLLicenseFileFinder.reset();
+        
         AceQLTask aceQLTask = new AceQLTask(AceQLTask.STANDARD_MODE, jTextFieldPropertiesFile.getText(), jTextFieldHost.getText(), port);
         aceQLTask.start();
 
