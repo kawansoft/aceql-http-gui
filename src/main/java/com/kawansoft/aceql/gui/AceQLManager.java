@@ -122,6 +122,7 @@ import org.kawanfw.sql.servlet.AceQLLicenseFileFinder;
 import org.kawanfw.sql.servlet.injection.properties.PropertiesFileStore;
 import org.kawanfw.sql.servlet.injection.properties.PropertiesFileUtil;
 import org.kawanfw.sql.tomcat.TomcatSqlModeStore;
+import org.kawanfw.sql.version.EditionUtil;
 import org.kawanfw.sql.version.VersionWrapper;
 
 /**
@@ -326,7 +327,12 @@ public class AceQLManager extends JFrame {
                     Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
             jMenuItemClose.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F4, InputEvent.ALT_MASK));
         }
-
+	// Nothing to display if Pro Edition
+	if (! EditionUtil.isCommunityEdition()) {
+	    jMenuItemEnterpriseEdition.setVisible(false);
+            jSeparatorEnterpriseEdition.setVisible(false);
+	}
+        
         //SwingUtil.resizeJComponentsForNimbusAndMacOsX(rootPane);
     }
 
@@ -1255,6 +1261,22 @@ public class AceQLManager extends JFrame {
 
     }
 
+    public void help() {
+        if (help != null) {
+            help.dispose();
+        }
+
+        help = new Help(this, "help_aceql_manager");
+    }
+    
+    public void helpUpgradeToEnterprise() {
+        if (help != null) {
+            help.dispose();
+        }
+
+        help = new Help(this, "help_upgrade_enterprise");
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -1379,6 +1401,8 @@ public class AceQLManager extends JFrame {
         jMenuItemHelp = new JMenuItem();
         jMenuItemReleaseNotes = new JMenuItem();
         jSeparator3 = new JPopupMenu.Separator();
+        jMenuItemEnterpriseEdition = new JMenuItem();
+        jSeparatorEnterpriseEdition = new JPopupMenu.Separator();
         jMenuItemSystemInfo = new JMenuItem();
         jMenuItemAbout = new JMenuItem();
 
@@ -2352,6 +2376,18 @@ public class AceQLManager extends JFrame {
         jMenuHelp.add(jMenuItemReleaseNotes);
         jMenuHelp.add(jSeparator3);
 
+        jMenuItemEnterpriseEdition.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F3, 0));
+        jMenuItemEnterpriseEdition.setIcon(new ImageIcon(getClass().getResource("/com/kawansoft/app/parms/images/symbol_questionmark_16.png"))); // NOI18N
+        jMenuItemEnterpriseEdition.setText("Upgrade to Enterprise Edition");
+        jMenuItemEnterpriseEdition.setAutoscrolls(true);
+        jMenuItemEnterpriseEdition.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                jMenuItemEnterpriseEditionActionPerformed(evt);
+            }
+        });
+        jMenuHelp.add(jMenuItemEnterpriseEdition);
+        jMenuHelp.add(jSeparatorEnterpriseEdition);
+
         jMenuItemSystemInfo.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F11, 0));
         jMenuItemSystemInfo.setIcon(new ImageIcon(getClass().getResource("/com/kawansoft/app/parms/images/about_16.png"))); // NOI18N
         jMenuItemSystemInfo.setText("System Info");
@@ -2389,13 +2425,6 @@ public class AceQLManager extends JFrame {
         help();
     }//GEN-LAST:event_jButtonHelpActionPerformed
 
-    public void help() {
-        if (help != null) {
-            help.dispose();
-        }
-
-        help = new Help(this, "help_aceql_manager");
-    }
 
     private void jButtonApplyActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jButtonApplyActionPerformed
         AceQLManagerUtil.debugEvent(evt);
@@ -2625,6 +2654,11 @@ public class AceQLManager extends JFrame {
         updateLookAndFeel();
     }//GEN-LAST:event_jRadioButtonMenuItemDarkItemStateChanged
 
+    private void jMenuItemEnterpriseEditionActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jMenuItemEnterpriseEditionActionPerformed
+        AceQLManagerUtil.debugEvent(evt);
+        helpUpgradeToEnterprise();
+    }//GEN-LAST:event_jMenuItemEnterpriseEditionActionPerformed
+
 
     private void updateLookAndFeel() {
         boolean isFlatLight = true;
@@ -2718,6 +2752,7 @@ public class AceQLManager extends JFrame {
     public JMenu jMenuHelp;
     public JMenuItem jMenuItemAbout;
     public JMenuItem jMenuItemClose;
+    public JMenuItem jMenuItemEnterpriseEdition;
     public JMenuItem jMenuItemHelp;
     public JMenuItem jMenuItemQuit;
     public JMenuItem jMenuItemReleaseNotes;
@@ -2792,6 +2827,7 @@ public class AceQLManager extends JFrame {
     public JSeparator jSeparator2;
     public JPopupMenu.Separator jSeparator3;
     public JSeparator jSeparator4;
+    public JPopupMenu.Separator jSeparatorEnterpriseEdition;
     public JTextField jTextFieldHost;
     public JTextField jTextFieldPort;
     public JTextField jTextFieldPropertiesFile;
