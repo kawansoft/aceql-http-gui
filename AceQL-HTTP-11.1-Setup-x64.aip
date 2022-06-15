@@ -16,10 +16,10 @@
     <ROW Property="CTRLS" Value="2"/>
     <ROW Property="DialogBitmap" Value="dialog" MultiBuildValue="DefaultBuild:dialog_aceql.bmp_1" Type="1" MsiKey="DialogBitmap"/>
     <ROW Property="Manufacturer" Value="KawanSoft"/>
-    <ROW Property="ProductCode" Value="1033:{2B072C77-EA26-44E8-BEE1-43F60FE7E4DA} " Type="16"/>
+    <ROW Property="ProductCode" Value="1033:{3C3C3779-FB46-433B-9118-63FBD5E666C9} " Type="16"/>
     <ROW Property="ProductLanguage" Value="1033"/>
     <ROW Property="ProductName" Value="AceQL HTTP"/>
-    <ROW Property="ProductVersion" Value="11.0" Type="32"/>
+    <ROW Property="ProductVersion" Value="11.1" Type="32"/>
     <ROW Property="RUNAPPLICATION" Value="1" Type="4"/>
     <ROW Property="SecureCustomProperties" Value="OLDPRODUCTS;AI_NEWERPRODUCTFOUND;AI_SETUPEXEPATH;SETUPEXEDIR"/>
     <ROW Property="UpgradeCode" Value="{CA50C7AC-50FE-48F6-A033-498B4F11256F}"/>
@@ -61,8 +61,8 @@
     <ROW Component="Apache_License_v2.0.txt" ComponentId="{5CBD8281-EC72-4703-B803-43A291064ADE}" Directory_="legal_Dir" Attributes="0" KeyPath="Apache_License_v2.0.txt" Type="0"/>
     <ROW Component="ProductInformation" ComponentId="{089D126C-7664-48FC-8D05-05D74391E631}" Directory_="APPDIR" Attributes="4" KeyPath="Version"/>
     <ROW Component="aceql_rocket_64.bmp" ComponentId="{1934DEE9-D6E4-433F-B4BD-A7CAEBEB51EE}" Directory_="img_Dir" Attributes="0" KeyPath="logoAceQL.png" Type="0"/>
-    <ROW Component="aceqlhttp11.0.jar" ComponentId="{1458FA0B-F56F-4C3D-90F8-22CB594059DC}" Directory_="libserver_Dir" Attributes="0" KeyPath="aceqlhttp11.0.jar" Type="0"/>
-    <ROW Component="aceqlhttp11.0.jar_1" ComponentId="{5187AA8E-7E1A-4850-9D30-8A5E6D328D30}" Directory_="lib_Dir" Attributes="0" KeyPath="aceqlhttp11.0.jar_1" Type="0"/>
+    <ROW Component="aceqlhttp11.0.jar" ComponentId="{1458FA0B-F56F-4C3D-90F8-22CB594059DC}" Directory_="libserver_Dir" Attributes="0" KeyPath="apiguardianapi1.1.2.jar" Type="0"/>
+    <ROW Component="aceqlhttp11.0.jar_1" ComponentId="{5187AA8E-7E1A-4850-9D30-8A5E6D328D30}" Directory_="lib_Dir" Attributes="0" KeyPath="apiguardianapi1.1.2.jar_1" Type="0"/>
     <ROW Component="aceqlserver.bat" ComponentId="{7E4DD655-2DE3-4DAC-ADEF-FCAD34052237}" Directory_="bin_Dir" Attributes="0" KeyPath="aceqlserver.bat" Type="0"/>
     <ROW Component="aceqlserver.properties" ComponentId="{6AA0B6BD-F23F-46E3-8E4C-C1CDB72947F5}" Directory_="conf_Dir" Attributes="0" KeyPath="aceqlserver.properties" Type="0"/>
     <ROW Component="index.html" ComponentId="{1C3B5A54-8D0B-427D-B7CB-248FC056FE52}" Directory_="javadoc_Dir" Attributes="0" KeyPath="index.html" Type="0"/>
@@ -115,9 +115,6 @@
     <ROW File="postgresql42.3.3.jar_1" Component_="postgresql42.3.3.jar" FileName="POSTGR~1.JAR|postgresql-42.3.3.jar" Attributes="0" SourcePath="AceQL\lib-jdbc\postgresql-42.3.3.jar" SelfReg="false"/>
     <ROW File="jdbc_password_encryptor.bat" Component_="aceqlserver.bat" FileName="JDBC_P~1.BAT|jdbc_password_encryptor.bat" Attributes="0" SourcePath="AceQL\bin\jdbc_password_encryptor.bat" SelfReg="false"/>
     <ROW File="tomcatjdbc9.0.64.jar_1" Component_="tomcatjdbc9.0.64.jar" FileName="TOMCAT~1.JAR|tomcat-jdbc-9.0.64.jar" Attributes="0" SourcePath="AceQL\webapp\WEB-INF\lib-tomcat\tomcat-jdbc-9.0.64.jar" SelfReg="false"/>
-    <ROW File="aceqlhttp11.0.jar" Component_="aceqlhttp11.0.jar" FileName="ACEQL-~1.JAR|aceql-http-11.0.jar" Attributes="0" SourcePath="AceQL\lib-server\aceql-http-11.0.jar" SelfReg="false"/>
-    <ROW File="aceqlhttpgui11.0.jar" Component_="aceqlhttp11.0.jar" FileName="ACEQL-~2.JAR|aceql-http-gui-11.0.jar" Attributes="0" SourcePath="AceQL\lib-server\aceql-http-gui-11.0.jar" SelfReg="false"/>
-    <ROW File="aceqlhttppro11.0.jar" Component_="aceqlhttp11.0.jar" FileName="ACEQL-~3.JAR|aceql-http-pro-11.0.jar" Attributes="0" SourcePath="AceQL\lib-server\aceql-http-pro-11.0.jar" SelfReg="false"/>
     <ROW File="apiguardianapi1.1.2.jar" Component_="aceqlhttp11.0.jar" FileName="APIGUA~1.JAR|apiguardian-api-1.1.2.jar" Attributes="0" SourcePath="AceQL\lib-server\apiguardian-api-1.1.2.jar" SelfReg="false"/>
     <ROW File="caffeine2.9.3.jar" Component_="aceqlhttp11.0.jar" FileName="CAFFEI~1.JAR|caffeine-2.9.3.jar" Attributes="0" SourcePath="AceQL\lib-server\caffeine-2.9.3.jar" SelfReg="false"/>
     <ROW File="checkerqual3.5.0.jar" Component_="aceqlhttp11.0.jar" FileName="CHECKE~1.JAR|checker-qual-3.5.0.jar" Attributes="0" SourcePath="AceQL\lib-server\checker-qual-3.5.0.jar" SelfReg="false"/>
@@ -175,8 +172,6 @@
     <ROW File="ucp11.2.0.4.jar" Component_="aceqlhttp11.0.jar" FileName="UCP-11~1.JAR|ucp-11.2.0.4.jar" Attributes="0" SourcePath="AceQL\lib-server\ucp-11.2.0.4.jar" SelfReg="false"/>
     <ROW File="validationapi1.1.0.Final.jar" Component_="aceqlhttp11.0.jar" FileName="VALIDA~1.JAR|validation-api-1.1.0.Final.jar" Attributes="0" SourcePath="AceQL\lib-server\validation-api-1.1.0.Final.jar" SelfReg="false"/>
     <ROW File="wafflejna3.1.1.jar" Component_="aceqlhttp11.0.jar" FileName="WAFFLE~1.JAR|waffle-jna-3.1.1.jar" Attributes="0" SourcePath="AceQL\lib-server\waffle-jna-3.1.1.jar" SelfReg="false"/>
-    <ROW File="aceqlhttp11.0.jar_1" Component_="aceqlhttp11.0.jar_1" FileName="ACEQL-~1.JAR|aceql-http-11.0.jar" Attributes="0" SourcePath="AceQL\webapp\WEB-INF\lib\aceql-http-11.0.jar" SelfReg="false"/>
-    <ROW File="aceqlhttppro11.0.jar_1" Component_="aceqlhttp11.0.jar_1" FileName="ACEQL-~2.JAR|aceql-http-pro-11.0.jar" Attributes="0" SourcePath="AceQL\webapp\WEB-INF\lib\aceql-http-pro-11.0.jar" SelfReg="false"/>
     <ROW File="apiguardianapi1.1.2.jar_1" Component_="aceqlhttp11.0.jar_1" FileName="APIGUA~1.JAR|apiguardian-api-1.1.2.jar" Attributes="0" SourcePath="AceQL\webapp\WEB-INF\lib\apiguardian-api-1.1.2.jar" SelfReg="false"/>
     <ROW File="caffeine2.9.3.jar_1" Component_="aceqlhttp11.0.jar_1" FileName="CAFFEI~1.JAR|caffeine-2.9.3.jar" Attributes="0" SourcePath="AceQL\webapp\WEB-INF\lib\caffeine-2.9.3.jar" SelfReg="false"/>
     <ROW File="checkerqual3.5.0.jar_1" Component_="aceqlhttp11.0.jar_1" FileName="CHECKE~1.JAR|checker-qual-3.5.0.jar" Attributes="0" SourcePath="AceQL\webapp\WEB-INF\lib\checker-qual-3.5.0.jar" SelfReg="false"/>
@@ -230,6 +225,11 @@
     <ROW File="ucp11.2.0.4.jar_1" Component_="aceqlhttp11.0.jar_1" FileName="UCP-11~1.JAR|ucp-11.2.0.4.jar" Attributes="0" SourcePath="AceQL\webapp\WEB-INF\lib\ucp-11.2.0.4.jar" SelfReg="false"/>
     <ROW File="validationapi1.1.0.Final.jar_1" Component_="aceqlhttp11.0.jar_1" FileName="VALIDA~1.JAR|validation-api-1.1.0.Final.jar" Attributes="0" SourcePath="AceQL\webapp\WEB-INF\lib\validation-api-1.1.0.Final.jar" SelfReg="false"/>
     <ROW File="wafflejna3.1.1.jar_1" Component_="aceqlhttp11.0.jar_1" FileName="WAFFLE~1.JAR|waffle-jna-3.1.1.jar" Attributes="0" SourcePath="AceQL\webapp\WEB-INF\lib\waffle-jna-3.1.1.jar" SelfReg="false"/>
+    <ROW File="aceqlhttp11.1.jar" Component_="aceqlhttp11.0.jar" FileName="ACEQL-~1.JAR|aceql-http-11.1.jar" Attributes="0" SourcePath="AceQL\lib-server\aceql-http-11.1.jar" SelfReg="false"/>
+    <ROW File="aceqlhttpgui11.1.jar" Component_="aceqlhttp11.0.jar" FileName="ACEQL-~2.JAR|aceql-http-gui-11.1.jar" Attributes="0" SourcePath="AceQL\lib-server\aceql-http-gui-11.1.jar" SelfReg="false"/>
+    <ROW File="aceqlhttppro11.1.jar" Component_="aceqlhttp11.0.jar" FileName="ACEQL-~3.JAR|aceql-http-pro-11.1.jar" Attributes="0" SourcePath="AceQL\lib-server\aceql-http-pro-11.1.jar" SelfReg="false"/>
+    <ROW File="aceqlhttp11.1.jar_1" Component_="aceqlhttp11.0.jar_1" FileName="ACEQL-~1.JAR|aceql-http-11.1.jar" Attributes="0" SourcePath="AceQL\webapp\WEB-INF\lib\aceql-http-11.1.jar" SelfReg="false"/>
+    <ROW File="aceqlhttppro11.1.jar_1" Component_="aceqlhttp11.0.jar_1" FileName="ACEQL-~2.JAR|aceql-http-pro-11.1.jar" Attributes="0" SourcePath="AceQL\webapp\WEB-INF\lib\aceql-http-pro-11.1.jar" SelfReg="false"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.BuildComponent">
     <ROW BuildKey="DefaultBuild" BuildName="DefaultBuild" BuildOrder="1" BuildType="0" PackageFolder="C:\MacOsX" Languages="en" InstallationType="2" CabsLocation="1" CompressCabs="false" UseLzma="true" LzmaMethod="2" LzmaCompressionLevel="2" PackageType="1" FilesInsideExe="true" ExeIconPath="AceQL\img\data_up_128_sRU_icon.ico" ExtractionFolder="[AppDataFolder][|Manufacturer]\[|ProductName] [|ProductVersion]\install" Options="8" UseLargeSchema="true" MsiPackageType="x64" UACExecutionLevel="2"/>
