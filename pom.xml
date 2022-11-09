@@ -11,7 +11,7 @@
         <groupId>com.aceql</groupId>
         <artifactId>aceql-http</artifactId>
         <version>12.0</version>
-    </dependency>
+     </dependency>
      
         <dependency>
             <groupId>org.swinglabs.swingx</groupId>
