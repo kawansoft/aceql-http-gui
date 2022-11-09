@@ -118,11 +118,9 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.SystemUtils;
 import org.jdesktop.swingx.JXTitledSeparator;
 import org.kawanfw.sql.api.util.webserver.WebServerApiWrapper;
-import org.kawanfw.sql.servlet.AceQLLicenseFileFinder;
 import org.kawanfw.sql.servlet.injection.properties.PropertiesFileStore;
 import org.kawanfw.sql.servlet.injection.properties.PropertiesFileUtil;
 import org.kawanfw.sql.tomcat.TomcatSqlModeStore;
-import org.kawanfw.sql.version.EditionUtil;
 import org.kawanfw.sql.version.VersionWrapper;
 
 /**
@@ -328,17 +326,16 @@ public class AceQLManager extends JFrame {
             jMenuItemClose.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F4, InputEvent.ALT_MASK));
         }
 	// Nothing to display if Pro Edition
-	if (! EditionUtil.isCommunityEdition()) {
-	    jMenuItemEnterpriseEdition.setVisible(false);
-            jSeparatorEnterpriseEdition.setVisible(false);
-	}
+	jMenuItemEnterpriseEdition.setVisible(false);
+        jSeparatorEnterpriseEdition.setVisible(false);
+
         
         //SwingUtil.resizeJComponentsForNimbusAndMacOsX(rootPane);
     }
 
     private String getAppName() {
         String appName = ParmsConstants.APP_NAME;        
-        return appName + " " + VersionWrapper.getEdition() + " " + VersionWrapper.getVersionNumber();
+        return appName + " " + VersionWrapper.getVersionNumber();
     }
 
     /*
@@ -495,8 +492,6 @@ public class AceQLManager extends JFrame {
                     JOptionPane.ERROR_MESSAGE);
             return;
         }
-
-        AceQLLicenseFileFinder.reset();
                 
         boolean verifyOk = verifyConfigValues();
 
@@ -2580,10 +2575,11 @@ public class AceQLManager extends JFrame {
             AceQLManagerUtil.debugEvent(evt);
             String currentVersion = com.kawansoft.app.version.GuiVersionConstants.VERSION;
 
-            String productType = VersionWrapper.getEdition();
-            productType = StringUtils.substringBefore(productType, " ");
-            URL url = new URL("https://www.aceql.com/CheckForUpdates?version=" + currentVersion + "&edition=" + productType);
-
+            //String productType = VersionWrapper.getEdition();
+            //productType = StringUtils.substringBefore(productType, " ");
+            //URL url = new URL("https://www.aceql.com/CheckForUpdates?version=" + currentVersion + "&edition=" + productType);
+            URL url = new URL("https://www.aceql.com/CheckForUpdates?version=" + currentVersion);
+        
             System.out.println("url:");
             System.out.println(url);
                         
