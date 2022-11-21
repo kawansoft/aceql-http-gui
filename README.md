@@ -6,7 +6,7 @@
 
 # aceql-http-gui v12.0
 
-# November 9, 2022
+# November 21, 2022
 
 <img src="https://download.aceql.com/favicon.png" alt=""/>
 
