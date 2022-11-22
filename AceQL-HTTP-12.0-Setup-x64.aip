@@ -61,14 +61,14 @@
     <ROW Component="Apache_License_v2.0.txt" ComponentId="{5CBD8281-EC72-4703-B803-43A291064ADE}" Directory_="legal_Dir" Attributes="0" KeyPath="Apache_License_v2.0.txt" Type="0"/>
     <ROW Component="ProductInformation" ComponentId="{089D126C-7664-48FC-8D05-05D74391E631}" Directory_="APPDIR" Attributes="4" KeyPath="Version"/>
     <ROW Component="aceql_rocket_64.bmp" ComponentId="{1934DEE9-D6E4-433F-B4BD-A7CAEBEB51EE}" Directory_="img_Dir" Attributes="0" KeyPath="logoAceQL.png" Type="0"/>
-    <ROW Component="aceqlhttp12.0.jar" ComponentId="{F5497AAE-B4A8-4D0E-B26D-4607B250ABE1}" Directory_="libserver_Dir" Attributes="0" KeyPath="aceqlhttp12.0.jar" Type="0"/>
-    <ROW Component="aceqlhttp12.0.jar_2" ComponentId="{E1D33FF3-F194-42FF-9F8E-6141DD303F00}" Directory_="lib_Dir" Attributes="0" KeyPath="aceqlhttp12.0.jar_2" Type="0"/>
+    <ROW Component="aceqlhttp12.0.jar" ComponentId="{4D61C7E6-A979-46A4-B400-0A2F55C18807}" Directory_="libserver_Dir" Attributes="0" KeyPath="aceqlhttp12.0.jar" Type="0"/>
+    <ROW Component="aceqlhttp12.0.jar_1" ComponentId="{ADEAF2D9-A944-453F-A243-C1B90573043B}" Directory_="lib_Dir" Attributes="0" KeyPath="aceqlhttp12.0.jar_1" Type="0"/>
     <ROW Component="aceqlserver.bat" ComponentId="{7E4DD655-2DE3-4DAC-ADEF-FCAD34052237}" Directory_="bin_Dir" Attributes="0" KeyPath="aceqlserver.bat" Type="0"/>
     <ROW Component="aceqlserver.properties" ComponentId="{6AA0B6BD-F23F-46E3-8E4C-C1CDB72947F5}" Directory_="conf_Dir" Attributes="0" KeyPath="aceqlserver.properties" Type="0"/>
     <ROW Component="index.html" ComponentId="{1C3B5A54-8D0B-427D-B7CB-248FC056FE52}" Directory_="javadoc_Dir" Attributes="0" KeyPath="index.html" Type="0"/>
     <ROW Component="installService.bat" ComponentId="{CBF1FC93-DD0F-4E16-96D6-BE2E7EC2B2F0}" Directory_="service_Dir" Attributes="0" KeyPath="uninstallService.bat" Type="0"/>
     <ROW Component="postgresql42.3.7.jar" ComponentId="{0646F4B9-E1D4-4389-8BD5-B8B9ABCEF86C}" Directory_="libjdbc_Dir" Attributes="0" KeyPath="postgresql42.3.7.jar" Type="0"/>
-    <ROW Component="tomcatjdbc9.0.68.jar" ComponentId="{6B3BEB53-F030-4BB5-A7BA-A0B09DF71DCA}" Directory_="libtomcat_Dir" Attributes="0" KeyPath="tomcatjdbc9.0.68.jar_2" Type="0"/>
+    <ROW Component="tomcatjdbc9.0.69.jar" ComponentId="{A5FB0A0B-A7DF-433A-87AB-61C00368BCF7}" Directory_="libtomcat_Dir" Attributes="0" KeyPath="tomcatjdbc9.0.69.jar_1" Type="0"/>
     <ROW Component="web.xml" ComponentId="{AF6D9441-FAA3-4C16-8BCD-6CBECF975BCC}" Directory_="WEBINF_Dir" Attributes="0" KeyPath="web.xml" Type="0"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFeatsComponent">
@@ -113,11 +113,12 @@
     <ROW File="jdbc_password_encryptor.bat" Component_="aceqlserver.bat" FileName="JDBC_P~1.BAT|jdbc_password_encryptor.bat" Attributes="0" SourcePath="AceQL\bin\jdbc_password_encryptor.bat" SelfReg="false"/>
     <ROW File="LICENSE.TXT" Component_="AceQLOpenSourceLicense.txt" FileName="LICENSE.TXT" Attributes="0" SourcePath="AceQL\LICENSE.TXT" SelfReg="false"/>
     <ROW File="postgresql42.3.7.jar" Component_="postgresql42.3.7.jar" FileName="POSTGR~1.JAR|postgresql-42.3.7.jar" Attributes="0" SourcePath="AceQL\lib-jdbc\postgresql-42.3.7.jar" SelfReg="false"/>
+    <ROW File="web.xml" Component_="web.xml" FileName="web.xml" Attributes="0" SourcePath="AceQL\webapp\WEB-INF\web.xml" SelfReg="false"/>
     <ROW File="aceqlhttp12.0.jar" Component_="aceqlhttp12.0.jar" FileName="ACEQL-~1.JAR|aceql-http-12.0.jar" Attributes="0" SourcePath="AceQL\lib-server\aceql-http-12.0.jar" SelfReg="false"/>
     <ROW File="aceqlhttpgui12.0.jar" Component_="aceqlhttp12.0.jar" FileName="ACEQL-~2.JAR|aceql-http-gui-12.0.jar" Attributes="0" SourcePath="AceQL\lib-server\aceql-http-gui-12.0.jar" SelfReg="false"/>
     <ROW File="apiguardianapi1.1.2.jar" Component_="aceqlhttp12.0.jar" FileName="APIGUA~1.JAR|apiguardian-api-1.1.2.jar" Attributes="0" SourcePath="AceQL\lib-server\apiguardian-api-1.1.2.jar" SelfReg="false"/>
     <ROW File="caffeine2.9.3.jar" Component_="aceqlhttp12.0.jar" FileName="CAFFEI~1.JAR|caffeine-2.9.3.jar" Attributes="0" SourcePath="AceQL\lib-server\caffeine-2.9.3.jar" SelfReg="false"/>
-    <ROW File="checkerqual3.5.0.jar" Component_="aceqlhttp12.0.jar" FileName="CHECKE~1.JAR|checker-qual-3.5.0.jar" Attributes="0" SourcePath="AceQL\lib-server\checker-qual-3.5.0.jar" SelfReg="false"/>
+    <ROW File="checkerqual3.23.0.jar" Component_="aceqlhttp12.0.jar" FileName="CHECKE~1.JAR|checker-qual-3.23.0.jar" Attributes="0" SourcePath="AceQL\lib-server\checker-qual-3.23.0.jar" SelfReg="false"/>
     <ROW File="Cloudmersive.APIClient.Javav4.33.jar" Component_="aceqlhttp12.0.jar" FileName="CLOUDM~1.JAR|Cloudmersive.APIClient.Java-v4.33.jar" Attributes="0" SourcePath="AceQL\lib-server\Cloudmersive.APIClient.Java-v4.33.jar" SelfReg="false"/>
     <ROW File="commonscli1.4.jar" Component_="aceqlhttp12.0.jar" FileName="COMMON~1.JAR|commons-cli-1.4.jar" Attributes="0" SourcePath="AceQL\lib-server\commons-cli-1.4.jar" SelfReg="false"/>
     <ROW File="commonscodec1.15.jar" Component_="aceqlhttp12.0.jar" FileName="COMMON~2.JAR|commons-codec-1.15.jar" Attributes="0" SourcePath="AceQL\lib-server\commons-codec-1.15.jar" SelfReg="false"/>
@@ -130,13 +131,13 @@
     <ROW File="gsonfire1.8.0.jar" Component_="aceqlhttp12.0.jar" FileName="GSON-F~1.JAR|gson-fire-1.8.0.jar" Attributes="0" SourcePath="AceQL\lib-server\gson-fire-1.8.0.jar" SelfReg="false"/>
     <ROW File="hamcrestcore1.3.jar" Component_="aceqlhttp12.0.jar" FileName="HAMCRE~1.JAR|hamcrest-core-1.3.jar" Attributes="0" SourcePath="AceQL\lib-server\hamcrest-core-1.3.jar" SelfReg="false"/>
     <ROW File="istackcommonsruntime3.0.8.jar" Component_="aceqlhttp12.0.jar" FileName="ISTACK~1.JAR|istack-commons-runtime-3.0.8.jar" Attributes="0" SourcePath="AceQL\lib-server\istack-commons-runtime-3.0.8.jar" SelfReg="false"/>
-    <ROW File="jacksonannotations2.10.3.jar" Component_="aceqlhttp12.0.jar" FileName="JACKSO~1.JAR|jackson-annotations-2.10.3.jar" Attributes="0" SourcePath="AceQL\lib-server\jackson-annotations-2.10.3.jar" SelfReg="false"/>
-    <ROW File="jacksoncore2.10.3.jar" Component_="aceqlhttp12.0.jar" FileName="JACKSO~2.JAR|jackson-core-2.10.3.jar" Attributes="0" SourcePath="AceQL\lib-server\jackson-core-2.10.3.jar" SelfReg="false"/>
-    <ROW File="jacksondatabind2.10.3.jar" Component_="aceqlhttp12.0.jar" FileName="JACKSO~3.JAR|jackson-databind-2.10.3.jar" Attributes="0" SourcePath="AceQL\lib-server\jackson-databind-2.10.3.jar" SelfReg="false"/>
+    <ROW File="jacksonannotations2.13.4.jar" Component_="aceqlhttp12.0.jar" FileName="JACKSO~1.JAR|jackson-annotations-2.13.4.jar" Attributes="0" SourcePath="AceQL\lib-server\jackson-annotations-2.13.4.jar" SelfReg="false"/>
+    <ROW File="jacksoncore2.13.4.jar" Component_="aceqlhttp12.0.jar" FileName="JACKSO~2.JAR|jackson-core-2.13.4.jar" Attributes="0" SourcePath="AceQL\lib-server\jackson-core-2.13.4.jar" SelfReg="false"/>
+    <ROW File="jacksondatabind2.13.4.2.jar" Component_="aceqlhttp12.0.jar" FileName="JACKSO~3.JAR|jackson-databind-2.13.4.2.jar" Attributes="0" SourcePath="AceQL\lib-server\jackson-databind-2.13.4.2.jar" SelfReg="false"/>
     <ROW File="jakarta.activationapi1.2.1.jar" Component_="aceqlhttp12.0.jar" FileName="JAKART~1.JAR|jakarta.activation-api-1.2.1.jar" Attributes="0" SourcePath="AceQL\lib-server\jakarta.activation-api-1.2.1.jar" SelfReg="false"/>
     <ROW File="jakarta.xml.bindapi2.3.2.jar" Component_="aceqlhttp12.0.jar" FileName="JAKART~2.JAR|jakarta.xml.bind-api-2.3.2.jar" Attributes="0" SourcePath="AceQL\lib-server\jakarta.xml.bind-api-2.3.2.jar" SelfReg="false"/>
     <ROW File="jasypt1.9.3.jar" Component_="aceqlhttp12.0.jar" FileName="JASYPT~1.JAR|jasypt-1.9.3.jar" Attributes="0" SourcePath="AceQL\lib-server\jasypt-1.9.3.jar" SelfReg="false"/>
-    <ROW File="javajwt3.11.0.jar" Component_="aceqlhttp12.0.jar" FileName="JAVA-J~1.JAR|java-jwt-3.11.0.jar" Attributes="0" SourcePath="AceQL\lib-server\java-jwt-3.11.0.jar" SelfReg="false"/>
+    <ROW File="javajwt4.2.1.jar" Component_="aceqlhttp12.0.jar" FileName="JAVA-J~1.JAR|java-jwt-4.2.1.jar" Attributes="0" SourcePath="AceQL\lib-server\java-jwt-4.2.1.jar" SelfReg="false"/>
     <ROW File="javax.json1.1.4.jar" Component_="aceqlhttp12.0.jar" FileName="JAVAXJ~1.JAR|javax.json-1.1.4.jar" Attributes="0" SourcePath="AceQL\lib-server\javax.json-1.1.4.jar" SelfReg="false"/>
     <ROW File="javax.servletapi4.0.1.jar" Component_="aceqlhttp12.0.jar" FileName="JAVAXS~1.JAR|javax.servlet-api-4.0.1.jar" Attributes="0" SourcePath="AceQL\lib-server\javax.servlet-api-4.0.1.jar" SelfReg="false"/>
     <ROW File="jaxbruntime2.3.2.jar" Component_="aceqlhttp12.0.jar" FileName="JAXB-R~1.JAR|jaxb-runtime-2.3.2.jar" Attributes="0" SourcePath="AceQL\lib-server\jaxb-runtime-2.3.2.jar" SelfReg="false"/>
@@ -151,85 +152,70 @@
     <ROW File="logbackclassic1.3.0.jar" Component_="aceqlhttp12.0.jar" FileName="LOGBAC~1.JAR|logback-classic-1.3.0.jar" Attributes="0" SourcePath="AceQL\lib-server\logback-classic-1.3.0.jar" SelfReg="false"/>
     <ROW File="logbackcore1.3.0.jar" Component_="aceqlhttp12.0.jar" FileName="LOGBAC~2.JAR|logback-core-1.3.0.jar" Attributes="0" SourcePath="AceQL\lib-server\logback-core-1.3.0.jar" SelfReg="false"/>
     <ROW File="logginginterceptor2.7.5.jar" Component_="aceqlhttp12.0.jar" FileName="LOGGIN~1.JAR|logging-interceptor-2.7.5.jar" Attributes="0" SourcePath="AceQL\lib-server\logging-interceptor-2.7.5.jar" SelfReg="false"/>
-    <ROW File="ojdbc611.2.0.4.jar" Component_="aceqlhttp12.0.jar" FileName="OJDBC6~1.JAR|ojdbc6-11.2.0.4.jar" Attributes="0" SourcePath="AceQL\lib-server\ojdbc6-11.2.0.4.jar" SelfReg="false"/>
     <ROW File="okhttp2.7.5.jar" Component_="aceqlhttp12.0.jar" FileName="OKHTTP~1.JAR|okhttp-2.7.5.jar" Attributes="0" SourcePath="AceQL\lib-server\okhttp-2.7.5.jar" SelfReg="false"/>
     <ROW File="okio1.6.0.jar" Component_="aceqlhttp12.0.jar" FileName="OKIO-1~1.JAR|okio-1.6.0.jar" Attributes="0" SourcePath="AceQL\lib-server\okio-1.6.0.jar" SelfReg="false"/>
-    <ROW File="ons11.2.0.4.jar" Component_="aceqlhttp12.0.jar" FileName="ONS-11~1.JAR|ons-11.2.0.4.jar" Attributes="0" SourcePath="AceQL\lib-server\ons-11.2.0.4.jar" SelfReg="false"/>
     <ROW File="opentest4j1.2.0.jar" Component_="aceqlhttp12.0.jar" FileName="OPENTE~1.JAR|opentest4j-1.2.0.jar" Attributes="0" SourcePath="AceQL\lib-server\opentest4j-1.2.0.jar" SelfReg="false"/>
-    <ROW File="oraclepki11.2.0.4.jar" Component_="aceqlhttp12.0.jar" FileName="ORACLE~1.JAR|oraclepki-11.2.0.4.jar" Attributes="0" SourcePath="AceQL\lib-server\oraclepki-11.2.0.4.jar" SelfReg="false"/>
-    <ROW File="osdt_cert11.2.0.4.jar" Component_="aceqlhttp12.0.jar" FileName="OSDT_C~1.JAR|osdt_cert-11.2.0.4.jar" Attributes="0" SourcePath="AceQL\lib-server\osdt_cert-11.2.0.4.jar" SelfReg="false"/>
-    <ROW File="osdt_core11.2.0.4.jar" Component_="aceqlhttp12.0.jar" FileName="OSDT_C~2.JAR|osdt_core-11.2.0.4.jar" Attributes="0" SourcePath="AceQL\lib-server\osdt_core-11.2.0.4.jar" SelfReg="false"/>
     <ROW File="schemacrawler16.3.0.jar" Component_="aceqlhttp12.0.jar" FileName="SCHEMA~1.JAR|schemacrawler-16.3.0.jar" Attributes="0" SourcePath="AceQL\lib-server\schemacrawler-16.3.0.jar" SelfReg="false"/>
-    <ROW File="simplefan11.2.0.4.jar" Component_="aceqlhttp12.0.jar" FileName="SIMPLE~1.JAR|simplefan-11.2.0.4.jar" Attributes="0" SourcePath="AceQL\lib-server\simplefan-11.2.0.4.jar" SelfReg="false"/>
     <ROW File="slf4japi2.0.0.jar" Component_="aceqlhttp12.0.jar" FileName="SLF4J-~1.JAR|slf4j-api-2.0.0.jar" Attributes="0" SourcePath="AceQL\lib-server\slf4j-api-2.0.0.jar" SelfReg="false"/>
     <ROW File="staxex1.8.1.jar" Component_="aceqlhttp12.0.jar" FileName="STAX-E~1.JAR|stax-ex-1.8.1.jar" Attributes="0" SourcePath="AceQL\lib-server\stax-ex-1.8.1.jar" SelfReg="false"/>
     <ROW File="swaggerannotations1.5.15.jar" Component_="aceqlhttp12.0.jar" FileName="SWAGGE~1.JAR|swagger-annotations-1.5.15.jar" Attributes="0" SourcePath="AceQL\lib-server\swagger-annotations-1.5.15.jar" SelfReg="false"/>
     <ROW File="swingxall1.6.51.jar" Component_="aceqlhttp12.0.jar" FileName="SWINGX~1.JAR|swingx-all-1.6.5-1.jar" Attributes="0" SourcePath="AceQL\lib-server\swingx-all-1.6.5-1.jar" SelfReg="false"/>
     <ROW File="threetenbp1.3.5.jar" Component_="aceqlhttp12.0.jar" FileName="THREET~1.JAR|threetenbp-1.3.5.jar" Attributes="0" SourcePath="AceQL\lib-server\threetenbp-1.3.5.jar" SelfReg="false"/>
-    <ROW File="tomcatannotationsapi9.0.68.jar" Component_="aceqlhttp12.0.jar" FileName="TOMCAT~1.JAR|tomcat-annotations-api-9.0.68.jar" Attributes="0" SourcePath="AceQL\lib-server\tomcat-annotations-api-9.0.68.jar" SelfReg="false"/>
-    <ROW File="tomcatembedcore9.0.68.jar" Component_="aceqlhttp12.0.jar" FileName="TOMCAT~2.JAR|tomcat-embed-core-9.0.68.jar" Attributes="0" SourcePath="AceQL\lib-server\tomcat-embed-core-9.0.68.jar" SelfReg="false"/>
-    <ROW File="tomcatjdbc9.0.68.jar" Component_="aceqlhttp12.0.jar" FileName="TOMCAT~3.JAR|tomcat-jdbc-9.0.68.jar" Attributes="0" SourcePath="AceQL\lib-server\tomcat-jdbc-9.0.68.jar" SelfReg="false"/>
-    <ROW File="tomcatjuli9.0.68.jar" Component_="aceqlhttp12.0.jar" FileName="TOMCAT~4.JAR|tomcat-juli-9.0.68.jar" Attributes="0" SourcePath="AceQL\lib-server\tomcat-juli-9.0.68.jar" SelfReg="false"/>
+    <ROW File="tomcatannotationsapi9.0.69.jar" Component_="aceqlhttp12.0.jar" FileName="TOMCAT~1.JAR|tomcat-annotations-api-9.0.69.jar" Attributes="0" SourcePath="AceQL\lib-server\tomcat-annotations-api-9.0.69.jar" SelfReg="false"/>
+    <ROW File="tomcatembedcore9.0.69.jar" Component_="aceqlhttp12.0.jar" FileName="TOMCAT~2.JAR|tomcat-embed-core-9.0.69.jar" Attributes="0" SourcePath="AceQL\lib-server\tomcat-embed-core-9.0.69.jar" SelfReg="false"/>
+    <ROW File="tomcatjdbc9.0.69.jar" Component_="aceqlhttp12.0.jar" FileName="TOMCAT~3.JAR|tomcat-jdbc-9.0.69.jar" Attributes="0" SourcePath="AceQL\lib-server\tomcat-jdbc-9.0.69.jar" SelfReg="false"/>
+    <ROW File="tomcatjuli9.0.69.jar" Component_="aceqlhttp12.0.jar" FileName="TOMCAT~4.JAR|tomcat-juli-9.0.69.jar" Attributes="0" SourcePath="AceQL\lib-server\tomcat-juli-9.0.69.jar" SelfReg="false"/>
     <ROW File="txw22.3.2.jar" Component_="aceqlhttp12.0.jar" FileName="TXW2-2~1.JAR|txw2-2.3.2.jar" Attributes="0" SourcePath="AceQL\lib-server\txw2-2.3.2.jar" SelfReg="false"/>
-    <ROW File="ucp11.2.0.4.jar" Component_="aceqlhttp12.0.jar" FileName="UCP-11~1.JAR|ucp-11.2.0.4.jar" Attributes="0" SourcePath="AceQL\lib-server\ucp-11.2.0.4.jar" SelfReg="false"/>
     <ROW File="wafflejna3.2.0.jar" Component_="aceqlhttp12.0.jar" FileName="WAFFLE~1.JAR|waffle-jna-3.2.0.jar" Attributes="0" SourcePath="AceQL\lib-server\waffle-jna-3.2.0.jar" SelfReg="false"/>
-    <ROW File="web.xml" Component_="web.xml" FileName="web.xml" Attributes="0" SourcePath="AceQL\webapp\WEB-INF\web.xml" SelfReg="false"/>
-    <ROW File="aceqlhttp12.0.jar_2" Component_="aceqlhttp12.0.jar_2" FileName="ACEQL-~1.JAR|aceql-http-12.0.jar" Attributes="0" SourcePath="AceQL\webapp\WEB-INF\lib\aceql-http-12.0.jar" SelfReg="false"/>
-    <ROW File="apiguardianapi1.1.2.jar_2" Component_="aceqlhttp12.0.jar_2" FileName="APIGUA~1.JAR|apiguardian-api-1.1.2.jar" Attributes="0" SourcePath="AceQL\webapp\WEB-INF\lib\apiguardian-api-1.1.2.jar" SelfReg="false"/>
-    <ROW File="caffeine2.9.3.jar_2" Component_="aceqlhttp12.0.jar_2" FileName="CAFFEI~1.JAR|caffeine-2.9.3.jar" Attributes="0" SourcePath="AceQL\webapp\WEB-INF\lib\caffeine-2.9.3.jar" SelfReg="false"/>
-    <ROW File="checkerqual3.5.0.jar_2" Component_="aceqlhttp12.0.jar_2" FileName="CHECKE~1.JAR|checker-qual-3.5.0.jar" Attributes="0" SourcePath="AceQL\webapp\WEB-INF\lib\checker-qual-3.5.0.jar" SelfReg="false"/>
-    <ROW File="Cloudmersive.APIClient.Javav4.33.jar_2" Component_="aceqlhttp12.0.jar_2" FileName="CLOUDM~1.JAR|Cloudmersive.APIClient.Java-v4.33.jar" Attributes="0" SourcePath="AceQL\webapp\WEB-INF\lib\Cloudmersive.APIClient.Java-v4.33.jar" SelfReg="false"/>
-    <ROW File="commonscli1.4.jar_2" Component_="aceqlhttp12.0.jar_2" FileName="COMMON~1.JAR|commons-cli-1.4.jar" Attributes="0" SourcePath="AceQL\webapp\WEB-INF\lib\commons-cli-1.4.jar" SelfReg="false"/>
-    <ROW File="commonscodec1.15.jar_2" Component_="aceqlhttp12.0.jar_2" FileName="COMMON~2.JAR|commons-codec-1.15.jar" Attributes="0" SourcePath="AceQL\webapp\WEB-INF\lib\commons-codec-1.15.jar" SelfReg="false"/>
-    <ROW File="commonsio2.7.jar_2" Component_="aceqlhttp12.0.jar_2" FileName="COMMON~3.JAR|commons-io-2.7.jar" Attributes="0" SourcePath="AceQL\webapp\WEB-INF\lib\commons-io-2.7.jar" SelfReg="false"/>
-    <ROW File="commonslang33.11.jar_2" Component_="aceqlhttp12.0.jar_2" FileName="COMMON~4.JAR|commons-lang3-3.11.jar" Attributes="0" SourcePath="AceQL\webapp\WEB-INF\lib\commons-lang3-3.11.jar" SelfReg="false"/>
-    <ROW File="error_prone_annotations2.10.0.jar_2" Component_="aceqlhttp12.0.jar_2" FileName="ERROR_~1.JAR|error_prone_annotations-2.10.0.jar" Attributes="0" SourcePath="AceQL\webapp\WEB-INF\lib\error_prone_annotations-2.10.0.jar" SelfReg="false"/>
-    <ROW File="FastInfoset1.2.16.jar_2" Component_="aceqlhttp12.0.jar_2" FileName="FASTIN~1.JAR|FastInfoset-1.2.16.jar" Attributes="0" SourcePath="AceQL\webapp\WEB-INF\lib\FastInfoset-1.2.16.jar" SelfReg="false"/>
-    <ROW File="flatlaf1.0.jar_2" Component_="aceqlhttp12.0.jar_2" FileName="FLATLA~1.JAR|flatlaf-1.0.jar" Attributes="0" SourcePath="AceQL\webapp\WEB-INF\lib\flatlaf-1.0.jar" SelfReg="false"/>
-    <ROW File="gson2.8.9.jar_2" Component_="aceqlhttp12.0.jar_2" FileName="GSON-2~1.JAR|gson-2.8.9.jar" Attributes="0" SourcePath="AceQL\webapp\WEB-INF\lib\gson-2.8.9.jar" SelfReg="false"/>
-    <ROW File="gsonfire1.8.0.jar_2" Component_="aceqlhttp12.0.jar_2" FileName="GSON-F~1.JAR|gson-fire-1.8.0.jar" Attributes="0" SourcePath="AceQL\webapp\WEB-INF\lib\gson-fire-1.8.0.jar" SelfReg="false"/>
-    <ROW File="hamcrestcore1.3.jar_2" Component_="aceqlhttp12.0.jar_2" FileName="HAMCRE~1.JAR|hamcrest-core-1.3.jar" Attributes="0" SourcePath="AceQL\webapp\WEB-INF\lib\hamcrest-core-1.3.jar" SelfReg="false"/>
-    <ROW File="istackcommonsruntime3.0.8.jar_2" Component_="aceqlhttp12.0.jar_2" FileName="ISTACK~1.JAR|istack-commons-runtime-3.0.8.jar" Attributes="0" SourcePath="AceQL\webapp\WEB-INF\lib\istack-commons-runtime-3.0.8.jar" SelfReg="false"/>
-    <ROW File="jacksonannotations2.10.3.jar_2" Component_="aceqlhttp12.0.jar_2" FileName="JACKSO~1.JAR|jackson-annotations-2.10.3.jar" Attributes="0" SourcePath="AceQL\webapp\WEB-INF\lib\jackson-annotations-2.10.3.jar" SelfReg="false"/>
-    <ROW File="jacksoncore2.10.3.jar_2" Component_="aceqlhttp12.0.jar_2" FileName="JACKSO~2.JAR|jackson-core-2.10.3.jar" Attributes="0" SourcePath="AceQL\webapp\WEB-INF\lib\jackson-core-2.10.3.jar" SelfReg="false"/>
-    <ROW File="jacksondatabind2.10.3.jar_2" Component_="aceqlhttp12.0.jar_2" FileName="JACKSO~3.JAR|jackson-databind-2.10.3.jar" Attributes="0" SourcePath="AceQL\webapp\WEB-INF\lib\jackson-databind-2.10.3.jar" SelfReg="false"/>
-    <ROW File="jakarta.activationapi1.2.1.jar_2" Component_="aceqlhttp12.0.jar_2" FileName="JAKART~1.JAR|jakarta.activation-api-1.2.1.jar" Attributes="0" SourcePath="AceQL\webapp\WEB-INF\lib\jakarta.activation-api-1.2.1.jar" SelfReg="false"/>
-    <ROW File="jakarta.xml.bindapi2.3.2.jar_2" Component_="aceqlhttp12.0.jar_2" FileName="JAKART~2.JAR|jakarta.xml.bind-api-2.3.2.jar" Attributes="0" SourcePath="AceQL\webapp\WEB-INF\lib\jakarta.xml.bind-api-2.3.2.jar" SelfReg="false"/>
-    <ROW File="jasypt1.9.3.jar_2" Component_="aceqlhttp12.0.jar_2" FileName="JASYPT~1.JAR|jasypt-1.9.3.jar" Attributes="0" SourcePath="AceQL\webapp\WEB-INF\lib\jasypt-1.9.3.jar" SelfReg="false"/>
-    <ROW File="javajwt3.11.0.jar_2" Component_="aceqlhttp12.0.jar_2" FileName="JAVA-J~1.JAR|java-jwt-3.11.0.jar" Attributes="0" SourcePath="AceQL\webapp\WEB-INF\lib\java-jwt-3.11.0.jar" SelfReg="false"/>
-    <ROW File="javax.json1.1.4.jar_2" Component_="aceqlhttp12.0.jar_2" FileName="JAVAXJ~1.JAR|javax.json-1.1.4.jar" Attributes="0" SourcePath="AceQL\webapp\WEB-INF\lib\javax.json-1.1.4.jar" SelfReg="false"/>
-    <ROW File="javax.servletapi4.0.1.jar_2" Component_="aceqlhttp12.0.jar_2" FileName="JAVAXS~1.JAR|javax.servlet-api-4.0.1.jar" Attributes="0" SourcePath="AceQL\webapp\WEB-INF\lib\javax.servlet-api-4.0.1.jar" SelfReg="false"/>
-    <ROW File="jaxbruntime2.3.2.jar_2" Component_="aceqlhttp12.0.jar_2" FileName="JAXB-R~1.JAR|jaxb-runtime-2.3.2.jar" Attributes="0" SourcePath="AceQL\webapp\WEB-INF\lib\jaxb-runtime-2.3.2.jar" SelfReg="false"/>
-    <ROW File="jcloverslf4j1.7.36.jar_2" Component_="aceqlhttp12.0.jar_2" FileName="JCL-OV~1.JAR|jcl-over-slf4j-1.7.36.jar" Attributes="0" SourcePath="AceQL\webapp\WEB-INF\lib\jcl-over-slf4j-1.7.36.jar" SelfReg="false"/>
-    <ROW File="jna5.12.1.jar_2" Component_="aceqlhttp12.0.jar_2" FileName="JNA-51~1.JAR|jna-5.12.1.jar" Attributes="0" SourcePath="AceQL\webapp\WEB-INF\lib\jna-5.12.1.jar" SelfReg="false"/>
-    <ROW File="jnaplatform5.12.1.jar_2" Component_="aceqlhttp12.0.jar_2" FileName="JNA-PL~1.JAR|jna-platform-5.12.1.jar" Attributes="0" SourcePath="AceQL\webapp\WEB-INF\lib\jna-platform-5.12.1.jar" SelfReg="false"/>
-    <ROW File="jsch0.1.55.jar_2" Component_="aceqlhttp12.0.jar_2" FileName="JSCH-0~1.JAR|jsch-0.1.55.jar" Attributes="0" SourcePath="AceQL\webapp\WEB-INF\lib\jsch-0.1.55.jar" SelfReg="false"/>
-    <ROW File="jsqlparser4.2.jar_2" Component_="aceqlhttp12.0.jar_2" FileName="JSQLPA~1.JAR|jsqlparser-4.2.jar" Attributes="0" SourcePath="AceQL\webapp\WEB-INF\lib\jsqlparser-4.2.jar" SelfReg="false"/>
-    <ROW File="junit4.13.1.jar_2" Component_="aceqlhttp12.0.jar_2" FileName="JUNIT-~1.JAR|junit-4.13.1.jar" Attributes="0" SourcePath="AceQL\webapp\WEB-INF\lib\junit-4.13.1.jar" SelfReg="false"/>
-    <ROW File="junitjupiterapi5.8.2.jar_2" Component_="aceqlhttp12.0.jar_2" FileName="JUNIT-~2.JAR|junit-jupiter-api-5.8.2.jar" Attributes="0" SourcePath="AceQL\webapp\WEB-INF\lib\junit-jupiter-api-5.8.2.jar" SelfReg="false"/>
-    <ROW File="junitplatformcommons1.8.2.jar_2" Component_="aceqlhttp12.0.jar_2" FileName="JUNIT-~3.JAR|junit-platform-commons-1.8.2.jar" Attributes="0" SourcePath="AceQL\webapp\WEB-INF\lib\junit-platform-commons-1.8.2.jar" SelfReg="false"/>
-    <ROW File="logbackclassic1.3.0.jar_2" Component_="aceqlhttp12.0.jar_2" FileName="LOGBAC~1.JAR|logback-classic-1.3.0.jar" Attributes="0" SourcePath="AceQL\webapp\WEB-INF\lib\logback-classic-1.3.0.jar" SelfReg="false"/>
-    <ROW File="logbackcore1.3.0.jar_2" Component_="aceqlhttp12.0.jar_2" FileName="LOGBAC~2.JAR|logback-core-1.3.0.jar" Attributes="0" SourcePath="AceQL\webapp\WEB-INF\lib\logback-core-1.3.0.jar" SelfReg="false"/>
-    <ROW File="logginginterceptor2.7.5.jar_2" Component_="aceqlhttp12.0.jar_2" FileName="LOGGIN~1.JAR|logging-interceptor-2.7.5.jar" Attributes="0" SourcePath="AceQL\webapp\WEB-INF\lib\logging-interceptor-2.7.5.jar" SelfReg="false"/>
-    <ROW File="ojdbc611.2.0.4.jar_2" Component_="aceqlhttp12.0.jar_2" FileName="OJDBC6~1.JAR|ojdbc6-11.2.0.4.jar" Attributes="0" SourcePath="AceQL\webapp\WEB-INF\lib\ojdbc6-11.2.0.4.jar" SelfReg="false"/>
-    <ROW File="okhttp2.7.5.jar_2" Component_="aceqlhttp12.0.jar_2" FileName="OKHTTP~1.JAR|okhttp-2.7.5.jar" Attributes="0" SourcePath="AceQL\webapp\WEB-INF\lib\okhttp-2.7.5.jar" SelfReg="false"/>
-    <ROW File="okio1.6.0.jar_2" Component_="aceqlhttp12.0.jar_2" FileName="OKIO-1~1.JAR|okio-1.6.0.jar" Attributes="0" SourcePath="AceQL\webapp\WEB-INF\lib\okio-1.6.0.jar" SelfReg="false"/>
-    <ROW File="ons11.2.0.4.jar_2" Component_="aceqlhttp12.0.jar_2" FileName="ONS-11~1.JAR|ons-11.2.0.4.jar" Attributes="0" SourcePath="AceQL\webapp\WEB-INF\lib\ons-11.2.0.4.jar" SelfReg="false"/>
-    <ROW File="opentest4j1.2.0.jar_2" Component_="aceqlhttp12.0.jar_2" FileName="OPENTE~1.JAR|opentest4j-1.2.0.jar" Attributes="0" SourcePath="AceQL\webapp\WEB-INF\lib\opentest4j-1.2.0.jar" SelfReg="false"/>
-    <ROW File="oraclepki11.2.0.4.jar_2" Component_="aceqlhttp12.0.jar_2" FileName="ORACLE~1.JAR|oraclepki-11.2.0.4.jar" Attributes="0" SourcePath="AceQL\webapp\WEB-INF\lib\oraclepki-11.2.0.4.jar" SelfReg="false"/>
-    <ROW File="osdt_cert11.2.0.4.jar_2" Component_="aceqlhttp12.0.jar_2" FileName="OSDT_C~1.JAR|osdt_cert-11.2.0.4.jar" Attributes="0" SourcePath="AceQL\webapp\WEB-INF\lib\osdt_cert-11.2.0.4.jar" SelfReg="false"/>
-    <ROW File="osdt_core11.2.0.4.jar_2" Component_="aceqlhttp12.0.jar_2" FileName="OSDT_C~2.JAR|osdt_core-11.2.0.4.jar" Attributes="0" SourcePath="AceQL\webapp\WEB-INF\lib\osdt_core-11.2.0.4.jar" SelfReg="false"/>
-    <ROW File="schemacrawler16.3.0.jar_2" Component_="aceqlhttp12.0.jar_2" FileName="SCHEMA~1.JAR|schemacrawler-16.3.0.jar" Attributes="0" SourcePath="AceQL\webapp\WEB-INF\lib\schemacrawler-16.3.0.jar" SelfReg="false"/>
-    <ROW File="simplefan11.2.0.4.jar_2" Component_="aceqlhttp12.0.jar_2" FileName="SIMPLE~1.JAR|simplefan-11.2.0.4.jar" Attributes="0" SourcePath="AceQL\webapp\WEB-INF\lib\simplefan-11.2.0.4.jar" SelfReg="false"/>
-    <ROW File="slf4japi2.0.0.jar_2" Component_="aceqlhttp12.0.jar_2" FileName="SLF4J-~1.JAR|slf4j-api-2.0.0.jar" Attributes="0" SourcePath="AceQL\webapp\WEB-INF\lib\slf4j-api-2.0.0.jar" SelfReg="false"/>
-    <ROW File="staxex1.8.1.jar_2" Component_="aceqlhttp12.0.jar_2" FileName="STAX-E~1.JAR|stax-ex-1.8.1.jar" Attributes="0" SourcePath="AceQL\webapp\WEB-INF\lib\stax-ex-1.8.1.jar" SelfReg="false"/>
-    <ROW File="swaggerannotations1.5.15.jar_2" Component_="aceqlhttp12.0.jar_2" FileName="SWAGGE~1.JAR|swagger-annotations-1.5.15.jar" Attributes="0" SourcePath="AceQL\webapp\WEB-INF\lib\swagger-annotations-1.5.15.jar" SelfReg="false"/>
-    <ROW File="swingxall1.6.51.jar_2" Component_="aceqlhttp12.0.jar_2" FileName="SWINGX~1.JAR|swingx-all-1.6.5-1.jar" Attributes="0" SourcePath="AceQL\webapp\WEB-INF\lib\swingx-all-1.6.5-1.jar" SelfReg="false"/>
-    <ROW File="threetenbp1.3.5.jar_2" Component_="aceqlhttp12.0.jar_2" FileName="THREET~1.JAR|threetenbp-1.3.5.jar" Attributes="0" SourcePath="AceQL\webapp\WEB-INF\lib\threetenbp-1.3.5.jar" SelfReg="false"/>
-    <ROW File="txw22.3.2.jar_2" Component_="aceqlhttp12.0.jar_2" FileName="TXW2-2~1.JAR|txw2-2.3.2.jar" Attributes="0" SourcePath="AceQL\webapp\WEB-INF\lib\txw2-2.3.2.jar" SelfReg="false"/>
-    <ROW File="ucp11.2.0.4.jar_2" Component_="aceqlhttp12.0.jar_2" FileName="UCP-11~1.JAR|ucp-11.2.0.4.jar" Attributes="0" SourcePath="AceQL\webapp\WEB-INF\lib\ucp-11.2.0.4.jar" SelfReg="false"/>
-    <ROW File="wafflejna3.2.0.jar_2" Component_="aceqlhttp12.0.jar_2" FileName="WAFFLE~1.JAR|waffle-jna-3.2.0.jar" Attributes="0" SourcePath="AceQL\webapp\WEB-INF\lib\waffle-jna-3.2.0.jar" SelfReg="false"/>
-    <ROW File="tomcatjdbc9.0.68.jar_2" Component_="tomcatjdbc9.0.68.jar" FileName="TOMCAT~1.JAR|tomcat-jdbc-9.0.68.jar" Attributes="0" SourcePath="AceQL\webapp\WEB-INF\lib-tomcat\tomcat-jdbc-9.0.68.jar" SelfReg="false"/>
+    <ROW File="aceqlhttp12.0.jar_1" Component_="aceqlhttp12.0.jar_1" FileName="ACEQL-~1.JAR|aceql-http-12.0.jar" Attributes="0" SourcePath="AceQL\webapp\WEB-INF\lib\aceql-http-12.0.jar" SelfReg="false"/>
+    <ROW File="apiguardianapi1.1.2.jar_1" Component_="aceqlhttp12.0.jar_1" FileName="APIGUA~1.JAR|apiguardian-api-1.1.2.jar" Attributes="0" SourcePath="AceQL\webapp\WEB-INF\lib\apiguardian-api-1.1.2.jar" SelfReg="false"/>
+    <ROW File="caffeine2.9.3.jar_1" Component_="aceqlhttp12.0.jar_1" FileName="CAFFEI~1.JAR|caffeine-2.9.3.jar" Attributes="0" SourcePath="AceQL\webapp\WEB-INF\lib\caffeine-2.9.3.jar" SelfReg="false"/>
+    <ROW File="checkerqual3.23.0.jar_1" Component_="aceqlhttp12.0.jar_1" FileName="CHECKE~1.JAR|checker-qual-3.23.0.jar" Attributes="0" SourcePath="AceQL\webapp\WEB-INF\lib\checker-qual-3.23.0.jar" SelfReg="false"/>
+    <ROW File="Cloudmersive.APIClient.Javav4.33.jar_1" Component_="aceqlhttp12.0.jar_1" FileName="CLOUDM~1.JAR|Cloudmersive.APIClient.Java-v4.33.jar" Attributes="0" SourcePath="AceQL\webapp\WEB-INF\lib\Cloudmersive.APIClient.Java-v4.33.jar" SelfReg="false"/>
+    <ROW File="commonscli1.4.jar_1" Component_="aceqlhttp12.0.jar_1" FileName="COMMON~1.JAR|commons-cli-1.4.jar" Attributes="0" SourcePath="AceQL\webapp\WEB-INF\lib\commons-cli-1.4.jar" SelfReg="false"/>
+    <ROW File="commonscodec1.15.jar_1" Component_="aceqlhttp12.0.jar_1" FileName="COMMON~2.JAR|commons-codec-1.15.jar" Attributes="0" SourcePath="AceQL\webapp\WEB-INF\lib\commons-codec-1.15.jar" SelfReg="false"/>
+    <ROW File="commonsio2.7.jar_1" Component_="aceqlhttp12.0.jar_1" FileName="COMMON~3.JAR|commons-io-2.7.jar" Attributes="0" SourcePath="AceQL\webapp\WEB-INF\lib\commons-io-2.7.jar" SelfReg="false"/>
+    <ROW File="commonslang33.11.jar_1" Component_="aceqlhttp12.0.jar_1" FileName="COMMON~4.JAR|commons-lang3-3.11.jar" Attributes="0" SourcePath="AceQL\webapp\WEB-INF\lib\commons-lang3-3.11.jar" SelfReg="false"/>
+    <ROW File="error_prone_annotations2.10.0.jar_1" Component_="aceqlhttp12.0.jar_1" FileName="ERROR_~1.JAR|error_prone_annotations-2.10.0.jar" Attributes="0" SourcePath="AceQL\webapp\WEB-INF\lib\error_prone_annotations-2.10.0.jar" SelfReg="false"/>
+    <ROW File="FastInfoset1.2.16.jar_1" Component_="aceqlhttp12.0.jar_1" FileName="FASTIN~1.JAR|FastInfoset-1.2.16.jar" Attributes="0" SourcePath="AceQL\webapp\WEB-INF\lib\FastInfoset-1.2.16.jar" SelfReg="false"/>
+    <ROW File="flatlaf1.0.jar_1" Component_="aceqlhttp12.0.jar_1" FileName="FLATLA~1.JAR|flatlaf-1.0.jar" Attributes="0" SourcePath="AceQL\webapp\WEB-INF\lib\flatlaf-1.0.jar" SelfReg="false"/>
+    <ROW File="gson2.8.9.jar_1" Component_="aceqlhttp12.0.jar_1" FileName="GSON-2~1.JAR|gson-2.8.9.jar" Attributes="0" SourcePath="AceQL\webapp\WEB-INF\lib\gson-2.8.9.jar" SelfReg="false"/>
+    <ROW File="gsonfire1.8.0.jar_1" Component_="aceqlhttp12.0.jar_1" FileName="GSON-F~1.JAR|gson-fire-1.8.0.jar" Attributes="0" SourcePath="AceQL\webapp\WEB-INF\lib\gson-fire-1.8.0.jar" SelfReg="false"/>
+    <ROW File="hamcrestcore1.3.jar_1" Component_="aceqlhttp12.0.jar_1" FileName="HAMCRE~1.JAR|hamcrest-core-1.3.jar" Attributes="0" SourcePath="AceQL\webapp\WEB-INF\lib\hamcrest-core-1.3.jar" SelfReg="false"/>
+    <ROW File="istackcommonsruntime3.0.8.jar_1" Component_="aceqlhttp12.0.jar_1" FileName="ISTACK~1.JAR|istack-commons-runtime-3.0.8.jar" Attributes="0" SourcePath="AceQL\webapp\WEB-INF\lib\istack-commons-runtime-3.0.8.jar" SelfReg="false"/>
+    <ROW File="jacksonannotations2.13.4.jar_1" Component_="aceqlhttp12.0.jar_1" FileName="JACKSO~1.JAR|jackson-annotations-2.13.4.jar" Attributes="0" SourcePath="AceQL\webapp\WEB-INF\lib\jackson-annotations-2.13.4.jar" SelfReg="false"/>
+    <ROW File="jacksoncore2.13.4.jar_1" Component_="aceqlhttp12.0.jar_1" FileName="JACKSO~2.JAR|jackson-core-2.13.4.jar" Attributes="0" SourcePath="AceQL\webapp\WEB-INF\lib\jackson-core-2.13.4.jar" SelfReg="false"/>
+    <ROW File="jacksondatabind2.13.4.2.jar_1" Component_="aceqlhttp12.0.jar_1" FileName="JACKSO~3.JAR|jackson-databind-2.13.4.2.jar" Attributes="0" SourcePath="AceQL\webapp\WEB-INF\lib\jackson-databind-2.13.4.2.jar" SelfReg="false"/>
+    <ROW File="jakarta.activationapi1.2.1.jar_1" Component_="aceqlhttp12.0.jar_1" FileName="JAKART~1.JAR|jakarta.activation-api-1.2.1.jar" Attributes="0" SourcePath="AceQL\webapp\WEB-INF\lib\jakarta.activation-api-1.2.1.jar" SelfReg="false"/>
+    <ROW File="jakarta.xml.bindapi2.3.2.jar_1" Component_="aceqlhttp12.0.jar_1" FileName="JAKART~2.JAR|jakarta.xml.bind-api-2.3.2.jar" Attributes="0" SourcePath="AceQL\webapp\WEB-INF\lib\jakarta.xml.bind-api-2.3.2.jar" SelfReg="false"/>
+    <ROW File="jasypt1.9.3.jar_1" Component_="aceqlhttp12.0.jar_1" FileName="JASYPT~1.JAR|jasypt-1.9.3.jar" Attributes="0" SourcePath="AceQL\webapp\WEB-INF\lib\jasypt-1.9.3.jar" SelfReg="false"/>
+    <ROW File="javajwt4.2.1.jar_1" Component_="aceqlhttp12.0.jar_1" FileName="JAVA-J~1.JAR|java-jwt-4.2.1.jar" Attributes="0" SourcePath="AceQL\webapp\WEB-INF\lib\java-jwt-4.2.1.jar" SelfReg="false"/>
+    <ROW File="javax.json1.1.4.jar_1" Component_="aceqlhttp12.0.jar_1" FileName="JAVAXJ~1.JAR|javax.json-1.1.4.jar" Attributes="0" SourcePath="AceQL\webapp\WEB-INF\lib\javax.json-1.1.4.jar" SelfReg="false"/>
+    <ROW File="javax.servletapi4.0.1.jar_1" Component_="aceqlhttp12.0.jar_1" FileName="JAVAXS~1.JAR|javax.servlet-api-4.0.1.jar" Attributes="0" SourcePath="AceQL\webapp\WEB-INF\lib\javax.servlet-api-4.0.1.jar" SelfReg="false"/>
+    <ROW File="jaxbruntime2.3.2.jar_1" Component_="aceqlhttp12.0.jar_1" FileName="JAXB-R~1.JAR|jaxb-runtime-2.3.2.jar" Attributes="0" SourcePath="AceQL\webapp\WEB-INF\lib\jaxb-runtime-2.3.2.jar" SelfReg="false"/>
+    <ROW File="jcloverslf4j1.7.36.jar_1" Component_="aceqlhttp12.0.jar_1" FileName="JCL-OV~1.JAR|jcl-over-slf4j-1.7.36.jar" Attributes="0" SourcePath="AceQL\webapp\WEB-INF\lib\jcl-over-slf4j-1.7.36.jar" SelfReg="false"/>
+    <ROW File="jna5.12.1.jar_1" Component_="aceqlhttp12.0.jar_1" FileName="JNA-51~1.JAR|jna-5.12.1.jar" Attributes="0" SourcePath="AceQL\webapp\WEB-INF\lib\jna-5.12.1.jar" SelfReg="false"/>
+    <ROW File="jnaplatform5.12.1.jar_1" Component_="aceqlhttp12.0.jar_1" FileName="JNA-PL~1.JAR|jna-platform-5.12.1.jar" Attributes="0" SourcePath="AceQL\webapp\WEB-INF\lib\jna-platform-5.12.1.jar" SelfReg="false"/>
+    <ROW File="jsch0.1.55.jar_1" Component_="aceqlhttp12.0.jar_1" FileName="JSCH-0~1.JAR|jsch-0.1.55.jar" Attributes="0" SourcePath="AceQL\webapp\WEB-INF\lib\jsch-0.1.55.jar" SelfReg="false"/>
+    <ROW File="jsqlparser4.2.jar_1" Component_="aceqlhttp12.0.jar_1" FileName="JSQLPA~1.JAR|jsqlparser-4.2.jar" Attributes="0" SourcePath="AceQL\webapp\WEB-INF\lib\jsqlparser-4.2.jar" SelfReg="false"/>
+    <ROW File="junit4.13.1.jar_1" Component_="aceqlhttp12.0.jar_1" FileName="JUNIT-~1.JAR|junit-4.13.1.jar" Attributes="0" SourcePath="AceQL\webapp\WEB-INF\lib\junit-4.13.1.jar" SelfReg="false"/>
+    <ROW File="junitjupiterapi5.8.2.jar_1" Component_="aceqlhttp12.0.jar_1" FileName="JUNIT-~2.JAR|junit-jupiter-api-5.8.2.jar" Attributes="0" SourcePath="AceQL\webapp\WEB-INF\lib\junit-jupiter-api-5.8.2.jar" SelfReg="false"/>
+    <ROW File="junitplatformcommons1.8.2.jar_1" Component_="aceqlhttp12.0.jar_1" FileName="JUNIT-~3.JAR|junit-platform-commons-1.8.2.jar" Attributes="0" SourcePath="AceQL\webapp\WEB-INF\lib\junit-platform-commons-1.8.2.jar" SelfReg="false"/>
+    <ROW File="logbackclassic1.3.0.jar_1" Component_="aceqlhttp12.0.jar_1" FileName="LOGBAC~1.JAR|logback-classic-1.3.0.jar" Attributes="0" SourcePath="AceQL\webapp\WEB-INF\lib\logback-classic-1.3.0.jar" SelfReg="false"/>
+    <ROW File="logbackcore1.3.0.jar_1" Component_="aceqlhttp12.0.jar_1" FileName="LOGBAC~2.JAR|logback-core-1.3.0.jar" Attributes="0" SourcePath="AceQL\webapp\WEB-INF\lib\logback-core-1.3.0.jar" SelfReg="false"/>
+    <ROW File="logginginterceptor2.7.5.jar_1" Component_="aceqlhttp12.0.jar_1" FileName="LOGGIN~1.JAR|logging-interceptor-2.7.5.jar" Attributes="0" SourcePath="AceQL\webapp\WEB-INF\lib\logging-interceptor-2.7.5.jar" SelfReg="false"/>
+    <ROW File="okhttp2.7.5.jar_1" Component_="aceqlhttp12.0.jar_1" FileName="OKHTTP~1.JAR|okhttp-2.7.5.jar" Attributes="0" SourcePath="AceQL\webapp\WEB-INF\lib\okhttp-2.7.5.jar" SelfReg="false"/>
+    <ROW File="okio1.6.0.jar_1" Component_="aceqlhttp12.0.jar_1" FileName="OKIO-1~1.JAR|okio-1.6.0.jar" Attributes="0" SourcePath="AceQL\webapp\WEB-INF\lib\okio-1.6.0.jar" SelfReg="false"/>
+    <ROW File="opentest4j1.2.0.jar_1" Component_="aceqlhttp12.0.jar_1" FileName="OPENTE~1.JAR|opentest4j-1.2.0.jar" Attributes="0" SourcePath="AceQL\webapp\WEB-INF\lib\opentest4j-1.2.0.jar" SelfReg="false"/>
+    <ROW File="schemacrawler16.3.0.jar_1" Component_="aceqlhttp12.0.jar_1" FileName="SCHEMA~1.JAR|schemacrawler-16.3.0.jar" Attributes="0" SourcePath="AceQL\webapp\WEB-INF\lib\schemacrawler-16.3.0.jar" SelfReg="false"/>
+    <ROW File="slf4japi2.0.0.jar_1" Component_="aceqlhttp12.0.jar_1" FileName="SLF4J-~1.JAR|slf4j-api-2.0.0.jar" Attributes="0" SourcePath="AceQL\webapp\WEB-INF\lib\slf4j-api-2.0.0.jar" SelfReg="false"/>
+    <ROW File="staxex1.8.1.jar_1" Component_="aceqlhttp12.0.jar_1" FileName="STAX-E~1.JAR|stax-ex-1.8.1.jar" Attributes="0" SourcePath="AceQL\webapp\WEB-INF\lib\stax-ex-1.8.1.jar" SelfReg="false"/>
+    <ROW File="swaggerannotations1.5.15.jar_1" Component_="aceqlhttp12.0.jar_1" FileName="SWAGGE~1.JAR|swagger-annotations-1.5.15.jar" Attributes="0" SourcePath="AceQL\webapp\WEB-INF\lib\swagger-annotations-1.5.15.jar" SelfReg="false"/>
+    <ROW File="swingxall1.6.51.jar_1" Component_="aceqlhttp12.0.jar_1" FileName="SWINGX~1.JAR|swingx-all-1.6.5-1.jar" Attributes="0" SourcePath="AceQL\webapp\WEB-INF\lib\swingx-all-1.6.5-1.jar" SelfReg="false"/>
+    <ROW File="threetenbp1.3.5.jar_1" Component_="aceqlhttp12.0.jar_1" FileName="THREET~1.JAR|threetenbp-1.3.5.jar" Attributes="0" SourcePath="AceQL\webapp\WEB-INF\lib\threetenbp-1.3.5.jar" SelfReg="false"/>
+    <ROW File="txw22.3.2.jar_1" Component_="aceqlhttp12.0.jar_1" FileName="TXW2-2~1.JAR|txw2-2.3.2.jar" Attributes="0" SourcePath="AceQL\webapp\WEB-INF\lib\txw2-2.3.2.jar" SelfReg="false"/>
+    <ROW File="wafflejna3.2.0.jar_1" Component_="aceqlhttp12.0.jar_1" FileName="WAFFLE~1.JAR|waffle-jna-3.2.0.jar" Attributes="0" SourcePath="AceQL\webapp\WEB-INF\lib\waffle-jna-3.2.0.jar" SelfReg="false"/>
+    <ROW File="tomcatjdbc9.0.69.jar_1" Component_="tomcatjdbc9.0.69.jar" FileName="TOMCAT~1.JAR|tomcat-jdbc-9.0.69.jar" Attributes="0" SourcePath="AceQL\webapp\WEB-INF\lib-tomcat\tomcat-jdbc-9.0.69.jar" SelfReg="false"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.BuildComponent">
     <ROW BuildKey="DefaultBuild" BuildName="DefaultBuild" BuildOrder="1" BuildType="0" PackageFolder="C:\MacOsX" Languages="en" InstallationType="2" CabsLocation="1" CompressCabs="false" UseLzma="true" LzmaMethod="2" LzmaCompressionLevel="2" PackageType="1" FilesInsideExe="true" ExeIconPath="AceQL\img\data_up_128_sRU_icon.ico" ExtractionFolder="[AppDataFolder][|Manufacturer]\[|ProductName] [|ProductVersion]\install" Options="8" UseLargeSchema="true" MsiPackageType="x64" UACExecutionLevel="2"/>
@@ -347,10 +333,10 @@
     <ROW Feature_="MainFeature" Component_="installService.bat"/>
     <ROW Feature_="MainFeature" Component_="APPDIR"/>
     <ROW Feature_="MainFeature" Component_="web.xml"/>
-    <ROW Feature_="MainFeature" Component_="tomcatjdbc9.0.68.jar"/>
     <ROW Feature_="MainFeature" Component_="postgresql42.3.7.jar"/>
     <ROW Feature_="MainFeature" Component_="aceqlhttp12.0.jar"/>
-    <ROW Feature_="MainFeature" Component_="aceqlhttp12.0.jar_2"/>
+    <ROW Feature_="MainFeature" Component_="aceqlhttp12.0.jar_1"/>
+    <ROW Feature_="MainFeature" Component_="tomcatjdbc9.0.69.jar"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiIconsComponent">
     <ROW Name="data_up_128_sRU_icon.exe" SourcePath="AceQL\img\data_up_128_sRU_icon.ico" Index="0"/>
