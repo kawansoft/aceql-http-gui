@@ -225,7 +225,7 @@
     <ROW Path="&lt;AI_DICTS&gt;ui_en.ail"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.DigCertStoreComponent">
-    <ROW TimeStampUrl="http://timestamp.comodoca.com" SignerDescription="[|ProductName]" SignOptions="7" SignTool="0" UseSha256="1" Thumbprint="ecbb401dd49200046e3ccf00db84013dd0a373fc Subject: KawanSoft&#10;Issuer: Sectigo Public Code Signing CA R36&#10;Valid from 11/16/2022 to 11/17/2023&#10;User\MY" Subject="CN=KawanSoft, O=KawanSoft, S=Ile-de-France, C=FR"/>
+    <ROW TimeStampUrl="http://timestamp.comodoca.com" SignerDescription="[|ProductName]" SignOptions="7" SignTool="0" UseSha256="1" Thumbprint="e91cb2605ca741469b223bf1d6418bbd0f04adb8 Subject: KAWANSOFT SAS&#10;Issuer: GlobalSign GCC R45 EV CodeSigning CA 2020&#10;Valid from 05/05/2023 to 07/05/2024&#10;User\MY" Subject="CN=KAWANSOFT SAS, O=KAWANSOFT SAS, STREET=128 RUE LA BOÉTIE, L=PARIS, S=Paris, C=FR, OID.1.3.6.1.4.1.311.60.2.1.3=FR, SERIALNUMBER=534 990 981, OID.2.5.4.15=Private Organization"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.FragmentComponent">
     <ROW Fragment="CommonUI.aip" Path="&lt;AI_FRAGS&gt;CommonUI.aip"/>
